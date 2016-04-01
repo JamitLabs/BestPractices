@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Version Control"
-categories: ios android rails
+categories: ios android
 ---
 
 ## What is version control?
@@ -11,3 +11,5 @@ categories: ios android rails
 ## What does git support?
 
 ## How can I use git efficiently?
+
+## When should I commit changes?

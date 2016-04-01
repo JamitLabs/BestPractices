@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Commit Messages"
-categories: ios android rails
+categories: ios android
 ---
 
 ## What's the goal of a commit message?

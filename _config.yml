@@ -9,7 +9,7 @@
 title: Best Practices
 email: your-email@domain.com
 description: >
-  Best practices for iOS, Android and Rails app development.
+  Best practices for iOS and Android app development.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://yourdomain.com" # the base hostname & protocol for your site
 twitter_username: jekyllrb

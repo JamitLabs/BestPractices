@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Flavored Git-Flow"
-categories: ios android rails
+categories: ios android
 ---
 
 ## What is git-flow?
