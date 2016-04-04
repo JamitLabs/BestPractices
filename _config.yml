@@ -1,21 +1,21 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
+# permalink:           pretty
+# relative_permalinks: true
 
 # Site settings
-title: Your awesome title
-email: your-email@domain.com
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+title:               JL Best Practices
+tagline:             'Best practices for iOS and Android app development.'
+description:         'Some best practices categorized by app development platform we are using at Jamit Labs.'
+url:                 https://github.com/jamitlabs/BestPractices
+email:               cihat.guenduez@jamitlabs.com
+baseurl:             ''
+paginate:            5
+
+twitter_username:    JamitLabs
+github_username:     jamitlabs
+
+# Custom vars
+version:             1.0.0
 
 # Build settings
 markdown: kramdown
+gems: [jekyll-paginate]
