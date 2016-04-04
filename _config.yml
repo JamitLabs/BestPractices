@@ -7,7 +7,7 @@ tagline:             'Best practices for iOS and Android app development.'
 description:         'Some best practices categorized by app development platform we are using at Jamit Labs.'
 url:                 https://github.com/jamitlabs/BestPractices
 email:               cihat.guenduez@jamitlabs.com
-baseurl:             ''
+baseurl:             'https://jamitlabs.jamit.de/BestPractices/'
 paginate:            5
 
 twitter_username:    JamitLabs
