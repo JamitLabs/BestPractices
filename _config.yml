@@ -6,14 +6,14 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Best Practices
-email: your-email@domain.com
+title: JL Best Practices
+email: cihat.guenduez@jamitlabs.com
 description: >
   Best practices for iOS and Android app development.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+url: "https://github.com/jamitlabs/BestPractices"
+twitter_username: JamitLabs
+github_username:  jamitlabs
 
 # Build settings
 markdown: kramdown

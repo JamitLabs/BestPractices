@@ -1,7 +1,37 @@
 ---
-layout: page
+layout: default
+title: Home
 ---
 
-{% for post in site.posts %}
-  [{{ post.title }}]({{ post.url | prepend: site.baseurl }})
-{% endfor %}
+<div class="posts">
+  {% for post in paginator.posts %}
+  <div class="post">
+    <h1 class="post-title">
+      <a href="{{ site.baseurl }}/{{ post.url }}">
+        {{ post.title }}
+      </a>
+    </h1>
+
+    <span class="post-date">{{ post.date | date_to_string }}</span>
+
+    {{ post.content }}
+  </div>
+  {% endfor %}
+</div>
+
+<div class="pagination">
+  {% if paginator.next_page %}
+    <a class="pagination-item older" href="{{ site.baseurl }}/page{{paginator.next_page}}">Älter</a>
+  {% else %}
+    <span class="pagination-item older">Älter</span>
+  {% endif %}
+  {% if paginator.previous_page %}
+    {% if paginator.page == 2 %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}/">Neuer</a>
+    {% else %}
+      <a class="pagination-item newer" href="{{ site.baseurl }}/page{{paginator.previous_page}}">Neuer</a>
+    {% endif %}
+  {% else %}
+    <span class="pagination-item newer">Neuer</span>
+  {% endif %}
+</div>
