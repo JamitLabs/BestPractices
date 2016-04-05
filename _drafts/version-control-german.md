@@ -27,9 +27,18 @@ Es gibt verschiedene Versionsverwaltungssysteme mit unterschiedlichen Zielen sow
 
 Mit git lassen sich Code-Projekte in verschiedenen Ausarbeitungen mit Kommentaren versehen speichern ("commits"), außerdem unterstützt git das Verwalten verschiedener gleichzeitig entwickelter Arbeitslinien ("branches"). git kann verschiedene branches oder die Änderungen von verschiedenen commits automatisch zusammenführen ("merge") sofern nicht an den selben Code-Stellen in denselben Dateien unterschiedliche Änderungen vorliegen ("merge conflict"). Falls diese doch vorliegen greift man einfach von Hand ein und ändert den Code entsprechend wie gewünscht (die Stellen mit einem Konflikt sind dann mit ">>>>>>" und "<<<<<<<" markiert).
 
+Eine sehr nützliche Funktion von git in Situationen, bei denen man wissen möchte, wann, von wem oder warum ein bestimmtes Stück Code geschrieben wurde, ist "git blame". Da die meisten Dienste zum Hosten von git-Projekten (wie GitHub, GitLab) die blame-Funktion bereits integriert haben ist der einfachste Weg zur Nutzung von git blame die entsprechende Datei in der Web-Oberfläche zu öffnen und auf den Button "blame" zu drücken. Dann sieht man in einer tabellarischen Darstellung rechts den Code und links dazu den jeweils letzten commit, in der der Code geändert wurde inklusive dem Kommentar und dem Namen desjednigen, der die Änderung durchgeführt hat. Diese Informationen können helfen Entscheidungen zum Löschen oder Verändern von bestimmten Code-Zeilen zu treffen.
 
-## Wie kann ich git effizient nutzen?
 
+## Wie kann ich git einfach nutzen?
+
+git ist ein Werkzeug für die Kommandozeile und ist auf Mac-Systemen standardmäßig vorinstalliert. Eine aktuelle Version kann auf der [offiziellen Downoad-Seite](https://git-scm.com/downloads) heruntergeladen werden. Wir empfehlen jedoch gerade git Anfängern (aber auch Erfahrenen) die Nutzung eines guten git-Programms mit Nutzeroberfläche. [SourceTree](https://www.sourcetreeapp.com) ist dabei sowohl für Mac als auch für Windows verfügbar und das Programm unserer Wahl. Es ist kostenlos (Registrierung nach 30 Tagen notwendig), recht übersichtlich und unterstützt neben einer integrierten aktuellen git-Version auch weitergehende Funktionen wie git-flow (dazu mehr in [diesem Artikel](#)).
 
 
 ## Wann sollte ich Änderungen commiten?
+
+Diese Entscheidung davon ab, mit welchem Ziel commits verwendet werden. Da commits mehrere Vorteile haben – Verhinderung von Datenverlust, Erklärung von Änderungen, Teilen von Code mit anderen – hängt diese Entscheidung vom Zweck ab. Ein paar Faustregeln können hier aber gegeben werden:
+
+* Grundsätzlich sollte die Arbeit an einem Projekt (sofern denn Änderungen zustande kamen) spätestens nach 2h einmal commitet werden, sofern man die getane Arbeit nicht verlieren möchte (auch wenn sie noch nicht komplettiert ist). Dies dient dem Ziel die Folgen von Datenverlust zu minimieren und bei Teams den Fortschritt zu teilen.
+
+* Jede zusammengehörige Veränderung (auch wenn mehrere Dateien beteiligt sind), die eine Sache fertig stellt, sollte commitet werden. Bei typischen Programmieraufgaben werden bei eingespielten Programmierern zwischen commits etwa 2-15 Minuten Zeit vergehen, je nach Größe der gerade überlegten Änderung. Hierbei drückt ein commit eine erdachte Änderung aus, wobei der Gedanke dann als Kommentar festgehalten wird.
