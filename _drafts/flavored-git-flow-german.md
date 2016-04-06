@@ -25,8 +25,54 @@ Der support/ Ordner ist eine schon seit Jahren als Beta markierte Funktion von G
 
 ## Wie kann ich Git-Flow einfach nutzen?
 
+Sowohl für die Erstellung als auch für das Fertigstellen von verschiedenen Arbeits-Branches in die Historien-Branches gibt es Skripte, die sich im [offiziellen GitHub Projekt](https://github.com/nvie/gitflow) finden und auch über andere Quellen nutzen lassen. Das Programm SourceTree (deren Einsatz wir bereits [hier](#) empfahlen) hat diese Skripte bereits standardmäßig mit an Board, sie sind am einfachsten mit der Tastenkombination Alt+Cmd+F oder über den [konfigurierbaren Git-Flow-Button](http://i.stack.imgur.com/KEQhG.gif) oben in der Menüleiste zugänglich.
 
+Die Nutzung von Git-Flow in SourceTree sei nachfolgend anhand eines feature/ Branches erläutert:
 
+TODO: Screenshots mit Erklärungen zum Erstellen und Mergen eines feature Branches hinzufügen
 
 
 ## Was ist Jamit Labs Flavored Git-Flow?
+
+Die Benamung der verschiedenen Branches als master, develop, feature/, hotfix/, release/ und support/ läuft Gefahr zu unterschiedlichen Missverständnissen und Verwechslungen zu führen. Beispielsweise wird der master Branch traditionell für den stabilen aktuellen Arbeits-Branch verwendet, sodass einige Programmierer mit Vorerfahrungen gewillt sind, direkt auf den master Branch zu commiten. Andere wiederum verwenden release/ Branches, um verschiedene veröffentlichte Versionen der Software zu verwalten (wozu es in Git-Flow support/ gibt), anstatt ihn ausschließlich für das Deployment zu verwenden.
+
+Aus diesem Grund erscheint es sinnvoll die Namen der Branches möglichst selbsterklärend und unmissverständlich zu ändern, wozu wir bei Jamit Labs folgende Umbenennungen vorgenommen haben. Es sei angemerkt, dass eine andere Benennung der Branches in Git-Flow explizit vorgesehen ist, was auch von SourceTree beim ersten Ausführen von Git-Flow pro Git-Projekt abgefragt wird, sodass die Umbenennung keinen großen Aufwand darstellt.
+
+### master >> productive
+
+Der master Branch hat zu viel Historie und ist damit für viele erfahrene Git-Anwender bereits mit bestimmten Aufgaben verbunden. Um mit diesen nicht vorbelastet zu sein und auch um die Tatsache heraus zu stellen, dass Code der in diesem Branch ist bereits veröffentlichter Code ist wäre eine Umbenennung in released nahelegend. Doch dies hätte den Nachteil, dass es mit dem Git-Flow release/ Branch verwechselt wird, weshalb wir die alternative aber weiterhin sprechende Benamung productive gewählt haben.
+
+Es sei darauf verwiesen, dass der productive Branch als Historien-Branch ein Adjektiv als Namen hat und explizit kein Verb. Dies soll ein Hinweis darauf sein, dass hierin nicht direkt gearbeitet werden darf.
+
+
+### develop >> stable
+
+Der develop Branch klingt zu sehr nach Entwicklung und obwohl das auch durchaus passend ist ergibt sich aus den Erfahrungen in der Praxis die Notwendigkeit besser heraus zu stellen, dass der develop Branch den aktuellsten **stabilen** Entwicklungszustand repräsentiert. Deshalb heißt der develop Branch im Jamit Labs Flavor stable.
+
+Es sei außerdem darauf verwiesen, dass der stable Branch als Historien-Branch (wie der productive branch) ein Adjektiv als Namen hat und explizit kein Verb. Dies soll ein Hinweis darauf sein, dass auch hierin nicht direkt gearbeitet werden darf.
+
+
+### feature/ >> work/
+
+Während der Name feature/ in der Praxis keine echten Nachteile ergeben hat ist es doch in vielen Situationen etwas seltsam, Branch-Namen wie "feature/fix-memory-usage" zu lesen, da der Begriff "feature" durchaus bereits mit einer anderen Bedeutung besetzt ist. Da jedoch neben "features" auch Bug Fixes, Tests und alle möglichen anderen Arten von Änderungen in feature/ Branches entwickelt werden ist eine Umbenennung durchaus sinnvoll. Wir verwenden daher den Ordnernamen work/. Dies soll zum Einen alle verschiedenen Arten von Arbeiten sinnvoll ermöglichen, aber auch die Tatsache verdeutlichen, dass die meiste getane Arbeit typischerweise in work/ Branches erledigt wird.
+
+Es sei angemerkt, dass explizit ein Verb als Ordnernamen ausgewählt wurde, da es sich hierbei um Branches handelt, in denen Arbeit verrichtet werden darf und soll.
+
+
+### release/ >> deploy/
+
+Der release Branch ist ähnlich wie der master Branch für einige erfahrene Git-Anwender aus anderen Projekten bereits mit einer anderen Bedeutung besetzt (nämlich der Bedeutung der support/ Branches nach Git-Flow). Um Verwechslungen zu vermeiden nehmen wir den klarer auf den Sinn anspielenden Namen deploy/. Unter Deployment versteht man schließlich den Release von fertiger Software – genau das, wofür der deploy/ Branch verwendet wird.
+
+Es sei angemerkt, dass explizit ein Verb als Ordnernamen ausgewählt wurde, da es sich hierbei um Branches handelt, in denen Arbeit verrichtet werden darf und soll.
+
+
+### hotfix/ == hotfix/
+
+hotfix/ ist nicht nur ein Name, das bislang keine Verwechslungen hervorrief, sondern trifft auch genau den Sinn dieser Branches. Daher findet hier keine Umbenennung statt.
+
+Es sei angemerkt, dass explizit ein Verb als Ordnernamen ausgewählt wurde, da es sich hierbei um Branches handelt, in denen Arbeit verrichtet werden darf und soll.
+
+
+### support/ >> support/, branding/, ...
+
+support/ trifft ähnlich wie bei hotfix/ den Sinn der Branches bei Verwaltung mehrere veröffentlichter Software-Versionen sehr gut, weshalb wir auch hier keine Umbenennung empfehlen. Allerdings ist die Unterstützung von mehreren Software-Versionen nicht immer auf die Versionsnummer bezogen (also den Support von Altversionen) sondern dabei kann es sich zum Beispiel auch um verschiedene Brandings einer App handeln. Da support/ in solchen Fällen keinen Sinn macht, schlagen wir vor für jede Art von verwalteten Software-Versionen einen eigenen Namen zu verwenden, den man vorher intern mit seinem Team abklären sollte. Für unterschiedliche Brandings könnte etwa branding/ gewählt werden.
