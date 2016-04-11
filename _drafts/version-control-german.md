@@ -13,44 +13,48 @@ Versionsverwaltungssysteme ermöglichen das Festhalten von Änderungen an textba
 
 Angenommen ein Projekt wird ohne Versionsverwaltung umgesetzt und es gibt einen Fehler. Zur Behebung des Fehlers machst du Änderungen am Code des Projekts und wie so oft musst du verschiedene Ansätze ausprobieren, damit du den richtigen Fix findest. Du stellst dabei irgendwann fest, dass irgendetwas anderes nicht mehr funktioniert, weil du vor dem Beginn eines neuen Ansatzes den vorherigen Ansatz nicht komplett rückgängig gemacht hast und irgendetwas vergessen hast, was jetzt Auswirkungen auf deinen neuen Ansatz hat. Und das Ganze geht immer weiter, je mehr Änderungen du machst, desto schlimmer wird es, bis das Projekt irgendwann gar nicht mehr funktioniert.
 
-Mithilfe eines Versionskontrollsystems kannst du nach jedem Ansatz praktisch mit einem Klick zum vorigen Stand zurückkehren. Außerdem solltest du jeden erfolgreichen Ansatz mit einem Kommentar versehen abspeichern (ein sogenannter **Commit**), wodurch du den neuen Stand zum Zurückkehren markierst – die noch weiter vorherigen funktionierenden Stände sind auch alle weiterhin verfügbar (in der sogenannten **Hisory**).
+Mithilfe eines Versionskontrollsystems kannst du nach jedem Ansatz praktisch mit einem Klick zum vorigen Stand zurückkehren. Außerdem solltest du jeden erfolgreichen Ansatz mit einem Kommentar versehen abspeichern (ein sogenannter **Commit**), wodurch du den neuen Stand zum Zurückkehren markierst – die noch weiter vorherigen funktionierenden Stände sind auch alle weiterhin verfügbar (in der sogenannten **History**).
 
 Ganz vom obigen Beispiel abgesehen erschließt es sich außerdem leicht, warum kommentierte gespeicherte Zustände, zu denen man jederzeit zurückkehren kann und deren Änderungen man auch sehen kann (**Commit Changes**) das gemeinsame Arbeiten erleichtern. Versionskontrollsysteme haben außerdem stets eine Funktion, mithilfe der sie mehrere Commits zu einem gemeinsamen Ergebnis zusammenführen können (ein sogenannter **Merge**). Jeder kann also getrennt arbeiten, seine Arbeit commiten und am Ende kann alles ohne großen Aufwand zusammengeführt werden (sofern nicht an derselben Stelle gearbeitet wurde). Das spart viel Zeit und Nerven.
 
 
 ## Welches Versionsverwaltungssystem sollte ich nutzen?
 
-Es gibt verschiedene Versionsverwaltungssysteme mit unterschiedlichen Zielen sowie Vor- und Nachteilen. Die bei der Softwareentwicklung heutzutage am meisten verbreiteten sind SVN, Git und Mercurial. SVN gilt dabei als veraltet, da es sich noch um ein zentral verwaltetes Versionskontrollsystem handelt. Git und Mercurial sind dezentrale Versionskontrollsysteme, die das getrennte Arbeiten und Verwalten von Projekten durch den Einsatz lokaler Arbeitskopien deutlich verbessern.
+![version-control-logos]({{ site.url }}/assets/version-control-logos.png)
 
-***TODO:*** *Erklärung von zentral und dezentral ausbauen und dabei gleich mit erklären, wie das mit dem Server und den lokalen Kopien zu verstehen ist.*
+Es gibt verschiedene Versionsverwaltungssysteme [mit unterschiedlichen Zielen sowie Vor- und Nachteilen](http://stackoverflow.com/a/875). Die bei der Softwareentwicklung heutzutage am meisten verbreiteten sind SVN, Git und Mercurial. Allen 3 gemein ist, dass die Daten auf einem Server gehostet werden um so mehreren Nutzern Zugriff auf die Daten zu bieten. SVN gilt dabei als veraltet, da es sich noch um ein zentral verwaltetes Versionskontrollsystem handelt und man Änderungen am Projekt direkt auf den Server merged. Git und Mercurial sind dezentrale Versionskontrollsysteme, die das getrennte Arbeiten und Verwalten von Projekten durch den Einsatz lokaler Arbeitskopien deutlich verbessern. So hat man auch offline Zugriff auf alle Daten und ist nicht durchwegs auf eine Internetverbindung angewiesen, um am Projekt zu arbeiten. Da die lokale Kopie nicht automatisch auf den Stand des serverseitigen Originals synchronisiert wird muss man dies manuell erledigen (dazu später mehr).
 
-Funktional sind Git und Mercurial miteinander für die üblichen Projektzwecke durchaus vergleichbar, jedoch stand hinter Git (vor allem aus [historischen Gründen](https://de.wikipedia.org/wiki/Git)) stets eine deutlich größere Community, sodass Git mit der Zeit immer mehr zum dominierenden Versionskontrollsystem aufgestiegen ist. Die starke Verbreitung, die vielen verfügbaren Werkzeuge und die Unterstützung auf vielen Plattformen zur Projektverwaltung machen die Entscheidung sehr leicht: Git ist das Versionsverwaltungssystem der Wahl.
+Funktional sind Git und Mercurial miteinander für die üblichen Projektzwecke [durchaus vergleichbar](http://stackoverflow.com/a/892688), jedoch stand hinter Git (vor allem aus [historischen Gründen](https://de.wikipedia.org/wiki/Git)) stets eine deutlich größere Community, sodass Git mit der Zeit immer mehr zum dominierenden Versionskontrollsystem aufgestiegen ist. Die starke Verbreitung, die vielen verfügbaren Werkzeuge und die Unterstützung auf vielen Plattformen zur Projektverwaltung machen die Entscheidung sehr leicht: Git ist das Versionsverwaltungssystem der Wahl.
 
 
 ## Welche Funktionen beherrscht Git?
 
 Mit Git lassen sich Code-Projekte in verschiedenen Ausarbeitungen mit Kommentaren versehen speichern (**Commits**), außerdem unterstützt Git das Verwalten verschiedener gleichzeitig entwickelter Arbeitslinien (**Branches**). Git kann verschiedene Branches oder die Änderungen von verschiedenen Commits automatisch zusammenführen (**Merge**) sofern nicht an den selben Code-Stellen in denselben Dateien unterschiedliche Änderungen vorliegen (**Merge Conflict**). Falls diese doch vorliegen greift man einfach von Hand ein und ändert den Code entsprechend wie gewünscht (die Stellen mit einem Konflikt sind dann mit ">>>>>>" und "<<<<<<<" markiert).
 
-***TODO:*** *Bei "Push" und "Pull" besser heraus arbeiten, dass es sich dabei um die zwei Schritte des Synchronisierungsprozesses handelt.*
+![version-control-merge-rebase]({{ site.url }}/assets/version-control-merge-rebase.png)
 
-Da Git ein dezentrales Versionsverwaltungssystem ist arbeitet man immer in lokalen Branches und sollte diese regelmäßig zum Server hochladen (**pushen**) um eventuellem Datenverlust vorzubeugen. Das Gegenstück zum **Push** ist der **Pull**, welcher einen lokalen Branch auf den Stand des serverseitigen Branches bringen kann.
+Da Git ein dezentrales Versionsverwaltungssystem ist, sollte man seinen lokalen Stand regelmäßig mit dem serverseitigen Stand synchronisieren. Durch regelmäßiges Abgleichen ermöglicht man anderen Teammitgliedern den Zugriff auf die eigenen Änderungen am Projekt und erhält gleichzeitig Zugriff auf die Änderungen anderer Teammitglieder. Ein weiterer Vorteil ist das Vorbeugen von eventuellem Datenverlust, da eigene Änderungen dann nicht mehr nur auf dem eigenen System sondern auch auf dem Server vorhanden sind.
+Dazu besitzt Git die beiden Funktionen **Push** und **Pull**. **Push** erlaubt dem Nutzer Commits von lokalen Branches auf den Server zu "schieben" (**pushen**). Das Gegenstück dazu, ein **Pull**, ermöglicht es, neue Commits von den serverseitigen Branches in seine lokalen Branches zu "ziehen" (**pullen**).
 
+![version-control-push-pull]({{ site.url }}/assets/version-control-push-pull.png)
 
 ## Wie kann ich Git einfach nutzen?
 
 Git ist ein Werkzeug für die Kommandozeile und ist auf Mac-Systemen standardmäßig vorinstalliert. Eine aktuelle Version kann auf der [offiziellen Download-Seite](https://git-scm.com/downloads) heruntergeladen werden. Wir empfehlen jedoch gerade Git-Anfängern (aber auch Erfahrenen) die Nutzung eines guten Git-Programms mit Nutzeroberfläche. [SourceTree](https://www.sourcetreeapp.com) ist dabei sowohl für Mac als auch für Windows verfügbar und das Programm unserer Wahl. Es ist kostenlos (Registrierung nach 30 Tagen notwendig), recht übersichtlich und unterstützt neben einer integrierten aktuellen Git-Version auch weitergehende Funktionen wie Git-Flow (dazu mehr in [diesem Artikel](#)).
 
 
+![test](https://www.sourcetreeapp.com/images/hero_mac_all.png)
+
+<center>Bildquelle: https://www.sourcetreeapp.com</center>
+
 ## Wann sollte ich Änderungen commiten?
 
 Diese Entscheidung hängt davon ab, mit welchem Ziel Commits verwendet werden. Da Commits mehrere Vorteile haben – Verhinderung von Datenverlust, Erklärung? von Änderungen, Teilen von Code mit anderen – hängt diese Entscheidung vom Zweck ab. Ein paar Faustregeln können hier aber gegeben werden:
 
-* Grundsätzlich sollte die Arbeit an einem Projekt (sofern denn Änderungen zustande kamen) spätestens nach 2h einmal Commitet werden, sofern man die getane Arbeit nicht verlieren möchte (auch wenn sie noch nicht komplettiert ist). Dies dient dem Ziel die Folgen von Datenverlust zu minimieren und bei Teams den Fortschritt zu teilen.
+* Grundsätzlich sollte die Arbeit an einem Projekt (sofern denn Änderungen zustande kamen) spätestens nach 2h einmal commitet werden, sofern man die getane Arbeit nicht verlieren möchte (auch wenn sie noch nicht komplettiert ist). Dies dient dem Ziel die Folgen von Datenverlust zu minimieren und bei Teams den Fortschritt zu teilen.
 
-* Jede zusammengehörige Veränderung (auch wenn mehrere Dateien beteiligt sind), die eine Sache fertig stellt, sollte Commitet werden. Bei typischen Programmieraufgaben werden bei eingespielten Programmierern zwischen Commits etwa 2-15 Minuten Zeit vergehen, je nach Größe der gerade überlegten Änderung. Hierbei drückt ein Commit eine erdachte Änderung aus, wobei der Gedanke dann als Kommentar festgehalten wird.
+* Jede zusammengehörige Veränderung (auch wenn mehrere Dateien beteiligt sind), die eine Sache fertig stellt, sollte commitet werden. Bei typischen Programmieraufgaben werden bei eingespielten Programmierern zwischen Commits etwa 2-15 Minuten Zeit vergehen, je nach Größe der gerade überlegten Änderung. Hierbei drückt ein Commit eine erdachte Änderung aus, wobei der Gedanke dann als Kommentar festgehalten wird.
 
 ## Weiterführende Links und Quellen
 
-[Unterschiede zwischen zentralisierten (SVN) und dezentralisierten Versionskontrollsystemen (Git &  Mercurial)](http://stackoverflow.com/a/875)
-
-[Unterschiede zwischen Git und Mercurial](http://stackoverflow.com/a/892688)
+[Offizielle Git Dokumentation](https://git-scm.com/doc)
