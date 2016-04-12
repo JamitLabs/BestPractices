@@ -29,7 +29,7 @@ Funktional sind Git und Mercurial miteinander für die üblichen Projektzwecke [
 
 ## Welche Funktionen beherrscht Git?
 
-Mit Git lassen sich Code-Projekte in verschiedenen Ausarbeitungen mit Kommentaren versehen speichern (**Commits**), außerdem unterstützt Git das Verwalten verschiedener gleichzeitig entwickelter Arbeitslinien (**Branches**). Git kann verschiedene Branches oder die Änderungen von verschiedenen Commits automatisch zusammenführen (**Merge**) sofern nicht an den selben Code-Stellen in denselben Dateien unterschiedliche Änderungen vorliegen (**Merge Conflict**). Falls diese doch vorliegen greift man einfach von Hand ein und ändert den Code entsprechend wie gewünscht (die Stellen mit einem Konflikt sind dann mit ">>>>>>" und "<<<<<<<" markiert).
+Mit Git lassen sich Code-Projekte in verschiedenen Ausarbeitungen mit Kommentaren versehen speichern (**Commits**), außerdem unterstützt Git das Verwalten verschiedener gleichzeitig entwickelter Arbeitslinien (**Branches**). Git kann verschiedene Branches oder die Änderungen von verschiedenen Commits automatisch zusammenführen (**Merge**) sofern nicht an den selben Code-Stellen in denselben Dateien unterschiedliche Änderungen vorliegen (**Merge Conflict**). Falls diese doch vorliegen greift man einfach von Hand ein und ändert den Code entsprechend wie gewünscht (die Stellen mit einem Konflikt sind dann mit `>>>>>>` und `<<<<<<` markiert).
 
 ![version-control-merge-rebase]({{ site.url }}/assets/version-control-merge-rebase.png)
 
