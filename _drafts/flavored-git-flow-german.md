@@ -34,7 +34,7 @@ Der **`release/`** Ordner wird beim Deployment einer fertigen Version verwendet.
 
 <center>
 {% include image.html
-            img="assets/git-flow-develop.png"
+            img="assets/git-flow-release.png"
             title="develop"
             caption="Meist begegnet man SVN, Git oder Mercurial" %}
 </center>
@@ -43,14 +43,19 @@ Der **`hotfix/`** Ordner ist für das Beheben von zeitkritischen Fehlern bei ber
 
 <center>
 {% include image.html
-            img="assets/git-flow-develop.png"
+            img="assets/git-flow-hotfix.png"
             title="develop"
             caption="Meist begegnet man SVN, Git oder Mercurial" %}
 </center>
 
 Der **`support/`** Ordner ist eine schon seit Jahren als Beta markierte Funktion von Git-Flow, deren Ziel es ist mehrere veröffentlichte Versionen einer Software mit Updates zu versorgen. Ohne die Nutzung von `support/` Branches kann immer nur eine aktuelle Version in einem Git-Projekt verwaltet werden (was im Falle von Apps für den Apple App Store und den Google Play Store auch ausreichend ist). Dennoch können `support/` Branches auch bei der Verwaltung von Apps nützlich sein, wenn ein Git-Projekt für mehrere Apps im Store benutzt wird, etwa um die gleiche App mehrmals für unterschiedliche Firmen gebrandet zu veröffentlichen. In diesem Fall wird das Branding z.B. für die Firmen Jamit Labs und Apple in den Branches `support/jamit_labs` und `support/apple` durchgeführt. Wird die App-Logik verändert können die Änderungen im `develop` Branch leicht in die verschiedenen `support/` Branches gemerged werden, wodurch man die Arbeit nicht doppelt (oder n-fach) durchführen muss, sondern nur einmal.
 
-
+<center>
+{% include image.html
+            img="assets/git-flow-support.png"
+            title="develop"
+            caption="Meist begegnet man SVN, Git oder Mercurial" %}
+</center>
 
 ## Wie kann ich Git-Flow einfach nutzen?
 
@@ -108,9 +113,16 @@ Wie bei `work/`und `deploy/` wurde wieder ein Verb als Ordnername gewählt.
 
 <center>
 {% include image.html
-            img="assets/git-flow-develop.png"
+            img="assets/git-flow-jamit-flavored.png"
             title="develop"
-            caption="Meist begegnet man SVN, Git oder Mercurial" %}
+            caption="" %}
+</center>
+
+<center>
+{% include image.html
+            img="assets/git-flow-overview.png"
+            title="develop"
+            caption="Abschließend nochmal alle verschiedenen Arten von Branches im Zusammenhang (mit der neuen Benennung)" %}
 </center>
 
 ### Weiterführende Links und Quellen
