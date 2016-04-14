@@ -4,7 +4,7 @@ title:  "Dateistrukturen in Xcode"
 categories: ios
 ---
 
-## Wie finde ich meine Dateien in schnell in Xcode?
+## Wie finde ich meine Dateien schnell in Xcode?
 
 Während Xcode über seine mehr als 13 Jahre Lebenszeit immer mehr nützliche Funktionen erhalten hat, die das Arbeiten damit immer weiter vereinfachten (wie Tabs, Assistant-Editor, Quick-Open mit `Cmd+Umschalt+o`) so bleibt es in der Praxis dabei, dass der Project-Navigator meist der Dreh- und Angelpunkt der Arbeit in Xcode darstellt. Dort können nicht nur neue Dateien gefunden, geöffnet, erstellt und umbenannt werden, sondern auch das Sortieren von verschiedenen zusammengehörigen Dateien verschiedenster Art in sogenannten Groups ist möglich. Diese Gruppen sind von der Dateistruktur im Finder (das Mac-Pendant zum Windows Explorer) komplett unabhängig, sodass es möglich ist (wie in vielen älteren Projekten auch üblich) sämtliche Dateien innerhalb des Hauptprojektverzeichnisses zu belassen und die Strukturierung und Gruppierung der Dateien komplett in Xcode vorzunehmen. Eine neue Gruppe erstellt man mit einem Rechtsklick im Project-Navigator und dem Eintrag "New Group".
 
@@ -29,12 +29,16 @@ Je nach Projekt können mehr Arten vorhanden sein oder sogar eine Unterteilung i
 
 * **Data Models**: Alle Dateien, die Datenmodelle definieren (z.B. via Core Data). Typische Endungen: `.xcdatamodeld`.
 * **User Interface/iOS** und **User Interface/tvOS**: Bei Frameworks, die sowohl iOS als auch tvOS unterstützen müssen alle Interface Builder Dateien jeweils für die unterschiedlichen Plattformen getrennt angelegt werden.
-*
+* **Assets**, **Assets/Fonts**, **Assets/PNGs**, **Assets/SVGs**: Bei Vorhandensein etwa von vielen Fonts, PNGs und SVGs lohnt es sich diese zusammenzufassen und den Rest weiterhin direkt im `Assets`-Ordner zu belassen.
 
+Aus Gründen der Einheitlichkeit sollte dieselbe Struktur gleichermaßen in App-Projekten wie in Frameworks verwendet werden (mehr zur Erstellung von Dynamic Frameworks [hier](#)). Frameworks können auf unterschiedliche Weise in Projekte eingebunden werden (mehr zu Dependency Management [hier](#)), die Zukunft des Framework-Einbindens ist aber mit aller Wahrscheinlichkeit der offizielle Weg über den sogenannten [Swift Package Manager](https://swift.org/package-manager/) (kurz: SPM), der sich derzeit [noch in Entwicklung befindet](https://github.com/apple/swift-package-manager), jedoch schon mit Swift 3 in erster Version fertig werden soll. Damit der SPM alle Dateien, die als Teil des Frameworks gebuildet werden sollen leicht findet, hat der SPM selbst eine Minimalvorgabe (siehe [hier](https://github.com/apple/swift-package-manager/blob/master/Documentation/SourceLayouts.md)) wonach alle Dateien, die Teil des Frameworks sein sollen in einem Unterordner namens `Sources` platziert sein sollten. Für die Tests, die die korrekte Funktionsweise eines Frameworks langfristig sicherstellen wird der Unterordner `Tests` empfohlen (mehr zum Testen von Code [hier](#)).
 
 
 ## Empfohlene Dateistruktur
 
+Verbindet man die Anforderungen des Swift Package Managers und unsere Dateitypen-Strukturierung, so ergibt sich, dass für Dateien, die Teil des Hauptprojekts bzw. des Frameworks sind innerhalb des Ordners `Sources` in die genannten Typ-Ordner (z.B. `Code`) einsortiert werden sollten. Das gleiche wird auch mit Dateien getan, die Teil der Tests sind, nur innerhalb des Ordners `Tests`. Hieraus folgt sowohl für App-Projekte, als auch für Frameworks eine Struktur, die etwa so aussieht wie auf dem folgenden Bild:
+
+TODO: Das Bild "example-project-file-structure" sollte korrekt eingebunden werden
 
 
 ## Wie kann ich diese Struktur auf bestehende Projekte anwenden?
