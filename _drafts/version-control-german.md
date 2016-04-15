@@ -20,12 +20,8 @@ Ganz vom obigen Beispiel abgesehen erschließt es sich außerdem leicht, warum k
 
 ## Welches Versionsverwaltungssystem sollte ich nutzen?
 
-<center>
-{% include image.html
-            img="assets/version-control-logos.png"
-            title="logos"
-            caption="Meist begegnet man SVN, Git oder Mercurial" %}
-</center>
+![Logos](public/images/version-control/logos.png)
+*Meist begegnet man SVN, Git oder Mercurial.*
 
 Es gibt verschiedene Versionsverwaltungssysteme [mit unterschiedlichen Zielen sowie Vor- und Nachteilen](http://stackoverflow.com/a/875). Die bei der Softwareentwicklung heutzutage am meisten verbreiteten sind Subversion (kurz SVN), Git und Mercurial. Allen 3 gemein ist, dass die Daten auf einem Server gehostet werden um so mehreren Nutzern Zugriff auf die Daten zu bieten. SVN gilt dabei als veraltet, da es sich noch um ein zentral verwaltetes Versionskontrollsystem handelt und man Änderungen am Projekt direkt auf den Server merged. Git und Mercurial sind dezentrale Versionskontrollsysteme, die das getrennte Arbeiten und Verwalten von Projekten durch den Einsatz lokaler Arbeitskopien deutlich verbessern. So hat man auch offline Zugriff auf alle Daten und ist nicht durchwegs auf eine Internetverbindung angewiesen, um am Projekt zu arbeiten. Da die lokale Kopie nicht automatisch auf den Stand des serverseitigen Originals synchronisiert wird muss man dies manuell erledigen (dazu später mehr).
 
@@ -36,22 +32,14 @@ Funktional sind Git und Mercurial miteinander für die üblichen Projektzwecke [
 
 Mit Git lassen sich Code-Projekte in verschiedenen Ausarbeitungen mit Kommentaren versehen speichern (**Commits**), außerdem unterstützt Git das Verwalten verschiedener gleichzeitig entwickelter Arbeitslinien (**Branches**). Git kann verschiedene Branches oder die Änderungen von verschiedenen Commits automatisch zusammenführen (**Merge**) sofern nicht an den selben Code-Stellen in denselben Dateien unterschiedliche Änderungen vorliegen (**Merge Conflict**). Falls diese doch vorliegen greift man einfach von Hand ein und ändert den Code entsprechend wie gewünscht (die Stellen mit einem Konflikt sind dann mit `>>>>>>` und `<<<<<<` markiert).
 
-<center>
-{% include image.html
-            img="assets/version-control-merge.png"
-            title="Merge"
-            caption="Ein Merge führt Änderungen in einem Master Branch zusammen oder bringt einen Working Branch auf den Stand des Master Branches" %}
-</center>
+![Merge](/public/images/version-control/merge.png)
+*Ein Merge führt Änderungen in einem Master Branch zusammen oder bringt einen Working Branch auf den Stand des Master Branches.*
 
 Da Git ein dezentrales Versionsverwaltungssystem ist, sollte man seinen lokalen Stand regelmäßig mit dem serverseitigen Stand synchronisieren. Durch regelmäßiges Abgleichen ermöglicht man anderen Teammitgliedern den Zugriff auf die eigenen Änderungen am Projekt und erhält gleichzeitig Zugriff auf die Änderungen anderer Teammitglieder. Ein weiterer Vorteil ist das Vorbeugen von eventuellem Datenverlust, da eigene Änderungen dann nicht mehr nur auf dem eigenen System sondern auch auf dem Server vorhanden sind. Außerdem sind so Merce Conflicts unwahrscheinlicher.
 Dazu besitzt Git die beiden Funktionen **Push** und **Pull**. Push erlaubt dem Nutzer Commits von lokalen Branches auf den Server zu "schieben" (**pushen**). Das Gegenstück dazu, ein Pull, ermöglicht es, neue Commits von den serverseitigen Branches in seine lokalen Branches zu "ziehen" (**pullen**).
 
-<center>
-{% include image.html
-            img="assets/version-control-push-pull.png"
-            title="Push und Pull"
-            caption="Um lokale und serverseitige Branches synchron zu halten, sollte man regelmäßig pushen und pullen" %}
-</center>
+![Push & Pull](public/images/version-control/push-pull.png)
+*Um lokale und serverseitige Branches synchron zu halten, sollte man regelmäßig pushen und pullen.*
 
 Falls man das erste mal mit einem dezentralen Versionsverwaltungssystem in Berührung kommt kann es leicht zu Verwechslungen zwischen den Funktionen Merge sowie Push und Pull kommen da diese eine ähnliche Aufgabe besitzen. Man sollte sich deshalb klar machen, dass Push oder Pull immer benutzt werden wenn man Branches zwischen Server und lokalem System synchronisieren möchte. Ein Merge hingegen synchronisiert Branches auf dem gleichen System.
 
@@ -59,12 +47,8 @@ Falls man das erste mal mit einem dezentralen Versionsverwaltungssystem in Berü
 
 Git ist ein Werkzeug für die Kommandozeile und ist auf Mac-Systemen standardmäßig vorinstalliert. Eine aktuelle Version kann auf der [offiziellen Download-Seite](https://git-scm.com/downloads) heruntergeladen werden. Wir empfehlen jedoch gerade Git-Anfängern (aber auch Erfahrenen) die Nutzung eines guten Git-Programms mit Nutzeroberfläche. [SourceTree](https://www.sourcetreeapp.com) ist dabei sowohl für Mac als auch für Windows verfügbar und das Programm unserer Wahl. Es ist kostenlos (Registrierung nach 30 Tagen notwendig), recht übersichtlich und unterstützt neben einer integrierten aktuellen Git-Version auch weitergehende Funktionen wie Git-Flow (dazu mehr in [diesem Artikel](#)).
 
-<center>
-{% include image.html
-            img="assets/xxx"
-            title="SourceTree"
-            caption="SourceTree erlaubt die Nutzung von Git ohne Kommandozeile" %}
-</center>
+![SourceTree]()
+*SourceTree erlaubt die Nutzung von Git ohne Kommandozeile*
 
 ## Wann sollte ich Änderungen commiten?
 
