@@ -1,0 +1,12 @@
+img {
+  margin: auto;
+  display: block;
+}
+
+img + em {
+  margin: auto;
+  display: block;
+  text-align: center;
+  color: darkgray;
+  font-size: 0.85em;
+}
