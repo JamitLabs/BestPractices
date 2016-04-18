@@ -30,7 +30,7 @@ Der **`release/`** Ordner wird beim Deployment einer fertigen Version verwendet.
 Der **`hotfix/`** Ordner ist für das Beheben von zeitkritischen Fehlern bei bereits veröffentlichter Software gedacht. Betreibt man zum Beispiel aktuell Version 1.5 im Store und hat Version 2.0 derzeit in Entwicklung und stellt einen schwerwiegenden Fehler fest, den man schnell in der veröffentlichten Version (1.5) beheben aber auch in künftigen Versionen (2.x) ausschließen möchte, so führt man die Commits für den Fix etwa im Beispiel von abgelaufenen Zertifikaten im Branch `hotfix/expired-certificates` durch. Der Branch hat als Ursprung nicht (wie bei `release/` Branches) den `develop` Branch sondern den `master` Branch und wird nach Fertigstellung des Fixes (genauso wie bei `release/` Branches) sowohl in den `master` als auch in den `develop` Branch gemerged. Auch um diesen doppelten Merge kümmern sich die Git-Flow Skripte automatisch.
 
 ![hotfix Branch](/public/images/flavored-git-flow/hotfix.png)
-*hotfix Branches basieren nicht auf dem ... TODO!*
+*Hotfix Branches entspringen dem master Branch und werden bei Abschluss automatisch in den master sowie in den develop Branch gemerged.*
 
 Der **`support/`** Ordner ist eine schon seit Jahren als Beta markierte Funktion von Git-Flow, deren Ziel es ist mehrere veröffentlichte Versionen einer Software mit Updates zu versorgen. Ohne die Nutzung von `support/` Branches kann immer nur eine aktuelle Version in einem Git-Projekt verwaltet werden (was im Falle von Apps für den Apple App Store und den Google Play Store auch ausreichend ist). Dennoch können `support/` Branches auch bei der Verwaltung von Apps nützlich sein, wenn ein Git-Projekt für mehrere Apps im Store benutzt wird, etwa um die gleiche App mehrmals für unterschiedliche Firmen gebrandet zu veröffentlichen. In diesem Fall wird das Branding z.B. für die Firmen Jamit Labs und Apple in den Branches `support/jamit_labs` und `support/apple` durchgeführt. Wird die App-Logik verändert können die Änderungen im `develop` Branch leicht in die verschiedenen `support/` Branches gemerged werden, wodurch man die Arbeit nicht doppelt (oder n-fach) durchführen muss, sondern nur einmal.
 
@@ -92,10 +92,10 @@ Wie bei `work/`und `deploy/` wurde wieder ein Verb als Ordnername gewählt.
 `support/` trifft ähnlich wie bei `hotfix/` den Sinn der Branches bei Verwaltung mehrere veröffentlichter Software-Versionen sehr gut, weshalb wir auch hier keine Umbenennung empfehlen. Allerdings ist die Unterstützung von mehreren Software-Versionen nicht immer auf die Versionsnummer bezogen (also den Support von Altversionen) sondern dabei kann es sich zum Beispiel auch um verschiedene Brandings einer App handeln. Da `support/` in solchen Fällen keinen Sinn macht, schlagen wir vor für jede Art von verwalteten Software-Versionen einen eigenen Namen zu verwenden, den man vorher intern mit seinem Team abklären sollte. Für unterschiedliche Brandings könnte etwa `branding/` gewählt werden.
 
 ![Jamit Flavor](/public/images/flavored-git-flow/jamit-flavored.png)
-*TODO!*
+*Die Umbenennung der verschiedenen Branches im Überblick*
 
 ![Overview](/public/images/flavored-git-flow/overview.png)
-*Abschließend noch einmal alle verschiedenen Arten von Branches im Zusammenhang (mit der neuen Benennung).*
+*Abschließend noch einmal alle verschiedenen Arten von Branches im Zusammenhang (bereits mit neuer Benennung).*
 
 ### Weiterführende Links und Quellen
 
