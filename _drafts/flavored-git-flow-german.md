@@ -48,6 +48,9 @@ TODO: Screenshots mit Erklärungen zum Erstellen und Mergen eines feature Branch
 
 ## Was ist Jamit Labs Flavored Git-Flow?
 
+![Bild das alten und neuen Flavor zeigt](/public/images/flavored-git-flow/jamit-flavored.png)
+*Zum besseren Verständnis empfehlen wir eine Neubenennung der Git Flow Branches*
+
 Die Benennung der verschiedenen Branches als `master`, `develop`, `feature/`, `hotfix/`, `release/` und `support/` läuft Gefahr zu Missverständnissen und Verwechslungen zu führen. Beispielsweise wird der `master` Branch traditionell für den stabilen aktuellen Arbeits-Branch verwendet, sodass einige Programmierer mit Vorerfahrungen gewillt sind, direkt auf den `master` Branch zu commiten. Andere wiederum verwenden `release/` Branches, um verschiedene veröffentlichte Versionen der Software zu verwalten (wozu es in Git-Flow `support/` gibt), anstatt ihn ausschließlich für das Deployment zu verwenden.
 
 Aus diesem Grund erscheint es sinnvoll die Namen der Branches möglichst selbsterklärend und unmissverständlich zu ändern, wozu wir bei Jamit Labs folgende Umbenennungen vorgenommen haben. Es sei angemerkt, dass eine andere Benennung der Branches in Git-Flow explizit vorgesehen ist, was auch von SourceTree beim ersten Ausführen von Git-Flow pro Git-Projekt abgefragt wird, sodass die Umbenennung keinen großen Aufwand darstellt.
@@ -91,8 +94,7 @@ Wie bei `work/`und `deploy/` wurde wieder ein Verb als Ordnername gewählt.
 
 `support/` trifft ähnlich wie bei `hotfix/` den Sinn der Branches bei Verwaltung mehrere veröffentlichter Software-Versionen sehr gut, weshalb wir auch hier keine Umbenennung empfehlen. Allerdings ist die Unterstützung von mehreren Software-Versionen nicht immer auf die Versionsnummer bezogen (also den Support von Altversionen) sondern dabei kann es sich zum Beispiel auch um verschiedene Brandings einer App handeln. Da `support/` in solchen Fällen keinen Sinn macht, schlagen wir vor für jede Art von verwalteten Software-Versionen einen eigenen Namen zu verwenden, den man vorher intern mit seinem Team abklären sollte. Für unterschiedliche Brandings könnte etwa `branding/` gewählt werden.
 
-![Bild das alten und neuen Flavor zeigt](/public/images/flavored-git-flow/jamit-flavored.png)
-*Die Neubenennung der verschiedenen Branches nochmal im Überblick*
+
 
 ![Gesamtansicht mit allen Branches](/public/images/flavored-git-flow/overview.png)
 *Abschließend noch einmal eine Gesamtansicht aller Branches im Zusammenhang (bereits mit neuer Benennung).*
