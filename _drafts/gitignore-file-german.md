@@ -27,6 +27,8 @@ Manche Artefakte und Konfigurationsdateien sind abhängig davon, welches Betrieb
 
 Viele zu ignorierende Dateien sind projektspezifisch, weshalb man in Git pro Repo eine eigene `.gitignore` Datei definieren kann. Diese wird als Textdatei in das Hauptverzeichnis des Repos angelegt und kann in SourceTree sogar noch einfacher erstellt oder editiert werden. Hierzu öffnet man das Git-Repo in SourceTree, klickt rechts oben auf "Einstellungen" und gelangt so in die projektspezifischen Einstellungen. Nun findet man im Reiter "Erweitert" sowohl den Pfad zur Gitignore-Datei als auch einen Knopf namens "Bearbeiten", der die Datei im Texteditor öffnet, wo man sie ändern und via `Cmd-S` Tastenkombination speichern kann.
 
+Es ist wichtig, dass man die projektspezifische `.gitignore`-Datei selbst commitet und nicht (etwa durch Ignorieren durch sich selbst) aus den künftigen Commits ausschließt. Dies stellt sicher, dass jeder, der an dem Projekt mit arbeitet ebenfalls dieselben Dateien nicht commitet.
+
 ## Was sollte in eine Gitignore-Datei?
 
 Grundsätzlich gehört alles hinein, was sich als Hürde für die gemeinsame Zusammenarbeit herausstellt oder aus anderen Gründen nicht geteilt werden sollte (Speicherplatz, Sicherheit). Die entsprechenden Dateien ergeben sich aus der Praxis und es lohnt sich meist, eine eigene Samllung an zu ignorierenden Dateien zu führen und den Projektmitarbeitern zukommen zu lassen. Dabei kommt in die globale Gitignore-Datei alles, was sich auf den Produktivrechner bezieht, etwa bestimmte Artefakte, die das Betriebssystem im Projekteverzeichnis automatisch erzeugt. Artefakte, die projektspezifisch sind und ignoriert werden sollen, wie etwa der Build-Ordner (spart Speicherplatz, da sonst nach jedem Build commitet werden muss) gehören hingegen in die projektspezifische Gitignore-Datei.
@@ -35,3 +37,7 @@ Für den Anfang sei das [Gitignore-Repo auf GitHub](https://github.com/github/gi
 
 
 ## Wie kann ich bereits commitete Dateien ignorieren?
+
+Manchmal kommt es vor, dass man versehentlich eine Datei commitet, die sich dann als eher störend für die Zusammenarbeit herausstellt, oder man bekommt ein Projekt übergeben, in dem noch keine (sinnvolle) Gitignore-Datei angelegt wurde. In diesen Fällen reicht es nicht einfach aus eine neue Gitignore-Datei für das Projekt anzulegen und die anderen Mitarbeiter darum zu bitten, ihre globale Gitignore-Datei zu aktualisieren, denn bereits Git berücksichtigt den Inhalt der Gitignore-Datei lediglich für neue, noch nicht commitete Dateien. Ist eine Datei jedoch bereits Teil einer Repository, so muss sie zunächst aus dem Repo entfernt werden. Dies erzielt man dadurch, dass man die entsprechende Datei löscht und diese Änderung (das Löschen der Datei) commitet.
+
+Es ist zu empfehlen diesen Schritt direkt mit der Änderung in der `.gitignore`-Datei gemeinsam zu commiten, dies ist aber nicht zwingend erforderlich, verringert jedoch nur die Gefahr des versehentlichen Hinzufügens. Bevor man die Datei löscht sollte man die Datei sicherheitshalber in ein Verzeichnis außerhalb des Repos (etwa auf den Desktop) kopieren, um die Datei nach dem erfolgreichen Entfernen & Ignorieren falls nötig wieder hinzufügen zu können. Hat man alles korrekt gemacht so sollte die Datei auch nicht mehr in SourceTree auftauchen.
