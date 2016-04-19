@@ -20,7 +20,7 @@ Ganz vom obigen Beispiel abgesehen erschließt es sich außerdem leicht, warum k
 
 ## Welches Versionsverwaltungssystem sollte ich nutzen?
 
-![Logos](public/images/version-control/logos.png)
+![Logos](/public/images/version-control/logos.png)
 *Meist begegnet man SVN, Git oder Mercurial.*
 
 Es gibt verschiedene Versionsverwaltungssysteme [mit unterschiedlichen Zielen sowie Vor- und Nachteilen](http://stackoverflow.com/a/875). Die bei der Softwareentwicklung heutzutage am meisten verbreiteten sind Subversion (kurz SVN), Git und Mercurial. Allen 3 gemein ist, dass die Daten auf einem Server gehostet werden um so mehreren Nutzern Zugriff auf die Daten zu bieten. SVN gilt dabei als veraltet, da es sich noch um ein zentral verwaltetes Versionskontrollsystem handelt und man Änderungen am Projekt direkt auf den Server merged. Git und Mercurial sind dezentrale Versionskontrollsysteme, die das getrennte Arbeiten und Verwalten von Projekten durch den Einsatz lokaler Arbeitskopien deutlich verbessern. So hat man auch offline Zugriff auf alle Daten und ist nicht durchwegs auf eine Internetverbindung angewiesen, um am Projekt zu arbeiten. Da die lokale Kopie nicht automatisch auf den Stand des serverseitigen Originals synchronisiert wird muss man dies manuell erledigen (dazu später mehr).
