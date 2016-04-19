@@ -11,6 +11,7 @@ Eines der Hauptgründe für die Verwendung von Versionskontrollsystemen ist die 
 Das Ignorieren bestimmter Dateien ist auch dann nützlich, wenn man vermeiden möchte, dass durch regelmäßig neu generierte Dateien (wie Build-Artifakte) die Größe des Git-Repos immer weiter wächst. Außerdem können so sicherheitsrelevante Informationen wie Datenbank-Passwörter in Dateien ausgelagert werden, die ebenfalls ignoriert werden, um die Informationen vor eher außenstehenden Entwickler/Partnern zu schützen, denen man kurzfristig Zugriff zum Repo gewährt. Das Ignorieren von Dateien findet in Git durch eine simple Auflistung in einer Textdatei namens `.gitignore` statt. Darin werden alle zu ignorierenden Dateien oder Ordner per Pfad relativ zum Git-Repo in einer eigenen Zeile genannt und Git wird diese Dateien fortan nicht weiter verfolgen.
 
 Ein einfacher `.gitignore` kann etwa so aussehen (Zeilen, die mit einem `#` beginnen sind Kommentare):
+
 ``` ruby
 # Ignore Finder artifacts on OSX
 .DS_Store
