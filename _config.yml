@@ -16,6 +16,8 @@ github_username:     jamitlabs
 # Custom vars
 version:             1.0.0
 
+paginate_langs:      ["en", "de"]
+
 # Build settings
 markdown: kramdown
-gems: [jekyll-paginate]
+gems: [jekyll-paginate, jekyll-sitemap]

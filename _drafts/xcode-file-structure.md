@@ -6,7 +6,7 @@ categories: ios
 
 ## How can I find files quickly in Xcode?
 
-## How should I structure my actual files?
+## How should I structure my files outside/inside of Xcode?
 
 ## Recommended structure
 
