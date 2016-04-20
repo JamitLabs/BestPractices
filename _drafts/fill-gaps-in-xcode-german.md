@@ -72,6 +72,7 @@ else
     echo "warning: Laurine not installed, download it from https://github.com/JiriTrecak/Laurine"
 fi
 ```
+*Hinweis: Beachte, dass beim Reinkopieren in das Build-Script-Feld in Xcode die Formatierung des Textes verloren geht. Diese lässt sich mit ein paar Einrückungen jedoch schnell wieder herstellen, um den Code im Script lesbarer zu halten.*
 
 Das Skript setzt den Pfad der resultierenden `Localizations.swift` Datei im Ordner `Code/Constants`, benutzt Englisch als Quellsprache für die Keys (falls Englisch nicht existiert sollte der Path `en.lproj` angepasst werden) und konfiguriert die Output-Formatierung mittels `-c` Option mit CamelCasing.
 
@@ -104,6 +105,7 @@ else
     echo "warning: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen"
 fi
 ```
+*Hinweis: Beachte, dass beim Reinkopieren in das Build-Script-Feld in Xcode die Formatierung des Textes verloren geht. Diese lässt sich mit ein paar Einrückungen jedoch schnell wieder herstellen, um den Code im Script lesbarer zu halten.*
 
 Auch hier werden die Ergebnis-Dateien im Ordner `Sources/Constants` abgelegt. Fortan werden die Dateien bei jedem Build neu erzeugt, sofern es seit der letzten Generierung Änderungen an den jeweiligen Ressourcen gab. Die Benutzung von Ressourcen im Code wird fortan statisch erledigt, die Ersetzungen sehen folgendermaßen aus:
 
