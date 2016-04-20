@@ -56,11 +56,79 @@ self.title = Localizations.Settings.Title
 articleCell.titleLabel.text = Localizations.Model.Article.Title
 ```
 
-## Unstatisch referenzierte Bilder
+Wir empfehlen für die Verwendung von Laurine neben der Installation per Homebrew folgendes Build-Script im Xcode-Projekt nach dem Build-Script zu BartyCrouch zu hinterlegen:
 
-## Unstatisch referenzierte Interfaces
+```shell
+if which LaurineGenerator.swift > /dev/null; then
+    # Get path to main localization file.
+    SOURCE_PATH="$PROJECT_DIR/Sources/Supporting Files/en.lproj/Localizable.strings"
 
-## Unstatisch referenzierte Farben
+    # Get path to output.
+    OUTPUT_PATH="$PROJECT_DIR/Sources/Constants/Localizations.swift"
+
+    # Generate Output file.
+    LaurineGenerator.swift -i "$SOURCE_PATH" -c -o "$OUTPUT_PATH"
+else
+    echo "warning: Laurine not installed, download it from https://github.com/JiriTrecak/Laurine"
+fi
+```
+
+Das Skript setzt den Pfad der resultierenden `Localizations.swift` Datei im Ordner `Code/Constants`, benutzt Englisch als Quellsprache für die Keys (falls Englisch nicht existiert sollte der Path `en.lproj` angepasst werden) und konfiguriert die Output-Formatierung mittels `-c` Option mit CamelCasing.
+
+## Unstatisch referenzierte Bilder, Interfaces und Farben
+
+### Problembeschreibung
+
+Bilder lädt man in iOS am Einfachsten mit dem Initializer der Klasse `UIImage` und übergibt dabei den Namen des Bildes. Xcode durchsucht dann automatisch sowohl die `.xcassets`-Ordner des Projekts, als auch alle direkt hinzugefügten Bilder und gleicht deren Namen mit dem übergebenen `String` ab, um so das korrekte Bild zu finden. Interfaces lädt man auf ähnliche Weise mittels Strings von Storyboards oder XIBs, Farben werden meist mit RGB-Werten bei Notwendigkeit ad-hoc angelegt. Analog zu den unstatisch referenzierten Übersetzungen (s.o.) verhält es sich auch bei per Strings referenzierten Bildern oder Interfaces so, dass Vertipper, Umbenennungen im Code oder jeweiligen Ressourcen sowie das Laden der Ressourcen im Code, die man hinzuzufügen vergisst. Das alles führt dazu, dass beim Ausführen der App Bilder fehlen, Interfaces nicht gefunden werden können oder schlichtweg die Farben an vielen unterschiedlichen Stellen gesucht und geändert werden müssen. Xcode zeigt in Fehlerfällen weder Warnungen noch Fehlermeldungen an, da es die tatsächlich existierenden Ressourcen schlichtweg nicht kennt, da sie dynamisch mit den Strings oder den RGB-Werten geladen werden.
+
+### Lösungsvorschlag
+
+Ressourcen sollten statisch über automatisch generierten Code gefplegt und geladen werden, sodass man einerseits gar nicht mehr mit fehlenden Ressourcen builden kann (Xcode zeigt Fehlermeldungen an, wenn referenzierter Code nicht vorhanden ist) und andererseits eine zentrale Stelle zum Verwalten und Ändern hat. Letzteres ist vor allem bei den Farben wichtig, die in den meisten Apps einheitlich sein sollten. Das Tool [SwiftGen](https://github.com/AliSoftware/SwiftGen) leistet hierbei hervorragende Dienste und durchsucht automatisch das Projekt nach Bildern, Interfaces und Farben.
+
+Nach der Installation über Homebrew sollte für die Einrichtung eine `Colors.txt`-Datei im Hauptverzeichnis des Projekts erstellt werden, deren Inhalt etwa folgendermaßen aussehen kann:
+
+```txt
+Primary     : #40657d
+Secondary   : #657d40
+Accent      : #b7d3e3
+```
+
+Im nächsten Schritt konfiguriert man auch für SwifGen ein Build-Script, das folgendermaßen aussehen könnte:
+
+```shell
+if which swiftgen > /dev/null; then
+    swiftgen storyboards "$PROJECT_DIR/Sources" --output "$PROJECT_DIR/Sources/Constants/Storyboards.swift"
+    swiftgen images "$PROJECT_DIR/Sources" --output "$PROJECT_DIR/Sources/Constants/Images.swift"
+    swiftgen colors "$PROJECT_DIR/Colors.txt" --output "$PROJECT_DIR/Sources/Constants/Colors.swift"
+else
+    echo "warning: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen"
+fi
+```
+
+Auch hier werden die Ergebnis-Dateien im Ordner `Sources/Constants` abgelegt. Fortan werden die Dateien bei jedem Build neu erzeugt, sofern es seit der letzten Generierung Änderungen an den jeweiligen Ressourcen gab. Die Benutzung von Ressourcen im Code wird fortan statisch erledigt, die Ersetzungen sehen folgendermaßen aus:
+
+```swift
+// Laden aus einem Storyboard
+
+// Ohne SwiftGen:
+let homeController = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as? HomeViewController
+// Mit SwiftGen (empfohlen):
+let homeController = StoryboardScene.Home.initialViewController() as? HomeViewController
+
+// Laden eines Bild
+
+// Ohne SwiftGen:
+if let logo = UIImage(named: "Logo") { ... }
+// Mit SwiftGen (empfohlen):
+let logo = UIImage.Asset.Logo.image
+
+// Nutzen einer Farbe
+
+// Ohne SwiftGen:
+self.view.backgroundColor = UIColor(red: 1.0, green: 0.2, blue: 0.16, alpha: 1.0)
+// Mit SwiftGen (empfohlen):
+self.view.backgroundColor = UIColor.Name.Primary.color
+```
 
 ## Fehlende Code Conventions und TODO-Warnungen
 
