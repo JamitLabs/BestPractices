@@ -241,6 +241,3 @@ Manchmal ist es aber gar nicht erwünscht alle Texte zu übersetzen, da auch fü
 
 ![Beispielbild mit teilweise automatisch generierten String-Keys](https://github.com/Flinesoft/BartyCrouch/raw/stable/Exclusion-Example.png)
 *Hier werden die Werte (rechts) für die Bezeichner (links) programmatisch gesetzt und können deshalb von der Übersetzung ausgeschlossen werden.*
-
-
-## Manuelle Erstellung verschiedener Bilder-Auflösungen
