@@ -218,6 +218,29 @@ Nun wird keine Warnmeldung mehr für die Operator-Definition angezeigt und man k
 
 ## Fehlende Aktualisierung von Interface-Übersetzungen
 
+### Problembeschreibung
+
+Ähnlich wie Xcode neue Keys im Makro `NSLocalizedString` nicht automatisch in die `.strings`-Dateien hinzufügt, verhält es sich auch mit neuen textbasierten Interface-Elementen im Interface Builder. Fügt man also in einem [Base-lokalisierten](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html) Storyboard oder XIB ein neues `UILabel`-Element hinzu und vergibt dort den Text "Nutzername:", so bleiben die zugehörigen Strings-Dateien zum Storyboard oder XIB leer und erhalten nicht automatisch das neue `UILabel` als einen neuen Key-Eintrag. Die einzige Ausnahme bildet hier der Moment, in dem man ein Storyboard oder XIB erstmals lokalisiert, beim Lokalisierungsvorgang durchsucht Xcode die Interface-Elemente und tut, was es eigentlich regelmäßig tun sollte – dies ist in einer Welt mit verändernden Anforderungen jedoch keine praktikable Lösung.
+
+### Lösungsvorschlag
+
+Das Open Source Tool [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) wurde genau zur Lösung dieses Problems geboren. Die Installation findet via Homebrew mit den Befehlen `brew tap flinesoft/bartycrouch` und `brew install flinesoft/bartycrouch/bartycrouch` statt. Anschließend konfiguriert man BartyCrouch mittels eines Build-Scripts, welches im einfachen Fall folgendermaßen aussieht:
+
+```shell
+if which bartycrouch > /dev/null; then
+    # Incrementally update all Storyboards/XIBs strings files
+    bartycrouch $PROJECT_DIR -a
+else
+    echo "warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch"
+fi
+```
+
+Fortan wird BartyCrouch automatisch alle Base-lokalisiert Storyboards und XIBs im Projektordner durchsuchen und aus den gefundenen Texten Einträge in den Strings-Dateien erstellen. BartyCrouch hat zudem die Fähigkeit automatisch von einer Quellsprache Texte in eine Menge von Zielsprachen zu übersetzen – mehr dazu [in der offiziellen Doku](https://github.com/Flinesoft/BartyCrouch#translate-aka--t).
+
+Manchmal ist es aber gar nicht erwünscht alle Texte zu übersetzen, da auch für Werte, die programmatisch gesetzt werden `UILabel`-Elemente angelegt werden. In solchen Fällen bietet BartyCrouch die Möglichkeit mithilfe der Markierung `#bc-ignore!` das Ignorieren des Interface Elements bei der automatischen Übersetzung zu erzwingen. Dies kann etwa so aussehen:
+
+![Beispielbild mit teilweise automatisch generierten String-Keys](https://github.com/Flinesoft/BartyCrouch/raw/stable/Exclusion-Example.png)
+*Hier werden die Werte (rechts) für die Bezeichner (links) programmatisch gesetzt und können deshalb von der Übersetzung ausgeschlossen werden.*
 
 
 ## Manuelle Erstellung verschiedener Bilder-Auflösungen
