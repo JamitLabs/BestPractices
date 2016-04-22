@@ -134,6 +134,110 @@ self.view.backgroundColor = UIColor.Name.Primary.color
 
 ## Fehlende Code Conventions und TODO-Warnungen
 
-## Manuelle Erstellung verschiedener Bilder-Auflösungen
+Swift erlaubt es wie die meisten Programmiersprachen das gleiche Funktionsverhalten einer App auf viele verschiedene Weisen zu implementieren. Während man im Allgemeinen nicht sagen kann, dass es "die perfekte" Implementierung einer Funktion gibt, kristallisieren sich dennoch mit der Zeit für jede Programmiersprache und Plattform eine ganze Menge von zu vermeidenden und eher zu bevorzugenden Implementierungen heraus. Um möglichst hohe Code-Qualität zu erreichen lohnt es sich daher für jede längerfristig angelegte Arbeit, besonders wenn mehrere Entwickler beteiligt sind Code-Konventionen zu erarbeiten und sich an diesen zu orientieren.
+
+Während das offizielle Buch der Swift-Entwickler [The Swift Programming Language](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/index.html) beim Erläutern der einzelnen verfügbaren Funktionen bereits viele sinnvolle Beispiele für guten Programmierstil vorgibt, ist es diesbezüglich doch eher zu zeitaufwändig und unvollständig (wenn auch trotzdem lesenswert). Als offizielle Apple-Quelle seien ergänzend die [API Design Guidelines](https://swift.org/documentation/api-design-guidelines/) empfohlen. Als bessere Alternative gibt es die zusammengefassten und mit Beispielen versehenen Swift Code Conventions von [GitHub](https://github.com/github/swift-style-guide) und von [raywenderlich.com](https://github.com/raywenderlich/swift-style-guide). Diese Code Conventions spiegeln zwar nicht unbedingt auch die vom Jamit Labs empfohlenen Code Conventions wieder, grundsätzlich ist die Richtung aber identisch.
+
+Während unsere Code Conventions im Detail noch nicht ausgearbeitet sind (später hier ein Link), gibt es einige syntaktisch auwertbare Konventionen, die sich im Open Source Projekt [SwiftLint](https://github.com/realm/SwiftLint) auf konfigurierbare Weise manifestieren. Nach einer Installation des SwiftLint-Tools via Homebrew (`brew install swiftlint`) kann nun jedes Projekt durch zwei einfache Schritte um eine automatisierten Warnings- und Error-Generator bei Nichteinhaltung von bestimmten Code-Konventionen erweitert werden:
+
+* Füge ein Build-Script für das App- oder Framework-Target hinzu mit diesem Inhalt:
+
+```shell
+if which swiftlint > /dev/null; then
+    swiftlint
+else
+    echo "warning: SwiftLint not installed, download it from https://github.com/realm/SwiftLint"
+fi
+```
+*Hinweis: Beachte, dass beim Reinkopieren in das Build-Script-Feld in Xcode die Formatierung des Textes verloren geht. Diese lässt sich mit ein paar Einrückungen jedoch schnell wieder herstellen, um den Code im Script lesbarer zu halten.*
+
+
+* Erstelle danach im Hauptverzeichnis des Projekts eine Datei namens `.swiftlint.yml` mit folgender Konfiguration (bei Bedarf änderbar):
+
+```yaml
+# rule identifiers to exclude from running
+disabled_rules:
+- trailing_newline
+- trailing_whitespace
+
+# some rules are only opt-in
+opt_in_rules:
+- empty_count
+- missing_docs
+
+# paths to include during linting. `--path` is ignored if present.
+included:
+- Sources
+
+# paths to ignore during linting. Takes precedence over `included`.
+excluded:
+- Carthage
+- Sources/Constants
+
+# configurable rules can be customized from this configuration file
+line_length: 180
+```
+
+Diese beiden Schritte sorgen dafür, dass bei jedem Entwickler, der den Swift Linter installiert hat automatisch Warnungen oder in bestimmten Fällen sogar Errors in Xcode generiert und angezeigt werden, wenn die konfigurierten Konventionen nicht eingehalten werden. Falls jemand das Tool SwiftLint nicht installiert hat wird wenigstens eine Warnung angezeigt, dass der Swift Linter nicht installiert ist. Als netten Nebeneffekt zeigt SwiftLint zusätzlich auch Code-Kommentare, die ein `TODO:` oder `FIXME` enthalten als Warnungen an, damit man diese nicht so schnell vergessen oder übersehen kann.
+
+In manchen Fällen mag es vorkommen, dass der Swift Linter eine Zeile beanstandet, die eigentlich keinen Fehler darstellt sondern lediglich als eine Falschmeldung von SwiftLint zu werten ist. Nachfolgen sei ein Beispiel genannt:
+
+TODO: Das Beispiel könnte man aus dem Jamit Challenge Projekt zitieren, ich habe hier eine andere Quelle benutzt.
+
+```swift
+extension Board.Size: Equatable {}
+
+/// The Equatable protocol implementation function.
+///
+/// - Parameters:
+///   - lhs: Left hand side of the comparison.
+///   - rhs: Right hand side of the comparison.
+/// - Returns: `true` if `lhs` is equal to `rhs` else `false`.
+public func ==(lhs: Board.Size, rhs: Board.Size) -> Bool { // << hier zeigt der Swift Linter eine Warnung, weil hinter '==' kein Leerzeichen steht (Regel: operator_whitespace)
+    return lhs.columns == rhs.columns && lhs.rows == rhs.rows
+}
+```
+
+In dem Code-Beispiel wird eine Operator-Funktion namens `==` definiert, um die Struktur `Board.Size` mit dem `Equatable`-Protokoll kompatibel zu machen. SwiftLint enthält unter anderem eine Regel namens "operator_whitespace", welches dazu beiträgt, dass Ausdrücke wie `4.4+4.2*2-7.4+2.4==2.8` etwas lesbarer werden, indem man einfach Leerzeichen vor und nach Operatoren wie `==` einsetzt. Da hier jedoch eine Operator-Funktion definiert wird und nach Funktionen kein Leerzeichen auftauchen sollte, handelt es sich hierbei um eine Falschmeldung. In solchen Fällen kann man eine Regel für die betreffende Zeile abschalten. Dazu fügt man am Ende der Zeile einen entsprechenden Kommentar ein, woraus folgender Code für obiges Beispiel folgt:
+
+```swift
+extension Board.Size: Equatable {}
+
+/// The Equatable protocol implementation function.
+///
+/// - Parameters:
+///   - lhs: Left hand side of the comparison.
+///   - rhs: Right hand side of the comparison.
+/// - Returns: `true` if `lhs` is equal to `rhs` else `false`.
+public func ==(lhs: Board.Size, rhs: Board.Size) -> Bool { // swiftlint:disable:this operator_whitespace
+    return lhs.columns == rhs.columns && lhs.rows == rhs.rows
+}
+```
+
+Nun wird keine Warnmeldung mehr für die Operator-Definition angezeigt und man kann die Liste der Warnungen stets leer halten. Weiter Möglichkeiten wenige Code-Zeilen vom Swift Linter auszuschließen sind [hier](https://github.com/realm/SwiftLint#disable-a-rule-in-code) dokumentiert.
 
 ## Fehlende Aktualisierung von Interface-Übersetzungen
+
+### Problembeschreibung
+
+Ähnlich wie Xcode neue Keys im Makro `NSLocalizedString` nicht automatisch in die `.strings`-Dateien hinzufügt, verhält es sich auch mit neuen textbasierten Interface-Elementen im Interface Builder. Fügt man also in einem [Base-lokalisierten](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html) Storyboard oder XIB ein neues `UILabel`-Element hinzu und vergibt dort den Text "Nutzername:", so bleiben die zugehörigen Strings-Dateien zum Storyboard oder XIB leer und erhalten nicht automatisch das neue `UILabel` als einen neuen Key-Eintrag. Die einzige Ausnahme bildet hier der Moment, in dem man ein Storyboard oder XIB erstmals lokalisiert, beim Lokalisierungsvorgang durchsucht Xcode die Interface-Elemente und tut, was es eigentlich regelmäßig tun sollte – dies ist in einer Welt mit verändernden Anforderungen jedoch keine praktikable Lösung.
+
+### Lösungsvorschlag
+
+Das Open Source Tool [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) wurde genau zur Lösung dieses Problems geboren. Die Installation findet via Homebrew mit den Befehlen `brew tap flinesoft/bartycrouch` und `brew install flinesoft/bartycrouch/bartycrouch` statt. Anschließend konfiguriert man BartyCrouch mittels eines Build-Scripts, welches im einfachen Fall folgendermaßen aussieht:
+
+```shell
+if which bartycrouch > /dev/null; then
+    # Incrementally update all Storyboards/XIBs strings files
+    bartycrouch $PROJECT_DIR -a
+else
+    echo "warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch"
+fi
+```
+
+Fortan wird BartyCrouch automatisch alle Base-lokalisiert Storyboards und XIBs im Projektordner durchsuchen und aus den gefundenen Texten Einträge in den Strings-Dateien erstellen. BartyCrouch hat zudem die Fähigkeit automatisch von einer Quellsprache Texte in eine Menge von Zielsprachen zu übersetzen – mehr dazu [in der offiziellen Doku](https://github.com/Flinesoft/BartyCrouch#translate-aka--t).
+
+Manchmal ist es aber gar nicht erwünscht alle Texte zu übersetzen, da auch für Werte, die programmatisch gesetzt werden `UILabel`-Elemente angelegt werden. In solchen Fällen bietet BartyCrouch die Möglichkeit mithilfe der Markierung `#bc-ignore!` das Ignorieren des Interface Elements bei der automatischen Übersetzung zu erzwingen. Dies kann etwa so aussehen:
+
+![Beispielbild mit teilweise automatisch generierten String-Keys](https://github.com/Flinesoft/BartyCrouch/raw/stable/Exclusion-Example.png)
+*Hier werden die Werte (rechts) für die Bezeichner (links) programmatisch gesetzt und können deshalb von der Übersetzung ausgeschlossen werden.*
