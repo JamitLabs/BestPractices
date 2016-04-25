@@ -57,8 +57,8 @@ In Laurine können sie dann folgendermaßen verwendet werden:
 self.title = Localizations.Settings.Title
 articleCell.titleLabel.text = Localizations.Model.Article.Title
 ```
-TODO: Was ist mit "nach" gemeint?
-Wir empfehlen für die Verwendung von Laurine, neben der Installation per Homebrew, folgendes Build-Script ([hier](https://developer.apple.com/library/ios/recipes/xcode_help-project_editor/Articles/AddingaRunScriptBuildPhase.html) eine kurze Anleitung dazu) im Xcode-Projekt nach dem Build-Script zu BartyCrouch zu hinterlegen:
+TODO: Ergänzen dass Reihenfolge der Buildscripts wichtig ist + screenshot
+Wir empfehlen für die Verwendung von Laurine, neben der Installation per Homebrew, folgendes Build-Script ([hier](https://github.com/Flinesoft/BartyCrouch#build-script) eine kurze Anleitung dazu) im Xcode-Projekt unter dem Build-Script zu BartyCrouch zu hinterlegen:
 
 ```shell
 if which LaurineGenerator.swift > /dev/null; then
