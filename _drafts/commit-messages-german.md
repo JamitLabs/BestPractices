@@ -18,8 +18,7 @@ Commit Messages können eine beliebige Länge haben, was vielen gar nicht bekann
 * Die erste Zeile darf die **maximale Länge von 50 Zeichen** nicht zu sehr überschreiten
 * Die restlichen Zeilen (sofern vorhanden) dürfen eine **Länge von etwa 72 Zeichen** nicht zu sehr überschreiten
 * Falls mehr als eine Zeile geschrieben wird, so **muss nach der ersten Zeile eine leere Zeile** folgen
-TODO: restliche text?
-* Der **restliche Text sollte in ganzen Sätzen** geschrieben und **in sinnvolle Abschnitte gegliedert** sein
+* Die **weiteren Zeilen sollten in ganzen Sätzen** geschrieben und **in sinnvolle Abschnitte gegliedert** sein
 
 Eine kurze Commit Message sollte also maximal etwa diese Länge aufweisen (51 Zeichen):
 
@@ -108,7 +107,7 @@ Besser:
 
 ### Falsche Großschreibung im Englischen
 
-Im Deutschen schreibt man alle Substantive groß. Während man im Englischen bei Titeln durchaus auch dazu neigt vieles groß zu schreiben, so sollten Commits dennoch wie normaler englischer Text behandelt werden. Das bedeutet: Die meisten Wörter (inkl. Substantive) werden **klein** geschrieben. Einzige Ausnahmen sind im Englischen Eigennamen wie von Personen, Marken oder Produkten. Natürlich sollten auch Datei- oder Klassennamen groß geschrieben werden (SettingsController).
+Im Deutschen schreibt man alle Substantive groß. Während man im Englischen bei Titeln durchaus auch dazu neigt vieles groß zu schreiben, so sollten Commits dennoch wie normaler englischer Text behandelt werden. Das bedeutet: Die meisten Wörter (inkl. Substantive) werden **klein** geschrieben. Einzige Ausnahmen sind im Englischen Eigennamen wie von Personen, Marken oder Produkten. Hierzu zählen bei der Programmierung auch Datei- oder Klassennamen (z.B. `SettingsController`).
 
 Schlecht:
 
