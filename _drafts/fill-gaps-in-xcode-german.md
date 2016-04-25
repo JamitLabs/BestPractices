@@ -58,7 +58,7 @@ self.title = Localizations.Settings.Title
 articleCell.titleLabel.text = Localizations.Model.Article.Title
 ```
 TODO: Was ist mit "nach" gemeint?
-Wir empfehlen für die Verwendung von Laurine, neben der Installation per Homebrew, folgendes Build-Script im Xcode-Projekt nach dem Build-Script zu BartyCrouch zu hinterlegen:
+Wir empfehlen für die Verwendung von Laurine, neben der Installation per Homebrew, folgendes Build-Script ([hier](https://developer.apple.com/library/ios/recipes/xcode_help-project_editor/Articles/AddingaRunScriptBuildPhase.html) eine kurze Anleitung dazu) im Xcode-Projekt nach dem Build-Script zu BartyCrouch zu hinterlegen:
 
 ```shell
 if which LaurineGenerator.swift > /dev/null; then
@@ -220,10 +220,9 @@ Nun wird keine Warnmeldung mehr für die Operator-Definition angezeigt und man k
 
 ## Fehlende Aktualisierung von Interface-Übersetzungen
 
-TODO: hier weiter korrigieren
 ### Problem
 
-Ähnlich wie Xcode neue Keys im Makro `NSLocalizedString` nicht automatisch in die `.strings`-Dateien hinzufügt, verhält es sich auch mit neuen textbasierten Interface-Elementen im Interface Builder. Fügt man also in einem [Base-lokalisierten](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html) Storyboard oder XIB ein neues `UILabel`-Element hinzu und vergibt dort den Text "Nutzername:", so bleiben die zugehörigen Strings-Dateien zum Storyboard oder XIB leer und erhalten nicht automatisch das neue `UILabel` als einen neuen Key-Eintrag. Die einzige Ausnahme bildet hier der Moment, in dem man ein Storyboard oder XIB erstmals lokalisiert, beim Lokalisierungsvorgang durchsucht Xcode die Interface-Elemente und tut, was es eigentlich regelmäßig tun sollte – dies ist in einer Welt mit verändernden Anforderungen jedoch keine praktikable Lösung.
+Genau wie beim `NSLocalizedString`-Makro werden auch bei neuen textbasierten Interface-Elementen Keys nicht automatisch in die `.string`-Dateien eingefügt. Fügt man also in einem [Base-lokalisierten](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html) Storyboard oder XIB ein neues `UILabel`-Element hinzu und vergibt dort den Text "Nutzername:", so bleiben die zugehörigen Strings-Dateien zum Storyboard oder XIB leer und erhalten nicht automatisch das neue `UILabel` als einen neuen Key-Eintrag. Die einzige Ausnahme bildet hier der Moment, in dem man ein Storyboard oder XIB erstmals lokalisiert. Beim Lokalisierungsvorgang durchsucht Xcode die Interface-Elemente und tut, was es eigentlich regelmäßig tun sollte – dies ist in einer Welt mit verändernden Anforderungen jedoch keine praktikable Lösung.
 
 ### Lösungsvorschlag
 
@@ -240,6 +239,7 @@ fi
 
 Fortan wird BartyCrouch automatisch alle Base-lokalisiert Storyboards und XIBs im Projektordner durchsuchen und aus den gefundenen Texten Einträge in den Strings-Dateien erstellen. BartyCrouch hat zudem die Fähigkeit automatisch von einer Quellsprache Texte in eine Menge von Zielsprachen zu übersetzen – mehr dazu [in der offiziellen Doku](https://github.com/Flinesoft/BartyCrouch#translate-aka--t).
 
+TODO: Unverständlich
 Manchmal ist es aber gar nicht erwünscht alle Texte zu übersetzen, da auch für Werte, die programmatisch gesetzt werden `UILabel`-Elemente angelegt werden. In solchen Fällen bietet BartyCrouch die Möglichkeit mithilfe der Markierung `#bc-ignore!` das Ignorieren des Interface Elements bei der automatischen Übersetzung zu erzwingen. Dies kann etwa so aussehen:
 
 ![Beispielbild mit teilweise automatisch generierten String-Keys](https://github.com/Flinesoft/BartyCrouch/raw/stable/Exclusion-Example.png)
