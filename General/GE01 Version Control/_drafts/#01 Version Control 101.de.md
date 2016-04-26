@@ -1,7 +1,6 @@
 ---
 layout: post
-title:  "Versionsverwaltung"
-categories: ios android
+title:  "Versionsverwaltung: Eine Einführung"
 ---
 
 ## Was ist Versionsverwaltung?

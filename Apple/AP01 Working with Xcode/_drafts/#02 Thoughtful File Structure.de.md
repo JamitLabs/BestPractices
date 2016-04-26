@@ -1,7 +1,6 @@
 ---
 layout: post
-title:  "Dateistruktur in Xcode"
-categories: ios android
+title:  "Durchdachte Dateistruktur"
 ---
 
 ## Wie finde ich meine Dateien schnell in Xcode?

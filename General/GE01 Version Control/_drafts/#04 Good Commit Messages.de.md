@@ -1,7 +1,6 @@
 ---
 layout: post
-title:  "Commit Messages"
-categories: ios android
+title:  "Gute Commit Messages"
 ---
 
 In diesem Artikel werden Hilfestellungen für gute Commit Messages gegeben, indem zuerst der Nutzen von Commit Messages erklärt wird und danach Beispiele für schlechte und gute Commit Messages gegeben werden.
