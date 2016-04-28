@@ -19,3 +19,14 @@ github_username:  jekyll
 
 # Build settings
 markdown: kramdown
+
+collections:
+  articles:
+    output: true
+
+defaults:
+  - scope:
+      path: "_articles"
+      type: articles
+    values:
+      layout: page
