@@ -1,7 +1,6 @@
 ---
 layout: post
-title:  "Flavored Git-Flow"
-categories: ios android
+title:  "Abgewandeltes Git-Flow"
 ---
 
 ## Was ist Git-Flow?

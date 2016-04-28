@@ -1,7 +1,6 @@
 ---
 layout: post
-title:  "Erstellen eines Xcode Projekts"
-categories: ios
+title:  "Erstellen eines neuen Projekts"
 ---
 
 Dieser Artikel widmet sich dem Erstellen eines neuen Xcode Projekts. Dabei geht es vor allem um die richtige Konfiguration des Projekts und dem Verfügbar machen für andere Teammitglieder.
