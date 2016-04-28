@@ -20,4 +20,19 @@ paginate_langs:      ["en", "de"]
 
 # Build settings
 markdown: kramdown
-gems: [jekyll-paginate, jekyll-sitemap]
+
+# Jekyll Archives
+jekyll-archives:
+  enabled: []
+  layout: 'archive'
+  permalinks:
+    year: '/:year/'
+    month: '/:year/:month/'
+    day: '/:year/:month/:day/'
+    tag: '/tag/:name/'
+    category: '/category/:name/'
+
+gems:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-archives
