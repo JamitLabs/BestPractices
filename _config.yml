@@ -29,4 +29,4 @@ defaults:
       path: "_articles"
       type: articles
     values:
-      layout: page
+      layout: article
