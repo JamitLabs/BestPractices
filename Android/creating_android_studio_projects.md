@@ -4,8 +4,7 @@ title: "Erstellen eines Android Studio Projekts"
 categories: android
 ---
 In diesem Artikel wird die Erstellung eines neuen Android Studio Projekts
-behandelt. Dabei geht es darum welche Einstellungen vorgenommen werden sollten und
-wie die Programm Struktur am sinnvollsten aufzubauen ist.
+behandelt. Dabei geht es darum welche Einstellungen zu Beginn vorgenommen werden sollten und wie man Emulatoren zum Testen der App einrichtet.
 
 ## Erstellen eines neuen Projekts
 
@@ -24,13 +23,14 @@ Sie dient dazu die App eindeutig zu identifizieren, kann jedoch auch im nachhine
 noch in der gradle file geändert werden.
 * **Package name:** Dieser wird aus dem Applikationsname und der Company Domain zusammen
 gesetzt und dient als vollständiger Name für das Projekt. Man kann ihn jedoch auch unabhängig von dem Applikationsname und Company Domain bearbeiten (Edit).
-* **Project location:** Hier muss ein Verzeichnis angeben in dem das Projekt angelegt werden soll.
+* **Project location:** Hier wird das Verzeichnis angeben, in welchem das Projekt angelegt werden soll.
 
 
 ![Target Android Devices](/public/images/creating-android-studio-projects/target_android_devices.png)
 
 Nun muss man auswählen für welche Geräte die App programmiert werden soll. In den meisten Fällen wird dies **Phone and Tablet** sein.
-Das **Minimum SDK** gibt die niedrigste Android Version an, auf welcher die App lauffähig sein wird. Damit möglichst viele Geräte unterstützt werden, ist es sinnvoll eine der niedrigsten Versionen zu wählen. Falls später Funktionen verwendet werden, die erst ab einer höheren Version untersützt werden, können diese auch nur für diese neueren Versionen aktiviert werden.
+Das **Minimum SDK** gibt die niedrigste Android Version an, auf welcher die App lauffähig sein wird. Damit möglichst viele Geräte unterstützt werden, ist es sinnvoll eine der niedrigeren Versionen zu wählen.
+Es gibt Funktionen, die erst auf neueren Versionen unterstützt werden. Diese können dann für die neueren Versionen frei gegeben werden.  
 
 ![Add an activity to Mobile](/public/images/creating-android-studio-projects/add_an_activity_to_mobile.jpg)
 
@@ -39,7 +39,7 @@ Die MainActivity ist zuständig für das starten des Systems, da es bei der App 
 
 ![Customize the Activity](/public/images/creating-android-studio-projects/customize_the_activity.png)
 
-Hier können der Activity Name, der Layout Name, der Titel und der Menu Ressourcen Name eingegeben werden. Die Voreingestellten Werte können erst einmal übernommen werden und später auf das Projekt angepasst werden.
+Hier können der Activity Name, der Layout Name, der Titel und der Menu Ressourcen Name eingegeben werden. Die eingetragenen Werte können erst einmal übernommen werden und später auf das Projekt angepasst werden.
 
 Jetzt sind alle Voreinstellungen vorgenommen und mit einem Klick auf **Finish** wird das Projekt erstellt.
 
@@ -47,11 +47,11 @@ Jetzt sind alle Voreinstellungen vorgenommen und mit einem Klick auf **Finish** 
 
 ## Einrichten der Emulatoren
 
-Damit man das Programmierte testen kann, kann man entweder ein Smartphone im Debuggable Mode anschließen oder sich Emulatoren einrichten, welche ein Smartphone simulieren und auf deinem PC angezeigt werden.
+Damit man das Programmierte testen kann, kann man entweder ein Smartphone im **Debuggable Mode** anschließen oder sich **Emulatoren** einrichten, welche ein Smartphone simulieren und auf deinem PC angezeigt werden.
 
 ![set up emulators](/public/images/creating-android-studio-projects/set_up_emulators.jpg)
 
-Um die Emulatoren einzurichten, klicke in der Schaltfläche am oberen Rand des Fensters auf das oben gezeigte Icon.
+Um die Emulatoren einzurichten, klicke in der Schaltfläche am oberen Rand des Fensters auf das hier gezeigte Icon.
 
 
 ![Your Virtual Devices](/public/images/creating-android-studio-projects/your_virtual_devices.jpg)
@@ -62,6 +62,8 @@ Ist beim ersten Öffnen noch kein Emulator eingestellt oder möchte man einen Ne
 ![Select Hardware](/public/images/creating-android-studio-projects/select_hardware.png)
 
 Hier kann man zuerst eine Kategorie auswählen, was für ein Gerätetyp man simulieren möchte. In diesem Beispiel erstellen wir einen Smartphone Emulator (Phone). In der Tabelle werden nun verschiedene Geräte mit näheren Informationen angezeigt (Displaygröße, Auflösung, Pixeldichte). Hat man sich für ein Gerät entschieden, dieses auswählen und auf Next klicken.
+
+// TODO: Welche Emulatoren machen Sinn??
 
 ![System Image](/public/images/creating-android-studio-projects/system_image.png)
 
