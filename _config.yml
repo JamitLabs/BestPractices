@@ -18,15 +18,12 @@ gems:
 # Define new Categories here, order is respected when listing them in TOC
 sections:
   General:
-    - Topic 1
+    - Version Control
   Apple:
-    - Topic 2
+    - Working with Xcode
   Android:
-    - Topic 3
-    - Topic 4
-    - Topic 5
-  # - "Apple"
-  # - "Android"
+    - Test
+
 
 # Define new topics per category here, order is respected when listing them in TOC
 general_topics:
