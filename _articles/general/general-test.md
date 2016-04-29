@@ -1,4 +1,6 @@
 ---
+section: General
+topic: Topic 1
 title:  "Welcome to Jekyll! (general)"
 date: "2016-01-01 00:00:00"
 author: Somebody

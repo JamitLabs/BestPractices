@@ -1,4 +1,6 @@
 ---
+section: Apple
+topic: Topic 2
 title:  "Welcome to Jekyll! (apple)"
 date: "2016-01-01 00:00:00"
 author: Cihat

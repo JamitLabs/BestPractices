@@ -4,20 +4,33 @@ layout: default
 
 <div class="home">
 
-  <h1 class="page-heading">Posts</h1>
+  <h1>All Articles</h1>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
+  <ul>
+  {% for section in site.sections %}
+    <li>
+      <b>
+        {{ section.first }}
+      </b>
+    </li>
+    <ul>
+      {% for topic in site.sections[section.first] %}
+        <li>
+          {{ topic }}
+        </li>
+        <ul>
+          {% for article in site.articles %}
+            {% if article.section == section.first %}
+              {% if article.topic == topic %}
+                <li>
+                    <a href="{{ article.url | prepend: site.baseurl }}">{{ article.title }}</a>
+                </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </ul>
+  {% endfor %}
   </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
 </div>

@@ -20,6 +20,31 @@ github_username:  jekyll
 # Build settings
 markdown: kramdown
 
+# Define new Categories here, order is respected when listing them in TOC
+sections:
+  General:
+    - Topic 1
+  Apple:
+    - Topic 2
+  Android:
+    - Topic 3
+    - Topic 4
+    - Topic 5
+  # - "Apple"
+  # - "Android"
+
+# Define new topics per category here, order is respected when listing them in TOC
+general_topics:
+  - "V a"
+  - "A v"
+apple_topics:
+  - "C b"
+  - "B c"
+android_topics:
+  - "ab c"
+  - "D e"
+  - "E d"
+
 collections:
   articles:
     output: true
