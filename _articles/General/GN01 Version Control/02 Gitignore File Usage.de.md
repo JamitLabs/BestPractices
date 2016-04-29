@@ -1,7 +1,7 @@
 ---
 section:  General
 topic:    Version Control
-refid:    "GN01#02"
+refid:    GN01-02
 title:    Nutzung von Gitignore-Dateien
 date:     2016-01-01 00:00:00
 author:   Cihat Gündüz

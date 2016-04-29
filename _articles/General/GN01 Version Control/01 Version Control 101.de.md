@@ -1,7 +1,7 @@
 ---
 section:  General
 topic:    Version Control
-refid:    "GN01#01"
+refid:    GN01-01
 title:    "Versionsverwaltung: Eine Einführung"
 date:     2016-01-01 00:00:00
 author:   Cihat Gündüz
@@ -23,7 +23,7 @@ Ganz vom obigen Beispiel abgesehen erschließt es sich außerdem leicht, warum k
 
 ## Welches Versionsverwaltungssystem sollte ich nutzen?
 
-![Logos](/public/images/version-control/logos.png)
+![Logos](/public/images/GN01/01/logos.png)
 *Meist begegnet man SVN, Git oder Mercurial.*
 
 Es gibt verschiedene Versionsverwaltungssysteme [mit unterschiedlichen Zielen sowie Vor- und Nachteilen](http://stackoverflow.com/a/875). Die bei der Softwareentwicklung heutzutage am meisten verbreiteten sind Subversion (kurz SVN), Git und Mercurial. Allen 3 gemein ist, dass die Daten auf einem Server gehostet werden um so mehreren Nutzern Zugriff auf die Daten zu bieten. SVN gilt dabei als veraltet, da es sich noch um ein zentral verwaltetes Versionskontrollsystem handelt und man Änderungen am Projekt direkt auf den Server merged. Git und Mercurial sind dezentrale Versionskontrollsysteme, die das getrennte Arbeiten und Verwalten von Projekten durch den Einsatz lokaler Arbeitskopien deutlich verbessern. So hat man auch offline Zugriff auf alle Daten und ist nicht durchwegs auf eine Internetverbindung angewiesen, um am Projekt zu arbeiten. Da die lokale Kopie nicht automatisch auf den Stand des serverseitigen Originals synchronisiert wird muss man dies manuell erledigen (dazu später mehr).
@@ -35,13 +35,13 @@ Funktional sind Git und Mercurial miteinander für die üblichen Projektzwecke [
 
 Mit Git lassen sich Code-Projekte in verschiedenen Ausarbeitungen mit Kommentaren versehen speichern (**Commits**), außerdem unterstützt Git das Verwalten verschiedener gleichzeitig entwickelter Arbeitslinien (**Branches**). Git kann verschiedene Branches oder die Änderungen von verschiedenen Commits automatisch zusammenführen (**Merge**) sofern nicht an den selben Code-Stellen in denselben Dateien unterschiedliche Änderungen vorliegen (**Merge Conflict**). Falls diese doch vorliegen greift man einfach von Hand ein und ändert den Code entsprechend wie gewünscht (die Stellen mit einem Konflikt sind dann mit `>>>>>>` und `<<<<<<` markiert).
 
-![Merge](/public/images/version-control/merge.png)
+![Merge](/public/images/GN01/01/merge.png)
 *Ein Merge führt Änderungen in einem Master Branch zusammen oder bringt einen Working Branch auf den Stand des Master Branches.*
 
 Da Git ein dezentrales Versionsverwaltungssystem ist, sollte man seinen lokalen Stand regelmäßig mit dem serverseitigen Stand synchronisieren. Durch regelmäßiges Abgleichen ermöglicht man anderen Teammitgliedern den Zugriff auf die eigenen Änderungen am Projekt und erhält gleichzeitig Zugriff auf die Änderungen anderer Teammitglieder. Ein weiterer Vorteil ist das Vorbeugen von eventuellem Datenverlust, da eigene Änderungen dann nicht mehr nur auf dem eigenen System sondern auch auf dem Server vorhanden sind. Außerdem sind so Merce Conflicts unwahrscheinlicher.
 Dazu besitzt Git die beiden Funktionen **Push** und **Pull**. Push erlaubt dem Nutzer Commits von lokalen Branches auf den Server zu "schieben" (**pushen**). Das Gegenstück dazu, ein Pull, ermöglicht es, neue Commits von den serverseitigen Branches in seine lokalen Branches zu "ziehen" (**pullen**).
 
-![Push & Pull](public/images/version-control/push-pull.png)
+![Push & Pull](public/images/GN01/01/push-pull.png)
 *Um lokale und serverseitige Branches synchron zu halten, sollte man regelmäßig pushen und pullen.*
 
 Falls man das erste mal mit einem dezentralen Versionsverwaltungssystem in Berührung kommt kann es leicht zu Verwechslungen zwischen den Funktionen Merge sowie Push und Pull kommen da diese eine ähnliche Aufgabe besitzen. Man sollte sich deshalb klar machen, dass Push oder Pull immer benutzt werden wenn man Branches zwischen Server und lokalem System synchronisieren möchte. Ein Merge hingegen synchronisiert Branches auf dem gleichen System.

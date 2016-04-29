@@ -1,7 +1,7 @@
 ---
 section:  General
 topic:    Version Control
-refid:    "GN01#04"
+refid:    GN01-04
 title:    Gute Commit Messages
 date:     2016-01-01 00:00:00
 author:   Cihat Gündüz

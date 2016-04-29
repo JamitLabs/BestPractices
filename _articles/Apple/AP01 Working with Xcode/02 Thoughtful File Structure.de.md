@@ -1,7 +1,7 @@
 ---
 section:  Apple
 topic:    Working with Xcode
-refid:    "AP01#02"
+refid:    AP01-02
 title:    Durchdachte Dateistruktur
 date:     2016-01-01 00:00:00
 author:   Cihat Gündüz

@@ -1,7 +1,7 @@
 ---
 section:  Apple
 topic:    Working with Xcode
-refid:    "AP01#03"
+refid:    AP01-03
 title:    Ergänzen fehlender Xcode-Funktionen
 date:     2016-01-01 00:00:00
 author:   Cihat Gündüz
