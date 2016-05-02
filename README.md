@@ -44,7 +44,7 @@ Now you can **start the server locally** by running:
 $ jekyll serve
 ```
 
-As long as the server runs you can **visit the page in your browser** by opening [localhost:4000](localhost:4000) or [127.0.0.1:4000](127.0.0.1:4000).
+As long as the server runs you can **visit the page in your browser** by opening [localhost:4000](http://localhost:4000) or [127.0.0.1:4000](http://127.0.0.1:4000).
 To **stop the local server** in your terminal type `Ctrl+C` on your keyboard.
 
 
