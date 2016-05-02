@@ -29,6 +29,8 @@ $ \curl -sSL https://get.rvm.io | bash -s stable
 $ rvm install ruby 2.2.3
 ```
 
+If you have **trouble with Homebrew** while installing Ruby like suggested above, then try running `brew doctor` and fixing all issues with the suggested changes that will then be presented to you. When finished with all suggested changes don't forget to **restart your terminal** as some changes will only take effect after a restart. Then installing ruby should work fine.
+
 ### Starting the server locally
 
 Before you can start a Jekyll server locally you need to install the dependencies once by running the following:
