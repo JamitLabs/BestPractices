@@ -11,9 +11,6 @@ baseurl:             ''
 
 # Build settings
 markdown: kramdown
-gems:
-  - jekyll-paginate
-  - jekyll-sitemap
 
 # Define new Categories here, order is respected when listing them in TOC
 sections:
