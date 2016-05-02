@@ -5,34 +5,45 @@
 title:               JL Best Practices
 tagline:             'Best practices for iOS and Android app development.'
 description:         'Some best practices categorized by app development platform we are using at Jamit Labs.'
-url:                 ''
+url:                 '' # the base hostname and protocol
 email:               cihat.guenduez@jamitlabs.com
 baseurl:             ''
-paginate:            5
-
-twitter_username:    JamitLabs
-github_username:     jamitlabs
-
-# Custom vars
-version:             1.0.0
-
-paginate_langs:      ["en", "de"]
 
 # Build settings
 markdown: kramdown
-
-# Jekyll Archives
-jekyll-archives:
-  enabled: []
-  layout: 'archive'
-  permalinks:
-    year: '/:year/'
-    month: '/:year/:month/'
-    day: '/:year/:month/:day/'
-    tag: '/tag/:name/'
-    category: '/category/:name/'
-
 gems:
   - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-archives
+
+# Define new Categories here, order is respected when listing them in TOC
+sections:
+  General:
+    - Version Control
+  Apple:
+    - Working with Xcode
+  Android:
+    - Test
+
+
+# Define new topics per category here, order is respected when listing them in TOC
+general_topics:
+  - "V a"
+  - "A v"
+apple_topics:
+  - "C b"
+  - "B c"
+android_topics:
+  - "ab c"
+  - "D e"
+  - "E d"
+
+collections:
+  articles:
+    output: true
+
+defaults:
+  - scope:
+      path: "_articles"
+      type: articles
+    values:
+      layout: article
