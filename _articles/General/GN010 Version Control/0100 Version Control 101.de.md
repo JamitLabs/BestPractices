@@ -1,7 +1,7 @@
 ---
 section:  General
 topic:    Version Control
-refid:    GN01-01
+refid:    GN010-0100
 title:    "Versionsverwaltung: Eine Einführung"
 date:     2016-01-01 00:00:00
 author:   Cihat Gündüz
