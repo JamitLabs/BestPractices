@@ -1,5 +1,6 @@
 ---
 layout: default
+title: All articles
 ---
 
 <div class="home">
@@ -24,6 +25,7 @@ layout: default
               {% if article.topic == topic %}
                 <li>
                     <a href="{{ article.url | prepend: site.baseurl }}">{{ article.title }}</a>
+                    &nbsp;&nbsp;<small style="color: #bbbbbb;">{{ article.refid }}</small>
                 </li>
               {% endif %}
             {% endif %}
