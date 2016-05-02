@@ -1,19 +1,19 @@
 ---
 layout: post
 title: "Erstellen eines Android Studio Projekts"
-categories: android
 ---
+
 In diesem Artikel wird die Erstellung eines neuen Android Studio Projekts
 behandelt. Dabei geht es darum welche Einstellungen zu Beginn vorgenommen werden sollten und wie man Emulatoren zum Testen der App einrichtet.
 
 ## Erstellen eines neuen Projekts
 
-![Start a new Android Studio Project](/public/images/creating-android-studio-projects/start_new_android_studio_project.jpg)
+![Start a new Android Studio Project](../public/images/creating-android-studio-projects/start_new_android_studio_project.jpg)
 
 Nachdem sich das erste Fenster geöffnet hat, muss man den Punkt "Start a new Android Studio project" auswählen, um ein komplett neues Projekt zu erstellen.
 
 
-![New Android Studio Project Second Screen](/public/images/creating-android-studio-projects/new_android_studio_project_second_screen.png)
+![New Android Studio Project Second Screen](../public/images/creating-android-studio-projects/new_android_studio_project_second_screen.png)
 
 Im nächsten Schritt müssen die Rahmenbedingungen für das Projekt festgelegt werden.
 
