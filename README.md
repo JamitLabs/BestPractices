@@ -88,6 +88,10 @@ Follow these steps to use images within new articles:
 - Make sure to write a comment that explains your image to the reader (redundancy is a good thing here).
 - Place the comment in the line below the image inclusion using the structure `*<IMAGE_COMMENT>*`
 
+### Contribution Tips
+
+- Use the [Atom Editor](https://atom.io) and edit with a **live MarkDown preview** using the `Ctrl+Shift+M` shortcut
+
 ## License
 
 <p style="float: right;">
