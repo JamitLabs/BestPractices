@@ -42,7 +42,7 @@ Aus Gründen der Einheitlichkeit sollte dieselbe Struktur gleichermaßen in App-
 
 Verbindet man die Anforderungen des Swift Package Managers und unsere Dateitypen-Strukturierung, so ergibt sich, dass für Dateien, die Teil des Hauptprojekts bzw. des Frameworks sind, innerhalb des Ordners `Sources` in die genannten Typ-Ordner (z.B. `Code`) einsortiert werden sollten. Das gleiche wird auch mit Dateien getan, die Teil der Tests sind, nur innerhalb des Ordners `Tests`. Hieraus folgt sowohl für App-Projekte, als auch für Frameworks eine Struktur, die etwa so aussieht:
 
-![example-project-file-structure](public/images/xcode-file-structure/example-project-file-structure.png)
+![example-project-file-structure](../../../public/images/AP010/0200/example-project-file-structure.png)
 
 Für UI-Tests kann zusätzlich ein Ordner Namens `UI Tests` eingeführt werden, worin wiederum die empfohlene Struktur angewandt wird. Inwiefern dies sich mit dem Swift Package Manager verträgt muss jedoch noch geklärt werden.
 
@@ -55,17 +55,17 @@ TODO: Ergänzen wofür "Relative to Group", "Relative to Project" steht.
 Passend zur Dateistruktur sollten die Gruppen im Projekt eingerichtet werden. Dabei sollte im ersten Schritt jeder Ordner im Projekt-Verzeichnis mit einer Gruppe vertreten sein und genau die Dateien enthalten, die auch im jeweiligen Verzeichnis enthalten sind. Beim Hinzufügen von neuen Dateien kann dies künftig mit einem Rechtsklick auf die jeweilige Gruppe und "New File" geschehen und Xcode wird automatisch den korrekten Ordner im Dateiverzeichnis auswählen, wodurch man nach dem ersten Einrichten nie mehr direkt am Dateien-Verzeichnis Dateien hin und her schieben muss.
 
 TODO: Bild erstellen (erst wenn vorheriges TODO geklärt)
-![correct-path](public/images/xcode-file-structure/correct-path.png)
+![correct-path](../../../public/images/AP010/0200/correct-path.png)
 *Im File Inspector findet man den Path einer Datei*
 
 Hierzu müssen aber die Gruppen, für die es jeweils einen Ordner gibt (z.B. `Sources` und darin `Code`) den korrekten Path gesetzt haben, was man im Nachhinein mit dem Ordner-Symbol im File-Inspector rechts in Xcode unter "Location" ändern kann. Am einfachsten ist es jedoch, einmal sämtliche Gruppen in Xcode zu entfernen (wichtig: nur "Remove References" auswählen) und die Ordner Sources, Tests und evtl. UI Tests einmal vom Finder links in den Project-Navigator per Drag-and-Drop direkt unterhalb des Projekts zu ziehen und im anschließenden Dialog sicherzustellen, dass "Create Groups" angehakt ist. So ist die ganze Datei-Struktur schon einmal korrekt im Project-Navigator. Es lohnt sich, diesen Schritt getrennt für die Ordner "Sources", "Tests" und "UI Tests" zu machen und dabei beim Import das jeweils korrekte Target anzuhaken.
 
-![correct-path](public/images/xcode-file-structure/add-files.png)
+![correct-path](../../../public/images/AP010/0200/add-files.png)
 *Beim Hinzufügen von Dateien sollten diese Haken gesetzt sein*
 
 TODO: Folgende Beispielpfade anpassen
 
 Ist die Grundstruktur erst einmal im Project-Navigator vorhanden, so kann man fortan innerhalb einer Gruppe (z.B. `Code`) beliebig weiter Untergruppen erstellen. Hierbei empfiehlt es sich jeweils nach zugehörigen Screens (sofern vorhanden) oder generell Funktionen zu gruppieren. So kann ein Projekt etwa die Untergruppen "Sources/Code/ScreenHome", "Sources/Code/Settings", "Sources/Code/Networking", "Sources/Code/Core Data", "Sources/Code/Extensions", "Sources/Code/Helpers", "Sources/User Interface/Home", "Sources/User Interface/Settings", "Tests/Code/Home", "Tests/Code/Settings", "Tests/Code/Core Data", "Tests/Code/Extensions" und "Tests/Code/Helpers" enthalten. Zugehörige Untergruppen in verschiedenen Typen und Targets sollten dabei gleich genannt werden, wie in den voran genannten Beispielen jeweils mit "Home" und "Settings" geschehen. Nachfolgendes Bild soll dies veranschaulichen:
 
-![correct-path](public/images/xcode-file-structure/xcode-project-navigator.png)
+![correct-path](../../../public/images/AP010/0200/xcode-project-navigator.png)
 *Ein fertig eingerichteter Project Navigator*
