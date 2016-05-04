@@ -17,7 +17,7 @@ Im Ressourcen - Verzeichniss werden Inhalte wie zum Beispiel Texte, Bilder, Layo
 angelegt. Die Plazierung außerhalb des Codes ermöglicht es die Daten unabhängig davon
 bearbeiten zu können.
 
-![start_structure](../../public/images/AN010/0200/start_structure.png)
+![start_structure](../../../public/images/AN010/0200/start_structure.png)
 
 In diesem Beispiel kann man die Unterverzeichnisse sehen, die für ein einfaches Projekt
 benötigt werden. Die Struktur und Benennung der Verzeichnisse ist von Android vorgegeben.
@@ -219,7 +219,7 @@ Diese Ordner werden in Android Studio erstmal nicht angezeigt. Erst wenn man Bil
 oder Icons zu den einzelnen Ordnern hinzufügt, erscheint *unten gezeigte* Struktur.
 Jedes Bild oder Icon sollte dabei in allen Ordnern den gleichen Namen tragen.
 
-![density_exaxmple](../public/images/android-studio-file-structure/density_example.png)
+![density_exaxmple](../../../public/images/AN010/0200/density_example.png)
 
 Die verschiedenen Auflösungen berechnen sich wie folgt basierend auf der **medium density (mdpi)** :
 
@@ -250,7 +250,7 @@ stehenden Platzes anpasst. Typischerweise verwendet man so ein Bild als Hintergr
 wenn die Höhe oder die Breite des Bildes an die Bildschirmgröße angepasst werden soll.
 Dazu sollte das Bild jedoch strechbare Flächen besitzen, die erweitert werden können.
 
-![nine_patch_example](../../public/images/AN010/0200/nine_patch_example.png)
+![nine_patch_example](../../../public/images/AN010/0200/nine_patch_example.png)
 *Gutes Beispiel Nine Patch Datei*
 
 In diesem Beispiel möchte man als Hintergrund einen roten Rahmen mit weißem Inhalt verwenden.
@@ -258,19 +258,19 @@ Der Text ist nicht Teil des Bildes, sondern soll den Inhalt der über dem Hinter
 Die weiße Fläche im Inneren und auch der Rahmen sind strechbare Flächen.
 
 
-![nine_patch_example_two](../../public/images/AN010/0200/nine_patch_example_two.png)
+![nine_patch_example_two](../../../public/images/AN010/0200/nine_patch_example_two.png)
 *Weiteres Beispiel*
 
-![nine_patch_example_three](../../public/images/AN010/0200/nine_patch_example_three.png)
+![nine_patch_example_three](../../../public/images/AN010/0200/nine_patch_example_three.png)
 *Weiteres Beispiel*
 
 Ändert sich nun der Platz, der dem Bild zur Verfügung steht, so wird die Datei diesem angepasst.
 Der innere weiße Inhalt wird vergrößert oder verkleinert und auch der Rahmen passt sich den Verhältnissen an.
 
-![nine_patch_bad_example](../../public/images/AN010/0200/nine_patch_bad_example.png)
+![nine_patch_bad_example](../../../public/images/AN010/0200/nine_patch_bad_example.png)
 *Schlechtes Beispiel Nine Patch Datei*
 
-![nine_patch_bad_example_two](../../public/images/AN010/0200/nine_patch_bad_example_two.png)
+![nine_patch_bad_example_two](../../../public/images/AN010/0200/nine_patch_bad_example_two.png)
 *Schlechtes Beispiel Nine Patch Datei*
 
 Nicht geeignet für Nine-Patch Dateien sind Photos oder Bilder mit Texten, da diese
