@@ -1,10 +1,10 @@
 ---
-section: Android
-topic: Working with Android Studio
-refid: AN010-0100
-title: Erstellen eines neuen Projekts
-date: 2016-01-01 00:00:00
-author: Marina Meier
+section:  Android
+topic:    Working with Android Studio
+refid:    AN010-0100
+title:    Erstellen eines neuen Projekts
+date:     2016-01-01 00:00:00
+author:   Marina Meier
 ---
 
 In diesem Artikel wird die Erstellung eines neuen Android Studio Projekts
@@ -15,8 +15,7 @@ sollten und wie man Emulatoren zum Testen der App einrichtet.
 
 ![Start a new Android Studio Project](../../../public/images/AN010/0100/start_new_android_studio_project.jpg)
 
-Nachdem sich das erste Fenster geöffnet hat, muss man den Punkt "Start a new
-Android Studio project" auswählen, um ein komplett neues Projekt zu erstellen.
+Nachdem sich das erste Fenster geöffnet hat, muss man den Punkt "Start a new Android Studio project" auswählen, um ein komplett neues Projekt zu erstellen.
 
 
 ![New Android Studio Project Second Screen](../../../public/images/AN010/0100/new_android_studio_project_second_screen.png)
@@ -53,8 +52,7 @@ Programmierung keine main() Methode gibt, die diese Aufgabe übernimmt.
 
 ![Customize the Activity](../../../public/images/AN010/0100/customize_the_activity.png)
 
-Hier können der Activity Name, der Layout Name, der Titel und der Menu Ressourcen
-Name eingegeben werden. Die eingetragenen Werte können erst einmal übernommen werden und später auf das Projekt angepasst werden.
+Hier können der Activity Name, der Layout Name, der Titel und der Menu Ressourcen Name eingegeben werden. Die eingetragenen Werte können erst einmal übernommen werden und später auf das Projekt angepasst werden.
 
 Jetzt sind alle Voreinstellungen vorgenommen und mit einem Klick auf **Finish** wird das Projekt erstellt.
 
