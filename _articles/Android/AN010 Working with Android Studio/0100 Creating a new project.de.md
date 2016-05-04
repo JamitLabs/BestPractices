@@ -1,5 +1,5 @@
 ---
-section: android
+section: Android
 topic: Working with Android Studio
 refid: AN010-0100
 title: Erstellen eines neuen Projekts
