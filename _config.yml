@@ -19,7 +19,7 @@ sections:
   Apple:
     - Working with Xcode
   Android:
-    - Test
+    - Working with Android Studio
 
 collections:
   articles:
