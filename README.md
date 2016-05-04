@@ -66,7 +66,7 @@ Before creating a new article take a look at the existing articles and topics to
 - A new topic that is appended at the end of the current topics increases the highest id by 10
 - A new topic that belongs between existing topics uses the average of the two neighbors topic ids
 - The `<TOPIC_NAME>` is always written in English
-- A new `<TOPIC_NAME>` must be manually placed into the right section within the `_config.yml` file 
+- A new `<TOPIC_NAME>` must be manually placed into the right section within the `_config.yml` file
 
 **NEW ARTICLE RULES**
 
@@ -77,6 +77,19 @@ Before creating a new article take a look at the existing articles and topics to
 - A new article that belongs between existing articles uses the average of the two neighbors topic ids
 - The `<ARTICLE_NAME>` is always written in English
 - The `<LANGUAGE_CODE>` is `de` for articles written in German and `en` for articles written in English
+
+Also make sure new articles begin with the following structure:
+
+```yaml
+---
+section:  <CATEGORY_NAME>
+topic:    <TOPIC_NAME>
+refid:    <CATEGORY_ID><TOPIC_ID>-<ARTICLE_ID>
+title:    <ARTICLE_NAME>
+date:     <FIRST_PUBLISH_DATE>
+author:   <MAIN_AUTHOR_NAME>
+---
+```
 
 #### Using images in new articles
 
