@@ -46,77 +46,86 @@ Im Folgenden eine Auflistung der Default Ressourcen.
  Benutzer der App in den Landscape Modus wechselt. Für diese Spezialisierungen müssen
  neue Verzeichnisse im ```res``` -Ordner angelegt werden.
 
- ![]()
+ ![Beispiel für ein res Verzwichniss mit Spezialisierungsordnern]()
 
-> Dabei ist zu Beachten, dass die Verzeichnisse nicht geschachtelt werden dürfen.
->
->
->```
-> res/
->    drawable/
->        drawable-hdpi/
->    layout/
->    ```
->
-> Die Spezialisierungen müssen sich im ```res ``` - Ordner befinden.
->
-> ```
-> res/
->    drawable/
->    drawable-hdpi/
->    layout/
-> ```
+Folgende Regeln sind dabei zu Beachten:
 
-Bei der Bennenung gilt folgende Regel:
+* **Die Verzeichnisse dürfen nicht geschachtelt werden**
 
-```
-<resources_name>-<qualifier>
-```        
+  Richtig:
 
-* **resources_name** ist der Name der Default - Ressource auf die sich die Spezialisierungen bezieht.
-* **qualifier** ist der Name der Spezialisierung für welche die Ressource benutzt werden soll.
+  ```
+   res/
+      drawable/
+      drawable-hdpi/
+      layout/
+  ```
+  Falsch:  
 
-Die Reihenfolge, in der die Spezialisierung angelegt werden, spielt ein große Rolle,
-da falls sie falsch gewählt wurde, Dateien ignoriert werden.
+  ```
+  res/
+     drawable/
+         drawable-hdpi/
+     layout/
+  ```
 
-```
-res/
-    layout/
-    layout-en/
-    layout-fr/
-    layout-en-rUS/
-    layout-fr-fFR/
-```
-Das ist die richtige Reihenfolge.
 
-```
-res/
-    layout/
-    layout-en-rUS/
-    layout-fr/
-    layout-en/
-    layout-fr-fFR/
+* **Die Benennung folgt diesem Schema**
 
-```
-Das wäre nicht korrekt.
+  ```
+  <resources_name>-<qualifier>
+  ```
+  * **resources_name** ist der Name der Default - Ressource auf die sich die Spezialisierungen bezieht.
+  * **qualifier** ist der Name der Spezialisierung für welche die Ressource benutzt werden soll.
 
-Auch wenn mehrere unterschiedliche Spezialisierungen angehängt werden, muss eine
-bestimmte Reihenfolge eingehalten werden. Auf [dieser Seite](http://developer.android.com/guide/topics/resources/providing-resources.html)
-in Tabelle 2 sind die Reihenfolge und alle möglichen Spezialisierungen angegeben.
 
-Des Weiteren kann man keine Ordner anlegen, die gleichzeitig mehrere Spezialisierungen
-des gleichen Typs.
+* **Beim Anlegen der Verzeichnisse muss eine bestimmte Reihenfolge eingehalten werden**
 
-```
-drawable-rES-rFR/
-```
-Hier muss es beide Verzeichnisse getrennt geben. Möchte man jedoch die gleiche
-Datei in beiden Ordnern ablegen, kann sie auch außerhalb definiert werden.
+  Da Android sich die zu den Geräteeigenschaften passenden Dateien heraussucht, würden manche Dateien
+  bei falscher Anordnung ignoriert werden.
 
-```
-drawable-rES/
-drawable-rFR/
-```
+  Richtig:
+
+  ```
+  res/
+      layout/
+      layout-en/
+      layout-fr/
+      layout-en-rUS/
+      layout-fr-fFR/
+  ```
+  Falsch:
+
+  ```
+  res/
+      layout/
+      layout-en-rUS/
+      layout-fr/
+      layout-en/
+      layout-fr-fFR/
+
+  ```
+* **Beim Anhängen von mehreren Spezialisierungen muss eine bestimmte Reihenfolge eingehalten werden.**
+
+ Auf [dieser Seite](http://developer.android.com/guide/topics/resources/providing-resources.html)
+ in Tabelle 2 sind die Reihenfolge der Verzeichnisse und aller möglichen Spezialisierungen angegeben.
+
+* **Ein Verzeichnis kann nur eine Spezialisierung eines Typs bekommen**
+
+  Richtig:
+
+  ```
+  drawable-rES/
+  drawable-rFR/
+  ```
+
+  Falsch:
+
+  ```
+  drawable-rES-rFR/
+  ```
+
+  Möchte man jedoch die gleiche Datei in beiden Ordnern ablegen, kann sie auch außerhalb definiert werden.
 
 
 Android sucht nach der am Besten zu den Geräteeigenschaften passenden Spezialisierung.
@@ -132,7 +141,7 @@ werden.
 In das Verzeichnis ```anim``` gehören **tween animations**.
 
 
-Bei diesen handelt es sich um die **Standard Animation** und kann nur auf Views
+Bei diesen handelt es sich um die **Standard Animationen** und kann nur auf Views
 angewendet werden. Möglich ist dabei nur die Veränderung der Position (translation),
 die Veränderung der Größe (scale), der Rotation (rotation) und der Durchsichtigkeit (alpha)
 der View. Die Implementierung und der Aufbau ist relativ einfach. Bei der Animation
@@ -169,7 +178,7 @@ Weitere Informationen: [Color State List Resource](http://developer.android.com/
 
 Im Verzeichnis ***drawable*** werden verschiedene Arten von Graphiken abgelegt.
 
-* **Bitmap File:** Graphik Dateien (.png, .jpg, .gif)
+* **Bitmap File:** Graphik Datei (.png, .jpg, .gif)
 * **Nine-Patch File:** .png Datei, die strechbare Regionen besitzt, welche es möglich
 machen, dass das Bild je nach Inhalt an die Größe angepasst werden kann.  
 * **Layer List:** Array aus anderen Drawables.
@@ -187,10 +196,11 @@ machen, dass das Bild je nach Inhalt an die Größe angepasst werden kann.
 
 Da Android auf vielen unterschiedlichen Geräten mit verschiedenen Pixeldichten läuft,
 ist es wichtig, dass die Auflösung von Bildern oder Icons auf diese Größe abgestimmt ist.
-Nur so kann man eine gute Nutzererfahrung garantieren.
+Nur so kann man eine positive Nutzererfahrung garantieren.
 
-Es gibt sechs allgmeine Pixeldichten. Android entscheidet je nach Eigenschaften
-des Gerätes welches Bild mit welcher Dichte angezeigt werden soll.
+Es gibt sechs allgmeine Pixeldichten. Sind Bilder oder Icons in unterschiedlichen Dichten angelegt,
+entscheidet Android je nach Eigenschaften des Gerätes welches Bild oder Icon mit welcher
+Dichte angezeigt werden soll.
 
 * ldpi (low) ~120dpi
 * mdpi (medium) ~160dpi
@@ -201,11 +211,10 @@ des Gerätes welches Bild mit welcher Dichte angezeigt werden soll.
 
 Damit Android das richtige Bild auswählen kann, muss die vorgegebene Ordnerstruktur stimmen.
 Zusätzlich zu dem Default Drawable Ordner müssen sich mindestens drei weitere Ordner
-in dem ```res```-Verzeichnis befinden (). Die Bennenung ist wie folgt: ```drawable-hdpi, drawable-mdpi, ... ```.
+in dem ```res```-Verzeichnis befinden. Die Bennenung ist wie folgt: ```drawable-hdpi, drawable-mdpi, ... ```.
 Diese Ordner werden in Android Studio erstmal nicht angezeigt. Erst wenn man Bilder
 oder Icons zu den einzelnen Ordnern hinzufügt, erscheint *unten gezeigte* Struktur.
-Jedes Bild oder Icon sollte dabei in jedem der erstellten Ordner vorkommen (nicht aber im drawable Ordner)
-und den gleichen Namen tragen.
+Jedes Bild oder Icon sollte dabei in allen Ordnern den gleichen Namen tragen.
 
 ![density_exaxmple](../public/images/android-studio-file-structure/density_example.png)
 
@@ -220,13 +229,13 @@ Die verschiedenen Auflösungen berechnen sich wie folgt basierend auf der **medi
 
 Man kann sich die Bilder in verschiedenen Auflösungen auch auf [dieser Seite](https://romannurik.github.io/AndroidAssetStudio/icons-generic.html#source.space.trim=1&source.space.pad=0&size=99&padding=0&color=33b5e5%2C0&name=ic_dsc_6895)
 berechnen lassen. Nach dem Auswählen eines Bildes oder Icons, können noch weitere
-Einstellungen getroffen werden, wie zum Beispiel die Größe oder das Padding anpassen.
-Auch hier kann man sich die generierten Dateien herunterladen. Diese befinden sich
+Einstellungen getroffen werden, wie zum Beispiel Anpassungen der Größe oder des Paddings.
+Hier kann man sich auch die generierten Dateien herunterladen. Diese befinden sich
 in der oben geschriebenen Ordnerstruktur, müssen jedoch in das Android Studio Projekt kopiert werden.
 
 
 Möchte man Bilder oder Icons einsetzten, die nur in einer Auflösung vorkommen sollen,
-werden die im Ordner ```drawable-nodpi``` abgelegt.
+werden diese im Ordner ```drawable-nodpi``` abgelegt.
 
 Weitere Informationen: [Supporting Multiple Screens](http://developer.android.com/guide/practices/screens_support.html#xxxhdpi-note)
 
@@ -239,6 +248,7 @@ wenn die Höhe oder die Breite des Bildes an die Bildschirmgröße angepasst wer
 Dazu sollte das Bild jedoch strechbare Flächen besitzen, die erweitert werden können.
 
 ![nine_patch_example](../public/images/android-studio-file-structure/nine_patch_example.png)
+*Gutes Beispiel Nine Patch Datei*
 
 In diesem Beispiel möchte man als Hintergrund einen roten Rahmen mit weißem Inhalt verwenden.
 Der Text ist nicht Teil des Bildes, sondern soll den Inhalt der über dem Hintergrund liegt veranschaulichen.
@@ -246,15 +256,19 @@ Die weiße Fläche im Inneren und auch der Rahmen sind strechbare Flächen.
 
 
 ![nine_patch_example_two](../public/images/android-studio-file-structure/nine_patch_example_two.png)
+*Weiteres Beispiel*
 
 ![nine_patch_example_three](../public/images/android-studio-file-structure/nine_patch_example_three.png)
+*Weiteres Beispiel*
 
 Ändert sich nun der Platz, der dem Bild zur Verfügung steht, so wird die Datei diesem angepasst.
 Der innere weiße Inhalt wird vergrößert oder verkleinert und auch der Rahmen passt sich den Verhältnissen an.
 
 ![nine_patch_bad_example](../public/images/android-studio-file-structure/nine_patch_bad_example.png)
+*Schlechtes Beispiel Nine Patch Datei*
 
 ![nine_patch_bad_example_two](../public/images/android-studio-file-structure/nine_patch_bad_example_two.png)
+*Schlechtes Beispiel Nine Patch Datei*
 
 Nicht geeignet für Nine-Patch Dateien sind Photos oder Bilder mit Texten, da diese
 nicht strechbar sind und verzogen werden.
@@ -279,10 +293,24 @@ verwendet werden.
 
 ### Verzeichnis ```layout```
 
-//TODO
+Im Verzeichnis *layout* wird das Aussehen der Benutzeroberflächen festgelegt. Es gibt
+zwei Möglichkeiten ein Layout zu definieren:
+
+* **In XML Dateien**
+* **Zur Laufzeit**
+
+Man kann jede Variante für sich oder beide zusammen verwenden.
+Zu empfehlen ist, das Grundlayout in den XML Dateien zu definieren. Diese können von
+Android Studio visuell dargestellt werden und erleichtern das Erstellen und Bearbeiten.
+Auch ist der Aufbau der Oberfläche klar von der Funktionsweise getrennt. Späteres modifizieren
+ist somit einfacher und es besteht die Möglichkeit Layouts für unterschiedliche Screengrößen oder Ausrichtungen anzupassen.
+Zur Laufzeit sollten dann Veränderungen der in den XML Dateien definerten Layouts erfolgen und Custom Views erstellt werden.
+
+
+
 ### Verzeichnis ```menu```
 
-Im Verzeichnis *menu* werden die Optionsmenüs, Kontextmenüs und das Untermenüs angelegt.
+Im Verzeichnis *menu* werden die Optionsmenüs, Kontextmenüs und Untermenüs angelegt.
 
 //TODO
 
@@ -300,7 +328,7 @@ Die Festlegung von Farben, Strings oder Dimensionen in diesen Dateien ist sinnvo
 da sie so unabhängig vom Code geändert werden können. Möchte man zum Beispiel eine Accent
 Farbe in einer App benutzen und diese wird fünfzig mal verwendet, so muss man sie,
 falls man sich für eine andere Farbe entscheidet, nicht fünzig mal ändern, sondern
-nur ein einziges mal in der colors.xml.
+nur ein einziges Mal in der colors.xml.
 Die Bennenug der Dateien folgt diesen Namenskonventionen:
 
 #### arrays.xml
@@ -328,7 +356,7 @@ Ist die Pixeldichte höher oder niedriger wird die Anzahl der Pixel, die einem d
 entsprechen, im Verhältnis angepasst.
 
 * **sp** (Scale-independent Pixel) funktionieren gleich wie *dp*, kann jedoch aber
-durch die Schriftgrößen Präfernezen des Benutzers angepasst werden. Daher ist es
+durch die Schriftgrößen Präferenzen des Benutzers angepasst werden. Daher ist es
 sinnvoll diese Einheit für Schriftgrößen einzusetzten.
 
 * **pt** (Points) 1/72 of an inch, basierend auf der physikalischen Größe des Screens.
