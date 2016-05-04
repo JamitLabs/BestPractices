@@ -2,11 +2,11 @@ image: ruby:2.1
 
 pages:
   script:
-  - gem install jekyll
-  - gem install jekyll-paginate
+  - gem install bundler
+  - bundle install
   - jekyll build -d public/
   artifacts:
     paths:
     - public
   only:
-  - productive
+  - stable

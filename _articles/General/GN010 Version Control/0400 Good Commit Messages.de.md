@@ -1,6 +1,10 @@
 ---
-layout: post
-title:  "Gute Commit Messages"
+section:  General
+topic:    Version Control
+refid:    GN010-0400
+title:    Gute Commit Messages
+date:     2016-01-01 00:00:00
+author:   Cihat Gündüz
 ---
 
 In diesem Artikel werden Hilfestellungen für gute Commit Messages gegeben, indem zuerst der Nutzen von Commit Messages erklärt wird und danach Beispiele für schlechte und gute Commit Messages gegeben werden.

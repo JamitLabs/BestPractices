@@ -1,7 +1,10 @@
 ---
-layout: post
-title:  "Nutzung von Gitignore-Dateien"
-categories: ios android
+section:  General
+topic:    Version Control
+refid:    GN010-0200
+title:    Nutzung von Gitignore-Dateien
+date:     2016-01-01 00:00:00
+author:   Cihat Gündüz
 ---
 
 ## Was ist eine Gitignore-Datei?
