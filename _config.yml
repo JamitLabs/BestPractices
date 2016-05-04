@@ -21,19 +21,6 @@ sections:
   Android:
     - Test
 
-
-# Define new topics per category here, order is respected when listing them in TOC
-general_topics:
-  - "V a"
-  - "A v"
-apple_topics:
-  - "C b"
-  - "B c"
-android_topics:
-  - "ab c"
-  - "D e"
-  - "E d"
-
 collections:
   articles:
     output: true
