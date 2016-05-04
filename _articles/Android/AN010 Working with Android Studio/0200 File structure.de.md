@@ -11,7 +11,7 @@ In diesem Artikel wird ein sinnvoller Aufbau für ein Android Studio Projekt
 dargestellt. Dabei geht es um den von Android vorgebenen Aufbau der ```res``` - Dateien
 und ein Beispiel für die frei wählbare Struktur der ```java``` - Dateien.
 
-## Anlegen der ```res ```(Ressourcen) - Ordner
+## Anlegen der `res`(Ressourcen) - Ordner
 
 Im Ressourcen - Verzeichniss werden Inhalte wie zum Beispiel Texte, Bilder, Layouts oder Animationen
 angelegt. Die Plazierung außerhalb des Codes ermöglicht es die Daten unabhängig davon
