@@ -1,0 +1,43 @@
+---
+layout: default
+---
+<article class="post">
+
+  <h1 class="post-title">
+    {{ page.title }}
+  </h1>
+  <p class="post-date">
+    <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+      {{ page.date | date_to_long_string }}
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        {{ page.author }}
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <hr />
+  <div>
+    <p style="float:left;">
+      <a href="{{ site.baseurl }}{{ page.url }}">
+        <small>
+          << Zurück: {{ page.title }}
+        </small>
+      </a>
+    </p>
+    <p style="float:right;">
+      <a href="{{ site.baseurl }}{{ page.url }}">
+        <small>
+          Weiter: {{ page.title }} >>
+        </small>
+      </a>
+    </p>
+  </div>
+
+</article>
