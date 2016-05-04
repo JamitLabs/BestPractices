@@ -3,8 +3,8 @@
 
 # Site settings
 title:               Best Practices
-tagline:             'Best practices for iOS and Android app development.'
-description:         'Some best practices categorized by app development platform we are using at Jamit Labs.'
+tagline:             'iOS and Android app development made better.'
+description:         'Some best practices we are using at Jamit Labs categorized by app development platforms.'
 url:                 '' # the base hostname and protocol
 email:               cihat.guenduez@jamitlabs.com
 baseurl:             ''
