@@ -8,10 +8,10 @@ author:   Marina Meier
 ---
 
 In diesem Artikel wird ein sinnvoller Aufbau für ein Android Studio Projekt
-dargestellt. Dabei geht es um den von Android vorgebenen Aufbau der ```res``` - Dateien
-und ein Beispiel für die frei wählbare Struktur der ```java``` - Dateien.
+dargestellt. Dabei geht es um den von Android vorgebenen Aufbau der `res` - Dateien
+und ein Beispiel für die frei wählbare Struktur der `java` - Dateien.
 
-## Anlegen der ```res ```(Ressourcen) - Ordner
+## Anlegen der `res`(Ressourcen) - Ordner
 
 Im Ressourcen - Verzeichniss werden Inhalte wie zum Beispiel Texte, Bilder, Layouts oder Animationen
 angelegt. Die Plazierung außerhalb des Codes ermöglicht es die Daten unabhängig davon
@@ -21,7 +21,7 @@ bearbeiten zu können.
 
 In diesem Beispiel kann man die Unterverzeichnisse sehen, die für ein einfaches Projekt
 benötigt werden. Die Struktur und Benennung der Verzeichnisse ist von Android vorgegeben.
-Innerhalb des ```res``` -Ordners dürfen sich nur Unterverzeichnisse befinden und keine
+Innerhalb des `res` -Ordners dürfen sich nur Unterverzeichnisse befinden und keine
 einfachen Dateien. Auch die Benennung der Unterverzeichnisse ist fest vorgegeben,
 da Android sich zur Laufzeit genau die Dateien aus den Ordnern heraus greift, welche
 am Besten zu den Eigenschaften des jeweiligen Gerätes passen.
@@ -47,7 +47,7 @@ Im Folgenden eine Auflistung der Default Ressourcen.
  Geräteeigenschaften eingehen. Zum Beispiel könnte man veschiedene Layouts für verschiedene
  Screengrößen anlegen oder man möchte, dass ein anderes Layout verwendet wird, wenn der
  Benutzer der App in den Landscape Modus wechselt. Für diese Spezialisierungen müssen
- neue Verzeichnisse im ```res``` -Ordner angelegt werden.
+ neue Verzeichnisse im `res` -Ordner angelegt werden.
 
  ![Beispiel für ein res Verzwichniss mit Spezialisierungsordnern]()
 
@@ -139,9 +139,9 @@ Default Ordner, gleich benannt sind, da die Ressourcen im Code durch IDs angespr
 werden.
 
 
-### Unterschied von Animationen im ```animator``` - Verzeichnis und im ```anim ```- Verzeichniss
+### Unterschied von Animationen im `animator` - Verzeichnis und im `anim `- Verzeichniss
 
-In das Verzeichnis ```anim``` gehören **tween animations**.
+In das Verzeichnis `anim` gehören **tween animations**.
 
 
 Bei diesen handelt es sich um die **Standard Animationen** und kann nur auf Views
@@ -155,7 +155,7 @@ Bereich während der Animation nicht aktualisiert wird.
 Weitere Informationen: [Android View Animations](http://developer.android.com/guide/topics/graphics/view-animation.html#tween-animation)
 
 
-In das Verzeichnis ```animator``` gehören **property animations**.
+In das Verzeichnis `animator` gehören **property animations**.
 
 
 Bei diesen Animationen werden die Eigenschaften eines Objects über einen bestimmten
@@ -166,7 +166,7 @@ nicht nur für Views, und sind insgesamt generischer und flexibler.
 
 Weitere Informationen: [Android Property Animation](http://developer.android.com/guide/topics/graphics/prop-animation.html)
 
-### Verzeichnis ```color```
+### Verzeichnis `color`
 
 Im Verzeichnis ***color*** werden xml-Dateien angelegt, die eine **Color State List**
 beinhalten. Diese ist ein Objekt, welches man wie eine **color** verwenden kann.
@@ -177,7 +177,7 @@ Wird diese Liste benutzt, werden diese Farben je nach Zustand eingesetzt.
 Weitere Informationen: [Color State List Resource](http://developer.android.com/guide/topics/resources/color-list-resource.html)
 
 
-### Verzeichnis ```drawable```
+### Verzeichnis `drawable`
 
 Im Verzeichnis ***drawable*** werden verschiedene Arten von Graphiken abgelegt.
 
@@ -214,7 +214,7 @@ Dichte angezeigt werden soll.
 
 Damit Android das richtige Bild auswählen kann, muss die vorgegebene Ordnerstruktur stimmen.
 Zusätzlich zu dem Default Drawable Ordner müssen sich mindestens drei weitere Ordner
-in dem ```res```-Verzeichnis befinden. Die Bennenung ist wie folgt: ```drawable-hdpi, drawable-mdpi, ... ```.
+in dem `res`-Verzeichnis befinden. Die Bennenung ist wie folgt: `drawable-hdpi, drawable-mdpi, ... `.
 Diese Ordner werden in Android Studio erstmal nicht angezeigt. Erst wenn man Bilder
 oder Icons zu den einzelnen Ordnern hinzufügt, erscheint *unten gezeigte* Struktur.
 Jedes Bild oder Icon sollte dabei in allen Ordnern den gleichen Namen tragen.
@@ -238,7 +238,7 @@ in der oben geschriebenen Ordnerstruktur, müssen jedoch in das Android Studio P
 
 
 Möchte man Bilder oder Icons einsetzten, die nur in einer Auflösung vorkommen sollen,
-werden diese im Ordner ```drawable-nodpi``` abgelegt.
+werden diese im Ordner `drawable-nodpi` abgelegt.
 
 Weitere Informationen: [Supporting Multiple Screens](http://developer.android.com/guide/practices/screens_support.html#xxxhdpi-note)
 
@@ -286,7 +286,7 @@ Weitere Informationen: [Nine-Patch](http://developer.android.com/guide/topics/re
 
 
 
-### Verzeichnis ```mipmap```
+### Verzeichnis `mipmap`
 
 Im Verzeichnis *mipmap* werden die Icons abgelegt, welche von Launcher Apps (Homescreen Replacements)
 verwendet werden.
@@ -294,7 +294,7 @@ verwendet werden.
 //TODO was genau bedeutet das?
 
 
-### Verzeichnis ```layout```
+### Verzeichnis `layout`
 
 Im Verzeichnis *layout* wird das Aussehen der Benutzeroberflächen festgelegt. Es gibt
 zwei Möglichkeiten ein Layout zu definieren:
@@ -311,17 +311,17 @@ Zur Laufzeit sollten dann Veränderungen der in den XML Dateien definerten Layou
 
 
 
-### Verzeichnis ```menu```
+### Verzeichnis `menu`
 
 Im Verzeichnis *menu* werden die Optionsmenüs, Kontextmenüs und Untermenüs angelegt.
 
 //TODO
 
-### Verzeichnis ```raw```
+### Verzeichnis `raw`
 
 //TODO
 
-### Verzeichnis ```values```
+### Verzeichnis `values`
 
 Im Verzeichnis *values* werden Dateien angelegt, welche einen einfachen Wert besitzen,
 wie zum Beispiel Strings, Integers oder Farben. Diese Dateien enthalten nicht nur eine Ressouce,
@@ -402,6 +402,6 @@ komplette Activity oder Applikation.
 
 
 
-### Verzeichnis ```xml```
+### Verzeichnis `xml`
 
 Im Verzeichniss *xml* werden beliebige XML Dateien abgelegt.
