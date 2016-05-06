@@ -38,6 +38,35 @@ Möchte man mehrere Elemente außerhalb des main_layouts definieren, müssen die
 Durch diese Schachtelung wird die Performance der UI verlangsamt. Um dies zu vermeiden kann man statt einer View Group als Root-Element, ein `<merge/>`- Element verwenden.
 
 ![merge_example](../../../public/images/AN010/0300/merge_example.png)
-*In diesem Beispiel wurde anstatt einem vertical LinearLayout als Root-Element das `<merge/>`- Element verwendet. Das System ignoriert die `<merge/>`- Root und plaziert beide Elemente direkt im Layout. *
+*In diesem Beispiel wurde anstatt einem vertical LinearLayout als Root-Element das `<merge/>`- Element verwendet. Das System ignoriert die `<merge/>`- Root und plaziert beide Elemente direkt im Layout.*
 
 Weitere Informationen: [Re-using Layouts with include](http://developer.android.com/training/improving-layouts/reusing-layouts.html)
+
+### CoordinatorLayout
+
+Google hat im Jahr 2015 eine neue **Android Design Support Library** vorgestellt, welche es Entwicklern einfach machen soll, das Material Design von Google umzusetzen. Dabei geht es darum Abhängigkeiten zwischen *child-views* zu koordinieren.
+Mit wenigen Zeilen Code kann man ein Layout mit **Floating Action Buttons**, **Snackbars** oder **Collapsing Toolbars** erstellen. In diesem Abschnitt möchte ich kurz auf die Möglichkeiten eingehen, die diese Library bietet und eine Seite verlinken, die ausführlich beschreibt wie das Ganze zu implementieren ist.
+
+#### Floating Action Button und Snackbar
+
+![video fab]()
+
+Bei einem Klick auf den FAB, wird dieser nach oben geschoben und die Snackbar wird sichtbar.
+Die Snackbar kann man mit einem Toast vergleichen. Sie ist aber ein Teil des Layouts und liegt nicht darüber.
+
+Zwei Interessante Attribute von **FAB** dabei sind layout_anchor und layout_anchorGravity.
+
+* **layout_anchor** beschreibt die View, an welchem der Button ausgerichtet wird. Ist der Button an einem Element einer Liste festgemacht, und dieses Element verschwindet beim Scollen nach unten  aus dem Screen, positioniert sich der Button am unteren Rand des Screens und schwebt mit.
+`layout_anchor="@id/example"`
+* **layout_anchorGravity** beschreibt an welchem Rand der View der Button positioniert sein soll.
+`layout_anchorGravity="right|bottom" `
+
+#### CollapsingToolbar
+
+![video toolbar]()
+
+Die Library unterstützt auch verschiedene Scroll - Techniken. Dabei geht es um das Verhalten der Toolbar, wenn bestimmte Inhalte gescrollt werden. Mithilfe von Scrollflags kann festgelegt werden, wie Elemente beim Scrollen den Screen verlassen oder betreten.
+
+#### Implementierungsbeispiel
+
+[Tutorial zum Benutzen der Android Design Support Library](https://inthecheesefactory.com/blog/android-design-support-library-codelab/en)
