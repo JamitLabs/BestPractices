@@ -11,17 +11,17 @@ In diesem Artikel werden Hilfestellungen für gute Commit Messages gegeben. Zuer
 
 ## Was ist das Ziel einer Commit Message?
 
-Das Ziel einer Commit Message ist es Änderungen an Code auch im Nachhinein noch verständlich zu machen. Dabei reicht es nicht aus lediglich die gemachten technischen Änderungen zusammenzufassen sondern viel mehr geht es darum in einem Commit Message zu klären, **warum** die Änderungen gemacht wurden. Nur so ist es möglich im Nachhinein nicht nur die Änderungen zu kennen (die man ja dank Git-Diffs auch ohne Messages gut sehen kann) sondern auch entscheiden zu können, ob sie noch benötigt werden und somit ob man sie ändern oder verwerfen darf. Wenn eine echte Begründung in der Commit Message nicht möglich ist, dann kann es helfen stattdessen den **Kontext der Änderung** zu benennen.
+Das Ziel einer Commit Message ist es Änderungen an Code auch im Nachhinein noch verständlich zu machen. Dabei reicht es nicht aus lediglich die gemachten technischen Änderungen zusammenzufassen, sondern viel mehr geht es darum in einer Commit Message zu klären, **warum** die Änderungen gemacht wurden. Nur so ist es möglich im Nachhinein nicht nur die Änderungen zu kennen (die man ja Dank Git-Diffs auch ohne Messages gut sehen kann), sondern auch entscheiden zu können, ob sie noch benötigt werden und somit ob man sie ändern oder verwerfen darf. Wenn eine echte Begründung in einer Commit Message nicht möglich ist, dann kann es helfen stattdessen den **Kontext der Änderung** zu benennen.
 
 ## Wie sollte eine Commit Message aussehen?
 
-Commit Messages können eine beliebige Länge haben, was vielen gar nicht bekannt ist, da einzeilige Kommentare gängige Praxis sind. Auch wir empfehlen die Dinge in wenigen Wörtern auf den Punkt zu bringen, sofern nicht besonderer Erklärbedarf besteht. Da die meisten Git-Tools Commit Messages standardmäßig nach einer Zeile abschneiden und besonders Werkzeuge für die Kommandozeile die Breite stark beschränken, sind folgende Vorgaben für die Länge und Grundstruktur unbedingt einzuhalten:
+Commit Messages können eine beliebige Länge haben, was vielen gar nicht bekannt ist, da einzeilige Kommentare gängige Praxis sind. Auch wir empfehlen die Dinge in wenigen Wörtern auf den Punkt zu bringen, sofern nicht besonderer Erklärungsbedarf besteht. Da die meisten Git-Tools Commit Messages standardmäßig nach einer Zeile abschneiden und besonders Werkzeuge für die Kommandozeile die Breite stark beschränken, sind folgende Vorgaben für die Länge und Grundstruktur unbedingt einzuhalten:
 
 * Die **erste Zeile** jedes Commit Messages **fasst die Begründung / den Kontext der Änderungen kurz zusammen**
-* Die erste Zeile darf die **maximale Länge von 50 Zeichen** nicht zu sehr überschreiten
-* Die restlichen Zeilen (sofern vorhanden) dürfen eine **Länge von etwa 72 Zeichen** nicht zu sehr überschreiten
+* Die erste Zeile sollte die **maximale Länge von etwa 50 Zeichen** nicht überschreiten
+* Die restlichen Zeilen (sofern vorhanden) sollten eine **Länge von etwa 72 Zeichen** nicht überschreiten
 * Falls mehr als eine Zeile geschrieben wird, so **muss nach der ersten Zeile eine leere Zeile** folgen
-* Die **weiteren Zeilen sollten in ganzen Sätzen** geschrieben und **in sinnvolle Abschnitte gegliedert** sein
+* Der **weiteren Zeilen sollte in ganzen Sätzen** geschrieben und **in sinnvolle Abschnitte gegliedert** werden
 
 Eine kurze Commit Message sollte also maximal etwa diese Länge aufweisen (51 Zeichen):
 
@@ -45,7 +45,7 @@ eros et accumsan et iusto odio dignissim qui blandit praesent luptatum
 zzril delenit augue duis dolore te feugait nulla facilisi.
 ```
 
-In den meisten Fällen sollten wenige Worte (also ein einzeiliger Kommentar) reichen, um einen Commit auf den Punkt zu bringen. Falls mehrzeilige Commit Messages zur Regel werden, dann ist das als Zeichen dafür zu deuten, dass man zu selten comittet. Man sollte sich in dem Fall überlegen, ob man nicht schon früher commiten kann.
+In den meisten Fällen sollten wenige Worte (also ein einzeiliger Kommentar) reichen, um einen Commit auf den Punkt zu bringen. Falls mehrzeilige Commit Messages zur Regel werden, dann ist das als Zeichen dafür zu deuten, dass man zu selten Commits macht. Man sollte sich in dem Fall überlegen, ob man nicht schon früher committen kann.
 
 Während die oben genannte Form hauptsächlich zum Ziel hat in bestimmten Tools **überhaupt dargestellt werden zu können**, so fällt auch bei Einhaltung der groben Form in vielen Projekten ohne Standards auf, dass die Commits verschiedener (und manchmal sogar derselben Entwickler) völlig unterschiedliche Formate aufweisen. In nachfolgendem Beispiel ist zu sehen, dass sich meist Groß- und Kleinschreibung, Punkte am Ende der Titelzeile, benutzte Zeitform und sogar die Sprache völlig unterscheiden können:
 
@@ -84,11 +84,11 @@ Diese Regeln orientieren sich an Community-Standards, die etwa in [diesem Blogpo
 
 ## Häufig gemachte Fehler
 
-Nachfolgend typische Fehler, die genau so bereits in der Praxis vorgekommen sind mit Verbesserungsvorschlägen.
+Nachfolgend werden an einigen Beispielen aus der Praxis typische Fehler besprochen und Verbesserungsvorschläge gegeben.
 
 ### Zu generische Commit Messages
 
-Auch wenn man sich in der ersten Zeile kurz fassen sollte, sollte dies nicht zu zu generischen Commits führen, die kaum Aussagekraft haben. Besonders Commits, die nur ein oder zwei Wörter lang sind laufen Gefahr nichts auszusagen. Auch Wörter wie "some" sind Anzeichen von zu generischen Commit Messages.
+Auch wenn man sich in der ersten Zeile kurz fassen sollte, sollte dies nicht zu generischen Commits führen, die kaum Aussagekraft haben. Besonders Commits, mit nur ein oder zwei Wörtern Länge laufen Gefahr nichts auszusagen. Auch Wörter wie "some" sind Anzeichen von zu generischen Commit Messages.
 
 Schlecht:
 
