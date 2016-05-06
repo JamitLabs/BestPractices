@@ -50,7 +50,7 @@ Falls man das erste mal mit einem dezentralen Versionsverwaltungssystem in Berü
 
 Git ist ein Werkzeug für die Kommandozeile und ist auf Mac-Systemen standardmäßig vorinstalliert. Eine aktuelle Version kann auf der [offiziellen Download-Seite](https://git-scm.com/downloads) heruntergeladen werden. Wir empfehlen jedoch gerade Git-Anfängern (aber auch Erfahrenen) die Nutzung eines guten Git-Programms mit Nutzeroberfläche. [SourceTree](https://www.sourcetreeapp.com) ist dabei sowohl für Mac als auch für Windows verfügbar und das Programm unserer Wahl. Es ist kostenlos (Registrierung nach 30 Tagen notwendig), recht übersichtlich und unterstützt neben einer integrierten aktuellen Git-Version auch weitergehende Funktionen wie Git-Flow (dazu mehr in [diesem Artikel](#)).
 
-![SourceTree]()
+![SourceTree](../../../public/images/GN010/0100/SourceTree.png)
 *SourceTree erlaubt die Nutzung von Git ohne Kommandozeile*
 
 ## Wann sollte ich Änderungen commiten?
@@ -59,7 +59,7 @@ Diese Entscheidung hängt davon ab, mit welchem Ziel Commits verwendet werden. D
 
 * Grundsätzlich sollte die Arbeit an einem Projekt (sofern denn Änderungen zustande kamen) spätestens nach 2h einmal commitet werden, sofern man die getane Arbeit nicht verlieren möchte (auch wenn sie noch nicht komplettiert ist). Dies dient dem Ziel die Folgen von Datenverlust zu minimieren und bei Teams den Fortschritt zu teilen.
 
-* Jede zusammengehörige Veränderung (auch wenn mehrere Dateien beteiligt sind), die eine Sache fertig stellt, sollte commitet werden. Bei typischen Programmieraufgaben werden bei eingespielten Programmierern zwischen Commits etwa 2-15 Minuten Zeit vergehen, je nach Größe der gerade überlegten Änderung. Hierbei drückt ein Commit eine erdachte Änderung aus, wobei der Gedanke dann als Kommentar festgehalten wird (mehr zur korrekten Dokumentierung von Commits gibt es [hier](#)).
+* Jede zusammengehörige Veränderung (auch wenn mehrere Dateien beteiligt sind) die eine Sache fertig stellt, sollte commitet werden. Bei typischen Programmieraufgaben werden bei eingespielten Programmierern zwischen Commits etwa 2-15 Minuten vergehen, je nach Größe der gerade überlegten Änderung. Der Inhalt des Commits umfasst eine erdachte Änderung und der Gedanke dabei wird dann als Kommentar festgehalten (mehr zur korrekten Dokumentierung von Commits gibt es [hier](#)).
 
 ## Weiterführende Links
 [Offizielle Git Dokumentation](https://git-scm.com/doc)
