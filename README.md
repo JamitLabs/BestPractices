@@ -82,12 +82,13 @@ Also make sure new articles begin with the following structure:
 
 ```yaml
 ---
-section:  <CATEGORY_NAME>
-topic:    <TOPIC_NAME>
-refid:    <CATEGORY_ID><TOPIC_ID>-<ARTICLE_ID>
-title:    <ARTICLE_NAME>
-date:     <FIRST_PUBLISH_DATE>
-author:   <MAIN_AUTHOR_NAME>
+section:    <CATEGORY_NAME>
+topic:      <TOPIC_NAME>
+refid:      <CATEGORY_ID><TOPIC_ID>-<ARTICLE_ID>
+permalink:  /articles/<REFID>
+title:      <ARTICLE_NAME>
+date:       <FIRST_PUBLISH_DATE>
+author:     <MAIN_AUTHOR_NAME>
 ---
 ```
 
