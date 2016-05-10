@@ -28,7 +28,7 @@ Im Ressourcen - Verzeichniss werden Inhalte wie zum Beispiel Texte, Bilder, Men�
 
 ![start_structure](../../../public/images/AN010/0200/start_structure.png)
 
-In diesem Beispiel kann man die Unterverzeichnisse sehen, die für ein Projekt benötigt werden. Die Struktur der Verzeichnisse ist von Android vorgegeben. Innerhalb des `res` -Ordners dürfen sich nur Unterverzeichnisse befinden und keine einfachen Dateien. Auch die Benennung der Unterverzeichnisse ist fest vorgegeben, da Android sich zur Laufzeit genau die Dateien aus den Ordnern heraus greift, welche am Besten zu den Eigenschaften des jeweiligen Gerätes passen.
+In diesem Beispiel kann man die Unterverzeichnisse sehen, die für ein Projekt benötigt werden. Die Struktur der Verzeichnisse ist von Android vorgegeben. Innerhalb des `res` -Ordners dürfen sich nur Unterverzeichnisse befinden und keine Dateien. Auch die Benennung der Unterverzeichnisse ist fest vorgegeben, da Android sich zur Laufzeit genau die Dateien aus den Ordnern heraus greift, welche am Besten zu den Eigenschaften des jeweiligen Gerätes passen.
 
 Im Folgenden eine Auflistung der Default Ressourcen.
 
