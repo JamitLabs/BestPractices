@@ -96,14 +96,35 @@ Hier werden alle Branches des Git Repositorys angezeigt, die lokal angelegt oder
 
 Der aktuelle Branch, deren Code-Stand man aktuell vorliegen hat (man sagt auch hierzu "ausgecheckt hat") ist fett gedruckt. Neue Branches erstellt man über den Button "Branch" in der Toolbar, jedoch raten wir davon ab, da wir in einem späteren Artikel ([GN010-0300](/articles/GN010-0300)) eine bessere Alternative erläutern werden.
 
+### History
 
-![History-Ansicht eines neuen Projekts](../../../public/images/GN010/0150/project-history-view.png)
-*Die History-Ansicht eines Projekts zeigt im Hauptbereich die Liste der vergangenen Commits, sowie die aktuellen noch nicht committeten Änderungen an.*
+![History des Projekts](../../../public/images/GN010/0150/project-view-highlight-history.png)
+*Die Commit History des Projekts ist hier absteigend nach Datum sortiert (neueste oben) zu finden.*
 
-![Änderungsansicht eines Projekts](../../../public/images/GN010/0150/file-change-view.png)
-*Die Änderungen-Ansicht zeigt die aktuellen Dateiänderungen im Projekt an und erlaubt sowohl das Vormerken von Dateien als auch das Eintragen einer Commit Message.*
+Den größten Teil der Projektansicht nimmt die History-Ansicht ein. Hierbei handelt es sich um die Liste aller Commits im Projekt absteigend nach Commit-Datum sortiert und mit einigen Infos versehen:
+
+- **Graph**: Hier lässt sich schnell erkennen, in welchem Branch der Commit getätigt wurde und wie die Branches zusammengeführt wurden bzw. aus welchen sie entstanden sind.
+- **Beschreibung**: Hier wird die erste Zeile eines Commits angezeigt.
+- **Commit**: Hierbei handelt es sich um einen eindeutigen Identifikator für einen Commit, den sogenannten SHA1-Hash.
+- **Autor**: Der Autor / die Autorin des jeweiligen Commits wird hier mitsamt Mail-Adresse angezeigt.
+- **Datum**: Hier steht der Zeitpunkt, zu dem der Commit gemacht wurde.
 
 
-![](../../../public/images/GN010/0150/project-view-highlight-file-state.png)
+### Dateistatus
 
-![](../../../public/images/GN010/0150/project-view-highlight-history.png)
+![Dateistatus des Commits](../../../public/images/GN010/0150/project-view-highlight-file-state.png)
+*Wählt man in der History einen Commit aus, so werden die betreffenden Änderungen angezeigt.*
+
+Klickt man einen Commit in der History-Ansicht an, so werden die Details des Commits in der Dateistatus-Ansicht unten angezeigt. Hierbei sind links die Dateien zu sehen, in denen Änderungen stattfanden und rechts ist eine Zusammenfassung der Änderungen der jeweils links ausgewählten Datei. So kann man diese Ansicht dafür nutzen, sich die Änderungen anzusehen, die in einem einzelnen Commit durchgeführt wurden.
+
+Für den Fall, dass der Eintrag "Uncommited Changes" ausgewählt ist (statt einem Commit) erscheint hier hingegen exakt dieselbe Ansicht (nur kleiner) wie wenn man in der Seitenleiste unter "Arbeitskopie" die Ansicht "Dateistatus" wählt. Allerdings empfehlen wir nicht diese integrierte, sondern die dortige Ansicht zum Committen zu benutzen:
+
+![Dateistatus eines Projekts](../../../public/images/GN010/0150/file-change-view.png)
+*Die Dateistatus-Ansicht zeigt die aktuellen Dateiänderungen im Projekt an und erlaubt sowohl das Vormerken von Dateien als auch das Eintragen einer Commit Message.*
+
+In der Dateistatus-Ansicht sehen wir also wieder links die lokal geänderten Dateien und pro angeklickter Datei rechts die jeweiligen Änderungen. Hierbei ist die linke Seite in zwei Teile aufgeteilt:
+
+- **Vorgemerkte Dateien**: Hier sind Dateiänderungen aufgelistet, die beim nächsten Commit berücksichtigt werden. Man nennt diesen Ort auch "gestagete" oder "indizierte" Änderungen. Das Entfernen eines Hakens sorgt dafür, dass eine Datei nicht mehr für den nächsten Commit vorgemerkt ist.
+- **Nicht vorgemerkte Dateien**: Hier stehen alle lokalen Dateiänderungen, die noch nicht für den nächsten Commit vorgemerkt sind. Ein einfaches Anhaken übernimmt alle Änderungen an einer Datei in die obere Liste der vorgemerkten Änderungen.
+
+Außerdem gibt es unten einen Bereich, in dem man eine Commit Message eintragen und diese mit Klick auf "Commit" auch committen kann. Wählt man "Änderungen sofort nach ... pushen" aus, so wird direkt nach dem Commit auch ein Push durchgeführt. Wir raten hiervon jedoch ab, da sonst keine Möglichkeit mehr besteht eventuell gemachte Tippfehler oder andere Versehen lokal noch rückgängig zu machen.
