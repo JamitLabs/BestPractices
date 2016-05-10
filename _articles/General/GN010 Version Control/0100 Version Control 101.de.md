@@ -1,10 +1,11 @@
 ---
-section:  General
-topic:    Version Control
-refid:    GN010-0100
-title:    "Versionsverwaltung: Eine Einführung"
-date:     2016-01-01 00:00:00
-author:   Cihat Gündüz
+section:    General
+topic:      Version Control
+refid:      GN010-0100
+permalink:  /articles/GN010-0100
+title:      "Versionsverwaltung: Eine Einführung"
+date:       2016-01-01 00:00:00
+author:     Cihat Gündüz
 ---
 
 ## Was ist Versionsverwaltung?

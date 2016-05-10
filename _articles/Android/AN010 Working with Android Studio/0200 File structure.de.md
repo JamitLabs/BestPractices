@@ -1,10 +1,11 @@
 ---
-section:  Android
-topic:    Working with Android Studio
-refid:    AN010-0200
-title:    Android Studio Projektstruktur
-date:     2016-01-01 00:00:00
-author:   Marina Meier
+section:    Android
+topic:      Working with Android Studio
+refid:      AN010-0200
+permalink:  /articles/AN010-0200
+title:      Android Studio Projektstruktur
+date:       2016-01-01 00:00:00
+author:     Marina Meier
 ---
 
 In diesem Artikel wird ein sinnvoller Aufbau für ein Android Studio Projekt dargestellt. Dabei geht es um den von Android vorgebenen Aufbau der `res` - Dateien und ein Beispiel für die frei wählbare Struktur der `java` - Dateien.

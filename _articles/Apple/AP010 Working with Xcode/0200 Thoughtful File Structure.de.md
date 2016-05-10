@@ -1,10 +1,11 @@
 ---
-section:  Apple
-topic:    Working with Xcode
-refid:    AP010-0200
-title:    Durchdachte Dateistruktur
-date:     2016-01-01 00:00:00
-author:   Cihat Gündüz
+section:    Apple
+topic:      Working with Xcode
+refid:      AP010-0200
+permalink:  /articles/AP010-0200
+title:      Durchdachte Dateistruktur
+date:       2016-01-01 00:00:00
+author:     Cihat Gündüz
 ---
 
 

@@ -1,10 +1,11 @@
 ---
-section:  Android
-topic:    Working with Android Studio
-refid:    AN010-0250
-title:    Drawable Ressourcen
-date:     2016-01-01 00:00:00
-author:   Marina Meier
+section:    Android
+topic:      Working with Android Studio
+refid:      AN010-0250
+permalink:  /articles/AN010-0250
+title:      Drawable Ressourcen
+date:       2016-01-01 00:00:00
+author:     Marina Meier
 ---
 
 Im Verzeichnis ***drawable*** werden verschiedene Arten von Graphiken abgelegt.
