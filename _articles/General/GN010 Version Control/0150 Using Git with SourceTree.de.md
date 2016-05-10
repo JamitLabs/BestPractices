@@ -1,10 +1,11 @@
 ---
-section:  General
-topic:    Version Control
-refid:    GN010-0150
-title:    "Arbeiten mit Git in SourceTree"
-date:     2016-01-01 00:00:00
-author:   Cihat Gündüz
+section:    General
+topic:      Version Control
+refid:      GN010-0150
+permalink:  /articles/GN010-0150
+title:      "Arbeiten mit Git in SourceTree"
+date:       2016-01-01 00:00:00
+author:     Cihat Gündüz
 ---
 
 In diesem Artikel sollen alltägliche Aufgaben in Git mithilfe des Programms [SourceTree]([SourceTree](https://www.sourcetreeapp.com)) erklärt werden.
@@ -91,7 +92,9 @@ Die Toolbar besteht standardmäßig aus 10 Buttons, von denen wir nur wenige im 
 ![Branches-Eintrag in der Seitenleiste des Projekts](../../../public/images/GN010/0150/project-view-highlight-branches.png)
 *TODO*
 
-TODO
+Hier werden alle Branches des Git Repositorys angezeigt, die lokal angelegt oder ausgecheckt wurden. Das Auschecken eines anderen Branches kann über den Eintrag "Remotes" per Doppelklick durchgeführt werden, sofern dort bereits eine Remote hinterlegt ist. Für Repositories, die man von einem Hosted Service heruntergeladen hat wird diese automatisch als Remote hinterlegt, andernfalls kann man manuell über den "Einstellungen" Button in der Toolbar eine neue Remote hinzufügen.
+
+Der aktuelle Branch, deren Code-Stand man aktuell vorliegen hat (man sagt auch hierzu "ausgecheckt hat") ist fett gedruckt. Neue Branches erstellt man über den Button "Branch" in der Toolbar, jedoch raten wir davon ab, da wir in einem späteren Artikel ([GN010-0300](/articles/GN010-0300)) eine bessere Alternative erläutern werden.
 
 
 ![History-Ansicht eines neuen Projekts](../../../public/images/GN010/0150/project-history-view.png)
