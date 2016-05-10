@@ -12,7 +12,7 @@ In diesem Artikel sollen alltägliche Aufgaben in Git mithilfe des Programms [So
 
 ## Ersteinrichtung
 
-TODO
+Beim ersten Start von SourceTree wird man nach Vorname, Nachname und E-Mail Adresse gefragt. Diese Informationen werden bei Commits berücksichtigt und sollten daher die Arbeits-Mailadresse wiedergeben und mit vollem Namen versehen werden. Außerdem ist innerhalb der ersten 30 Tage eine kostenlose Registrierung bei Atlassian notwendig, die jedoch kostenlos gemacht werden kann. Entsprechende Hinweise zeigt SourceTree automatisch an.
 
 ## Arbeiten im Repository Browser
 
