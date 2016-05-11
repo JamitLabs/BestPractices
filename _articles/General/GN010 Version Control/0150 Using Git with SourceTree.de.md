@@ -8,7 +8,7 @@ date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
 ---
 
-In diesem Artikel sollen alltägliche Aufgaben in Git mithilfe des Programms [SourceTree]([SourceTree](https://www.sourcetreeapp.com)) erklärt werden.
+In diesem Artikel sollen alltägliche Aufgaben in Git mithilfe des Programms [SourceTree](https://www.sourcetreeapp.com) erklärt werden.
 
 ## Ersteinrichtung
 
