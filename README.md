@@ -17,6 +17,7 @@ The following are instructions on how to contribute to this project.
 ### Requirements
 
 - Ruby 2.2+
+- GPG (`brew install gpg` via Homebrew)
 
 You can easily install a compatible version of Ruby by running the following commands in terminal (Mac):
 
