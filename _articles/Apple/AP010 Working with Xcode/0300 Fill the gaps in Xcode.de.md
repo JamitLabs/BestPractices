@@ -235,7 +235,10 @@ Das Open Source Tool [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) wur
 ```shell
 if which bartycrouch > /dev/null; then
     # Incrementally update all Storyboards/XIBs strings files
-    bartycrouch $PROJECT_DIR -a
+    bartycrouch interfaces -p "$PROJECT_DIR/Sources"
+
+    # Add new keys to Localizable.strings files from NSLocalizedString in code
+    bartycrouch code -p "$PROJECT_DIR/Sources" -l "$PROJECT_DIR/Sources" -a
 else
     echo "warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch"
 fi
