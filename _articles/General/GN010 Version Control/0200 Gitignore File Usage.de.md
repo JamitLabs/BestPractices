@@ -2,7 +2,7 @@
 section:    General
 topic:      Version Control
 refid:      GN010-0200
-permalink:  /articles/GN010-0200
+permalink:  /articles/GN010-0200.html
 title:      Nutzung von Gitignore-Dateien
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz

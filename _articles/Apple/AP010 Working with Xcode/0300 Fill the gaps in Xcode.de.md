@@ -2,7 +2,7 @@
 section:    Apple
 topic:      Working with Xcode
 refid:      AP010-0300
-permalink:  /articles/AP010-0300
+permalink:  /articles/AP010-0300.html
 title:      Ergänzen fehlender Xcode-Funktionen
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz

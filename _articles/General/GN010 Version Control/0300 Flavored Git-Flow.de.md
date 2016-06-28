@@ -2,7 +2,7 @@
 section:    General
 topic:      Version Control
 refid:      GN010-0300
-permalink:  /articles/GN010-0300
+permalink:  /articles/GN010-0300.html
 title:      Abgewandeltes Git-Flow
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
@@ -14,31 +14,31 @@ Git-Flow ist in erster Linie eine Konvention zur Benennung und Benutzung von Bra
 
 Die Basis jeden Projekts bilden bei der Anwendung von Git-Flow zwei Branches, die auf Vorschlag des ursprünglichen Autoren **`master`** und **`develop`** genannt werden. Auf den `master` Branch wird grundsätzlich nie direkt commitet, stattdessen werden lediglich fertige Versionen, die außerdem bereits so veröffentlicht wurden von anderen Branches rein gemerged. Im Grunde ist der `master` Branch also eine Historie des bereits veröffentlichten Codes. Der `develop` Branch repräsentiert im Gegensatz zum `master` Branch den aktuellen Stand der Entwicklung. Obwohl das so klingen mag, als könne man Veränderungen direkt auf den `develop` Branch commiten und dies sogar trotz Anwendung von Git-Flow durchaus immer wieder passiert, sollte bis auf wenige Ausnahmefälle nie direkt im `develop` Branch commitet werden. `master` und `develop` sind also **Historien-Branches**, deren letzter Commit entweder den aktuellen Stand der Veröffentlichung (master) oder den aktuellsten stabilen Stand der Entwicklung (develop) repräsentieren.
 
-![Bilderklärung des develop Branches](../../../public/images/GN010/0300/develop.png)
+![Bilderklärung des develop Branches](../../../BestPractices/public/images/GN010/0300/develop.png)
 *Der develop-Branch entspringt dem master Branch.*
 
 Die eigentliche Arbeit findet bei konsequenter Anwendung von Git-Flow ausschließlich in Arbeits-Branches statt. Diese lassen sich ganz einfach daran erkennen, dass sie alle einen Ordnernamen tragen.
 
 Die reguläre Arbeit mit neuen Funktionen, Änderungen und Bug Fixes findet im Ordner **`feature/`** statt. ``feature/`` Branches haben dabei als Quelle stets den `develop` Branch, da sie eine Weiterarbeit am aktuellen Stand der Entwicklung sind. Beispielsweise erstellt man für eine neue Funktion, bei der es darum geht Push Notifications in eine App zu integrieren den Branch `feature/push_notifications` und commitet alles dort hinein. Erst bei Abschluss der Funktion als Ganzes wird der Branch dann in den `develop` Branch gemerged, wodurch der `develop` Branch erneut den aktuellsten stabilen Stand der Entwicklung wiedergibt. Diese Vorgehensweise hat den Vorteil, dass beliebig viele Funktionen (von einer Person oder mehreren) gleichzeitig entwickelt werden können, ohne dass ein kurzzeitig instabiler Zustand die Arbeit anderer beeinträchtigt.
 
-![Bilderklärung des feature Branches](../../../public/images/GN010/0300/feature.png)
+![Bilderklärung des feature Branches](../../../BestPractices/public/images/GN010/0300/feature.png)
 *Hier sieht man ein Projekt in dem parallel an 2 feature Branches gearbeitet wurde. Der eine wurde bereits in den develop Branch gemerged während sich der andere noch in Entwicklung befindet.*
 
 Weitere Arbeits-Branches sind in den Ordnern `release/`, `hotfix/` und `support/` zu finden.
 
 Der **`release/`** Ordner wird beim Deployment einer fertigen Version verwendet. Ein Beispiel wäre der Branch `release/3.1.0`, den man vor dem Release der Version 3.1.0 erstellt. In dem Branch können Deployment-spezifische Commits (typischerweise die Änderung von Zertifikaten oder anderen Projekteinstellungen) gemacht werden. Nach abgeschlossener Veröffentlichung der Version wird dann der `release/3.1.0` Branch in den `master` Branch **und** in den `develop` Branch gemerged. Außerdem findet eine Markierung mittels eines Git Tags statt, mithilfe dessen ein Commit mit der Version 3.1.0 markiert werden kann. Bei Nutzung der Git-Flow Skripte findet der Merge in beide Historien-Branches sowie die Markierung mit der Versionsnummer automatisch statt.
 
-![Bilderklärung des release Branches](../../../public/images/GN010/0300/release.png)
+![Bilderklärung des release Branches](../../../BestPractices/public/images/GN010/0300/release.png)
 *Da man Änderungen im develop Branch nie direkt in den master Branch merged erstellt man zum überbrücken einen release Branch. Änderungen an diesem werden automatisch in master und develop gemerged.*
 
 Der **`hotfix/`** Ordner ist für das Beheben von zeitkritischen Fehlern bei bereits veröffentlichter Software gedacht. Betreibt man zum Beispiel aktuell Version 1.5 im Store und hat Version 2.0 derzeit in Entwicklung und stellt einen schwerwiegenden Fehler fest, den man schnell in der veröffentlichten Version (1.5) beheben aber auch in künftigen Versionen (2.x) ausschließen möchte, so führt man die Commits für den Fix etwa im Beispiel von abgelaufenen Zertifikaten im Branch `hotfix/expired-certificates` durch. Der Branch hat als Ursprung nicht (wie bei `release/` Branches) den `develop` Branch sondern den `master` Branch und wird nach Fertigstellung des Fixes (genauso wie bei `release/` Branches) sowohl in den `master` als auch in den `develop` Branch gemerged. Auch um diesen doppelten Merge kümmern sich die Git-Flow Skripte automatisch.
 
-![Bilderklärung des hotfix Branch](../../../public/images/GN010/0300/hotfix.png)
+![Bilderklärung des hotfix Branch](../../../BestPractices/public/images/GN010/0300/hotfix.png)
 *Hotfix Branches entspringen dem master Branch und werden bei Abschluss automatisch in den master sowie in den develop Branch gemerged.*
 
 Der **`support/`** Ordner ist eine schon seit Jahren als Beta markierte Funktion von Git-Flow, deren Ziel es ist mehrere veröffentlichte Versionen einer Software mit Updates zu versorgen. Ohne die Nutzung von `support/` Branches kann immer nur eine aktuelle Version in einem Git-Projekt verwaltet werden (was im Falle von Apps für den Apple App Store und den Google Play Store auch ausreichend ist). Dennoch können `support/` Branches auch bei der Verwaltung von Apps nützlich sein, wenn ein Git-Projekt für mehrere Apps im Store benutzt wird, etwa um die gleiche App mehrmals für unterschiedliche Firmen gebrandet zu veröffentlichen. In diesem Fall wird das Branding z.B. für die Firmen Jamit Labs und Apple in den Branches `support/jamit_labs` und `support/apple` durchgeführt. Wird die App-Logik verändert können die Änderungen im `develop` Branch leicht in die verschiedenen `support/` Branches gemerged werden, wodurch man die Arbeit nicht doppelt (oder n-fach) durchführen muss, sondern nur einmal.
 
-![Bilderklärung des support Branch](../../../public/images/GN010/0300/support.png)
+![Bilderklärung des support Branch](../../../BestPractices/public/images/GN010/0300/support.png)
 *TODO!*
 
 ## Wie kann ich Git-Flow einfach nutzen?
@@ -52,7 +52,7 @@ TODO: Screenshots mit Erklärungen zum Erstellen und Mergen eines feature Branch
 
 ## Was ist Jamit Labs Flavored Git-Flow?
 
-![Bild das alten und neuen Flavor zeigt](../../../public/images/GN010/0300/jamit-flavored.png)
+![Bild das alten und neuen Flavor zeigt](../../../BestPractices/public/images/GN010/0300/jamit-flavored.png)
 *Zum besseren Verständnis empfehlen wir eine Neubenennung der Git Flow Branches*
 
 Die Benennung der verschiedenen Branches als `master`, `develop`, `feature/`, `hotfix/`, `release/` und `support/` läuft Gefahr zu Missverständnissen und Verwechslungen zu führen. Beispielsweise wird der `master` Branch traditionell für den stabilen aktuellen Arbeits-Branch verwendet, sodass einige Programmierer mit Vorerfahrungen gewillt sind, direkt auf den `master` Branch zu commiten. Andere wiederum verwenden `release/` Branches, um verschiedene veröffentlichte Versionen der Software zu verwalten (wozu es in Git-Flow `support/` gibt), anstatt ihn ausschließlich für das Deployment zu verwenden.
@@ -100,7 +100,7 @@ Wie bei `work/`und `deploy/` wurde wieder ein Verb als Ordnername gewählt.
 
 
 
-![Gesamtansicht mit allen Branches](../../../public/images/GN010/0300/overview.png)
+![Gesamtansicht mit allen Branches](../../../BestPractices/public/images/GN010/0300/overview.png)
 *Abschließend noch einmal eine Gesamtansicht aller Branches im Zusammenhang (bereits mit neuer Benennung).*
 
 ### Weiterführende Links und Quellen

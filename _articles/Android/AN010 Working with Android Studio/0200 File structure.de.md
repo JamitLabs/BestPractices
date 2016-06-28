@@ -2,7 +2,7 @@
 section:    Android
 topic:      Working with Android Studio
 refid:      AN010-0200
-permalink:  /articles/AN010-0200
+permalink:  /articles/AN010-0200.html
 title:      Android Studio Projektstruktur
 date:       2016-01-01 00:00:00
 author:     Marina Meier
@@ -16,7 +16,7 @@ Beim Aufbau und Benennung der `java`- Dateien ist man prinzipiell frei. Es lohnt
 
 Strukturbeispiel:
 
-![java_structure_example](../../../public/images/AN010/0200/java_structure_example.png)
+![java_structure_example](../../../BestPractices/public/images/AN010/0200/java_structure_example.png)
 
 * **api**: In dem Api Package könnten alle Dateien abegelgt werden, die dazu  benötigt werden mit Hardware zu kommunzieren.
 * **utils**: In dem Utils Package könnten alle Dateien abgelegt werden, die sich generell für die ganze App als nützlich erweisen, wie zum Beispiel Helper Klassen.
@@ -27,7 +27,7 @@ Strukturbeispiel:
 
 Im Ressourcen - Verzeichniss werden Inhalte wie zum Beispiel Texte, Bilder, Menüs, Layouts oder Animationen in XML Dateien angelegt ohne eine Zeile Java-Code zu schreiben. Man könnte dies alles auch programmatisch lösen, jedoch ermöglicht die Plazierung außerhalb des Codes ungeschultem Personal die Daten unabhängig davon bearbeiten zu können. Beispiel dafür wären Übersetzungen einzupflegen oder das Branding durch die styles.xml / colors.xml zu ändern. Außerdem dient der Aufbau der Resourcen der Übersichtlichkeit.
 
-![start_structure](../../../public/images/AN010/0200/start_structure.png)
+![start_structure](../../../BestPractices/public/images/AN010/0200/start_structure.png)
 
 In diesem Beispiel kann man die Unterverzeichnisse sehen, die für ein Projekt benötigt werden. Die Struktur der Verzeichnisse ist von Android vorgegeben. Innerhalb des `res` -Ordners dürfen sich nur Unterverzeichnisse befinden und keine Dateien. Auch die Benennung der Unterverzeichnisse ist fest vorgegeben, da Android sich zur Laufzeit genau die Dateien aus den Ordnern heraus greift, welche am Besten zu den Eigenschaften des jeweiligen Gerätes passen.
 
