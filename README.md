@@ -101,7 +101,7 @@ Follow these steps to use images within new articles:
 - Place your images into this new folder
 - Use lower letter characters and replace whitespaces and special characters with `-`
 - Write your image file names in English
-- Include your image using `![<IMAGE_TITLE>](../../../public/images/<TOPIC_ID>/<ARTICLE_ID>/<IMAGE_NAME>.png)`
+- Include your image using `![<IMAGE_TITLE>](../../../BestPractices/public/images/<TOPIC_ID>/<ARTICLE_ID>/<IMAGE_NAME>.png)`
 - Make sure the `<IMAGE_TITLE>` describes the content of the image in short (mostly 2-5 words)
 - Make sure to write a comment that explains your image to the reader (redundancy is a good thing here).
 - Place the comment in the line below the image inclusion using the structure `*<IMAGE_COMMENT>*`
@@ -109,6 +109,8 @@ Follow these steps to use images within new articles:
 ### Contribution Tips
 
 - Use the [Atom Editor](https://atom.io) and edit with a **live MarkDown preview** using the `Ctrl+Shift+M` shortcut
+
+Note that the Atom Editor will currently fail to show the image due to the subpath 'BestPractices' in the image paths (it isn't a real path but needed due to the current way of deployment). If you want to see the images in Atom simply remove the '/BestPractices' from image paths but don't forget to add them before committing. Because of this it's probably better to just run the server and open the browser instead.
 
 ## License
 
