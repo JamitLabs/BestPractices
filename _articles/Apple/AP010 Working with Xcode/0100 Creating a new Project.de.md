@@ -2,7 +2,7 @@
 section:    Apple
 topic:      Working with Xcode
 refid:      AP010-0100
-permalink:  /articles/AP010-0100
+permalink:  /articles/AP010-0100.html
 title:      Erstellen eines neuen Projekts
 date:       2016-01-01 00:00:00
 author:     Simon Back

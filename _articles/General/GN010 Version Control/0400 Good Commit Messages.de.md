@@ -2,7 +2,7 @@
 section:    General
 topic:      Version Control
 refid:      GN010-0400
-permalink:  /articles/GN010-0400
+permalink:  /articles/GN010-0400.html
 title:      Gute Commit Messages
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz

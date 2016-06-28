@@ -2,7 +2,7 @@
 section:    Android
 topic:      Working with Android Studio
 refid:      AN010-0100
-permalink:  /articles/AN010-0100
+permalink:  /articles/AN010-0100.html
 title:      Erstellen eines neuen Projekts
 date:       2016-01-01 00:00:00
 author:     Marina Meier

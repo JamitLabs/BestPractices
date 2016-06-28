@@ -2,7 +2,7 @@
 section:    General
 topic:      Version Control
 refid:      GN010-0100
-permalink:  /articles/GN010-0100
+permalink:  /articles/GN010-0100.html
 title:      "Versionsverwaltung: Eine Einführung"
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz

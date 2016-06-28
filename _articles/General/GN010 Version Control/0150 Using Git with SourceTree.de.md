@@ -2,7 +2,7 @@
 section:    General
 topic:      Version Control
 refid:      GN010-0150
-permalink:  /articles/GN010-0150
+permalink:  /articles/GN010-0150.html
 title:      "Arbeiten mit Git in SourceTree"
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
