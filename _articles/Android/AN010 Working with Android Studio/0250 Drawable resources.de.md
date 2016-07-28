@@ -26,20 +26,11 @@ machen, dass das Bild je nach Inhalt an die Größe angepasst werden kann.
 
 ### Bilder für unterschiedliche Pixeldichten anlegen
 
-Da Android auf vielen unterschiedlichen Geräten mit verschiedenen Pixeldichten läuft, ist es wichtig, dass die Auflösung von Bildern oder Icons auf diese Größe abgestimmt ist. Nur so kann man eine positive Nutzererfahrung garantieren.
+Android läuft auf den unterschiedlichsten Geräten, deren Screengrößen und Pixeldichten stark variieren. Daher ist es wichtig, dass die Auflösungen von Bildern oder Icons auf diese Geräte abgestimmt sind. Nur so kann man eine positive Nutzererfahrung garantieren.
 
-Android skaliert UI Layouts und Ressourcen zur Laufzeit, um die verschiedenen Displays zu unterstützen. Dabei kategorisiert Android basierend auf der Displaygröße und Displaydichte.
+Android skaliert UI Layouts und Ressourcen zur Laufzeit. Um Bilder oder Icons in der richtigen Auflösung anzuzeigen, sollten diese in verschiedenen Auflösungen im Projekt angelegt sein. So entscheidet sich Android, je nach Eigenschaften des Gerätes, welches Bild oder Icon mit welcher Dichte angezeigt werden soll.
 
-* Wenn man **keine** zu den Größen und Dichten passende Ressourcen zur Verfügung stellt, skaliert Android entweder die Default Ressourcen (`drawable/`) oder aber auch andere dichtespezifischen Ressourcen, um die besten Ergebnisse zu erzielen. Wird zum Beispiel nach einer *low-density - Ressource* gesucht und diese ist nicht verfügbar, dann skaliert das System zum Beispiel eine *high-density - Ressource* herunter.
-Man sollte sich **NICHT** auf das Skalieren von Android verlassen, da die Bilder oft verzerrt, grisselig oder ausgefranst werden.
-
-* Liefert man jedoch auf die Auflösungen abgestimmte Ressourcen, dann lädt Android diese ohne sie zu skalieren.
-(Vorrausgesetzt es ist kein android:scaleType im ImageView definiert.)
-
-![pixel_density_e](../../../BestPractices/public/images/AN010/0250/pixel_density_example.png)
-*Beispiel für ein dichtespezifisches Icon*
-
-Es gibt sechs allgmeine Pixeldichten. Sind Bilder oder Icons in unterschiedlichen Dichten angelegt, entscheidet Android je nach Eigenschaften des Gerätes welches Bild oder Icon mit welcher Dichte angezeigt werden soll.
+Diese sechs Pixeldichten können von Android unterstützt werden.
 
 * ldpi (low) ~120dpi
 * mdpi (medium) ~160dpi
@@ -48,21 +39,19 @@ Es gibt sechs allgmeine Pixeldichten. Sind Bilder oder Icons in unterschiedliche
 * xxhdpi (extra-extra-high) ~480dpi
 * xxxhdpi (extra-extra-extra-high) ~640dpi
 
-Damit Android das richtige Bild auswählen kann, muss die vorgegebene Ordnerstruktur stimmen. Zusätzlich zu dem Default Drawable Ordner müssen sich mindestens drei weitere Ordner in dem `res`-Verzeichnis befinden. Die Bennenung ist wie folgt: `drawable-hdpi, drawable-mdpi, drawable-xhdpi, ... `.
+![icon_density_example](../../../BestPractices/public/images/AN010/0250/icon_density_example.png)
+*Beispiel für ein Icon in verschiedenen Auflösungen*
+
+Beim Anlegen der Bilder in diesen Dichten muss die vorgegebene Ordnerstruktur eingehalten werden, damit das passende Bild zur Laufzeit ausgewählt werden kann. Die Bennenung der Ordner, in denen die Bilder abgelegt werden müssen, ist wie folgt: `drawable-hdpi, drawable-mdpi, drawable-xhdpi, ... `.
 
 ![density_exaxmple](../../../BestPractices/public/images/AN010/0250/density_example.png)
+*Beispiel für die Ordnerstruktur*
 
-Die verschiedenen Auflösungen berechnen sich wie folgt, basierend auf der **medium density (mdpi)** :
+Möchte man Bilder oder Icons bewusst nur in einer Auflösung anlegen, werden diese im Ordner `drawable-nodpi`abgelegt.
 
-* ldpi (0,75x)
-* mdpi (1,0x baseline)
-* hdpiv (1,5x)
-* xhdpi (2,0x)
-* xxhdpi (3,0x)
-* xxxhdpi (4,0x)
+Stellt man ein Bild nicht in verschiedenen Auflösungen zur Verfügung, wird es von Android skaliert. Jedoch sollte man sich nicht auf das Skalieren von Android verlassen, da die Bilder oft verzerrt, grisselig oder ausgefranst werden.
 
-Man kann sich die Bilder in verschiedenen Auflösungen auch auf [dieser Seite](https://romannurik.github.io/AndroidAssetStudio/icons-generic.html#source.space.trim=1&source.space.pad=0&size=99&padding=0&color=33b5e5%2C0&name=ic_dsc_6895) berechnen lassen. Nach dem Auswählen eines Bildes oder Icons, können noch weitere Einstellungen getroffen werden, wie zum Beispiel Anpassungen der Größe oder des Paddings. Hier kann man sich auch die generierten Dateien herunterladen. Diese befinden sich in der oben beschriebenen Ordnerstruktur, müssen jedoch in das Android Studio Projekt kopiert wer
-Möchte man Bilder oder Icons einsetzten, die nur in einer Auflösung vorkommen sollen, werden diese im Ordner `drawable-nodpi` abgelegt.
+Um Icons in verschiedenen Auflösungen anzulegen ist [diese Seite](https://romannurik.github.io/AndroidAssetStudio/icons-generic.html#source.space.trim=1&source.space.pad=0&size=99&padding=0&color=33b5e5%2C0&name=ic_dsc_6895) zu empfehlen. Hier kann man das gewünschte Icon auswählen und die verschiedenen Auflösungen downloaden. Es können auch weitere Einstellungen vorgenommen werden, wie zum Beispiel die Größe des Icons zu verändern.
 
 Weitere Informationen: [Supporting Multiple Screens](http://developer.android.com/guide/practices/screens_support.html#xxxhdpi-note)
 
