@@ -10,23 +10,67 @@ author:     Cihat Gündüz
 
 In diesem Artikel geht es darum gewisse Schwächen von Xcode mithilfe von Tools und Programmierlösungen auszugleichen. Hierzu wird für jedes Thema zunächst das Problem mit Xcode und dessen mögliche Folgen in der Praxis erläutert, woraufhin ein Lösungsvorschlag gegeben wird.
 
-## Fehlende Erkennung von neuen Übersetzungs-Keys
+
+## Fehlende Aktualisierung von Übersetzungen
 
 ### Problem
 
-TODO: Makros?
+Xcode bietet die Möglichkeit mithilfe des in der `Foundation` Library definierten Makros `NSLocalizedString(key, comment)` Texte programmatisch zu lokalisieren. Dies ermöglicht das Anbieten einer App in vielen verschiedenen Programmiersprachen, deren Übersetzungen in den `Localizable.strings`-Dateien zusammengefasst sind (für jede Sprache eine eigene). Dabei wird im Quellcode lediglich ein Key verwendet, welcher in den `.strings`-Dateien die jeweiligen Texte in den jeweiligen Sprachen zugewiesen werden.
 
-Xcode bietet die Möglichkeit mithilfe des in der `Foundation` Library definierten Makros `NSLocalizedString(key, comment)` Texte programmatisch zu lokalisieren. Dies ermöglicht das Anbieten einer App in vielen verschiedenen Programmiersprachen, deren Übersetzungen typischerweise in den `Localizable.strings`-Dateien zusammengefasst sind (für jede Sprache eine eigene). Dabei wird im Quellcode lediglich ein Key verwendet, welcher in den `.strings`-Dateien die jeweiligen Texte in den jeweiligen Sprachen zugewiesen werden. Die App sucht sich dann auf dem Endgerät je nach Geräteeinstellung die passenden Texte automatisch heraus und ersetzt die Keys, die im Quellcode verwendet wurden. Leider beherrscht Xcode jedoch nicht die Möglichkeit neue Keys, die im Quellcode bei der Programmierung hinzugefügt wurden zu erkennen und diese automatisch in allen Sprachen den `.strings`-Dateien hinzuzufügen.
+Eine `Localizable.strings` für die deutsche Sprache sieht etwa so aus:
+
+```swift
+"HOME.NAV_BAR.TITLE" = "Start";
+"HOME.SETTINGS_BUTTON.NORMAL_TITLE" = "Einstellungen";
+"SETTINGS.NAV_BAR.TITLE" = "Einstellungen";
+```
+
+Die zugehörige englische Version dann etwa so:
+
+```swift
+"HOME.NAV_BAR.TITLE" = "Home";
+"HOME.SETTINGS_BUTTON.NORMAL_TITLE" = "Settings";
+"SETTINGS.NAV_BAR.TITLE" = "Settings";
+```
+
+Im Code wird das Ganze dann folgendermaßen verwendet:
+
+```swift
+titleLabel.text = NSLocalizedString("HOME.NAV_BAR.TITLE", "")
+```
+
+Führt man eine App aus, sucht sie sich auf dem Endgerät je nach Geräteeinstellung die passenden Texte automatisch heraus und ersetzt die Keys, die im Quellcode verwendet wurden. Leider muss man in Xcode aktuell jedoch jeden neuen Key, den man im Code mittels `NSLocalizedString` verwendet in jeder einzelnen Sprachfassung der `.strings` Dateien einzeln händisch hinzufügen. Dies kann je nach Projekt sehr viel Zeit in Anspruch nehmen und ist zudem fehleranfällig.
+
+Außerdem lassen sich in Xcode ähnlich wie beim `NSLocalizedString`-Makro auch textbasierte *Interface*-Elemente über Keys lokalisieren, wobei hier jedoch eine XIB-Datei oder ein Storyboard in der Sprache "Base" zum Einsatz kommt, worin das Design für alle Sprachen festgelegt wird (siehe [Base Internationalization](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html)). Auch hier bietet Xcode keine Option, neu hinzugefügte Textelemente im Nachhinein in den dazugehörigen `.strings`-Dateien zu ergänzen, sondern erneut ist nervige händische Arbeit gefragt.
+
+Fügt man in einem Storyboard oder einer XIB etwa ein neues `UILabel`-Element hinzu und vergibt dort den Text "Nutzername", so bleiben die zugehörigen Strings-Dateien zum Storyboard oder XIB leer und erhalten nicht automatisch das neue `UILabel` als einen neuen Key-Eintrag. Die einzige Ausnahme bildet hier der Moment, in dem man ein Storyboard oder XIB *erstmals* lokalisiert. Beim Lokalisierungsvorgang durchsucht Xcode die Interface-Elemente und tut, was es eigentlich regelmäßig tun sollte, nämlich die gefundenen Keys in allen Sprachdateien automatisch anzulegen – dies ist in einer Welt mit verändernden Anforderungen jedoch keine asureichende Lösung. Hier muss dringend eine ergänzend funktionierende Lösung her.
 
 ### Lösungsvorschlag
 
-TODO: Am besten wäre eine Lösung, die vollständig in ein Open Source Tool integriert ist (BartyCrouch um Scan erweitern?)
+Das Open Source Tool [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) wurde genau zur Lösung dieser beiden Probleme geboren. Die Installation findet via Homebrew mit den Befehlen `brew tap flinesoft/bartycrouch` und `brew install flinesoft/bartycrouch/bartycrouch` statt. Anschließend konfiguriert man BartyCrouch mittels eines Build-Scripts, welches im einfachen Fall folgendermaßen aussieht:
 
-Aktuell ist uns keine perfekte Lösung für dieses Problem bekannt. In der Praxis bewährt hat sich jedoch eine Kombination aus der nicht kostenfreien App [Linguan](http://linguanapp.com) und der automatischen Übersetzungsfunktion des Open-Source Tools [BartyCrouch](https://github.com/Flinesoft/BartyCrouch).
+```shell
+if which bartycrouch > /dev/null; then
+    # Incrementally update all Storyboards/XIBs strings files
+    bartycrouch interfaces -p "$PROJECT_DIR/Sources"
 
-Mit Linguan durchsucht man dabei nach Hinzufügen von neuen Keys im Code das gesamte Projekt nach neuen Keys ("Scan sources") und das Tool trägt sogleich die korrekte Übersetzung in einer Quellsprache ab (z.B. Deutsch oder Englisch). Linguan ergänzt jedoch nur `.strings`-Dateien mit den neuen Keys, für deren Sprache man eine Übersetzung anbietet, weshalb für die Komplettlokalisierung in allen Sprachen BartyCrouch ins Spiel kommt.
+    # Add new keys to Localizable.strings files from NSLocalizedString in code
+    bartycrouch code -p "$PROJECT_DIR/Sources" -l "$PROJECT_DIR/Sources" -a
+else
+    echo "warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch"
+fi
+```
 
-Ist BartyCrouch [richtig konfiguriert](https://github.com/Flinesoft/BartyCrouch#build-script) (nutze die Translate-Funktion mit der `Localizable.strings`-Datei) so braucht man nur noch das Projekt in Xcode zu öffnen und zu builden. Beim Build wird durch das konfigurierte BartyCrouch-Skript die Quellübersetzung gelesen, maschinell in alle definierten anderen Sprachen übersetzt und alle übersetzten `Localizable.strings`-Dateien mit den neuen Keys befüllt. Diese Vorgehensweise löst das beschriebene Problem und hat auch den netten Nebeneffekt, dass die Übersetzungen später schneller gehen, da viele der kürzeren maschinellen Übersetzungen meist sogar brauchbar sind.
+Wie man in einem Projekt ein Build Script hinzufügt wird [hier](https://github.com/Flinesoft/BartyCrouch#build-script) ausführlich erklärt. Ist das einmal geschehen wird BartyCrouch fortan automatisch alle Base-lokalisierten Storyboards und XIBs im Projektordner durchsuchen und aus den gefundenen Texten Einträge in den Strings-Dateien erstellen. Das Gleiche wird auch mit Objective-C und Swift-Dateien getan und entsprechend die `Localizable.strings` Dateien aktualisiert.
+
+Da man beim Entwickeln von Natur aus immer wieder builden muss, braucht man sich also nach dem einmaligen Einrichten des Skripts pro Projekt um nichts mehr zu kümmern, da nun alle neuen Lokalisierungen bei jedem Build aktuell gehalten werden. Die Übersetzungen werden hierbei übrigens leer gelassen, diese müssen dann natürlich noch ausgefüllt werden.
+
+#### Ausnahmen
+
+BartyCrouch funktioniert grundsätzlich so, dass es *sämtliche* übersetzbaren Interface-Elemente in Storyboards und XIBs in die `.strings` Dateien aufnimmt. Manchmal legt man jedoch etwa ein `UILabel`-Element im Interface Builder an mit der Absicht dessen Wert erst später programmatisch zu setzen – eine Übersetzung wäre dafür also sinnlos. In solchen Fällen bietet BartyCrouch die Möglichkeit mithilfe der Markierung `#bc-ignore!` das Ignorieren des Interface Elements bei der automatischen Übersetzung zu erzwingen. Das so markierte Element wird dann nicht in die `.strings` Dateien eingefügt. Dies kann etwa so aussehen:
+
+![Beispielbild mit teilweise automatisch generierten String-Keys](https://github.com/Flinesoft/BartyCrouch/raw/stable/Exclusion-Example.png)
+*Hier werden die Werte (rechts) für die Bezeichner (links) programmatisch gesetzt und können deshalb von der Übersetzung ausgeschlossen werden.*
 
 
 ## Unstatisch referenzierte Übersetzungen
@@ -221,33 +265,3 @@ public func ==(lhs: Board.Size, rhs: Board.Size) -> Bool { // swiftlint:disable:
 ```
 
 Nun wird keine Warnmeldung mehr für die Operator-Definition angezeigt und man kann die Liste der Warnungen stets leer halten. Weitere Möglichkeiten wenige Code-Zeilen vom Swift Linter auszuschließen sind [hier](https://github.com/realm/SwiftLint#disable-a-rule-in-code) dokumentiert.
-
-## Fehlende Aktualisierung von Interface-Übersetzungen
-
-### Problem
-
-Genau wie beim `NSLocalizedString`-Makro werden auch bei neuen textbasierten Interface-Elementen Keys nicht automatisch in die `.string`-Dateien eingefügt. Fügt man also in einem [Base-lokalisierten](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html) Storyboard oder XIB ein neues `UILabel`-Element hinzu und vergibt dort den Text "Nutzername:", so bleiben die zugehörigen Strings-Dateien zum Storyboard oder XIB leer und erhalten nicht automatisch das neue `UILabel` als einen neuen Key-Eintrag. Die einzige Ausnahme bildet hier der Moment, in dem man ein Storyboard oder XIB erstmals lokalisiert. Beim Lokalisierungsvorgang durchsucht Xcode die Interface-Elemente und tut, was es eigentlich regelmäßig tun sollte – dies ist in einer Welt mit verändernden Anforderungen jedoch keine praktikable Lösung.
-
-### Lösungsvorschlag
-
-Das Open Source Tool [BartyCrouch](https://github.com/Flinesoft/BartyCrouch) wurde genau zur Lösung dieses Problems geboren. Die Installation findet via Homebrew mit den Befehlen `brew tap flinesoft/bartycrouch` und `brew install flinesoft/bartycrouch/bartycrouch` statt. Anschließend konfiguriert man BartyCrouch mittels eines Build-Scripts, welches im einfachen Fall folgendermaßen aussieht:
-
-```shell
-if which bartycrouch > /dev/null; then
-    # Incrementally update all Storyboards/XIBs strings files
-    bartycrouch interfaces -p "$PROJECT_DIR/Sources"
-
-    # Add new keys to Localizable.strings files from NSLocalizedString in code
-    bartycrouch code -p "$PROJECT_DIR/Sources" -l "$PROJECT_DIR/Sources" -a
-else
-    echo "warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch"
-fi
-```
-
-Fortan wird BartyCrouch automatisch alle Base-lokalisiert Storyboards und XIBs im Projektordner durchsuchen und aus den gefundenen Texten Einträge in den Strings-Dateien erstellen. BartyCrouch hat zudem die Fähigkeit automatisch von einer Quellsprache Texte in eine Menge von Zielsprachen zu übersetzen – mehr dazu [in der offiziellen Doku](https://github.com/Flinesoft/BartyCrouch#translate-aka--t).
-
-TODO: Unverständlich
-Manchmal ist es aber gar nicht erwünscht alle Texte zu übersetzen, da auch für Werte, die programmatisch gesetzt werden `UILabel`-Elemente angelegt werden. In solchen Fällen bietet BartyCrouch die Möglichkeit mithilfe der Markierung `#bc-ignore!` das Ignorieren des Interface Elements bei der automatischen Übersetzung zu erzwingen. Dies kann etwa so aussehen:
-
-![Beispielbild mit teilweise automatisch generierten String-Keys](https://github.com/Flinesoft/BartyCrouch/raw/stable/Exclusion-Example.png)
-*Hier werden die Werte (rechts) für die Bezeichner (links) programmatisch gesetzt und können deshalb von der Übersetzung ausgeschlossen werden.*
