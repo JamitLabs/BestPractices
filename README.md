@@ -101,7 +101,7 @@ Follow these steps to use images within new articles:
 - Place your images into this new folder
 - Use lower letter characters and replace whitespaces and special characters with `-`
 - Write your image file names in English
-- Include your image using `![<IMAGE_TITLE>](../../../BestPractices/public/images/<TOPIC_ID>/<ARTICLE_ID>/<IMAGE_NAME>.png)`
+- Include your image using `![<IMAGE_TITLE>](../../../public/images/<TOPIC_ID>/<ARTICLE_ID>/<IMAGE_NAME>.png)`
 - Make sure the `<IMAGE_TITLE>` describes the content of the image in short (mostly 2-5 words)
 - Make sure to write a comment that explains your image to the reader (redundancy is a good thing here).
 - Place the comment in the line below the image inclusion using the structure `*<IMAGE_COMMENT>*`
