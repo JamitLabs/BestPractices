@@ -27,7 +27,7 @@ $ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804B
 $ \curl -sSL https://get.rvm.io | bash -s stable
 
 # install Ruby 2.2:
-$ rvm install ruby 2.2.3
+$ rvm install ruby 2.2
 ```
 
 If you have **trouble with Homebrew** while installing Ruby like suggested above, then try running `brew doctor` and fixing all issues with the suggested changes that will then be presented to you. When finished with all suggested changes don't forget to **restart your terminal** as some changes will only take effect after a restart. Then installing ruby should work fine.
