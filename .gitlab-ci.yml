@@ -1,10 +1,24 @@
 image: ruby:2.1
 
-pages:
+cache:
+  paths:
+    - vendor/
+
+before_script:
+  - bundle install --path vendor
+
+# add a job called 'test'
+test:
+  stage: test
   script:
-  - gem install bundler
-  - bundle install
-  - jekyll build -d public/
+    - bundle exec jekyll build -d public/
+  except:
+    - stable
+
+pages:
+  stage: deploy
+  script:
+  - bundle exec jekyll build -d public/
   artifacts:
     paths:
     - public

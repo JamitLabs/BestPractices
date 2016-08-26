@@ -31,3 +31,5 @@ defaults:
       type: articles
     values:
       layout: article
+
+exclude: [vendor, "Gemfile", "Gemfile.lock"]
