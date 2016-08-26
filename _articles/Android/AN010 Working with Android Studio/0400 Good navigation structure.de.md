@@ -14,7 +14,7 @@ In diesem Artikel geht es um eine konsistente Navigationsstruktur. Für die Benu
 
 ## BACK Navigation
 
-![back_navigation](../../../public/images/AN010/0400/back_navigation.png)
+![back_navigation](../../../BestPractices/public/images/AN010/0400/back_navigation.png)
 
 Der Back-Button ist bei allen Android Geräten integriert und sollte nicht der UI hinzugefügt werden. Er wird benutzt um in umgekehrter chronologischer Reihenfolge durch die zuletzt besuchten Screens einer App zu navigieren. Des Weiteren kann das Klicken des Buttons dazu führen, dass man die App verlässt oder einen Dialog oder die Screen Tastatur schließt.
 In den meisten Situationen pflegt das Android System selbst den Back Stack auf dem die einzelnen Screens abgelegt werden. In manchen Fällen muss das Back Verhalten jedoch manuell spezifiziert werden um die beste User Experience zu bieten.
@@ -30,7 +30,7 @@ Diese Situationen sind:
 Eine Deep Level Activity bezeichnet eine Activity, die sich in der Screen Hierarchie an einer der unteren Stellen befindet, d.h. sie ist innerhalb der App nur über andere Aktivities zugänglich. Gelangt man nun über eine Notifikation oder ein App Widget zu so einem Screen, fehlt der vom System erzeugte Back Stack. Hier ist es sinnvoll den Benutzer über die komplette App Hierarchie bis hin zum ersten (“home”) Screen der App zu leiten, anstatt die App wieder zu schließen.
 Dazu muss man mit Hilfe des `TaskStackBuilders` und dem `PendingIntent` alle Aktivities, die oberhalb dieser Activity in der Hierarchie liegen, dem Stack hinzugfügen.
 
-![deep_level_back_navigation](../../../public/images/AN010/0400/deep_level_back_navigation.png)
+![deep_level_back_navigation](../../../BestPractices/public/images/AN010/0400/deep_level_back_navigation.png)
 
 
 ### Navigation zwischen Fragmenten
@@ -43,7 +43,7 @@ Weitere Informationen: [BACK Navigation](https://developer.android.com/training/
 
 ## UP Navigation
 
-![up_navigation](../../../public/images/AN010/0400/up_navigation.png)
+![up_navigation](../../../BestPractices/public/images/AN010/0400/up_navigation.png)
 
 Der Up Button befindet sich links oben in der Toolbar. Er sollte dazu benutzt werden um in einer App basierend auf hierarchischen Beziehungen zwischen Screens zu navigieren. Erreicht man den obersten Screen in der App Hierarchie, meist der Screen der gelaunched wird, gibt es keine Up Navigation mehr. Wichtig ist hierbei, dass der Benutzer auf jeden Fall in der eigenen App bleibt.
 
@@ -58,7 +58,7 @@ Weitere Informationen: [UP Navigation](https://developer.android.com/training/im
 
 ## Navigation Drawer
 
-![navigation_drawer](../../../public/images/AN010/0400/navigation_drawer.png)
+![navigation_drawer](../../../BestPractices/public/images/AN010/0400/navigation_drawer.png)
 
 
 Der Navigation Drawer beinhaltet die Haupt - Navigationspunkte und wird durch ein Panel am linken Rand des Screens dargestellt. Meistens ist es versteckt und kann durch swipen oder durch klicken auf das Icon in der Toolbar sichtbar gemacht werden. Das Icon, meist ein Hamburger Icon, zeigt an, dass eine Navigation existiert.

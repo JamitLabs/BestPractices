@@ -39,12 +39,12 @@ Diese sechs Pixeldichten können von Android unterstützt werden.
 * xxhdpi (extra-extra-high) ~480dpi
 * xxxhdpi (extra-extra-extra-high) ~640dpi
 
-![icon_density_example](../../../public/images/AN010/0250/icon_density_example.png)
+![icon_density_example](../../../BestPractices/public/images/AN010/0250/icon_density_example.png)
 *Beispiel für ein Icon in verschiedenen Auflösungen*
 
 Beim Anlegen der Bilder in diesen Dichten muss die vorgegebene Ordnerstruktur eingehalten werden, damit das passende Bild zur Laufzeit ausgewählt werden kann. Die Bennenung der Ordner, in denen die Bilder abgelegt werden müssen, ist wie folgt: `drawable-hdpi, drawable-mdpi, drawable-xhdpi, ... `.
 
-![density_exaxmple](../../../public/images/AN010/0250/density_example.png)
+![density_exaxmple](../../../BestPractices/public/images/AN010/0250/density_example.png)
 *Beispiel für die Ordnerstruktur*
 
 Möchte man Bilder oder Icons bewusst nur in einer Auflösung anlegen, werden diese im Ordner `drawable-nodpi`abgelegt.
@@ -68,19 +68,19 @@ Vectorgrafiken werden erst ab API Level 21 unterstützt. Alternativen für niedr
 
 Ein Nine-Patch ist eine PNG Bild, welches sich je nach Größe des zur Verfügung stehenden Platzes anpasst. Ein Beispiel wäre eine Box mit Schatten. Dabei soll sich die Größe der Box verändern können, der Schatten jedoch sollte nicht verzogen werden. Bilder die sich sich für Nine Patch Dateien eignen, sollten aus streckbaren Flächen bestehen.
 
-![nine_patch_example](../../../public/images/AN010/0250/nine_patch_example.png)
+![nine_patch_example](../../../BestPractices/public/images/AN010/0250/nine_patch_example.png)
 
-![nine_patch_example_two](../../../public/images/AN010/0250/nine_patch_example_two.png)
+![nine_patch_example_two](../../../BestPractices/public/images/AN010/0250/nine_patch_example_two.png)
 
-![nine_patch_example_three](../../../public/images/AN010/0250/nine_patch_example_three.png)
+![nine_patch_example_three](../../../BestPractices/public/images/AN010/0250/nine_patch_example_three.png)
 *Beispiel für eine Nine-Patch Datei*
 
 Ändert sich nun der Platz, der dem Bild zur Verfügung steht, so wird die Datei diesem angepasst. Der grüne Inhalt wird vergrößert oder verkleinert, der Schatten verändert sich jedoch nicht.
 
-![nine_patch_bad_example](../../../public/images/AN010/0250/nine_patch_bad_example.png)
+![nine_patch_bad_example](../../../BestPractices/public/images/AN010/0250/nine_patch_bad_example.png)
 *Schlechtes Beispiel Nine Patch Datei*
 
-![nine_patch_bad_example_two](../../../public/images/AN010/0250/nine_patch_bad_example_two.png)
+![nine_patch_bad_example_two](../../../BestPractices/public/images/AN010/0250/nine_patch_bad_example_two.png)
 *Schlechtes Beispiel Nine Patch Datei*
 
 Nicht geeignet für Nine-Patch Dateien sind Photos oder Bilder mit Texten, da diese nicht streckbar sind und verzogen werden.

@@ -14,12 +14,12 @@ sollten und wie man Emulatoren zum Testen der App einrichtet.
 
 ## Erstellen eines neuen Projekts
 
-![Start a new Android Studio Project](../../../public/images/AN010/0100/start_new_android_studio_project.jpg)
+![Start a new Android Studio Project](../../../BestPractices/public/images/AN010/0100/start_new_android_studio_project.jpg)
 
 Nachdem sich das erste Fenster geöffnet hat, muss man den Punkt "Start a new Android Studio project" auswählen, um ein komplett neues Projekt zu erstellen.
 
 
-![New Android Studio Project Second Screen](../../../public/images/AN010/0100/new_android_studio_project_second_screen.png)
+![New Android Studio Project Second Screen](../../../BestPractices/public/images/AN010/0100/new_android_studio_project_second_screen.png)
 
 Im nächsten Schritt müssen die Rahmenbedingungen für das Projekt festgelegt werden.
 
@@ -34,7 +34,7 @@ unabhängig von dem Applikationsname und Company Domain bearbeiten (Edit).
 * **Project location:** Hier wird das Verzeichnis angeben, in welchem das Projekt angelegt werden soll.
 
 
-![Target Android Devices](../../../public/images/AN010/0100/target_android_devices.png)
+![Target Android Devices](../../../BestPractices/public/images/AN010/0100/target_android_devices.png)
 
 Nun muss man auswählen für welche Geräte die App programmiert werden soll.
 In den meisten Fällen wird dies **Phone and Tablet** sein. Das **Minimum SDK** gibt
@@ -43,7 +43,7 @@ Damit möglichst viele Geräte unterstützt werden, ist es sinnvoll eine der nie
 Es gibt Funktionen, die erst auf neueren Versionen unterstützt werden.
 Diese können dann für diese neueren Versionen frei gegeben werden.  
 
-![Add an activity to Mobile](../../../public/images/AN010/0100/add_an_activity_to_mobile.jpg)
+![Add an activity to Mobile](../../../BestPractices/public/images/AN010/0100/add_an_activity_to_mobile.jpg)
 
 Auf diesem Screen kann man einstellen, welche Elemente beim Erstellen des
 Projektes generiert werden sollen. Zu empfehlen ist die **Blank Activity**,
@@ -51,7 +51,7 @@ da hier schon die ersten notwendigen Ordner und die MainActivity angelegt werden
 Die MainActivity ist zuständig für das Starten des Systems, da es bei der App
 Programmierung keine main() Methode gibt, die diese Aufgabe übernimmt.
 
-![Customize the Activity](../../../public/images/AN010/0100/customize_the_activity.png)
+![Customize the Activity](../../../BestPractices/public/images/AN010/0100/customize_the_activity.png)
 
 Hier können der Activity Name, der Layout Name, der Titel und der Menu Ressourcen Name eingegeben werden. Die eingetragenen Werte können erst einmal übernommen werden und später auf das Projekt angepasst werden.
 
@@ -64,12 +64,12 @@ Jetzt sind alle Voreinstellungen vorgenommen und mit einem Klick auf **Finish** 
 Um die Anwendung zu testen, kann man entweder ein Smartphone im **Debuggable Mode**
 anschließen oder sich **Emulatoren** einrichten, welche ein Smartphone simulieren und auf dem PC angezeigt werden.
 
-![set up emulators](../../../public/images/AN010/0100/set_up_emulators.jpg)
+![set up emulators](../../../BestPractices/public/images/AN010/0100/set_up_emulators.jpg)
 
 Um die Emulatoren einzurichten, klicke in der Schaltfläche am oberen Rand des Fensters auf das hier gezeigte Icon.
 
 
-![Your Virtual Devices](../../../public/images/AN010/0100/your_virtual_devices.jpg)
+![Your Virtual Devices](../../../BestPractices/public/images/AN010/0100/your_virtual_devices.jpg)
 *Übersicht über die Eingerichteten Emulatoren*
 
 In dieser Ansicht werden die schon eingestellten Emulatoren angezeigt. Man kann
@@ -77,7 +77,7 @@ beliebig viele Geräte erstellen und diese später beim Starten der App auswähl
 Ist beim ersten Öffnen noch kein Emulator eingestellt oder möchte man einen Neuen
 hinzufügen, muss man auf **+ Create Virtual Device...** klicken.
 
-![Select Hardware](../../../public/images/AN010/0100/select_hardware.png)
+![Select Hardware](../../../BestPractices/public/images/AN010/0100/select_hardware.png)
 *Übersicht über zur Verfügung stehenden Emulatoren*
 
 Hier kann man zuerst eine Kategorie auswählen, was für ein Gerätetyp man simulieren möchte.
@@ -86,7 +86,7 @@ verschiedene Geräte mit näheren Informationen angezeigt (Displaygröße, Aufl�
 Um alle Screengrößen abzudecken und das Layout optimal zu gestalten, empfehlen wir die App
 auf Emulatoren der Größe 3,2" bis 5,96" zu testen. Hat man sich für ein Gerät entschieden, dieses auswählen und auf Next klicken.
 
-![System Image](../../../public/images/AN010/0100/system_image.png)
+![System Image](../../../BestPractices/public/images/AN010/0100/system_image.png)
 
 Auf diesem Screen ist eine Android System Version zu wählen. Auch hier ist es sinnvoll
 unterschiedlichste Versionen zu testen. Vor allem bei niedrigen Versionen, die noch nicht alle
@@ -94,7 +94,7 @@ Funktionen unterstützen, ist es wichtig die lauffähigkeit zu überprüfen. Dab
 das Minimum SDK, für welche die App ausgelegt ist, im Hinterkopf behalten.
 
 
-![Android Virtual Device](../../../public/images/AN010/0100/android_virtual_device.png)
+![Android Virtual Device](../../../BestPractices/public/images/AN010/0100/android_virtual_device.png)
 
 Auf dem letzten Screen kann man seine Angaben überprüfen und weitere Einstellungen treffen,
 wie zum Beispiel die Größe des RAMs, heaps, Internen Speichers und der SD Karte.
@@ -103,11 +103,11 @@ Mit einem Klick auf **Finish** wird der Emulator erstellt und der Liste hinzugef
 
 Um die Applikation nun in diesem Emulator zu testen, zunächst einmal das Fenster schließen.
 
-![start application](../../../public/images/AN010/0100/start_application.jpg)
+![start application](../../../BestPractices/public/images/AN010/0100/start_application.jpg)
 
 Mit einem Klick auf den **grünen Pfeil** in der oberen Schaltfläche, startet man die App.
 
-![Choose Device](../../../public/images/AN010/0100/choose_device.jpg)
+![Choose Device](../../../BestPractices/public/images/AN010/0100/choose_device.jpg)
 
 Beim ersten Starten ist noch kein **running device** angelegt. Um das zu tun **Launch emulator** auswählen.
 In der Combo Box werden alle Emulatoren angezeigt, welche, wie oben beschrieben, eingerichtet wurden.
