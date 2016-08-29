@@ -49,7 +49,7 @@ $ bundle install
 Now you can **start the server locally** by running:
 
 ```shell
-$ jekyll serve
+$ jekyll s
 ```
 
 As long as the server runs you can **visit the page in your browser** by opening [localhost:4000](http://localhost:4000)
@@ -79,9 +79,7 @@ to a topic that was not yet covered by any of the existing folders then **create
 
 **NEW ARTICLE RULES**
 
-- A new article must be created within at topic folder
-- A new article must use `00:00:00` as the specified time (otherwise, the article may not appear in the list). Only the
-date is relevant.
+- A new article must be created within a topic folder
 - A new article is named using the structure `<ARTICLE_ID> <ARTICLE_NAME>.<LANGUAGE_CODE>.md`
 - An `<ARTICLE_ID>` is a four digit number starting at `0100` for the first article within a topic
 - A new article that is appended at the end of the current articles increases the highest id by 100
@@ -103,6 +101,8 @@ author:     <MAIN_AUTHOR_NAME>
 ---
 ```
 
+Note that you should use `00:00:00` as the specified time in the field `FIRST_PUBLISH_DATE` as only the day is relevant to us. Also, the publish date refers to the initial GitHub release of the article and therefore can be set to anything in the past (e.g. `2016-01-01 00:00:00`) for new articles until release.
+
 #### Using images in new articles
 
 Follow these steps to use images within new articles:
@@ -120,8 +120,12 @@ Follow these steps to use images within new articles:
 ### Contribution Tips
 
 - Use the [Atom Editor](https://atom.io) and edit with a **live MarkDown preview** using the `Ctrl+Shift+M` shortcut
+- Access all settings and features of Atom and its packages via the shortcut `Cmd+Shift+P` and fuzzy search
+  - e.g. `Cmd+Shift+P`, then typing "install pack" and then hitting enter opens up the install packages screen
+- Install the Atom package `line-length-break` and reformat your MarkDown file before committing
+  - reformatting can be done within a file by hitting `Cmd+Shift+P` and searching for "break"
 
-Note that the Atom Editor will currently fail to show the image due to the subpath 'BestPractices' in the image paths
+Note that the Atom Editor will currently fail to show the images due to the subpath 'BestPractices' in the image paths
 (it isn't a real path but needed due to the current way of deployment). If you want to see the images in Atom simply
 remove the '/BestPractices' from image paths but don't forget to add them before committing. Because of this it's
 probably better to just run the server and open the browser instead.
