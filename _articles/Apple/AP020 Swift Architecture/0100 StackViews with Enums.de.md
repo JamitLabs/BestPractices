@@ -28,9 +28,7 @@ Die Lösung ist die Klasse `UIStackView`. Man fügt die verschiedenen UI-Element
 hinzu und wählt dann aus einigen Konfigurationsmöglichkeiten, wie das StackView seine Subviews darstellen soll. Im
 Interface Builder sieht das so aus:
 
-![StackView
-
-Konfigurationsmöglichkeiten](../../../BestPractices/public/images/AP020/0100/stackview-configuration-options-in-interface-builder.png)
+![StackView Konfigurationsmöglichkeiten](../../../BestPractices/public/images/AP020/0100/stackview-configuration-options-in-interface-builder.png)
 
 Man kann also folgende Konfigurationen vornehmen:
 
@@ -145,10 +143,10 @@ extension UIStackView
 ## Weiterführende Gedanken
 
 ### StackViewController
-Um unseren ViewController noch sauberer zu gestalten, können wir die StackView-Logik noch einen Schritt weiter bringen
-und direkt in eine `StackViewController` Klasse einbauen. In einer Übersicht über verschiedene Artikel beispielsweise
-muss man dann nur noch ein Array von  `StackViewElement` aus den Serverdaten erstellen und damit einen
-`StackViewController` initialisieren.
+Um unseren ViewController noch sauberer zu gestalten, können wir die StackView-Logik noch einen  Schritt weiter bringen
+und direkt in eine `StackViewController` Klasse einbauen. In einer  Übersicht über verschiedene Artikel beispielsweise
+muss man dann nur noch ein Array von   `StackViewElement` aus den Serverdaten erstellen und damit
+einen`StackViewController`  initialisieren.
 
 ```swift
 final class StackViewController: UIViewController
