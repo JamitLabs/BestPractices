@@ -28,7 +28,8 @@ Die Lösung ist die Klasse `UIStackView`. Man fügt die verschiedenen UI-Element
 hinzu und wählt dann aus einigen Konfigurationsmöglichkeiten, wie das StackView seine Subviews darstellen soll. Im
 Interface Builder sieht das so aus:
 
-![StackView Konfigurationsmöglichkeiten](../../../BestPractices/public/images/AP020/0100/stackview-configuration-options-in-interface-builder.png)
+![StackView
+Konfigurationsmöglichkeiten](../../../BestPractices/public/images/AP020/0100/stackview-configuration-options-in-interface-builder.png)
 
 Man kann also folgende Konfigurationen vornehmen:
 

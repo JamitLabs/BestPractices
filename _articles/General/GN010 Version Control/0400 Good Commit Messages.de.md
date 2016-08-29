@@ -8,15 +8,25 @@ date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
 ---
 
-In diesem Artikel werden Hilfestellungen für gute Commit Messages gegeben. Zuerst wollen wir den Nutzen von Commit Messages klären und danach Beispiele für schlechte und gute Commit Messages geben.
+In diesem Artikel werden Hilfestellungen für gute Commit Messages gegeben. Zuerst wollen wir den Nutzen von Commit
+Messages klären und danach Beispiele für schlechte und gute Commit Messages geben.
 
 ## Was ist das Ziel einer Commit Message?
 
-Das Ziel einer Commit Message ist es Änderungen an Code auch im Nachhinein noch verständlich zu machen. Dabei reicht es nicht aus lediglich die gemachten technischen Änderungen zusammenzufassen, sondern viel mehr geht es darum in einer Commit Message zu klären, **warum** die Änderungen gemacht wurden. Nur so ist es möglich im Nachhinein nicht nur die Änderungen zu kennen (die man ja Dank Git-Diffs auch ohne Messages gut sehen kann), sondern auch entscheiden zu können, ob sie noch benötigt werden und somit ob man sie ändern oder verwerfen darf. Wenn eine echte Begründung in einer Commit Message nicht möglich ist, dann kann es helfen stattdessen den **Kontext der Änderung** zu benennen.
+Das Ziel einer Commit Message ist es Änderungen an Code auch im Nachhinein noch verständlich zu machen. Dabei reicht es
+nicht aus lediglich die gemachten technischen Änderungen zusammenzufassen, sondern viel mehr geht es darum in einer
+Commit Message zu klären, **warum** die Änderungen gemacht wurden. Nur so ist es möglich im Nachhinein nicht nur die
+Änderungen zu kennen (die man ja Dank Git-Diffs auch ohne Messages gut sehen kann), sondern auch entscheiden zu können,
+ob sie noch benötigt werden und somit ob man sie ändern oder verwerfen darf. Wenn eine echte Begründung in einer Commit
+Message nicht möglich ist, dann kann es helfen stattdessen den **Kontext der Änderung** zu benennen.
 
 ## Wie sollte eine Commit Message aussehen?
 
-Commit Messages können eine beliebige Länge haben, was vielen gar nicht bekannt ist, da einzeilige Kommentare gängige Praxis sind. Auch wir empfehlen die Dinge in wenigen Wörtern auf den Punkt zu bringen, sofern nicht besonderer Erklärungsbedarf besteht. Da die meisten Git-Tools Commit Messages standardmäßig nach einer Zeile abschneiden und besonders Werkzeuge für die Kommandozeile die Breite stark beschränken, sind folgende Vorgaben für die Länge und Grundstruktur unbedingt einzuhalten:
+Commit Messages können eine beliebige Länge haben, was vielen gar nicht bekannt ist, da einzeilige Kommentare gängige
+Praxis sind. Auch wir empfehlen die Dinge in wenigen Wörtern auf den Punkt zu bringen, sofern nicht besonderer
+Erklärungsbedarf besteht. Da die meisten Git-Tools Commit Messages standardmäßig nach einer Zeile abschneiden und
+besonders Werkzeuge für die Kommandozeile die Breite stark beschränken, sind folgende Vorgaben für die Länge und
+Grundstruktur unbedingt einzuhalten:
 
 * Die **erste Zeile** jedes Commit Messages **fasst die Begründung / den Kontext der Änderungen kurz zusammen**
 * Die erste Zeile sollte die **maximale Länge von etwa 50 Zeichen** nicht überschreiten
@@ -46,9 +56,15 @@ eros et accumsan et iusto odio dignissim qui blandit praesent luptatum
 zzril delenit augue duis dolore te feugait nulla facilisi.
 ```
 
-In den meisten Fällen sollten wenige Worte (also ein einzeiliger Kommentar) reichen, um einen Commit auf den Punkt zu bringen. Falls mehrzeilige Commit Messages zur Regel werden, dann ist das als Zeichen dafür zu deuten, dass man zu selten Commits macht. Man sollte sich in dem Fall überlegen, ob man nicht schon früher committen kann.
+In den meisten Fällen sollten wenige Worte (also ein einzeiliger Kommentar) reichen, um einen Commit auf den Punkt zu
+bringen. Falls mehrzeilige Commit Messages zur Regel werden, dann ist das als Zeichen dafür zu deuten, dass man zu
+selten Commits macht. Man sollte sich in dem Fall überlegen, ob man nicht schon früher committen kann.
 
-Während die oben genannte Form hauptsächlich zum Ziel hat in bestimmten Tools **überhaupt dargestellt werden zu können**, so fällt auch bei Einhaltung der groben Form in vielen Projekten ohne Standards auf, dass die Commits verschiedener (und manchmal sogar derselben Entwickler) völlig unterschiedliche Formate aufweisen. In nachfolgendem Beispiel ist zu sehen, dass sich meist Groß- und Kleinschreibung, Punkte am Ende der Titelzeile, benutzte Zeitform und sogar die Sprache völlig unterscheiden können:
+Während die oben genannte Form hauptsächlich zum Ziel hat in bestimmten Tools **überhaupt dargestellt werden zu
+können**, so fällt auch bei Einhaltung der groben Form in vielen Projekten ohne Standards auf, dass die Commits
+verschiedener (und manchmal sogar derselben Entwickler) völlig unterschiedliche Formate aufweisen. In nachfolgendem
+Beispiel ist zu sehen, dass sich meist Groß- und Kleinschreibung, Punkte am Ende der Titelzeile, benutzte Zeitform und
+sogar die Sprache völlig unterscheiden können:
 
 ```text
 Projektdateien neu strukturiert.
@@ -81,7 +97,9 @@ Correctly save font size setting
 Fix wrong tracking key on home screen
 ```
 
-Diese Regeln orientieren sich an Community-Standards, die etwa in [diesem Blogpost](http://chris.beams.io/posts/git-commit/) zusammenfassend erläutert werden – genaue Begründungen sind dort nachzulesen.
+Diese Regeln orientieren sich an Community-Standards, die etwa in [diesem
+Blogpost](http://chris.beams.io/posts/git-commit/) zusammenfassend erläutert werden – genaue Begründungen sind dort
+nachzulesen.
 
 ## Häufig gemachte Fehler
 
@@ -89,7 +107,9 @@ Nachfolgend werden an einigen Beispielen aus der Praxis typische Fehler besproch
 
 ### Zu generische Commit Messages
 
-Auch wenn man sich in der ersten Zeile kurz fassen sollte, sollte dies nicht zu generischen Commits führen, die kaum Aussagekraft haben. Besonders Commits, mit nur ein oder zwei Wörtern Länge laufen Gefahr nichts auszusagen. Auch Wörter wie "some" sind Anzeichen von zu generischen Commit Messages.
+Auch wenn man sich in der ersten Zeile kurz fassen sollte, sollte dies nicht zu generischen Commits führen, die kaum
+Aussagekraft haben. Besonders Commits, mit nur ein oder zwei Wörtern Länge laufen Gefahr nichts auszusagen. Auch Wörter
+wie "some" sind Anzeichen von zu generischen Commit Messages.
 
 Schlecht:
 
@@ -111,7 +131,11 @@ Besser:
 
 ### Falsche Großschreibung im Englischen
 
-Im Deutschen schreibt man alle Substantive groß. Während man im Englischen bei Titeln durchaus auch dazu neigt vieles groß zu schreiben, so sollten Commits dennoch wie normaler englischer Text behandelt werden. Das bedeutet: Die meisten Wörter (inkl. Substantive) werden **klein** geschrieben. Einzige Ausnahmen sind im Englischen Eigennamen wie von Personen, Marken oder Produkten. Hierzu zählen bei der Programmierung auch Datei- oder Klassennamen (z.B. `SettingsController`).
+Im Deutschen schreibt man alle Substantive groß. Während man im Englischen bei Titeln durchaus auch dazu neigt vieles
+groß zu schreiben, so sollten Commits dennoch wie normaler englischer Text behandelt werden. Das bedeutet: Die meisten
+Wörter (inkl. Substantive) werden **klein** geschrieben. Einzige Ausnahmen sind im Englischen Eigennamen wie von
+Personen, Marken oder Produkten. Hierzu zählen bei der Programmierung auch Datei- oder Klassennamen (z.B.
+`SettingsController`).
 
 Schlecht:
 
@@ -129,7 +153,11 @@ Besser:
 
 ### Debugging-Commits
 
-Manchmal kommt es vor, dass man ohne Commits eine bestimmte Änderung nicht testen kann, etwa wenn die Änderung an einem Framework stattfindet, welches mit einer Referenz zu einem Commit in einem anderen Projekt installiert wird. In solchen Fällen sollten die Commits dennoch einen sinnvollen Inhalt haben, die die Annahme zum Beheben eines Problems repräsentieren. So können die bereits ausprobierten Ansätze auch im Nachhinein noch eingesehen werden, wenn der Änderungsversuch falsch sein sollte.
+Manchmal kommt es vor, dass man ohne Commits eine bestimmte Änderung nicht testen kann, etwa wenn die Änderung an einem
+Framework stattfindet, welches mit einer Referenz zu einem Commit in einem anderen Projekt installiert wird. In solchen
+Fällen sollten die Commits dennoch einen sinnvollen Inhalt haben, die die Annahme zum Beheben eines Problems
+repräsentieren. So können die bereits ausprobierten Ansätze auch im Nachhinein noch eingesehen werden, wenn der
+Änderungsversuch falsch sein sollte.
 
 Schlecht:
 

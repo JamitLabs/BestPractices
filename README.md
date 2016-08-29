@@ -3,7 +3,9 @@
 
 Some **best practices** categorized by app development platform we are using at Jamit Labs.
 
-The goal of this project is both to **provide many articles to cover independent topics** using a typical blogpost-like length and to provide a book-like structure meaning that **articles are sorted to reflect their topics relevance** regarding the stage of the projects development and/or the programmers learning progress.
+The goal of this project is both to **provide many articles to cover independent topics** using a typical blogpost-like
+length and to provide a book-like structure meaning that **articles are sorted to reflect their topics relevance**
+regarding the stage of the projects development and/or the programmers learning progress.
 
 This has two main advantages:
 
@@ -30,7 +32,10 @@ $ \curl -sSL https://get.rvm.io | bash -s stable
 $ rvm install ruby 2.2
 ```
 
-If you have **trouble with Homebrew** while installing Ruby like suggested above, then try running `brew doctor` and fixing all issues with the suggested changes that will then be presented to you. When finished with all suggested changes don't forget to **restart your terminal** as some changes will only take effect after a restart. Then installing ruby should work fine.
+If you have **trouble with Homebrew** while installing Ruby like suggested above, then try running `brew doctor` and
+fixing all issues with the suggested changes that will then be presented to you. When finished with all suggested
+changes don't forget to **restart your terminal** as some changes will only take effect after a restart. Then installing
+ruby should work fine.
 
 ### Starting the server locally
 
@@ -47,13 +52,16 @@ Now you can **start the server locally** by running:
 $ jekyll serve
 ```
 
-As long as the server runs you can **visit the page in your browser** by opening [localhost:4000](http://localhost:4000) or [127.0.0.1:4000](http://127.0.0.1:4000).
+As long as the server runs you can **visit the page in your browser** by opening [localhost:4000](http://localhost:4000)
+or [127.0.0.1:4000](http://127.0.0.1:4000).
 To **stop the local server** in your terminal type `Ctrl+C` on your keyboard.
 
 
 ### Creating a new article
 
-Before creating a new article take a look at the existing articles and topics to **decide where the best place** is for your new article. Once decided **create an empty article file** within the appropriate folder. If your articles belongs to a topic that was not yet covered by any of the existing folders then **create a new topic folder**.
+Before creating a new article take a look at the existing articles and topics to **decide where the best place** is for
+your new article. Once decided **create an empty article file** within the appropriate folder. If your articles belongs
+to a topic that was not yet covered by any of the existing folders then **create a new topic folder**.
 
 **Stick to the following rules** when creating new files:
 
@@ -72,7 +80,8 @@ Before creating a new article take a look at the existing articles and topics to
 **NEW ARTICLE RULES**
 
 - A new article must be created within at topic folder
-- A new article must use `00:00:00` as the specified time (otherwise, the article may not appear in the list). Only the date is relevant.
+- A new article must use `00:00:00` as the specified time (otherwise, the article may not appear in the list). Only the
+date is relevant.
 - A new article is named using the structure `<ARTICLE_ID> <ARTICLE_NAME>.<LANGUAGE_CODE>.md`
 - An `<ARTICLE_ID>` is a four digit number starting at `0100` for the first article within a topic
 - A new article that is appended at the end of the current articles increases the highest id by 100
@@ -102,7 +111,8 @@ Follow these steps to use images within new articles:
 - Place your images into this new folder
 - Use lower letter characters and replace whitespaces and special characters with `-`
 - Write your image file names in English
-- Include your image using `![<IMAGE_TITLE>](../../../BestPractices/public/images/<TOPIC_ID>/<ARTICLE_ID>/<IMAGE_NAME>.png)`
+- Include your image using
+`![<IMAGE_TITLE>](../../../BestPractices/public/images/<TOPIC_ID>/<ARTICLE_ID>/<IMAGE_NAME>.png)`
 - Make sure the `<IMAGE_TITLE>` describes the content of the image in short (mostly 2-5 words)
 - Make sure to write a comment that explains your image to the reader (redundancy is a good thing here).
 - Place the comment in the line below the image inclusion using the structure `*<IMAGE_COMMENT>*`
@@ -111,7 +121,10 @@ Follow these steps to use images within new articles:
 
 - Use the [Atom Editor](https://atom.io) and edit with a **live MarkDown preview** using the `Ctrl+Shift+M` shortcut
 
-Note that the Atom Editor will currently fail to show the image due to the subpath 'BestPractices' in the image paths (it isn't a real path but needed due to the current way of deployment). If you want to see the images in Atom simply remove the '/BestPractices' from image paths but don't forget to add them before committing. Because of this it's probably better to just run the server and open the browser instead.
+Note that the Atom Editor will currently fail to show the image due to the subpath 'BestPractices' in the image paths
+(it isn't a real path but needed due to the current way of deployment). If you want to see the images in Atom simply
+remove the '/BestPractices' from image paths but don't forget to add them before committing. Because of this it's
+probably better to just run the server and open the browser instead.
 
 ## License
 
@@ -120,4 +133,5 @@ Note that the Atom Editor will currently fail to show the image due to the subpa
       width=143 height=50>
 </p>
 
-This work is licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License**. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or open the file `LICENSE.txt`.
+This work is licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License**. To
+view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or open the file `LICENSE.txt`.

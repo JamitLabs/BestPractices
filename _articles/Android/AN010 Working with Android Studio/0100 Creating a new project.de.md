@@ -14,12 +14,15 @@ sollten und wie man Emulatoren zum Testen der App einrichtet.
 
 ## Erstellen eines neuen Projekts
 
-![Start a new Android Studio Project](../../../BestPractices/public/images/AN010/0100/start_new_android_studio_project.jpg)
+![Start a new Android Studio
+Project](../../../BestPractices/public/images/AN010/0100/start_new_android_studio_project.jpg)
 
-Nachdem sich das erste Fenster geöffnet hat, muss man den Punkt "Start a new Android Studio project" auswählen, um ein komplett neues Projekt zu erstellen.
+Nachdem sich das erste Fenster geöffnet hat, muss man den Punkt "Start a new Android Studio project" auswählen, um ein
+komplett neues Projekt zu erstellen.
 
 
-![New Android Studio Project Second Screen](../../../BestPractices/public/images/AN010/0100/new_android_studio_project_second_screen.png)
+![New Android Studio Project Second
+Screen](../../../BestPractices/public/images/AN010/0100/new_android_studio_project_second_screen.png)
 
 Im nächsten Schritt müssen die Rahmenbedingungen für das Projekt festgelegt werden.
 
@@ -53,7 +56,8 @@ Programmierung keine main() Methode gibt, die diese Aufgabe übernimmt.
 
 ![Customize the Activity](../../../BestPractices/public/images/AN010/0100/customize_the_activity.png)
 
-Hier können der Activity Name, der Layout Name, der Titel und der Menu Ressourcen Name eingegeben werden. Die eingetragenen Werte können erst einmal übernommen werden und später auf das Projekt angepasst werden.
+Hier können der Activity Name, der Layout Name, der Titel und der Menu Ressourcen Name eingegeben werden. Die
+eingetragenen Werte können erst einmal übernommen werden und später auf das Projekt angepasst werden.
 
 Jetzt sind alle Voreinstellungen vorgenommen und mit einem Klick auf **Finish** wird das Projekt erstellt.
 
@@ -84,7 +88,8 @@ Hier kann man zuerst eine Kategorie auswählen, was für ein Gerätetyp man simu
 In diesem Beispiel erstellen wir einen Smartphone Emulator (Phone). In der Tabelle werden nun
 verschiedene Geräte mit näheren Informationen angezeigt (Displaygröße, Auflösung, Pixeldichte).
 Um alle Screengrößen abzudecken und das Layout optimal zu gestalten, empfehlen wir die App
-auf Emulatoren der Größe 3,2" bis 5,96" zu testen. Hat man sich für ein Gerät entschieden, dieses auswählen und auf Next klicken.
+auf Emulatoren der Größe 3,2" bis 5,96" zu testen. Hat man sich für ein Gerät entschieden, dieses auswählen und auf Next
+klicken.
 
 ![System Image](../../../BestPractices/public/images/AN010/0100/system_image.png)
 
@@ -112,7 +117,8 @@ Mit einem Klick auf den **grünen Pfeil** in der oberen Schaltfläche, startet m
 Beim ersten Starten ist noch kein **running device** angelegt. Um das zu tun **Launch emulator** auswählen.
 In der Combo Box werden alle Emulatoren angezeigt, welche, wie oben beschrieben, eingerichtet wurden.
 Hier nun das gewünschte Gerät auswählen. Möchte man dieses Gerät auch für die zukünftigen Launches
-nutzen bei **Use same device for future launches** einen Haken setzen. Mit einem Klick auf **OK** wird der Emulator gestartet.
+nutzen bei **Use same device for future launches** einen Haken setzen. Mit einem Klick auf **OK** wird der Emulator
+gestartet.
 Dies kann unter Umständen eine Weile dauern. Wenn man eine Weile an einem Projekt arbeitet möchte,
 ist es sinnvoll den Emulator nicht zu schließen, da es sonst bei jedem Start viel Zeit kosten würde.
 Wurde er gestartet und nicht wieder geschlossen, wird er nun unter **running devices** angezeigt.
