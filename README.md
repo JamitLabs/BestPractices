@@ -72,6 +72,7 @@ Before creating a new article take a look at the existing articles and topics to
 **NEW ARTICLE RULES**
 
 - A new article must be created within at topic folder
+- A new article must use `00:00:00` as the specified time (otherwise, the article may not appear in the list). Only the date is relevant.
 - A new article is named using the structure `<ARTICLE_ID> <ARTICLE_NAME>.<LANGUAGE_CODE>.md`
 - An `<ARTICLE_ID>` is a four digit number starting at `0100` for the first article within a topic
 - A new article that is appended at the end of the current articles increases the highest id by 100

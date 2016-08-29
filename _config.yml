@@ -18,6 +18,7 @@ sections:
     - Version Control
   Apple:
     - Working with Xcode
+    - Swift Architecture
   Android:
     - Working with Android Studio
 
