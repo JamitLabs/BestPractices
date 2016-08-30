@@ -4,7 +4,7 @@ topic:      Swift Architecture
 refid:      AP020-0200
 permalink:  /articles/AP020-0200.html
 title:      Establishing Solid Base Types
-date:       2016-08-29 00:00:00
+date:       2016-08-30 00:00:00
 author:     Florian Pfisterer
 ---
 
@@ -14,8 +14,8 @@ if used intelligently, make your code more clean & succinct, maintainable and ea
 ## 1. The Result Type
 
 In almost any project, there are calls to functions that might fail. In Swift, the common pattern in this case is that
-either the function throws an error or it returns ``nil``.
-While this might be convenient in some cases, in others you neither want to ``throw`` and ``rethrow`` errors in
+either the function throws an error or it returns `nil`.
+While this might be convenient in some cases, in others you neither want to `throw` and `rethrow` errors in
 different nested function calls nor do you want to unwrap optionals all the time.
 
 To solve this problem, consider the following generic Result type:
@@ -30,11 +30,11 @@ enum Result<T>
 
 This type, when used as the result of a function call for example, represents one of the following cases:
 
-1. The call succeeded, and here's the result: an object of type ``T``
-2. Somewhere there was an error, and here it is: an ``ErrorType`` case (you could use ``NSError`` as well)
+1. The call succeeded, and here's the result: an object of type `T`
+2. Somewhere there was an error, and here it is: an `ErrorType` case (you could use `NSError` as well)
 
 The Result type basically extends the Swift standard library optional type by providing the error of why there is no
-result object (``T``) available.
+result object (`T`) available.
 
 ```swift
 enum Optional<T>
@@ -91,7 +91,7 @@ DatabaseClient.loadUsers { result in
 
 Probably most iOS apps save and retrieve objects from a database
 
-If you use Realm or CoreData as your local database, you will be provided with a superclass for your model objects
+If you use Realm or CoreData as your local database, you will be provided with a superclass for your model types
 (`Object` in Realm and `NSManagedObject` in CoreData). But if you don't - when making calls to a REST API on a server
 for example - you need to create some base type for your model yourself.
 Why? Because this prevents repetitions and therefore makes your code more maintainable. Instead of having to write a
@@ -101,7 +101,7 @@ Why? Because this prevents repetitions and therefore makes your code more mainta
 ### How to Implement This Base Type?
 
 The first idea might be to just create a `class` named Model, from which all the other types inherit. The Model class
-could contain properties like a unique ``id`` and provide functionality like a ``save`` function. The problem with this
+could contain properties like a unique `id` and provide functionality like a `save` function. The problem with this
 approach is that most of the time, it's better to use value-type `structs` instead of reference-type `classes`. I won't
 go into the details here, but you can read about value vs. reference types in another article **TODO: insert link**.
 
