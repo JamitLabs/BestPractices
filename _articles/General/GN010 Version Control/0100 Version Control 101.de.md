@@ -7,6 +7,8 @@ title:      "Versionsverwaltung: Eine Einführung"
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
 language:   de
+
+next_refid: GN010-0150
 ---
 
 In diesem Artikel wird beschrieben, was Versionsverwaltungssysteme sind, welche Probleme sie lösen und welchen Begriffe

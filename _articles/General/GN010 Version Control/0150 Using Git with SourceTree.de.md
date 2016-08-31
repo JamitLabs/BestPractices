@@ -7,6 +7,9 @@ title:      "Arbeiten mit Git in SourceTree"
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
 language:   de
+
+prev_refid: GN010-0100
+next_refid: GN010-0200
 ---
 
 In diesem Artikel sollen alltägliche Aufgaben in Git mithilfe des Programms [SourceTree](https://www.sourcetreeapp.com)

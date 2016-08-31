@@ -2,11 +2,13 @@
 section:    Android
 topicid:    AN010
 refid:      AN010-0400
-permalink:  /:language/articles/AN010-0200.html
+permalink:  /:language/articles/AN010-0400.html
 title:      Gute Navigationsstruktur
 date:       2016-01-01 00:00:00
 author:     Marina Meier
 language:   de
+
+prev_refid: AN010-0300
 ---
 
 

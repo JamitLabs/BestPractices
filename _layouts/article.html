@@ -24,20 +24,25 @@ layout: default
 
   <hr />
   <div>
-    <p style="float:left;">
-      <a href="{{ site.baseurl }}{{ page.url }}">
-        <small>
-          << Zurück: {{ page.title }}
-        </small>
-      </a>
-    </p>
-    <p style="float:right;">
-      <a href="{{ site.baseurl }}{{ page.url }}">
-        <small>
-          Weiter: {{ page.title }} >>
-        </small>
-      </a>
-    </p>
+    {% if page.prev_refid %}
+      <p style="float:left;">
+        <a href="{{ site.baseurl }}/{{ page.language }}/articles/{{ page.prev_refid }}">
+          <small>
+            << {% t 'article.back' %}: {{ page.prev_refid }}
+          </small>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if page.next_refid %}
+      <p style="float:right;">
+        <a href="{{ site.baseurl }}/{{ page.language }}/articles/{{ page.next_refid }}">
+          <small>
+            {% t 'article.next' %}: {{ page.next_refid }} >>
+          </small>
+        </a>
+      </p>
+    {% endif %}
   </div>
 
 </article>

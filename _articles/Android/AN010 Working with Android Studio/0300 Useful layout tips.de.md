@@ -7,6 +7,9 @@ title:      Tipps zum Erstellen von Layouts
 date:       2016-01-01 00:00:00
 author:     Marina Meier
 language:   de
+
+prev_refid: AN010-0250
+next_refid: AN010-0400
 ---
 
 ## Android Layout

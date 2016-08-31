@@ -7,6 +7,8 @@ title:      Wichtige Basis-Typen für jedes Projekt
 date:       2016-08-30 00:00:00
 author:     Florian Pfisterer
 language:   de
+
+prev_refid: AP020-0100
 ---
 
 Dieser Artikel soll eine Reihe an wichtigen Basis-Typen vorstellen, die man in so gut wie jedem Swift-Projekt nutzen

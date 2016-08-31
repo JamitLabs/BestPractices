@@ -7,6 +7,8 @@ title:      Gute Commit Messages
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
 language:   de
+
+prev_refid: GN010-0300
 ---
 
 In diesem Artikel werden Hilfestellungen für gute Commit Messages gegeben. Zuerst wollen wir den Nutzen von Commit

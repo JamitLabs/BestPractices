@@ -7,6 +7,8 @@ title:      Erstellen eines neuen Projekts
 date:       2016-01-01 00:00:00
 author:     Marina Meier
 language:   de
+
+next_refid: AN010-0200
 ---
 
 In diesem Artikel wird die Erstellung eines neuen Android Studio Projekts

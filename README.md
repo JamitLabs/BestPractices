@@ -100,10 +100,15 @@ title:      <ARTICLE_NAME>
 date:       <FIRST_PUBLISH_DATE>
 author:     <MAIN_AUTHOR_NAME>
 language:   <LANGUAGE_CODE>
+
+prev_refid: <PREVIOUS_ARTICLE_REFID>
+next_refid: <NEXT_ARTICLE_REFID>
 ---
 ```
 
 Note that you should use `00:00:00` as the specified time in the field `FIRST_PUBLISH_DATE` as only the day is relevant to us. Also, the publish date refers to the initial GitHub release of the article and therefore can be set to anything in the past (e.g. `2016-01-01 00:00:00`) for new articles until release.
+
+Make sure to remove `prev_refid` and/or `next_refid` if the article is the last/first/only one in its category. Please also **don't forget to update the `prev_refid` of the next article and the `next_refid` of the previous article** to point to your new article.
 
 #### Using images in new articles
 

@@ -7,6 +7,9 @@ title:      Durchdachte Dateistruktur
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
 language:   de
+
+prev_refid: AP010-0100
+next_refid: AP010-0300
 ---
 
 

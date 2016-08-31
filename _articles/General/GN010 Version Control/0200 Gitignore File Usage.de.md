@@ -7,6 +7,9 @@ title:      Nutzung von Gitignore-Dateien
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
 language:   de
+
+prev_refid: GN010-0150
+next_refid: GN010-0300
 ---
 
 ## Was ist eine Gitignore-Datei?

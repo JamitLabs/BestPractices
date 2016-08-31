@@ -7,6 +7,9 @@ title:      Ergänzen fehlender Xcode-Funktionen
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
 language:   de
+
+prev_refid: AP010-0200
+next_refid: AP020-0100
 ---
 
 In diesem Artikel geht es darum gewisse Schwächen von Xcode mithilfe von Tools und Programmierlösungen auszugleichen.

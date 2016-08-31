@@ -7,6 +7,9 @@ title:      StackViews mit Enums
 date:       2016-08-23 00:00:00
 author:     Florian Pfisterer
 language:   de
+
+prev_refid: AP010-0300
+next_refid: AP020-0200
 ---
 
 Dieser Artikel befasst sich mit der seit iOS 9 verfügbaren Klasse `UIStackView`,

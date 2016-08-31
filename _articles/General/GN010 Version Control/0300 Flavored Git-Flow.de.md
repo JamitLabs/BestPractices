@@ -7,6 +7,9 @@ title:      Abgewandeltes Git-Flow
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
 language:   de
+
+prev_refid: GN010-0200
+next_refid: GN010-0400
 ---
 
 ## Was ist Git-Flow?

@@ -7,6 +7,9 @@ title:      Android Studio Projektstruktur
 date:       2016-01-01 00:00:00
 author:     Marina Meier
 language:   de
+
+prev_refid: AN010-0100
+next_refid: AN010-0250
 ---
 
 In diesem Artikel wird ein sinnvoller Aufbau für ein Android Studio Projekt dargestellt. Dabei geht es um den von

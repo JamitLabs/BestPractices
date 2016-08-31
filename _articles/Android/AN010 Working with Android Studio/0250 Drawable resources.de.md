@@ -7,6 +7,9 @@ title:      Drawable Ressourcen
 date:       2016-01-01 00:00:00
 author:     Marina Meier
 language:   de
+
+prev_refid: AN010-0200
+next_refid: AN010-0300
 ---
 
 Im Verzeichnis ***drawable*** werden verschiedene Arten von Graphiken abgelegt.

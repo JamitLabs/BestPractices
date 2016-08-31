@@ -7,6 +7,8 @@ title:      Erstellen eines neuen Projekts
 date:       2016-01-01 00:00:00
 author:     Simon Back
 language:   de
+
+next_refid: AP010-0200
 ---
 
 Dieser Artikel widmet sich dem Erstellen eines neuen Xcode Projekts. Dabei geht es vor allem um die richtige
