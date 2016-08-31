@@ -129,7 +129,7 @@ Follow these steps to use images within new articles:
 To create a reference to another article use `refid` field of the references article with the following structure:
 
 ```markdown
-[<refid>](<refid>)
+[<refid>](<refid>.html)
 ```
 
 ### Contribution Tips

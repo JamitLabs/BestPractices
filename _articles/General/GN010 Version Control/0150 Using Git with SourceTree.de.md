@@ -159,7 +159,7 @@ hinzufügen.
 
 Der aktuelle Branch, deren Code-Stand man aktuell vorliegen hat (man sagt auch hierzu "ausgecheckt hat") ist fett
 gedruckt. Neue Branches erstellt man über den Button "Branch" in der Toolbar, jedoch raten wir davon ab, da wir in einem
-späteren Artikel zum Thema Git Flow ([GN010-0300](GN010-0300)) eine bessere Alternative erläutern werden.
+späteren Artikel zum Thema Git Flow ([GN010-0300](GN010-0300.html)) eine bessere Alternative erläutern werden.
 
 ### History
 

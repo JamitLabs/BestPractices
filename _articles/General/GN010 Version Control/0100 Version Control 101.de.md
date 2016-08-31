@@ -72,7 +72,7 @@ einen **Push**. Das Gegenstück dazu – das Herunterladen von Code *vom* Remote
 
 In der gemeinsamen Arbeit eines Teams sollte stets klar sein, welche Funktionen die Haupt-Branches haben und wie
 Arbeits-Branches zu benennen sind. Unser ganzheitlicher Vorschlag hierzu ist zu lesen in dem späteren Artikel
-[GN010-0300](GN010-0300). Für die Erklärungen im Folgenden sei `master` der einzige Haupt-Branch und jeder
+[GN010-0300](GN010-0300.html). Für die Erklärungen im Folgenden sei `master` der einzige Haupt-Branch und jeder
 Branch, dessen Name mit `feature/` beginnt ein Arbeits-Branch:
 
 Der Remote Server läuft meist in einem Dienst mit Weboberfläche, wobei [GitHub.com](https://github.com),
@@ -122,7 +122,7 @@ haben **von dessen Einsatz ab**. Stattdessen empfehlen wir die Nutzung eines gut
 **[SourceTree](https://www.sourcetreeapp.com)** ist sowohl für Mac als auch für Windows verfügbar und das Programm
 unserer Wahl. Es ist kostenlos, recht übersichtlich und unterstützt alle wichtigen Arbeitsschritte, die bei der
 täglichen Arbeit mit Git benötigt werden. Die Installation von Git macht SourceTree ebenfalls überflüssig, da eine
-**aktuelle Git-Version bereits integriert** ist. Im nächsten Artikel ([GN010-0150](GN010-0150)) gehen wir im
+**aktuelle Git-Version bereits integriert** ist. Im nächsten Artikel ([GN010-0150](GN010-0150.html)) gehen wir im
 Detail auf die Arbeit mit Git in SourceTree ein.
 
 ## Weiterführende Links

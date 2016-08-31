@@ -26,7 +26,7 @@ layout: default
   <div>
     {% if page.prev_refid %}
       <p style="float:left;">
-        <a href="{{ site.baseurl }}/{{ page.language }}/articles/{{ page.prev_refid }}">
+        <a href="{{ site.baseurl }}/{{ page.language }}/articles/{{ page.prev_refid }}.html">
           <small>
             << {% t 'article.back' %}: {{ page.prev_refid }}
           </small>
@@ -36,7 +36,7 @@ layout: default
 
     {% if page.next_refid %}
       <p style="float:right;">
-        <a href="{{ site.baseurl }}/{{ page.language }}/articles/{{ page.next_refid }}">
+        <a href="{{ site.baseurl }}/{{ page.language }}/articles/{{ page.next_refid }}.html">
           <small>
             {% t 'article.next' %}: {{ page.next_refid }} >>
           </small>
