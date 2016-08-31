@@ -6,7 +6,10 @@ layout: default
   <h1 class="post-title">
     {{ page.title }}
   </h1>
+
   <p class="post-date">
+    {{ page.refid }}
+     •
     <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
       {{ page.date | tdate: 'article.date_format' }}
     </time>
