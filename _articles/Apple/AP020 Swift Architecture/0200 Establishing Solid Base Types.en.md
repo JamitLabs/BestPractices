@@ -1,11 +1,12 @@
 ---
 section:    Apple
-topic:      Swift Architecture
+topicid:    AP020
 refid:      AP020-0200
-permalink:  /articles/AP020-0200.html
+permalink:  /:language/articles/AP020-0200.html
 title:      Establishing Solid Base Types
 date:       2016-08-30 00:00:00
 author:     Florian Pfisterer
+language:   en
 ---
 
 This article is intended to provide a set of solid base types that you can use in almost any Swift project. These types,

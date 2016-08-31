@@ -1,11 +1,12 @@
 ---
 section:    General
-topic:      Version Control
+topicid:    GN010
 refid:      GN010-0150
-permalink:  /articles/GN010-0150.html
+permalink:  /:language/articles/GN010-0150.html
 title:      "Arbeiten mit Git in SourceTree"
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
+language:   de
 ---
 
 In diesem Artikel sollen alltägliche Aufgaben in Git mithilfe des Programms [SourceTree](https://www.sourcetreeapp.com)
@@ -155,7 +156,7 @@ hinzufügen.
 
 Der aktuelle Branch, deren Code-Stand man aktuell vorliegen hat (man sagt auch hierzu "ausgecheckt hat") ist fett
 gedruckt. Neue Branches erstellt man über den Button "Branch" in der Toolbar, jedoch raten wir davon ab, da wir in einem
-späteren Artikel zum Thema Git Flow ([GN010-0300](/articles/GN010-0300)) eine bessere Alternative erläutern werden.
+späteren Artikel zum Thema Git Flow ([GN010-0300](GN010-0300)) eine bessere Alternative erläutern werden.
 
 ### History
 

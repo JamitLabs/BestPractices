@@ -75,7 +75,8 @@ to a topic that was not yet covered by any of the existing folders then **create
 - A new topic that is appended at the end of the current topics increases the highest id by 10
 - A new topic that belongs between existing topics uses the average of the two neighbors topic ids
 - The `<TOPIC_NAME>` is always written in English
-- A new `<TOPIC_NAME>` must be manually placed into the right section within the `_config.yml` file
+- A new `<TOPIC_ID>` must be manually placed into the right section within the `_config.yml` file
+- New translations must be added to the files under `_data/lang` for the `<TOPIC_ID>` keys in the `topic:` section
 
 **NEW ARTICLE RULES**
 
@@ -92,12 +93,13 @@ Also make sure new articles begin with the following structure:
 ```yaml
 ---
 section:    <CATEGORY_NAME>
-topic:      <TOPIC_NAME>
+topicid:    <TOPIC_ID>
 refid:      <CATEGORY_ID><TOPIC_ID>-<ARTICLE_ID>
-permalink:  /articles/<REFID>.html
+permalink:  /:language/articles/<REFID>.html
 title:      <ARTICLE_NAME>
 date:       <FIRST_PUBLISH_DATE>
 author:     <MAIN_AUTHOR_NAME>
+language:   <LANGUAGE_CODE>
 ---
 ```
 
@@ -116,6 +118,14 @@ Follow these steps to use images within new articles:
 - Make sure the `<IMAGE_TITLE>` describes the content of the image in short (mostly 2-5 words)
 - Make sure to write a comment that explains your image to the reader (redundancy is a good thing here).
 - Place the comment in the line below the image inclusion using the structure `*<IMAGE_COMMENT>*`
+
+#### Referencing other articles
+
+To create a reference to another article use `refid` field of the references article with the following structure:
+
+```markdown
+[<refid>](<refid>)
+```
 
 ### Contribution Tips
 

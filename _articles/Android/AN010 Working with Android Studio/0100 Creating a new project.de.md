@@ -1,11 +1,12 @@
 ---
 section:    Android
-topic:      Working with Android Studio
+topicid:    AN010
 refid:      AN010-0100
-permalink:  /articles/AN010-0100.html
+permalink:  /:language/articles/AN010-0100.html
 title:      Erstellen eines neuen Projekts
 date:       2016-01-01 00:00:00
 author:     Marina Meier
+language:   de
 ---
 
 In diesem Artikel wird die Erstellung eines neuen Android Studio Projekts

@@ -1,11 +1,12 @@
 ---
 section:    General
-topic:      Version Control
+topicid:    GN010
 refid:      GN010-0300
-permalink:  /articles/GN010-0300.html
+permalink:  /:language/articles/GN010-0300.html
 title:      Abgewandeltes Git-Flow
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
+language:   de
 ---
 
 ## Was ist Git-Flow?

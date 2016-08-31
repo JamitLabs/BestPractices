@@ -8,7 +8,7 @@ layout: default
   </h1>
   <p class="post-date">
     <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-      {{ page.date | date_to_long_string }}
+      {{ page.date | tdate: 'article.date_format' }}
     </time>
      •
     <span itemprop="author" itemscope itemtype="http://schema.org/Person">

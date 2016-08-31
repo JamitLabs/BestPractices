@@ -3,8 +3,7 @@
 
 # Site settings
 title:               Best Practices
-tagline:             'iOS and Android app development made better.'
-description:         'Some best practices we are using at Jamit Labs categorized by app development platforms.'
+tagline:             'App development made better.'
 url:                 '' # the base hostname and protocol
 email:               cihat.guenduez@jamitlabs.com
 baseurl:             '/BestPractices'
@@ -15,12 +14,12 @@ markdown: kramdown
 # Define new Categories here, order is respected when listing them in TOC
 sections:
   General:
-    - Version Control
+    - GN010
   Apple:
-    - Working with Xcode
-    - Swift Architecture
+    - AP010
+    - AP020
   Android:
-    - Working with Android Studio
+    - AN010
 
 collections:
   articles:
@@ -34,3 +33,13 @@ defaults:
       layout: article
 
 exclude: [vendor, "Gemfile", "Gemfile.lock"]
+
+gems:
+  - jekyll-language-plugin
+
+language_data: data.lang.%%
+language_includes_dir: _i18n
+
+languages:
+  - en
+  - de
