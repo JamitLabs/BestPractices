@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="{{ page.language }}">
 
   {% include head.html %}
 
@@ -15,8 +15,8 @@
           <h3 class="masthead-title">
             <img src="{{ site.baseurl }}/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
             &nbsp;
-            <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
-            <small>{{ site.tagline }}</small>
+            <a href="{{ site.baseurl }}/{{ page.language }}" title="{% t 'site.home_url_title' %}">{% t 'site.title' %}</a>
+            <small>{% t 'site.tagline' %}</small>
           </h3>
         </div>
       </div>

@@ -1,11 +1,12 @@
 ---
 section:    Android
-topic:      Working with Android Studio
+topicid:    AN010
 refid:      AN010-0300
-permalink:  /articles/AN010-0300.html
+permalink:  /:language/articles/AN010-0300.html
 title:      Tipps zum Erstellen von Layouts
 date:       2016-01-01 00:00:00
 author:     Marina Meier
+language:   de
 ---
 
 ## Android Layout

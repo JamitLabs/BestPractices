@@ -1,11 +1,12 @@
 ---
 section:    General
-topic:      Version Control
+topicid:    GN010
 refid:      GN010-0400
-permalink:  /articles/GN010-0400.html
+permalink:  /:language/articles/GN010-0400.html
 title:      Gute Commit Messages
 date:       2016-01-01 00:00:00
 author:     Cihat Gündüz
+language:   de
 ---
 
 In diesem Artikel werden Hilfestellungen für gute Commit Messages gegeben. Zuerst wollen wir den Nutzen von Commit

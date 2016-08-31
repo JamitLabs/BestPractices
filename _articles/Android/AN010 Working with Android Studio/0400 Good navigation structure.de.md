@@ -1,11 +1,12 @@
 ---
 section:    Android
-topic:      Working with Android Studio
+topicid:    AN010
 refid:      AN010-0400
-permalink:  /articles/AN010-0200.html
+permalink:  /:language/articles/AN010-0200.html
 title:      Gute Navigationsstruktur
 date:       2016-01-01 00:00:00
 author:     Marina Meier
+language:   de
 ---
 
 

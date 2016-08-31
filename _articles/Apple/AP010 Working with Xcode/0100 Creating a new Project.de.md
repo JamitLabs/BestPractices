@@ -1,11 +1,12 @@
 ---
 section:    Apple
-topic:      Working with Xcode
+topicid:    AP010
 refid:      AP010-0100
-permalink:  /articles/AP010-0100.html
+permalink:  /:language/articles/AP010-0100.html
 title:      Erstellen eines neuen Projekts
 date:       2016-01-01 00:00:00
 author:     Simon Back
+language:   de
 ---
 
 Dieser Artikel widmet sich dem Erstellen eines neuen Xcode Projekts. Dabei geht es vor allem um die richtige
