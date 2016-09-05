@@ -57,6 +57,9 @@ händisch hinzufügen. Dies kann je nach Projekt sehr viel Zeit in Anspruch nehm
 Außerdem lassen sich in Xcode ähnlich wie beim `NSLocalizedString`-Makro auch textbasierte *Interface*-Elemente über
 Keys lokalisieren, wobei hier jedoch eine XIB-Datei oder ein Storyboard in der Sprache "Base" zum Einsatz kommt, worin
 das Design für alle Sprachen festgelegt wird (siehe [Base
+
+
+
 Internationalization](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html)).
 Auch hier bietet Xcode keine Option, neu hinzugefügte Textelemente im Nachhinein in den dazugehörigen `.strings`-Dateien
 zu ergänzen, sondern erneut ist nervige händische Arbeit gefragt.
@@ -113,30 +116,54 @@ String-Keys](https://github.com/Flinesoft/BartyCrouch/raw/stable/Exclusion-Examp
 ausgeschlossen werden.*
 
 
-## Unstatisch referenzierte Übersetzungen
+## Dynamisch referenzierte Ressourcen
 
 ### Problem
 
-Wie weiter oben bereits erläutert bietet die `Foundation` Library das Makro `NSLocalizedString(key, comment)` um Texte
-in Xcode-Projekten zu übersetzen. Der `key` ist dabei vom Typ `String`, was den großen Nachteil hat, dass alle Vorteile
-von statischer Typisierung beim Builden von Code wegfallen. Das bedeutet konkret, dass Xcode nicht automatisiert
-überprüfen kann, ob zu den Werten, die als Keys im Code genutzt werden auch tatsächlich Übersetzungen existieren. So
-kann ein Tippfehler, eine Änderung des Keys im Code oder fehlende Übersetzungen zu neuen Keys zu dem Problem führen,
-dass am Ende leere Texte in der App angezeigt werden und dies beim Entwickeln und builden gar nicht auffällt.
+Wie weiter oben bereits erläutert bietet die `Foundation` Library das Makro `NSLocalizedString(key, comment)` an, um
+**Texte** in Xcode-Projekten **zu übersetzen**. Der `key` ist dabei vom Typ `String`, was den großen Nachteil hat, dass
+alle Automatismen von statischer Typisierung beim Builden von Code nicht mehr greifen. Das bedeutet konkret, dass Xcode
+nicht überprüfen kann, ob zu den Werten, die als Keys im Code genutzt werden auch tatsächlich Übersetzungen existieren.
+So kann ein Tippfehler, eine Änderung des Keys im Code oder fehlende Übersetzungen zu neuen Keys zu dem Problem führen,
+dass am Ende leere Texte in der App angezeigt werden und dies beim Entwickeln und Builden gar nicht auffällt.
+
+Gleiches gilt auch für **Bilder**, die  mit `UIImage(named:)` durch einen String initialisiert werden. Xcode durchsucht
+dann automatisch sowohl die `.xcassets`-Ordner des Projekts, als auch alle direkt hinzugefügten Bilder und gleicht deren
+Namen mit dem übergebenen `String` ab, um so das korrekte Bild zu finden. **Interfaces** lädt man auf ähnliche Weise
+mittels Strings von Storyboards oder XIBs, **Farben** werden meist mit RGB-Werten bei Notwendigkeit ad-hoc angelegt.
+Analog zu den dynamisch referenzierten Übersetzungen verhält es sich auch bei per Strings referenzierten Bildern oder
+Interfaces. Tippfehler oder  Umbenennungen im Code oder den jeweiligen Ressourcen führen dazu, dass beim Ausführen der
+App Bilder fehlen, Interfaces nicht gefunden werden können oder die Farben an vielen unterschiedlichen Stellen gesucht
+und geändert werden müssen. Xcode zeigt in Fehlerfällen weder Warnungen noch Fehlermeldungen an, da es die tatsächlich
+existierenden Ressourcen schlichtweg nicht kennt, weil sie dynamisch mit den Strings oder den RGB-Werten geladen werden.
+
+Übersetzungen, Bilder, Interfaces und Farben seien im Folgenden unter "Ressourcen" zusammen gefasst.
 
 ### Lösungsvorschlag
 
-Wie für Code gibt es auch für Übersetzungen mithilfe von Tools die Möglichkeit eine Überprüfung ihrer Existenz
-durchzuführen und einen Build fehlschlagen zu lassen, wenn ein Tippfehler vorkommt oder eine Übersetzung komplett fehlt.
-Das Open Source Tool [Laurine](https://github.com/JiriTrecak/Laurine) untersucht nämlich automatisch alle
-`.strings`-Dateien auf ihre Keys und generiert aus diesen eine Code-Struktur namens `Localizations` worin sämtliche Keys
-per Dot-Syntax erreichbar sind und als Ergebnis die jeweilige Übersetzung liefern. Dies ermöglicht es alle Aufrufe von
-`NSLocalizedString(key, comment)` durch Aufrufe wie `Localizations.KeyName` zu ersetzen. Dies löst zum Einen das
-Problem, da Xcode bereits automatisch Code auf Existenz prüft, wenn er kompiliert wird und bietet als Nebeneffekt auch
-den Vorteil, dass man für sämtliche existierende Keys nun auch die Autovervollständigung nutzen kann, was bei reinen
-Strings nicht möglich war.
+Ressourcen sollten statisch über automatisch generierten Code gepflegt und geladen werden, sodass man einerseits gar
+nicht mehr mit fehlenden Ressourcen builden kann (Xcode zeigt Fehlermeldungen an, wenn referenzierter Code nicht
+vorhanden ist) und andererseits eine zentrale Stelle zum Verwalten und Ändern hat. Letzteres ist vor allem bei den
+Farben wichtig, die in den meisten Apps einheitlich sein sollten. Das Tool
+[SwiftGen](https://github.com/AliSoftware/SwiftGen) leistet hierbei hervorragende Dienste und durchsucht das Projekt
+automatisch nach Übersetzungen, Bildern, Interfaces und Farben.
 
-Zusätzlich zur Verwendung von Laurine sei an dieser Stelle noch eine Übersetzungs-Key-Struktur empfohlen, die die
+Installieren lässt sich SwiftGen am einfachsten mit dem Befehl `brew install swiftgen`, vorausgesetzt
+[Homebrew](http://brew.sh/index_de.html) ist installiert. Die Konfiguration in einem Projekt geschieht analog zu
+BartyCrouch mithilfe eines Build Scriptes, in welchem man die verschiedenen Befehle und Pfade, die man nutzen möchte
+angibt. Im Folgenden werden die einzelnen Funktionen erläutert, am Ende folgt ein Beispiel-Build-Script.
+
+#### Übersetzungen
+
+Was Übersetzungen betrifft untersucht SwiftGen automatisch alle `.strings`-Dateien auf ihre Keys und generiert aus
+diesen eine Code-Struktur namens `Strings.swift` worin sämtliche Keys per Dot-Syntax erreichbar sind und als Ergebnis
+die jeweilige Übersetzung liefern. Dies ermöglicht es alle Aufrufe von
+`NSLocalizedString("SETTINGS.NAVIGATION_BAR.TITLE", comment)` durch Aufrufe wie `L10n.NavigationBar.Title` zu ersetzen.
+Dies löst zum Einen das Problem der statischen Überprüfung, da Xcode bereits automatisch Code auf Existenz prüft, wenn
+er kompiliert wird und bietet als Nebeneffekt auch den Vorteil, dass man für sämtliche existierende Keys nun auch die
+Autovervollständigung nutzen kann, was bei reinen Strings nicht möglich wäre.
+
+Zusätzlich zur Verwendung von SwiftGen sei an dieser Stelle noch eine Übersetzungs-Key-Struktur dabei empfohlen, die die
 Autovervollständigungsfunktion maximal ausreizt, Übersetzungskommentare als Kontext-Informanten überflüssig macht und
 das Unterscheiden von Übersetzungs-Keys und tatsächlichen Übersetzungen vereinfacht. Die Struktur sollte folgende Regeln
 einhalten:
@@ -155,65 +182,17 @@ MODEL.ARTICLE.TITLE
 MODEL.ARTICLE.RELEASE_DATE
 ```
 
-In Laurine können sie dann folgendermaßen verwendet werden:
+Mit SwiftGen können sie dann folgendermaßen verwendet werden:
 
 ```swift
-self.title = Localizations.Settings.Title
-articleCell.titleLabel.text = Localizations.Model.Article.Title
+self.title = L10n.Settings.Title
+articleCell.titleLabel.text = L10n.Model.Article.Title
 ```
-TODO: Ergänzen dass Reihenfolge der Buildscripts wichtig ist + screenshot
-Wir empfehlen für die Verwendung von Laurine, neben der Installation per Homebrew, folgendes Build-Script
-([hier](https://github.com/Flinesoft/BartyCrouch#build-script) eine kurze Anleitung dazu) im Xcode-Projekt unter dem
-Build-Script zu BartyCrouch zu hinterlegen:
 
-```shell
-if which LaurineGenerator.swift > /dev/null; then
-    # Get path to main localization file.
-    SOURCE_PATH="$PROJECT_DIR/Sources/Supporting Files/en.lproj/Localizable.strings"
+#### Farben
 
-    # Get path to output.
-    OUTPUT_PATH="$PROJECT_DIR/Sources/Constants/Localizations.swift"
-
-    # Generate Output file.
-    LaurineGenerator.swift -i "$SOURCE_PATH" -c -o "$OUTPUT_PATH"
-else
-    echo "warning: Laurine not installed, download it from https://github.com/JiriTrecak/Laurine"
-fi
-```
-*Hinweis: Man beachte, dass beim Einfügen des Scripts in das Build-Script-Feld in Xcode die Formatierung des Textes
-verloren geht. Diese lässt sich mit ein paar Einrückungen jedoch schnell wieder herstellen, um den Code im Script
-lesbarer zu halten.*
-
-Das Skript setzt den Pfad der resultierenden `Localizations.swift` Datei im Ordner `Code/Constants`, benutzt Englisch
-als Quellsprache für die Keys (falls Englisch nicht existiert sollte der Path `en.lproj` angepasst werden) und
-konfiguriert die Output-Formatierung mittels `-c` Option mit CamelCasing.
-
-## Unstatisch referenzierte Bilder, Interfaces und Farben
-
-### Problem
-
-Bilder lädt man in iOS am Einfachsten mit dem Initializer der Klasse `UIImage` und übergibt dabei den Namen des Bildes.
-Xcode durchsucht dann automatisch sowohl die `.xcassets`-Ordner des Projekts, als auch alle direkt hinzugefügten Bilder
-und gleicht deren Namen mit dem übergebenen `String` ab, um so das korrekte Bild zu finden. Interfaces lädt man auf
-ähnliche Weise mittels Strings von Storyboards oder XIBs, Farben werden meist mit RGB-Werten bei Notwendigkeit ad-hoc
-angelegt. Analog zu den unstatisch referenzierten Übersetzungen (s.o.) verhält es sich auch bei per Strings
-referenzierten Bildern oder Interfaces. Tippfehler oder  Umbenennungen im Code oder den jeweiligen Ressourcen führen
-dazu, dass beim Ausführen der App Bilder fehlen, Interfaces nicht gefunden werden können oder schlichtweg die Farben an
-vielen unterschiedlichen Stellen gesucht und geändert werden müssen. Xcode zeigt in Fehlerfällen weder Warnungen noch
-Fehlermeldungen an, da es die tatsächlich existierenden Ressourcen schlichtweg nicht kennt, da sie dynamisch mit den
-Strings oder den RGB-Werten geladen werden.
-
-### Lösungsvorschlag
-
-Ressourcen sollten statisch über automatisch generierten Code gefplegt und geladen werden, sodass man einerseits gar
-nicht mehr mit fehlenden Ressourcen builden kann (Xcode zeigt Fehlermeldungen an, wenn referenzierter Code nicht
-vorhanden ist) und andererseits eine zentrale Stelle zum Verwalten und Ändern hat. Letzteres ist vor allem bei den
-Farben wichtig, die in den meisten Apps einheitlich sein sollten. Das Tool
-[SwiftGen](https://github.com/AliSoftware/SwiftGen) leistet hierbei hervorragende Dienste und durchsucht das Projekt
-automatisch nach Bildern, Interfaces und Farben.
-
-Nach der Installation über Homebrew sollte für die Einrichtung eine `Colors.txt`-Datei im Hauptverzeichnis des Projekts
-erstellt werden, deren Inhalt etwa folgendermaßen aussehen kann:
+Zur Verwendung der Farbenfunktionalität sollte eine `Colors.txt`-Datei im Hauptverzeichnis des Projekts erstellt werden,
+deren Inhalt etwa folgendermaßen aussehen kann:
 
 ```txt
 Primary     : #40657d
@@ -221,10 +200,31 @@ Secondary   : #657d40
 Accent      : #b7d3e3
 ```
 
-Im nächsten Schritt konfiguriert man auch für SwifGen ein Build-Script, das folgendermaßen aussehen könnte:
+Die Benutzung der konfigurierten Farben sieht dann etwa so aus:
+
+```swift
+self.view.backgroundColor = UIColor(named: .Primary)
+self.view.tintColor = UIColor(named: .Accent)
+```
+
+#### Bilder & Interfaces
+
+Zur Nutzung der Bilder- und Interfaces-Funktionen ist keine spezielle Konfiguration vonnöten. Die Nutzung ist auch
+einfach:
+
+```swift
+let image = UIImage(asset: .Banana)
+let wizardViewCtrl = StoryboardScene.Wizard.initialViewController()
+```
+
+#### Build Script
+
+Das kombinierte Build Script, um alle obigen Funktionen zu nutzen, sieht wie folgt aus (auf Wunsch sind einzelne Zeilen
+entfernbar):
 
 ```shell
 if which swiftgen > /dev/null; then
+    swiftgen strings "$PROJECT_DIR/Sources" -t dot-syntax --output "$PROJECT_DIR/Sources/Constants/Strings.swift"
     swiftgen storyboards "$PROJECT_DIR/Sources" --output "$PROJECT_DIR/Sources/Constants/Storyboards.swift"
     swiftgen images "$PROJECT_DIR/Sources" --output "$PROJECT_DIR/Sources/Constants/Images.swift"
     swiftgen colors "$PROJECT_DIR/Colors.txt" --output "$PROJECT_DIR/Sources/Constants/Colors.swift"
@@ -236,32 +236,10 @@ fi
 verloren geht. Diese lässt sich mit ein paar Einrückungen jedoch schnell wieder herstellen, um den Code im Script
 lesbarer zu halten.*
 
-Auch hier werden die Ergebnis-Dateien im Ordner `Sources/Constants` abgelegt. Fortan werden die Dateien bei jedem Build
-neu erzeugt, sofern es seit der letzten Generierung Änderungen an den jeweiligen Ressourcen gab. Die Benutzung von
-Ressourcen im Code wird fortan statisch erledigt, die Ersetzungen sehen folgendermaßen aus:
+Die Ergebnis-Dateien werden im Ordner `Sources/Constants` abgelegt, welcher vorher erstellt werden sollte. Fortan werden
+die Dateien bei jedem Build neu erzeugt, sofern es seit der letzten Generierung Änderungen an den jeweiligen Ressourcen
+gab.
 
-```swift
-// Laden aus einem Storyboard
-
-// Ohne SwiftGen:
-let homeController = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as? HomeViewController
-// Mit SwiftGen (empfohlen):
-let homeController = StoryboardScene.Home.initialViewController() as? HomeViewController
-
-// Laden eines Bild
-
-// Ohne SwiftGen:
-if let logo = UIImage(named: "Logo") { ... }
-// Mit SwiftGen (empfohlen):
-let logo = UIImage.Asset.Logo.image
-
-// Nutzen einer Farbe
-
-// Ohne SwiftGen:
-self.view.backgroundColor = UIColor(red: 1.0, green: 0.2, blue: 0.16, alpha: 1.0)
-// Mit SwiftGen (empfohlen):
-self.view.backgroundColor = UIColor.Name.Primary.color
-```
 
 ## Fehlende Code Conventions und TODO-Warnungen
 
@@ -279,14 +257,12 @@ ist es diesbezüglich doch eher zu zeitaufwändig und unvollständig (wenn auch 
 Apple-Quelle seien ergänzend die [API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
 empfohlen. Als bessere Alternative gibt es die zusammengefassten und mit Beispielen versehenen Swift Code Conventions
 von [GitHub](https://github.com/github/swift-style-guide) und von
-[raywenderlich.com](https://github.com/raywenderlich/swift-style-guide). Diese Code Conventions spiegeln zwar nicht
-unbedingt auch die vom Jamit Labs empfohlenen Code Conventions wieder, grundsätzlich gehen diese aber in eine gleiche
-Richtung.
+[raywenderlich.com](https://github.com/raywenderlich/swift-style-guide), an die auch wir uns bei Jamit Labs halten.
 
-Während unsere Code Conventions im Detail noch nicht ausgearbeitet sind (später hier ein Link), gibt es einige
-syntaktisch aufwertbare Konventionen, die sich im Open Source Projekt [SwiftLint](https://github.com/realm/SwiftLint)
-auf konfigurierbare Weise manifestieren. Nach einer Installation des SwiftLint-Tools via Homebrew (`brew install
-swiftlint`) kann nun jedes Projekt durch zwei einfache Schritte um eine automatisierten Warnings- und Error-Generator
+Das Open Source Projekt [SwiftLint](https://github.com/realm/SwiftLint) hat es sich zur Aufgabe gemacht die GitHub
+Conventions automatisiert in Xcode zu überprüfen. Nach einer Installation des SwiftLint-Tools via Homebrew (`brew
+install
+swiftlint`) kann nun jedes Projekt durch drei einfache Schritte um eine automatisierten Warnings- und Error-Generator
 bei Nichteinhaltung von bestimmten Code-Konventionen erweitert werden:
 
 * Füge ein Build-Script mit diesem Inhalt für das App- oder Framework-Target hinzu:
@@ -307,11 +283,6 @@ lesbarer zu halten.*
 Bedarf änderbar):
 
 ```yaml
-# rule identifiers to exclude from running
-disabled_rules:
-- trailing_newline
-- trailing_whitespace
-
 # some rules are only opt-in
 opt_in_rules:
 - empty_count
@@ -330,55 +301,24 @@ excluded:
 line_length: 180
 ```
 
-Diese beiden Schritte sorgen dafür, dass bei jedem Entwickler, der den Swift Linter installiert hat automatisch
+Als drittes sollte nun noch eine Einstellung von Xcode angepasst werden, da die Regel `trailing_newline` sonst beim
+Standardverhalten von Xcode Warnungen wegen falsch gesetzter Leerzeichen meldet, die man ganz einfach vermeiden kann:
+Gehe in die Einstellungen von Xcode ("Preferences"), wähle dort den Reiter "Text Editing" und stelle sicher, dass neben
+"Automatically trim trailing whitespace" auch "Including whitespace-only lines" angehakt ist. Dies stellt sicher, dass
+bei Umbrüchen und leer gelassenen Zeilen entstehende Leerzeichen automatisch gelöscht werden. Hier kann übrigens auch
+gleich die Empfehlungslinie für die Zeilenbreite in Xcode angepasst werden unter "Page guide at column" - wir empfehlen
+180 als Kompromiss zwischen ständigen Zeilenumbrüchen und Lesbarkeit von Code.
+
+Diese drei Schritte sorgen dafür, dass bei jedem Entwickler, der den Swift Linter installiert hat automatisch
 Warnungen oder in bestimmten Fällen sogar Errors in Xcode generiert und angezeigt werden, wenn die konfigurierten
 Konventionen nicht eingehalten werden. Falls jemand das Tool SwiftLint nicht installiert hat wird wenigstens eine
 Warnung angezeigt, dass der Swift Linter nicht installiert ist. Als netten Nebeneffekt zeigt SwiftLint zusätzlich auch
 Code-Kommentare, die ein `TODO:` oder `FIXME` enthalten als Warnungen an, damit man diese nicht so schnell vergessen
 oder übersehen kann.
 
-In manchen Fällen mag es vorkommen, dass der Swift Linter eine Zeile beanstandet, die eigentlich keinen Fehler darstellt
-sondern lediglich als eine Falschmeldung von SwiftLint zu werten ist. Nachfolgen sei ein Beispiel genannt:
 
-TODO: Das Beispiel könnte man aus dem Jamit Challenge Projekt zitieren, ich habe hier eine andere Quelle benutzt.
+## Weiterführende Links
 
-```swift
-extension Board.Size: Equatable {}
-
-/// The Equatable protocol implementation function.
-///
-/// - Parameters:
-///   - lhs: Left hand side of the comparison.
-///   - rhs: Right hand side of the comparison.
-/// - Returns: `true` if `lhs` is equal to `rhs` else `false`.
-public func ==(lhs: Board.Size, rhs: Board.Size) -> Bool { // << hier zeigt der Swift Linter eine Warnung, weil hinter
-'==' kein Leerzeichen steht (Regel: operator_whitespace)
-    return lhs.columns == rhs.columns && lhs.rows == rhs.rows
-}
-```
-
-In dem Code-Beispiel wird eine Operator-Funktion namens `==` definiert, um die Struktur `Board.Size` mit dem
-`Equatable`-Protokoll kompatibel zu machen. SwiftLint enthält unter anderem eine Regel namens "operator_whitespace",
-welche dazu beiträgt, dass Ausdrücke wie `4.4+4.2*2-7.4+2.4==2.8` etwas lesbarer werden, indem man einfach Leerzeichen
-vor und nach Operatoren wie `==` einsetzt. Da hier jedoch eine Operator-Funktion definiert wird und nach Funktionen kein
-Leerzeichen auftauchen sollte, handelt es sich hierbei um eine Falschmeldung. In solchen Fällen kann man eine Regel für
-die betreffende Zeile abschalten. Dazu fügt man am Ende der Zeile einen entsprechenden Kommentar ein, woraus folgender
-Code für obiges Beispiel folgt:
-
-```swift
-extension Board.Size: Equatable {}
-
-/// The Equatable protocol implementation function.
-///
-/// - Parameters:
-///   - lhs: Left hand side of the comparison.
-///   - rhs: Right hand side of the comparison.
-/// - Returns: `true` if `lhs` is equal to `rhs` else `false`.
-public func ==(lhs: Board.Size, rhs: Board.Size) -> Bool { // swiftlint:disable:this operator_whitespace
-    return lhs.columns == rhs.columns && lhs.rows == rhs.rows
-}
-```
-
-Nun wird keine Warnmeldung mehr für die Operator-Definition angezeigt und man kann die Liste der Warnungen stets leer
-halten. Weitere Möglichkeiten wenige Code-Zeilen vom Swift Linter auszuschließen sind
-[hier](https://github.com/realm/SwiftLint#disable-a-rule-in-code) dokumentiert.
+- [BartyCrouch Dokumentation](https://github.com/Flinesoft/BartyCrouch)
+- [SwiftGen Dokumentation](https://github.com/AliSoftware/SwiftGen)
+- [SwiftLint Dokumentation](https://github.com/realm/SwiftLint)
