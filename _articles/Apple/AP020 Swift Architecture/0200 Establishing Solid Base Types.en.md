@@ -25,7 +25,7 @@ To solve this problem, consider the following generic Result type:
 enum Result<T>
 {
     case success(T)
-    case error(ErrorType)
+    case failure(ErrorType)
 }
 ```
 
@@ -67,7 +67,7 @@ static func loadUsers(completion: (Result<[User]>) -> Void)
         }
         catch let error
         {
-            completion(.error(error))
+            completion(.failure(error))
         }
     })
 }
@@ -80,12 +80,30 @@ When we then use this function, in our `ViewController` for example, we neither 
 DatabaseClient.loadUsers { result in
     switch result
     {
-    case .error(let error):
+    case .failure(let error):
         // present an alert etc.
     case .success(let users):
         // update the UI and display the users
     }
 }
+```
+
+### One Extension
+
+In some cases it might be useful if you can just quickly check if there's an object (`.success`) or not (`.failure`). Therefore we can add the following extension to our Result type:
+
+```swift
+extension Result
+{
+    var optional: T? {
+        switch self
+        {
+            case .success(let object): return object
+            default: return nil
+        }
+    }
+}
+
 ```
 
 ## 2. A Model Type
