@@ -87,8 +87,7 @@ Bild, um Überschrifts-Text oder normalen Text handelt beispielsweise. Um den In
 entwerfen wir folgenden Enum-Typ:
 
 ```swift
-enum StackViewElement
-{
+enum StackViewElement {
     case text(String)
     case image(UIImage)
     // ... weitere Typen wenn gebraucht
@@ -108,18 +107,17 @@ ein `UIView` zurückgibt:
 extension StackViewElement
 {
     var view: UIView {
-        switch self
-        {
-            case .text(let content):
-                let label = UILabel()
-                label.text = content
-                // weitere Konfigurationen ...
-                return label
+        switch self {
+        case .text(let content):
+            let label = UILabel()
+            label.text = content
+            // weitere Konfigurationen ...
+            return label
 
-            case .image(let image):
-                let imageView = UIImageView(image: image)
-                imageView.contentMode = .ScaleAspectFill
-                return imageView
+        case .image(let image):
+            let imageView = UIImageView(image: image)
+            imageView.contentMode = .ScaleAspectFill
+            return imageView
         }
     }
 }
@@ -129,10 +127,8 @@ Um unser Array von `StackViewElement` nun in ein fertiges `UIStackView` umzuwand
 'convenience Initializer' für `UIStackViews`:
 
 ```swift
-extension UIStackView
-{
-    convenience init(elements: [StackViewElement])
-    {
+extension UIStackView {
+    convenience init(elements: [StackViewElement]) {
         self.init()
         // bei Bedarf können wir hier schon Konfigurationen vornehmen:
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -154,18 +150,15 @@ muss man dann nur noch ein Array von   `StackViewElement` aus den Serverdaten er
 einen`StackViewController`  initialisieren.
 
 ```swift
-final class StackViewController: UIViewController
-{
+final class StackViewController: UIViewController {
     private let elements: [StackViewElement]
 
-    init(elements: [StackViewElement])
-    {
+    init(elements: [StackViewElement]) {
         self.elements = elements
         super.init(nibName: nil, bundle: nil)
     }
 
-    required init?(coder aDecoder: NSCoder)
-    {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }
@@ -173,10 +166,8 @@ final class StackViewController: UIViewController
 Und in `viewDidLoad` erstellen wir dann aus der `elements`-Property ein `UIStackView`:
 
 ```swift
-extension StackViewController
-{
-    override func viewDidLoad()
-    {
+extension StackViewController {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         let stackView = UIStackView(elements: self.elements)

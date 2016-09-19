@@ -22,8 +22,7 @@ different nested function calls nor do you want to unwrap optionals all the time
 To solve this problem, consider the following generic Result type:
 
 ```swift
-enum Result<T>
-{
+enum Result<T> {
     case success(T)
     case failure(ErrorType)
 }
@@ -38,8 +37,7 @@ The Result type basically extends the Swift standard library optional type by pr
 result object (`T`) available.
 
 ```swift
-enum Optional<T>
-{
+enum Optional<T> {
     case some(T)
     case none
 }
@@ -53,20 +51,16 @@ Consider the following function that asynchronously loads some users from a remo
 `DatabaseClient`, for example):
 
 ```swift
-static func loadUsers(completion: (Result<[User]>) -> Void)
-{
+static func loadUsers(completion: (Result<[User]>) -> Void) {
     let queue =
         dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
 
     dispatch_async(queue, {
-        do
-        {
+        do {
             // .. heavy network tasks to load the users
             let users: [User] = try networkOperationThatMightThrow()
             completion(.success(users))
-        }
-        catch let error
-        {
+        } catch let error {
             completion(.failure(error))
         }
     })
@@ -78,8 +72,7 @@ When we then use this function, in our `ViewController` for example, we neither 
 
 ```swift
 DatabaseClient.loadUsers { result in
-    switch result
-    {
+    switch result {
     case .failure(let error):
         // present an alert etc.
     case .success(let users):
@@ -96,10 +89,9 @@ In some cases it might be useful if you can just quickly check if there's an obj
 extension Result
 {
     var optional: T? {
-        switch self
-        {
-            case .success(let object): return object
-            default: return nil
+        switch self {
+        case .success(let object): return object
+        default: return nil
         }
     }
 }
@@ -132,10 +124,8 @@ With Swift, we can now write `protocol extensions` to add functionality to `prot
 implementation of our Model type:
 
 ```swift
-protocol Model
-{
+protocol Model {
     var id: String { get }
-
     var createdAt: NSDate { get }
     var updatedAt: NSDate { get set }
 }
@@ -145,10 +135,8 @@ Now every model type (like customer, poduct, invoice, etc. for example) has to i
 share any functionality yet, but we'll add that now; with the magic of Swift's `protocol extensions`:
 
 ```swift
-extension Model
-{
-    func save(completion: Result<Self>)
-    {
+extension Model {
+    func save(completion: Result<Self>) {
         // save the object using the `id` property for example
     }
 }

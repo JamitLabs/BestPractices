@@ -24,8 +24,7 @@ Optionals unwrappen.
 Um dieses Problem zu lösen, betrachte man den folgenden generischen Result Typ:
 
 ```swift
-enum Result<T>
-{
+enum Result<T> {
     case success(T)
     case failure(ErrorType)
 }
@@ -41,8 +40,7 @@ Der Result Typ erweitert eigentlich nur den Swift Standard-Optional-Typ, indem b
 mitgeliefert wird, warum kein Ergebnisobjekt (``T``) vorliegt.
 
 ```swift
-enum Optional<T>
-{
+enum Optional<T> {
     case some(T)
     case none
 }
@@ -56,20 +54,16 @@ Man betrachte die folgende Funktion, die asynchron `Users` aus einer Netzwerkdat
 einer Klasse `DatabaseClient`).
 
 ```swift
-static func loadUsers(completion: (Result<[User]>) -> Void)
-{
+static func loadUsers(completion: (Result<[User]>) -> Void) {
     let queue =
         dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
 
     dispatch_async(queue, {
-        do
-        {
+        do {
             // aufwändiger Netzwerkaufruf, der einen Error werfen könnte
             let users: [User] = try networkOperationThatMightThrow()
             completion(.success(users))
-        }
-        catch let error
-        {
+        } catch let error {
             completion(.failure(error))
         }
     })
@@ -81,8 +75,7 @@ Wenn wir diese Funktion dann zum Beispiel in unserem  `ViewController` benutzen,
 
 ```swift
 DatabaseClient.loadUsers { result in
-    switch result
-    {
+    switch result {
     case .failure(let error):
         // einen Alert zeigen etc.
     case .success(let users):
@@ -97,13 +90,11 @@ In manchen Fällen kann es günstig sein, wenn man einfach nur kurz prüfen kann
 nicht (`.failure`). Dafür können wir den Result Typ folgendermaßen erweitern:
 
 ```swift
-extension Result
-{
+extension Result {
     var optional: T? {
-        switch self
-        {
-            case .success(let object): return object
-            default: return nil
+        switch self {
+        case .success(let object): return object
+        default: return nil
         }
     }
 }
@@ -139,10 +130,8 @@ In Swift kann man nun `protocol extensions` benutzen, um Funktionalität zu `pro
 folgende erste Implementierung unseres Model-Typs:
 
 ```swift
-protocol Model
-{
+protocol Model {
     var id: String { get }
-
     var createdAt: NSDate { get }
     var updatedAt: NSDate { get set }
 }
@@ -152,10 +141,8 @@ Jeder Model-Typ (wie zum Beispiel Kunde, Produkt, Rechnung, etc.) muss jetzt die
 keine Funktionalität geteilt, diese fügen wir jetzt aber mit Hilfe von Swifts `protocol extensions` hinzu:
 
 ```swift
-extension Model
-{
-    func save(completion: Result<Self>)
-    {
+extension Model {
+    func save(completion: Result<Self>) {
         // das Objekt z.B. mithilfe der `id` speichern
     }
 }
