@@ -56,11 +56,7 @@ händisch hinzufügen. Dies kann je nach Projekt sehr viel Zeit in Anspruch nehm
 
 Außerdem lassen sich in Xcode ähnlich wie beim `NSLocalizedString`-Makro auch textbasierte *Interface*-Elemente über
 Keys lokalisieren, wobei hier jedoch eine XIB-Datei oder ein Storyboard in der Sprache "Base" zum Einsatz kommt, worin
-das Design für alle Sprachen festgelegt wird (siehe [Base
-
-
-
-Internationalization](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html)).
+das Design für alle Sprachen festgelegt wird (siehe [Base Internationalization](https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html)).
 Auch hier bietet Xcode keine Option, neu hinzugefügte Textelemente im Nachhinein in den dazugehörigen `.strings`-Dateien
 zu ergänzen, sondern erneut ist nervige händische Arbeit gefragt.
 
