@@ -4,7 +4,7 @@
 # Site settings
 title:               Best Practices
 tagline:             'App development made better.'
-url:                 '' # the base hostname and protocol
+url:                 'https://jamitlabs.github.io'
 email:               cihat.guenduez@jamitlabs.com
 baseurl:             '/BestPractices'
 
