@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      About this project &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        English
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        German
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/en/about.html">About this project</a>
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/en" title="Home">Best Practices</a>
+            <small>App development made better.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <div class="page">
+    <header class="post-header">
+      <h1 class="page-title">About this project</h1>
+    </header>
+    <p>Some <strong>best practices</strong> categorized by app development platform we are using at Jamit Labs.</p>
+
+<p>The goal of this project is both to <strong>provide many articles to cover independent topics</strong> using a typical blogpost-like
+length and to provide a book-like structure meaning that <strong>articles are sorted to reflect their topics relevance</strong>
+regarding the stage of the projects development and/or the programmers learning progress.</p>
+
+<p>This has two main advantages:</p>
+
+<ul>
+  <li>articles can be read <strong>on-demand</strong> (meaning: when they are needed) and work well as <strong>reference</strong></li>
+  <li>beginners can <strong>acquire knowledge step by step</strong> by following the articles structure</li>
+</ul>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>This project is open sourced on GitHub <a href="#">here</a>. If you find any failures, deprecations, missing things or uncovered
+topics you can tell us about it by opening an issue on GitHub.</p>
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

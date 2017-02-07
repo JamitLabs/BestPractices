@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Ergänzen fehlender Xcode-Funktionen &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Ergänzen fehlender Xcode-Funktionen
+  </h1>
+
+  <p class="post-date">
+    AP010-0300
+     •
+    <time datetime="2016-01-01T01:00:00+01:00" itemprop="datePublished">
+      01. Januar 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Cihat Gündüz
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <p>In diesem Artikel geht es darum gewisse Schwächen von Xcode mithilfe von Tools und Programmierlösungen auszugleichen.
+Hierzu wird für jedes Thema zunächst das Problem mit Xcode und dessen mögliche Folgen in der Praxis erläutert, woraufhin
+ein Lösungsvorschlag gegeben wird.</p>
+
+<h2 id="fehlende-aktualisierung-von-bersetzungen">Fehlende Aktualisierung von Übersetzungen</h2>
+
+<h3 id="problem">Problem</h3>
+
+<p>Xcode bietet die Möglichkeit mithilfe des in der <code class="highlighter-rouge">Foundation</code> Library definierten Makros <code class="highlighter-rouge">NSLocalizedString(key,
+comment)</code> Texte programmatisch zu lokalisieren. Dies ermöglicht das Anbieten einer App in vielen verschiedenen
+Programmiersprachen, deren Übersetzungen in den <code class="highlighter-rouge">Localizable.strings</code>-Dateien zusammengefasst sind (für jede Sprache
+eine eigene). Dabei wird im Quellcode lediglich ein Key verwendet, welcher in den <code class="highlighter-rouge">.strings</code>-Dateien die jeweiligen
+Texte in den jeweiligen Sprachen zugewiesen werden.</p>
+
+<p>Eine <code class="highlighter-rouge">Localizable.strings</code> für die deutsche Sprache sieht etwa so aus:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="s">"HOME.NAV_BAR.TITLE"</span> <span class="o">=</span> <span class="s">"Start"</span><span class="p">;</span>
+<span class="s">"HOME.SETTINGS_BUTTON.NORMAL_TITLE"</span> <span class="o">=</span> <span class="s">"Einstellungen"</span><span class="p">;</span>
+<span class="s">"SETTINGS.NAV_BAR.TITLE"</span> <span class="o">=</span> <span class="s">"Einstellungen"</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Die zugehörige englische Version dann etwa so:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="s">"HOME.NAV_BAR.TITLE"</span> <span class="o">=</span> <span class="s">"Home"</span><span class="p">;</span>
+<span class="s">"HOME.SETTINGS_BUTTON.NORMAL_TITLE"</span> <span class="o">=</span> <span class="s">"Settings"</span><span class="p">;</span>
+<span class="s">"SETTINGS.NAV_BAR.TITLE"</span> <span class="o">=</span> <span class="s">"Settings"</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Im Code wird das Ganze dann folgendermaßen verwendet:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">titleLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="kt">NSLocalizedString</span><span class="p">(</span><span class="s">"HOME.NAV_BAR.TITLE"</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Führt man eine App aus, sucht sie sich auf dem Endgerät je nach Geräteeinstellung die passenden Texte automatisch heraus
+und ersetzt die Keys, die im Quellcode verwendet wurden. Leider muss man in Xcode aktuell jedoch jeden neuen Key, den
+man im Code mittels <code class="highlighter-rouge">NSLocalizedString</code> verwendet in jeder einzelnen Sprachfassung der <code class="highlighter-rouge">.strings</code> Dateien einzeln
+händisch hinzufügen. Dies kann je nach Projekt sehr viel Zeit in Anspruch nehmen und ist zudem fehleranfällig.</p>
+
+<p>Außerdem lassen sich in Xcode ähnlich wie beim <code class="highlighter-rouge">NSLocalizedString</code>-Makro auch textbasierte <em>Interface</em>-Elemente über
+Keys lokalisieren, wobei hier jedoch eine XIB-Datei oder ein Storyboard in der Sprache “Base” zum Einsatz kommt, worin
+das Design für alle Sprachen festgelegt wird (siehe <a href="https://developer.apple.com/library/ios/documentation/MacOSX/Conceptual/BPInternational/InternationalizingYourUserInterface/InternationalizingYourUserInterface.html">Base Internationalization</a>).
+Auch hier bietet Xcode keine Option, neu hinzugefügte Textelemente im Nachhinein in den dazugehörigen <code class="highlighter-rouge">.strings</code>-Dateien
+zu ergänzen, sondern erneut ist nervige händische Arbeit gefragt.</p>
+
+<p>Fügt man in einem Storyboard oder einer XIB etwa ein neues <code class="highlighter-rouge">UILabel</code>-Element hinzu und vergibt dort den Text
+“Nutzername”, so bleiben die zugehörigen Strings-Dateien zum Storyboard oder XIB leer und erhalten nicht automatisch das
+neue <code class="highlighter-rouge">UILabel</code> als einen neuen Key-Eintrag. Die einzige Ausnahme bildet hier der Moment, in dem man ein Storyboard oder
+XIB <em>erstmals</em> lokalisiert. Beim Lokalisierungsvorgang durchsucht Xcode die Interface-Elemente und tut, was es
+eigentlich regelmäßig tun sollte, nämlich die gefundenen Keys in allen Sprachdateien automatisch anzulegen – dies ist in
+einer Welt mit verändernden Anforderungen jedoch keine asureichende Lösung. Hier muss dringend eine ergänzend
+funktionierende Lösung her.</p>
+
+<h3 id="lsungsvorschlag">Lösungsvorschlag</h3>
+
+<p>Das Open Source Tool <a href="https://github.com/Flinesoft/BartyCrouch">BartyCrouch</a> wurde genau zur Lösung dieser beiden
+Probleme geboren. Die Installation findet via Homebrew mit den Befehlen <code class="highlighter-rouge">brew tap flinesoft/bartycrouch</code> und <code class="highlighter-rouge">brew
+install flinesoft/bartycrouch/bartycrouch</code> statt. Anschließend konfiguriert man BartyCrouch mittels eines Build-Scripts,
+welches im einfachen Fall folgendermaßen aussieht:</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="k">if </span>which bartycrouch &gt; /dev/null; <span class="k">then</span>
+    <span class="c"># Incrementally update all Storyboards/XIBs strings files</span>
+    bartycrouch interfaces -p <span class="s2">"</span><span class="nv">$PROJECT_DIR</span><span class="s2">/Sources"</span>
+
+    <span class="c"># Add new keys to Localizable.strings files from NSLocalizedString in code</span>
+    bartycrouch code -p <span class="s2">"</span><span class="nv">$PROJECT_DIR</span><span class="s2">/Sources"</span> -l <span class="s2">"</span><span class="nv">$PROJECT_DIR</span><span class="s2">/Sources"</span> -a
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch"</span>
+<span class="k">fi</span>
+</code></pre>
+</div>
+
+<p>Wie man in einem Projekt ein Build Script hinzufügt wird <a href="https://github.com/Flinesoft/BartyCrouch#build-script">hier</a>
+ausführlich erklärt. Ist das einmal geschehen wird BartyCrouch fortan automatisch alle Base-lokalisierten Storyboards
+und XIBs im Projektordner durchsuchen und aus den gefundenen Texten Einträge in den Strings-Dateien erstellen. Das
+Gleiche wird auch mit Objective-C und Swift-Dateien getan und entsprechend die <code class="highlighter-rouge">Localizable.strings</code> Dateien
+aktualisiert.</p>
+
+<p>Da man beim Entwickeln von Natur aus immer wieder builden muss, braucht man sich also nach dem einmaligen Einrichten des
+Skripts pro Projekt um nichts mehr zu kümmern, da nun alle neuen Lokalisierungen bei jedem Build aktuell gehalten
+werden. Die Übersetzungen werden hierbei übrigens leer gelassen, diese müssen dann natürlich noch ausgefüllt werden.</p>
+
+<h4 id="ausnahmen">Ausnahmen</h4>
+
+<p>BartyCrouch funktioniert grundsätzlich so, dass es <em>sämtliche</em> übersetzbaren Interface-Elemente in Storyboards und XIBs
+in die <code class="highlighter-rouge">.strings</code> Dateien aufnimmt. Manchmal legt man jedoch etwa ein <code class="highlighter-rouge">UILabel</code>-Element im Interface Builder an mit der
+Absicht dessen Wert erst später programmatisch zu setzen – eine Übersetzung wäre dafür also sinnlos. In solchen Fällen
+bietet BartyCrouch die Möglichkeit mithilfe der Markierung <code class="highlighter-rouge">#bc-ignore!</code> das Ignorieren des Interface Elements bei der
+automatischen Übersetzung zu erzwingen. Das so markierte Element wird dann nicht in die <code class="highlighter-rouge">.strings</code> Dateien eingefügt.
+Dies kann etwa so aussehen:</p>
+
+<p><img src="https://github.com/Flinesoft/BartyCrouch/raw/stable/Exclusion-Example.png" alt="Beispielbild mit teilweise automatisch generierten
+String-Keys" />
+<em>Hier werden die Werte (rechts) für die Bezeichner (links) programmatisch gesetzt und können deshalb von der Übersetzung
+ausgeschlossen werden.</em></p>
+
+<h2 id="dynamisch-referenzierte-ressourcen">Dynamisch referenzierte Ressourcen</h2>
+
+<h3 id="problem-1">Problem</h3>
+
+<p>Wie weiter oben bereits erläutert bietet die <code class="highlighter-rouge">Foundation</code> Library das Makro <code class="highlighter-rouge">NSLocalizedString(key, comment)</code> an, um
+<strong>Texte</strong> in Xcode-Projekten <strong>zu übersetzen</strong>. Der <code class="highlighter-rouge">key</code> ist dabei vom Typ <code class="highlighter-rouge">String</code>, was den großen Nachteil hat, dass
+alle Automatismen von statischer Typisierung beim Builden von Code nicht mehr greifen. Das bedeutet konkret, dass Xcode
+nicht überprüfen kann, ob zu den Werten, die als Keys im Code genutzt werden auch tatsächlich Übersetzungen existieren.
+So kann ein Tippfehler, eine Änderung des Keys im Code oder fehlende Übersetzungen zu neuen Keys zu dem Problem führen,
+dass am Ende leere Texte in der App angezeigt werden und dies beim Entwickeln und Builden gar nicht auffällt.</p>
+
+<p>Gleiches gilt auch für <strong>Bilder</strong>, die  mit <code class="highlighter-rouge">UIImage(named:)</code> durch einen String initialisiert werden. Xcode durchsucht
+dann automatisch sowohl die <code class="highlighter-rouge">.xcassets</code>-Ordner des Projekts, als auch alle direkt hinzugefügten Bilder und gleicht deren
+Namen mit dem übergebenen <code class="highlighter-rouge">String</code> ab, um so das korrekte Bild zu finden. <strong>Interfaces</strong> lädt man auf ähnliche Weise
+mittels Strings von Storyboards oder XIBs, <strong>Farben</strong> werden meist mit RGB-Werten bei Notwendigkeit ad-hoc angelegt.
+Analog zu den dynamisch referenzierten Übersetzungen verhält es sich auch bei per Strings referenzierten Bildern oder
+Interfaces. Tippfehler oder  Umbenennungen im Code oder den jeweiligen Ressourcen führen dazu, dass beim Ausführen der
+App Bilder fehlen, Interfaces nicht gefunden werden können oder die Farben an vielen unterschiedlichen Stellen gesucht
+und geändert werden müssen. Xcode zeigt in Fehlerfällen weder Warnungen noch Fehlermeldungen an, da es die tatsächlich
+existierenden Ressourcen schlichtweg nicht kennt, weil sie dynamisch mit den Strings oder den RGB-Werten geladen werden.</p>
+
+<p>Übersetzungen, Bilder, Interfaces und Farben seien im Folgenden unter “Ressourcen” zusammen gefasst.</p>
+
+<h3 id="lsungsvorschlag-1">Lösungsvorschlag</h3>
+
+<p>Ressourcen sollten statisch über automatisch generierten Code gepflegt und geladen werden, sodass man einerseits gar
+nicht mehr mit fehlenden Ressourcen builden kann (Xcode zeigt Fehlermeldungen an, wenn referenzierter Code nicht
+vorhanden ist) und andererseits eine zentrale Stelle zum Verwalten und Ändern hat. Letzteres ist vor allem bei den
+Farben wichtig, die in den meisten Apps einheitlich sein sollten. Das Tool
+<a href="https://github.com/AliSoftware/SwiftGen">SwiftGen</a> leistet hierbei hervorragende Dienste und durchsucht das Projekt
+automatisch nach Übersetzungen, Bildern, Interfaces und Farben.</p>
+
+<p>Installieren lässt sich SwiftGen am einfachsten mit dem Befehl <code class="highlighter-rouge">brew install swiftgen</code>, vorausgesetzt
+<a href="http://brew.sh/index_de.html">Homebrew</a> ist installiert. Die Konfiguration in einem Projekt geschieht analog zu
+BartyCrouch mithilfe eines Build Scriptes, in welchem man die verschiedenen Befehle und Pfade, die man nutzen möchte
+angibt. Im Folgenden werden die einzelnen Funktionen erläutert, am Ende folgt ein Beispiel-Build-Script.</p>
+
+<h4 id="bersetzungen">Übersetzungen</h4>
+
+<p>Was Übersetzungen betrifft untersucht SwiftGen automatisch alle <code class="highlighter-rouge">.strings</code>-Dateien auf ihre Keys und generiert aus
+diesen eine Code-Struktur namens <code class="highlighter-rouge">Strings.swift</code> worin sämtliche Keys per Dot-Syntax erreichbar sind und als Ergebnis
+die jeweilige Übersetzung liefern. Dies ermöglicht es alle Aufrufe von
+<code class="highlighter-rouge">NSLocalizedString("SETTINGS.NAVIGATION_BAR.TITLE", comment)</code> durch Aufrufe wie <code class="highlighter-rouge">L10n.NavigationBar.Title</code> zu ersetzen.
+Dies löst zum Einen das Problem der statischen Überprüfung, da Xcode bereits automatisch Code auf Existenz prüft, wenn
+er kompiliert wird und bietet als Nebeneffekt auch den Vorteil, dass man für sämtliche existierende Keys nun auch die
+Autovervollständigung nutzen kann, was bei reinen Strings nicht möglich wäre.</p>
+
+<p>Zusätzlich zur Verwendung von SwiftGen sei an dieser Stelle noch eine Übersetzungs-Key-Struktur dabei empfohlen, die die
+Autovervollständigungsfunktion maximal ausreizt, Übersetzungskommentare als Kontext-Informanten überflüssig macht und
+das Unterscheiden von Übersetzungs-Keys und tatsächlichen Übersetzungen vereinfacht. Die Struktur sollte folgende Regeln
+einhalten:</p>
+
+<ul>
+  <li>Die Keys werden KOMPLETT IN GROSSBUCHSTABEN GESCHRIEBEN</li>
+  <li>Die Keys werden hierarchisch.mit.Punkten.getrennt</li>
+  <li>Trennungen zwischen Wörtern in den Keys werden mit_Unterstrichen_umgesetzt</li>
+</ul>
+
+<p>Nachfolgend sind ein paar Beispiel-Keys aufgelistet, die diese Vorgaben einhalten:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kt">SETTINGS</span><span class="o">.</span><span class="kt">TITLE</span>
+<span class="kt">SETTINGS</span><span class="o">.</span><span class="kt">FONT_SECTION</span><span class="o">.</span><span class="kt">SIZE</span>
+<span class="kt">SETTINGS</span><span class="o">.</span><span class="kt">FONT_SECTION</span><span class="o">.</span><span class="kt">COLOR</span>
+<span class="kt">MODEL</span><span class="o">.</span><span class="kt">ARTICLE</span><span class="o">.</span><span class="kt">TITLE</span>
+<span class="kt">MODEL</span><span class="o">.</span><span class="kt">ARTICLE</span><span class="o">.</span><span class="kt">RELEASE_DATE</span>
+</code></pre>
+</div>
+
+<p>Mit SwiftGen können sie dann folgendermaßen verwendet werden:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="kt">L10n</span><span class="o">.</span><span class="kt">Settings</span><span class="o">.</span><span class="kt">Title</span>
+<span class="n">articleCell</span><span class="o">.</span><span class="n">titleLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="kt">L10n</span><span class="o">.</span><span class="kt">Model</span><span class="o">.</span><span class="kt">Article</span><span class="o">.</span><span class="kt">Title</span>
+</code></pre>
+</div>
+
+<h4 id="farben">Farben</h4>
+
+<p>Zur Verwendung der Farbenfunktionalität sollte eine <code class="highlighter-rouge">Colors.txt</code>-Datei im Hauptverzeichnis des Projekts erstellt werden,
+deren Inhalt etwa folgendermaßen aussehen kann:</p>
+
+<pre><code class="language-txt">Primary     : #40657d
+Secondary   : #657d40
+Accent      : #b7d3e3
+</code></pre>
+
+<p>Die Benutzung der konfigurierten Farben sieht dann etwa so aus:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="o">.</span><span class="kt">Primary</span><span class="p">)</span>
+<span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">tintColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="o">.</span><span class="kt">Accent</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h4 id="bilder--interfaces">Bilder &amp; Interfaces</h4>
+
+<p>Zur Nutzung der Bilder- und Interfaces-Funktionen ist keine spezielle Konfiguration vonnöten. Die Nutzung ist auch
+einfach:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">image</span> <span class="o">=</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">asset</span><span class="p">:</span> <span class="o">.</span><span class="kt">Banana</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">wizardViewCtrl</span> <span class="o">=</span> <span class="kt">StoryboardScene</span><span class="o">.</span><span class="kt">Wizard</span><span class="o">.</span><span class="nf">initialViewController</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h4 id="build-script">Build Script</h4>
+
+<p>Das kombinierte Build Script, um alle obigen Funktionen zu nutzen, sieht wie folgt aus (auf Wunsch sind einzelne Zeilen
+entfernbar):</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="k">if </span>which swiftgen &gt; /dev/null; <span class="k">then
+    </span>swiftgen strings <span class="s2">"</span><span class="nv">$PROJECT_DIR</span><span class="s2">/Sources"</span> -t dot-syntax --output <span class="s2">"</span><span class="nv">$PROJECT_DIR</span><span class="s2">/Sources/Constants/Strings.swift"</span>
+    swiftgen storyboards <span class="s2">"</span><span class="nv">$PROJECT_DIR</span><span class="s2">/Sources"</span> --output <span class="s2">"</span><span class="nv">$PROJECT_DIR</span><span class="s2">/Sources/Constants/Storyboards.swift"</span>
+    swiftgen images <span class="s2">"</span><span class="nv">$PROJECT_DIR</span><span class="s2">/Sources"</span> --output <span class="s2">"</span><span class="nv">$PROJECT_DIR</span><span class="s2">/Sources/Constants/Images.swift"</span>
+    swiftgen colors <span class="s2">"</span><span class="nv">$PROJECT_DIR</span><span class="s2">/Colors.txt"</span> --output <span class="s2">"</span><span class="nv">$PROJECT_DIR</span><span class="s2">/Sources/Constants/Colors.swift"</span>
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"warning: SwiftGen not installed, download it from https://github.com/AliSoftware/SwiftGen"</span>
+<span class="k">fi</span>
+</code></pre>
+</div>
+<p><em>Hinweis: Man beachte, dass beim Einfügen des Scripts in das Build-Script-Feld in Xcode die Formatierung des Textes
+verloren geht. Diese lässt sich mit ein paar Einrückungen jedoch schnell wieder herstellen, um den Code im Script
+lesbarer zu halten.</em></p>
+
+<p>Die Ergebnis-Dateien werden im Ordner <code class="highlighter-rouge">Sources/Constants</code> abgelegt, welcher vorher erstellt werden sollte. Fortan werden
+die Dateien bei jedem Build neu erzeugt, sofern es seit der letzten Generierung Änderungen an den jeweiligen Ressourcen
+gab.</p>
+
+<h2 id="fehlende-code-conventions-und-todo-warnungen">Fehlende Code Conventions und TODO-Warnungen</h2>
+
+<p>Swift erlaubt es wie die meisten Programmiersprachen das gleiche Funktionsverhalten einer App auf viele verschiedene
+Weisen zu implementieren. Während man im Allgemeinen nicht sagen kann, dass es “die perfekte” Implementierung einer
+Funktion gibt, kristallisieren sich dennoch mit der Zeit für jede Programmiersprache und Plattform eine ganze Menge von
+zu vermeidenden und eher zu bevorzugenden Implementierungen heraus. Um möglichst hohe Code-Qualität zu erreichen lohnt
+es sich daher für jede längerfristig angelegte Arbeit, besonders wenn mehrere Entwickler beteiligt sind
+Code-Konventionen zu erarbeiten und sich an diesen zu orientieren.</p>
+
+<p>Während das offizielle Buch der Swift-Entwickler <a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/index.html">The Swift Programming
+Language</a>
+beim Erläutern der einzelnen verfügbaren Funktionen bereits viele sinnvolle Beispiele für guten Programmierstil vorgibt,
+ist es diesbezüglich doch eher zu zeitaufwändig und unvollständig (wenn auch trotzdem lesenswert). Als offizielle
+Apple-Quelle seien ergänzend die <a href="https://swift.org/documentation/api-design-guidelines/">API Design Guidelines</a>
+empfohlen. Als bessere Alternative gibt es die zusammengefassten und mit Beispielen versehenen Swift Code Conventions
+von <a href="https://github.com/github/swift-style-guide">GitHub</a> und von
+<a href="https://github.com/raywenderlich/swift-style-guide">raywenderlich.com</a>, an die auch wir uns bei Jamit Labs halten.</p>
+
+<p>Das Open Source Projekt <a href="https://github.com/realm/SwiftLint">SwiftLint</a> hat es sich zur Aufgabe gemacht die GitHub
+Conventions automatisiert in Xcode zu überprüfen. Nach einer Installation des SwiftLint-Tools via Homebrew (<code class="highlighter-rouge">brew
+install
+swiftlint</code>) kann nun jedes Projekt durch drei einfache Schritte um eine automatisierten Warnings- und Error-Generator
+bei Nichteinhaltung von bestimmten Code-Konventionen erweitert werden:</p>
+
+<ul>
+  <li>Füge ein Build-Script mit diesem Inhalt für das App- oder Framework-Target hinzu:</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code><span class="k">if </span>which swiftlint &gt; /dev/null; <span class="k">then
+    </span>swiftlint
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"warning: SwiftLint not installed, download it from https://github.com/realm/SwiftLint"</span>
+<span class="k">fi</span>
+</code></pre>
+</div>
+<p><em>Hinweis: Man beachte, dass beim Einfügen des Scripts in das Build-Script-Feld in Xcode die Formatierung des Textes
+verloren geht. Diese lässt sich mit ein paar Einrückungen jedoch schnell wieder herstellen, um den Code im Script
+lesbarer zu halten.</em></p>
+
+<ul>
+  <li>Erstelle danach im Hauptverzeichnis des Projekts eine Datei namens <code class="highlighter-rouge">.swiftlint.yml</code> mit folgender Konfiguration (bei
+Bedarf änderbar):</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="c1"># some rules are only opt-in</span>
+<span class="s">opt_in_rules</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">empty_count</span>
+<span class="pi">-</span> <span class="s">missing_docs</span>
+
+<span class="c1"># paths to include during linting. `--path` is ignored if present.</span>
+<span class="s">included</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">Sources</span>
+
+<span class="c1"># paths to ignore during linting. Takes precedence over `included`.</span>
+<span class="s">excluded</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">Carthage</span>
+<span class="pi">-</span> <span class="s">Sources/Constants</span>
+
+<span class="c1"># configurable rules can be customized from this configuration file</span>
+<span class="s">line_length</span><span class="pi">:</span> <span class="s">180</span>
+</code></pre>
+</div>
+
+<p>Als drittes sollte nun noch eine Einstellung von Xcode angepasst werden, da die Regel <code class="highlighter-rouge">trailing_newline</code> sonst beim
+Standardverhalten von Xcode Warnungen wegen falsch gesetzter Leerzeichen meldet, die man ganz einfach vermeiden kann:
+Gehe in die Einstellungen von Xcode (“Preferences”), wähle dort den Reiter “Text Editing” und stelle sicher, dass neben
+“Automatically trim trailing whitespace” auch “Including whitespace-only lines” angehakt ist. Dies stellt sicher, dass
+bei Umbrüchen und leer gelassenen Zeilen entstehende Leerzeichen automatisch gelöscht werden. Hier kann übrigens auch
+gleich die Empfehlungslinie für die Zeilenbreite in Xcode angepasst werden unter “Page guide at column” - wir empfehlen
+180 als Kompromiss zwischen ständigen Zeilenumbrüchen und Lesbarkeit von Code.</p>
+
+<p>Diese drei Schritte sorgen dafür, dass bei jedem Entwickler, der den Swift Linter installiert hat automatisch
+Warnungen oder in bestimmten Fällen sogar Errors in Xcode generiert und angezeigt werden, wenn die konfigurierten
+Konventionen nicht eingehalten werden. Falls jemand das Tool SwiftLint nicht installiert hat wird wenigstens eine
+Warnung angezeigt, dass der Swift Linter nicht installiert ist. Als netten Nebeneffekt zeigt SwiftLint zusätzlich auch
+Code-Kommentare, die ein <code class="highlighter-rouge">TODO:</code> oder <code class="highlighter-rouge">FIXME</code> enthalten als Warnungen an, damit man diese nicht so schnell vergessen
+oder übersehen kann.</p>
+
+<h2 id="weiterfhrende-links">Weiterführende Links</h2>
+
+<ul>
+  <li><a href="https://github.com/Flinesoft/BartyCrouch">BartyCrouch Dokumentation</a></li>
+  <li><a href="https://github.com/AliSoftware/SwiftGen">SwiftGen Dokumentation</a></li>
+  <li><a href="https://github.com/realm/SwiftLint">SwiftLint Dokumentation</a></li>
+</ul>
+
+  </div>
+
+  <hr />
+  <div>
+    
+      <p style="float:left;">
+        <a href="/BestPractices/de/articles/AP010-0200.html">
+          <small>
+            << Zurück: AP010-0200
+          </small>
+        </a>
+      </p>
+    
+
+    
+      <p style="float:right;">
+        <a href="/BestPractices/de/articles/AP020-0100.html">
+          <small>
+            Weiter: AP020-0100 >>
+          </small>
+        </a>
+      </p>
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

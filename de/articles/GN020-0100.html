@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Projektplanung &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Projektplanung
+  </h1>
+
+  <p class="post-date">
+    GN020-0100
+     •
+    <time datetime="2016-01-01T01:00:00+01:00" itemprop="datePublished">
+      01. Januar 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Cihat Gündüz
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <p>In diesem Artikel werden die Schritte erläutert, die bei der Planung eines Projekts zu beachten sind. Außerdem
+werden weitere Tipps gegeben, um die einzelnen Schritte in der Praxis möglichst effizient durchzuführen.</p>
+
+<h2 id="berblick">Überblick</h2>
+
+<p>Bei der Durchführung eines Projekts werden meist folgende Schritte durchlaufen:</p>
+
+<ul>
+  <li>Auflistung der Funktionalen und nichtfunktionalen <strong>Anforderungen</strong> (Lastenheft)</li>
+  <li><strong>Aufwandsschätzung</strong> getrennt nach Anforderungen mit Pflichtenheft (optional)</li>
+  <li>Festlegung <strong>Umsetzungsreihenfolge</strong> unter Berücksichtigung der Abhängigkeiten</li>
+  <li><strong>Datenmodellierung</strong> sowie Auflistung der <strong>API</strong>-Endpunkte</li>
+  <li>Aufsetzen der <strong>Projekte in GitLab</strong> und Anlegen von <strong>Issues</strong> pro Projekt</li>
+  <li><strong>Aufgabenverteilung</strong> über Issue-Zuweisungen und <strong>Zeitplan</strong> via GitLab-Milestones</li>
+</ul>
+
+<p>Die oben genannten Schritte sollen im Nachfolgenden im Detail erläutert werden. Beachte, dass die Projektplanung
+lediglich einen erfolgreichen Start eines Projekts sicherstellen soll. Während der Umsetzung des Projekts fallen weitere
+Management-Aufgaben an, wie etwa das Projektcontrolling (<a href="GN020-0300.html">GN020-0300</a>).</p>
+
+<h2 id="anforderungen">Anforderungen</h2>
+
+<p>Bei den Anforderungen geht es darum, im Kontakt mit dem Auftraggeber alle Funktionen, die die App am Ende unterstützen
+soll aus Nutzersicht festzuhalten. Hierbei ist es meist hilfreich <strong>Wireframes</strong> für die wichtigsten Screens zu
+entwerfen, um so die Interface-Elemente mit verschiedenen Funktionalitäten zu verbinden. Dabei sollte man sich gemeinsam
+überlegen, wie die Software am Ende typischerweise eingesetzt wird und entsprechende <strong>Szenarien</strong> Screen für Screen
+festhalten. Auch eine Untersuchung des Funktionsumfangs von <strong>Konkurrenten und ähnlichen Apps</strong> sorgt meist dafür, dass
+man die Liste alle gewünschten Dinge abdeckt. Die Liste der Funktionen, die durch diese Ansätze entsteht, stellt dann im
+Ergebnis die <strong>funktionalen Anforderungen</strong> dar.</p>
+
+<p>Für die Feststellung der <strong>nichtfunktionalen Anforderungen</strong> können folgende Fragen helfen:</p>
+
+<ul>
+  <li>Welche <strong>Plattformen</strong> sollen unterstützt werden? (Android / iOS / Web)</li>
+  <li>Welche <strong>Gerätetypen</strong> sollen unterstützt werden? (Tablet / Phone / Watch / TV)</li>
+  <li>Welche <strong>Systemversionen</strong> sollen unterstützt werden? (iOS 9+ / Android 4.1+)</li>
+  <li>Welche <strong>Screen-Modi</strong> sollen unterstützt werden? (Portrait / Landscape)</li>
+  <li>Gibt es besondere Anforderungen an die <strong>Qualitätssicherung</strong> der App? (Testabdeckung)</li>
+  <li>Gibt es besondere Anforderungen an die <strong>Intuitivität</strong> der App? (Onboarding, Beta-Phase)</li>
+  <li>Gibt es besondere Anforderungen an die <strong>Geschwindigkeit</strong> der App? (z.B. komplexe Datenverarbeitung)</li>
+</ul>
+
+<h2 id="aufwandsschtzung">Aufwandsschätzung</h2>
+
+<p>Auf dieses Thema gehen wir im Artikel <a href="GN020-0200.html">GN020-0200</a> im Detail ein. Hier sei noch ergänzt, dass
+nicht immer eine Aufwandsschätzung vonnöten ist, da manchmal das Produkt Stück für Stück gebaut werden soll und der
+Endpreis für den Auftraggeber weniger relevant ist, solange der Stundensatz bekannt ist.</p>
+
+<h2 id="umsetzungsreihenfolge">Umsetzungsreihenfolge</h2>
+
+<p>Bei diesem Schritt geht es zunächst darum, die Reihenfolge der umzusetzenden Funktionen so festzulegen, dass die
+Anforderungen in möglichst kurzer Zeit erfüllt werden können. Die Funktionen sollten deshalb so in verschiedene
+Meilensteine sortiert werden, dass die nachfolgend geschilderten Phasen durchlaufen werden können:</p>
+
+<p>Zunächst ist es wichtig, dass die App <strong>möglichst früh bedienbar</strong> ist und man so gleich Feedback holen kann. Dabei
+können im ersten Schritt alle Daten- und Zugriffsvalidierungen außer Acht gelassen und <strong>die Hauptfunktionen</strong> direkt
+umgesetzt werden, um diese frühzeitig nutzbar zu machen. Auch Beispieldaten können in einer frühen Phase fest
+einprogrammiert werden, damit der Fokus auf den nützlichen Funktionen bleibt und anfangs keine Energie auf Dinge wie die
+Optimierung der Dateneingabe verwendet werden muss. Das Ergebnis dieser aller ersten Schritte sollte eine Art
+Klick-Dummy-App sein – der <strong>erste Meilenstein</strong> ist definiert.</p>
+
+<p>Im nächsten Schritt sollte die App tatsächlich <strong>funktionstauglich</strong> gemacht werden, indem man sich um die anderen
+Kernaspekte kümmert, die im Klick-Dummy bislang außer Acht gelassen wurden. Hier können nun auch Validierungen und
+Dateneingaben umgesetzt werden – das Ergebnis ist eine App, die ähnlich aussieht wie das Ergebnis aus dem ersten
+Meilenstein – allerdings diesmal nicht mehr nur ein „Klick-Dummy“ ist: Der <strong>zweite Meilenstein</strong> ist fertig gestellt.
+Der zweite Meilenstein sollte die Kernfeatures bereits enthalten.</p>
+
+<p>Der <strong>dritte Meilenstein</strong> ist dazu da, alle relativ schnell umsetzbaren Neben-Funktionen fertig zu stellen. Das
+Ergebnis ist eine App, der funktional nur noch einige wenige Dinge fehlen. Der Sinn hiervon ist, dass frühzeitig für die
+gesamte App Feedback eingeholt werden soll, ohne auf die paar kleinen Funktionen zu warten, die noch fehlen aber
+vermutlich noch eine Weile dauern werden. Dies trägt dazu bei, in der Beta-Phase weniger Iterationen zu brauchen, bis
+der Feinschliff der App erfolgt ist. Wichtig ist, dass die noch fehlenden Funktionen klar als solche zu kennzeichnen
+sind (sofern möglich).</p>
+
+<p>Sobald auch alle Nebenfunktionen fertig gestellt sind und auch erste Feinschliff-Arbeiten erledigt sind <strong>beginnt die
+Beta-Phase</strong>. Der <strong>vierte Meilenstein</strong> ist erreicht – nun sollten regelmäßig neue Beta-Versionen online gestellt und
+Feedback für diese eingesammelt werden. Dabei sollte jede Beta-Version klar auflisten, was geändert wurde.</p>
+
+<p>Wurde in mehreren Iterationen Feedback eingeholt, bis der Auftraggeber mit der Qualität zufrieden ist, dann erfolgt der
+Release. Der <strong>fünfte Meilenstein</strong> ist erreicht. Es ist damit zu rechnen, dass am Tag der Veröffentlichung oder kurz
+danach noch einige Randprobleme auftreten, die dann mit einer Hotfix-Version zu schließen sind. Sind die ersten
+Wehwehchen behoben und die App mit einer oder mehreren Hotfix-Versionen längere Zeit ohne größere Probleme im Store, so
+ist das Projekt <strong>erfolgreich abgeschlossen</strong>.</p>
+
+<p><strong>In der Übersicht:</strong>
+- Meilenstein #1: Klick-Dummy mit wichtigsten Funktionen
+- Meilenstein #2: Funktionale App mit wichtigsten Funktionen
+- Meilenstein #3: App mit den meisten Funktionen
+- Meilenstein #4: Beta-Phase mit Feedback
+- Meilenstein #5: Release ggf. mit Hotfixes</p>
+
+<p>Wichtig: Die Funktionen sollten lediglich auf die ersten drei Meilensteine verteilt werden. Meilensteine #4 und #5
+ergeben sich dann mit der Zeit von selbst (siehe auch <a href="GN020-0200.html">GN020-0200</a>). Der erste Schritt hierzu ist
+die Auswahl an Kernfunktionen für die ersten beiden Meilensteine.</p>
+
+<h2 id="datenmodellierung--api-entwurf">Datenmodellierung &amp; API-Entwurf</h2>
+
+<p>Die Modellierung der Daten findet in Form eines UML-Klassendiagramms statt. Hierzu gibt es viele Lösungen, die vermutlich einfachste und schnellste ist der Webdienst <strong><a href="https://www.draw.io/?libs=uml&amp;lang=de">draw.io</a></strong>, in dem man sich die UML-Elemente per Drag-and-Drop zusammen klickt und mit den nötigen Attributen und Abhängigkeiten ausstattet. Das Ergebnis kann dann in verschiedenen Formaten heruntergeladen werden, mitunter als PNG.</p>
+
+<p>Bei der Datenmodellierung werden folgende Schritte durchlaufen:</p>
+
+<ul>
+  <li>Anlegen einer <strong>Liste aller zu speichernden Informationen</strong>
+    <ul>
+      <li>hierbei sollten auch die Wireframes zu Rate gezogen werden</li>
+    </ul>
+  </li>
+  <li><strong>Gruppieren</strong> der Einzelinformationen <strong>zu Klassen</strong></li>
+  <li><strong>Abbilden der Abhängigkeiten</strong> zwischen den Klassen</li>
+  <li><strong>Abstraktion gemeinsamer Daten</strong> in Interfaces/Oberklassen</li>
+  <li><strong>Definieren von Methoden</strong> auf den Klassen zur Interaktion</li>
+</ul>
+
+<p>Das Ergebnis der Datenmodellierung sieht etwa so aus:</p>
+
+<p>TODO: Bild erstellen
+<img src="../../../BestPractices/public/images/GN020/0100/example-data-model.png" alt="Datenmodell" />
+<em>Ein Datenmodell als UML-Klassendiagramm gestaltet auf draw.io.</em></p>
+
+<p>Ist die Datenmodellierung abgeschlossen, kann eine dazu passende API modelliert werden. Hierzu empfiehlt sich eine <strong>Mind-Map</strong>, die in der ersten Stufe alle <strong>Ressourcen</strong> auflistet und in der nächsten Stufe dann pro Ressource die benötigten <strong>Endpoints</strong> listet. Die Endpoints können dann wiederum als Auflistung die möglichen Parameter (bei POST, PUT, PATCH) oder die von der API zurückgegebenen Datenfelder (bei GET) enthalten. Für die Erstellung einer Mind-Map gibt es viele Programme, <strong><a href="https://www.mindmeister.com">mindmeister.com</a></strong> ist ein besonders einfacher und schöner Web-Dienst mit einer kostenlosen Option.</p>
+
+<p>Das Ergebnis der Mind-Map kann dann etwa so aussehen:</p>
+
+<p><img src="../../../BestPractices/public/images/GN020/0100/example-api-mindmap.png" alt="API Endpoints" />
+<em>Eine Mind-Map mit API Endpoints gestaltet auf mindmeister.com.</em></p>
+
+<h2 id="projekte-in-gitlab--issues">Projekte in GitLab &amp; Issues</h2>
+
+<h2 id="aufgabenverteilung--zeitplan">Aufgabenverteilung &amp; Zeitplan</h2>
+
+  </div>
+
+  <hr />
+  <div>
+    
+      <p style="float:left;">
+        <a href="/BestPractices/de/articles/GN010-0400.html">
+          <small>
+            << Zurück: GN010-0400
+          </small>
+        </a>
+      </p>
+    
+
+    
+      <p style="float:right;">
+        <a href="/BestPractices/de/articles/GN020-0200.html">
+          <small>
+            Weiter: GN020-0200 >>
+          </small>
+        </a>
+      </p>
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Arbeiten mit Git in SourceTree &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Arbeiten mit Git in SourceTree
+  </h1>
+
+  <p class="post-date">
+    GN010-0150
+     •
+    <time datetime="2016-01-01T01:00:00+01:00" itemprop="datePublished">
+      01. Januar 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Cihat Gündüz
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <p>In diesem Artikel sollen alltägliche Aufgaben in Git mithilfe des Programms <a href="https://www.sourcetreeapp.com">SourceTree</a>
+erklärt werden.</p>
+
+<h2 id="ersteinrichtung">Ersteinrichtung</h2>
+
+<p>Beim ersten Start von SourceTree wird man nach Vorname, Nachname und E-Mail-Adresse gefragt. Diese Informationen werden
+bei Commits berücksichtigt und sollten daher die Arbeits-Mailadresse wiedergeben und mit vollem Namen versehen werden.
+Außerdem ist innerhalb der ersten 30 Tage eine Registrierung bei Atlassian notwendig, die jedoch kostenlos gemacht
+werden kann. Entsprechende Hinweise zeigt SourceTree automatisch an.</p>
+
+<h2 id="arbeiten-im-repository-browser">Arbeiten im Repository Browser</h2>
+
+<p>Nach jedem Start von SourceTree erwartet einen üblicherweise der Repository Browser. Dieser zeigt eine <strong>Übersicht aller
+Repositories</strong>, die man <strong>lokal</strong> auf dem Rechner mithilfe von SourceTree eingerichtet hat. Erneut öffnen kann man ihn
+über den Menüpunkt “Fenster” » “Repository Browser anzeigen”. Er besitzt auch eine <strong>“Remote”-Ansicht</strong>, in der alle
+Repositories von Hosted Services aufgelistet sind, auf die man Zugriff hat und in denen man sich über die Repository
+Browser-Einstellungen (Settings-Icon rechts oben) angemeldet hat. Beim nachfolgend beschriebenen Arbeitsstil braucht man
+die Remote-Ansicht jedoch nicht, weshalb sie komplett ignoriert werden kann.</p>
+
+<p>Der Repository Browser erlaubt es <strong>Repositories beliebig zu gruppieren</strong>, ohne dass davon die tatsächlichen Pfade der
+Projekte geändert werden. Nützlich ist dies etwa, um mehrere Code-Projekte zu einem zusammengehörenden Produkt zusammen
+zu fassen.</p>
+
+<h3 id="erstellen-eines-neuen-repositories">Erstellen eines neuen Repositories</h3>
+
+<p>Verzeichnisse, die von Git versioniert werden nennt man <strong>Repositories</strong>. Möchte man Git in einem neuen Projekt
+verwenden, so muss man aus dem Projektverzeichnis ein Repository machen. Das übernimmt meist schon die
+Entwicklungsumgebung (z.B. Xcode oder Android Studio) beim Anlegen eines Projektes. Nachfolgend sei kurz die manuelle
+Einrichtung durch SourceTree geschildert:</p>
+
+<p>Klicke im Repository Browser auf den Button “+ Neues Repository” und wähle “Lokales Repository erstellen”. Trage nun als
+Zielpfad das Verzeichnis ein, in welchem das Repository angelegt werden soll, vergebe einen Namen und klicke auf
+“Erstellen”. Der Haken ist bei “Erstelle auch ein Remote Repository” standardmäßig nicht gesetzt und der Typ steht
+standardmäßig auf “Git”, was beides so bleiben sollte. Damit ist das neue Repository angelegt.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0150/create-new-repo-dialog.png" alt="Dialog zum Erstellen eines neuen
+Repositorys" />
+<em>Im Dialog zum Erstellen eines neuen Repositorys trägt man Zielpfad und Name ein.</em></p>
+
+<h3 id="ein-bestehendes-repository-verwenden">Ein bestehendes Repository verwenden</h3>
+
+<p>Soll man mit einem bestehenden Repository arbeiten, so erhält man in der Regel eine Einladung für den Zugriff auf das
+Projekt auf einem Hosted Service (z.B. github.com, gitlab.com). Diese Services bieten zwar die Möglichkeit an, den Code
+etwa als ZIP-Datei herunter zu laden, jedoch ist das nicht empfehlenswert. Stattdessen sollte man nach dem “SSH” bzw.
+“HTTPS” Pfad Ausschau halten.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0150/hosted-service.png" alt="Hosted Service" />
+<em>Möglichkeiten ein Repository von einem Hosted Service auszuschecken.</em></p>
+
+<p>Nun markiert und kopiert man entweder den SSH oder den HTTPS Pfad mittels <code class="highlighter-rouge">Cmd+C</code>, öffnet SourceTree, bringt den
+Repository Browser in den Vordergrund und wählt oben unter “+ Neues Repository” den Eintrag “Von URL klonen”.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0150/clone-from-url.png" alt="Von URL klonen" />
+<em>Im Repository Browser können neue Repositories hinzugefügt werden.</em></p>
+
+<p>Es erscheint ein Dialog, in dem man den kopierten Pfad mittels <code class="highlighter-rouge">Cmd+V</code> einfügt, den Zielpfad auswählt, in den die
+Projektdateien des Projekts heruntergeladen werden sollen und definiert zusätzlich einen Anzeigenamen innerhalb des
+Repository Browsers.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0150/clone-dialog.png" alt="Klondialog" />
+<em>Beim Klonen kann der Zielpfad und der Anzeigename im Repository Browser festgelegt werden.</em></p>
+
+<p>Klickt man nun auf den Button “Klone” beginnt der Prozess, der den aktuellen Stand des Repositories vom Hosted Service
+herunterlädt – kurz das Repository wird <strong>ausgecheckt</strong>.</p>
+
+<h4 id="ssh-oder-https">SSH oder HTTPS?</h4>
+
+<p>Grundsätzlich ist es einfacher per HTTPS auszuchecken, da Open Source Repositories dann gänzlich ohne Einrichtung
+funktionieren und für private Repositories lediglich die Login-Daten abgefragt werden. Daher sei für den Anfang HTTPS
+empfohlen.</p>
+
+<p>Langfristig kann es jedoch auch Sinn machen auf SSH umzusteigen, da hier die Authentifizierung über ein
+Public-Key-Verfahren geschieht. Hierzu muss lokal auf dem Rechner eine Kombination aus Private- und Public-Keys
+generiert werden (falls nicht schon vorhanden), der Public-Key muss anschließend auf dem Hosted Service eingetragen
+werden, wodurch der Rechner für alle künftigen Projekte (durch den Private-Key) automatisch authentifiziert ist. Zur
+Einrichtung gibt es viele Anleitungen, zum Beispiel hier jeweils eine für
+<a href="https://help.github.com/articles/generating-an-ssh-key/">GitHub</a> und eine für
+<a href="http://doc.gitlab.com/ce/ssh/README.html">GitLab</a>.</p>
+
+<h2 id="arbeiten-in-der-projektansicht">Arbeiten in der Projektansicht</h2>
+
+<p>Mit einem Doppelklick auf ein Repository im Repository Browser öffnet man die Projektansicht eines einzelnen Repository.
+In der Projektansicht werden alle nötigen Aktionen innerhalb eines Git Repositories durchgeführt. Außerdem kann man in
+ihr die bestehenden Commits und Branches begutachten und somit die Änderungshistorie des Projekts verfolgen.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0150/project-history-view-advanced.png" alt="History-Ansicht eines fortgeschrittenen
+Projekts" />
+<em>Ein typisches Repository mit mehreren Branches, Merges, Remotes und Commits in der Projektansicht.</em></p>
+
+<p>Da die Projektansicht eine aus vielen Bestandteilen kombinierte Ansicht ist, kann sie im ersten Moment etwas erschlagend
+und überfüllt wirken. Daher seien nachfolgend die für die tägliche Arbeit wichtigen Teile kurz erklärt, wobei wir in den
+Beispielbildern ein neues Demo-Repository benutzen.</p>
+
+<h3 id="toolbar">Toolbar</h3>
+
+<p><img src="../../../BestPractices/public/images/GN010/0150/project-view-highlight-toolbar.png" alt="Toolbar in der Projektansicht" />
+<em>Wichtig sind in der konfigurierbaren Toolbar vor allem Pull und Push – die anderen Buttons werden viel seltener
+gebraucht und können deshalb auf Wunsch alle entfernt werden.</em></p>
+
+<p>Die Toolbar besteht standardmäßig aus 10 Buttons, von denen wir nur wenige im Alltag brauchen. Deshalb sei darauf
+hingewiesen, dass die Toolbar per Rechtsklick und “Symbolleiste anpassen …” vollständig an die eigenen Bedürfnisse
+angepasst werden kann. Die so gemachten Änderungen bleiben projektübergreifend erhalten. Man kann beispielsweise die
+weniger genutzten Buttons “Commit”, “Anfordern”, “Branch”, “Merge”, “Stash” und “Im Finder anzeigen” aus der Toolbar
+entfernen. So bleiben nur noch die folgenden übrig:</p>
+
+<ul>
+  <li><strong>Pull</strong>: Lädt den aktuellsten Stand vom Hosted Service (“remote”) des aktiven Branches und merged ihn automatisch in
+den lokalen Stand.</li>
+  <li><strong>Push</strong>: Lädt den aktuellsten Stand eines Branches zum Hosted Service hoch, damit andere ihn “pullen” können.</li>
+  <li><strong>Eingabeaufforderung</strong>: Öffnet das Terminal mit dem Pfad des Projektverzeichnisses um dort Command Line Tools zu
+verwenden.</li>
+  <li><strong>Einstellungen</strong>: Öffnet die projektspezifischen Einstellungen, wo man z.B. die Remotes verwalten kann.</li>
+</ul>
+
+<h3 id="sidebar-eintrag-arbeitskopie">Sidebar-Eintrag Arbeitskopie</h3>
+
+<p><img src="../../../BestPractices/public/images/GN010/0150/project-view-highlight-working-copy.png" alt="Arbeitskopie-Eintrag in der Seitenleiste des
+Projekts" />
+<em>In “Dateistatus” werden neue Commits gemacht, während “Verlauf” dazu dient die letzten Änderungen (Commits) zu
+durchstöbern. “Suchen” wird wesentlich seltener benutzt.</em></p>
+
+<p>Über den Eintrag “Arbeitskopie” in der Seitenleiste der Projektansicht lassen sich unterschiedliche Ziele erfüllen:</p>
+
+<ul>
+  <li><strong>Dateistatus</strong>: Hier werden die lokalen Änderungen im Repository angezeigt, wobei es möglich ist Dateien oder
+einzelne Zeilen als Änderungen für den nächsten Commit auszuwählen. Auch die Commit Message lässt sich hier definieren
+und der Commit schließlich auch durchführen.</li>
+  <li><strong>Verlauf</strong>: Hierbei handelt es sich um die Historie-Ansicht, die man standardmäßig präsentiert bekommt. Man kann hier
+die zuletzt gemachten Änderungen, die sogenannte “Git-Historie” sehen. Dies geschieht in Form von nach Datum absteigend
+sortierten Commits, wobei bei Anklicken eines Commits die zu dem Commit zugehörigen Änderungen im unteren Bereich
+angezeigt werden.</li>
+  <li><strong>Suchen</strong>: Hier kann man alle Commit Messages der gesamten Git-Historie gezielt durchsuchen. Die anderen beiden
+Ansichten werden wesentlich öfter gebraucht, da in ihnen die Hauptarbeit geleistet wird: “Dateistatus” zum Committen und
+“Verlauf” zum Durchstöbern der letzten Änderungen.</li>
+</ul>
+
+<h3 id="sidebar-eintrag-branches">Sidebar-Eintrag Branches</h3>
+
+<p><img src="../../../BestPractices/public/images/GN010/0150/project-view-highlight-branches.png" alt="Branches-Eintrag in der Seitenleiste des
+Projekts" />
+<em>Nach Erstellen eines neuen Repositories wird standardmäßig der master-Branch angelegt.</em></p>
+
+<p>Hier werden alle Branches des Git Repositorys angezeigt, die lokal angelegt oder ausgecheckt wurden. Das Auschecken
+eines anderen Branches kann über den Eintrag “Remotes” per Doppelklick durchgeführt werden, sofern dort bereits eine
+Remote hinterlegt ist. Für Repositories, die von einem Hosted Service geklont wurden ist automatisch eine Remote mit dem
+Namen “origin” hinterlegt, andernfalls kann man manuell über den “Einstellungen” Button in der Toolbar eine neue Remote
+hinzufügen.</p>
+
+<p>Der aktuelle Branch, deren Code-Stand man aktuell vorliegen hat (man sagt auch hierzu “ausgecheckt hat”) ist fett
+gedruckt. Neue Branches erstellt man über den Button “Branch” in der Toolbar, jedoch raten wir davon ab, da wir in einem
+späteren Artikel zum Thema Git Flow (<a href="GN010-0300.html">GN010-0300</a>) eine bessere Alternative erläutern werden.</p>
+
+<h3 id="history">History</h3>
+
+<p><img src="../../../BestPractices/public/images/GN010/0150/project-view-highlight-history.png" alt="History des Projekts" />
+<em>Die Commit History des Projekts ist hier absteigend nach Datum sortiert (neueste oben) zu finden.</em></p>
+
+<p>Den größten Teil der Projektansicht nimmt die History-Ansicht ein. Hierbei handelt es sich um die Liste aller Commits im
+Projekt absteigend nach Commit-Datum sortiert und mit einigen Infos versehen:</p>
+
+<ul>
+  <li><strong>Graph</strong>: Hier lässt sich schnell erkennen, in welchem Branch der Commit getätigt wurde und wie die Branches
+zusammengeführt wurden bzw. aus welchen sie entstanden sind.</li>
+  <li><strong>Beschreibung</strong>: Hier wird die erste Zeile eines Commits angezeigt.</li>
+  <li><strong>Commit</strong>: Hierbei handelt es sich um einen eindeutigen Identifikator für einen Commit, den sogenannten SHA1-Hash.</li>
+  <li><strong>Autor</strong>: Der Autor / die Autorin des jeweiligen Commits wird hier mitsamt Mail-Adresse angezeigt.</li>
+  <li><strong>Datum</strong>: Hier steht der Zeitpunkt, zu dem der Commit gemacht wurde.</li>
+</ul>
+
+<h3 id="dateistatus">Dateistatus</h3>
+
+<p><img src="../../../BestPractices/public/images/GN010/0150/project-view-highlight-file-state.png" alt="Dateistatus des Commits" />
+<em>Wählt man in der History einen Commit aus, so werden die betreffenden Änderungen angezeigt.</em></p>
+
+<p>Klickt man einen Commit in der History-Ansicht an, so werden die Details des Commits in der Dateistatus-Ansicht unten
+angezeigt. Hierbei sind links die Dateien zu sehen, in denen Änderungen stattfanden und rechts ist eine Zusammenfassung
+der Änderungen der jeweils links ausgewählten Datei. So kann man diese Ansicht dafür nutzen, sich die Änderungen
+anzusehen, die in einem einzelnen Commit durchgeführt wurden.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0150/file-change-view.png" alt="Dateistatus eines Projekts" />
+<em>Die Dateistatus-Ansicht zeigt die aktuellen Dateiänderungen im Projekt an und erlaubt sowohl das Vormerken von Dateien
+als auch das Eintragen einer Commit Message.</em></p>
+
+<p>In der Dateistatus-Ansicht sehen wir also wieder links die lokal geänderten Dateien und pro angeklickter Datei rechts
+die jeweiligen Änderungen. Hierbei ist die linke Seite in zwei Teile aufgeteilt:</p>
+
+<ul>
+  <li><strong>Vorgemerkte Dateien</strong>: Hier sind Dateiänderungen aufgelistet, die beim nächsten Commit berücksichtigt werden. Man
+nennt diesen Ort auch “gestagete” oder “indizierte” Änderungen. Das Entfernen eines Hakens sorgt dafür, dass eine Datei
+nicht mehr für den nächsten Commit vorgemerkt ist.</li>
+  <li><strong>Nicht vorgemerkte Dateien</strong>: Hier stehen alle lokalen Dateiänderungen, die noch nicht für den nächsten Commit
+vorgemerkt sind. Ein einfaches Anhaken übernimmt alle Änderungen an einer Datei in die obere Liste der vorgemerkten
+Änderungen.</li>
+</ul>
+
+<p>Außerdem gibt es unten einen Bereich, in dem man eine Commit Message eintragen und diese mit Klick auf “Commit” auch
+committen kann. Wählt man “Änderungen sofort nach … pushen” aus, so wird direkt nach dem Commit auch ein Push
+durchgeführt. Wir raten hiervon jedoch ab, da sonst keine Möglichkeit mehr besteht eventuell gemachte Tippfehler oder
+andere Versehen lokal noch rückgängig zu machen.</p>
+
+  </div>
+
+  <hr />
+  <div>
+    
+      <p style="float:left;">
+        <a href="/BestPractices/de/articles/GN010-0100.html">
+          <small>
+            << Zurück: GN010-0100
+          </small>
+        </a>
+      </p>
+    
+
+    
+      <p style="float:right;">
+        <a href="/BestPractices/de/articles/GN010-0200.html">
+          <small>
+            Weiter: GN010-0200 >>
+          </small>
+        </a>
+      </p>
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

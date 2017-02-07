@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Gute Commit Messages &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Gute Commit Messages
+  </h1>
+
+  <p class="post-date">
+    GN010-0400
+     •
+    <time datetime="2016-01-01T01:00:00+01:00" itemprop="datePublished">
+      01. Januar 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Cihat Gündüz
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <p>In diesem Artikel werden Hilfestellungen für gute Commit Messages gegeben. Zuerst wollen wir den Nutzen von Commit
+Messages klären und danach Beispiele für schlechte und gute Commit Messages geben.</p>
+
+<h2 id="was-ist-das-ziel-einer-commit-message">Was ist das Ziel einer Commit Message?</h2>
+
+<p>Das Ziel einer Commit Message ist es Änderungen an Code auch im Nachhinein noch verständlich zu machen. Dabei reicht es
+nicht aus lediglich die gemachten technischen Änderungen zusammenzufassen, sondern viel mehr geht es darum in einer
+Commit Message zu klären, <strong>warum</strong> die Änderungen gemacht wurden. Nur so ist es möglich im Nachhinein nicht nur die
+Änderungen zu kennen (die man ja Dank Git-Diffs auch ohne Messages gut sehen kann), sondern auch entscheiden zu können,
+ob sie noch benötigt werden und somit ob man sie ändern oder verwerfen darf. Wenn eine echte Begründung in einer Commit
+Message nicht möglich ist, dann kann es helfen stattdessen den <strong>Kontext der Änderung</strong> zu benennen.</p>
+
+<h2 id="wie-sollte-eine-commit-message-aussehen">Wie sollte eine Commit Message aussehen?</h2>
+
+<p>Commit Messages können eine beliebige Länge haben, was vielen gar nicht bekannt ist, da einzeilige Kommentare gängige
+Praxis sind. Auch wir empfehlen die Dinge in wenigen Wörtern auf den Punkt zu bringen, sofern nicht besonderer
+Erklärungsbedarf besteht. Da die meisten Git-Tools Commit Messages standardmäßig nach einer Zeile abschneiden und
+besonders Werkzeuge für die Kommandozeile die Breite stark beschränken, sind folgende Vorgaben für die Länge und
+Grundstruktur unbedingt einzuhalten:</p>
+
+<ul>
+  <li>Die <strong>erste Zeile</strong> jedes Commit Messages <strong>fasst die Begründung / den Kontext der Änderungen kurz zusammen</strong></li>
+  <li>Die erste Zeile sollte die <strong>maximale Länge von etwa 50 Zeichen</strong> nicht überschreiten</li>
+  <li>Die restlichen Zeilen (sofern vorhanden) sollten eine <strong>Länge von etwa 72 Zeichen</strong> nicht überschreiten</li>
+  <li>Falls mehr als eine Zeile geschrieben wird, so <strong>muss nach der ersten Zeile eine leere Zeile</strong> folgen</li>
+  <li>Der <strong>weiteren Zeilen sollte in ganzen Sätzen</strong> geschrieben und <strong>in sinnvolle Abschnitte gegliedert</strong> werden</li>
+</ul>
+
+<p>Eine kurze Commit Message sollte also maximal etwa diese Länge aufweisen (51 Zeichen):</p>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>Lorem ipsum dolor sit amet consectetuer adipiscing
+</code></pre>
+</div>
+
+<p>Eine lange Commit Message sollte etwa diese grobe Form aufweisen (Maximum 73 Zeichen):</p>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>Lorem ipsum dolor sit amet consectetuer adipiscing
+
+Elit sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
+tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+consequat.
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero
+eros et accumsan et iusto odio dignissim qui blandit praesent luptatum
+zzril delenit augue duis dolore te feugait nulla facilisi.
+</code></pre>
+</div>
+
+<p>In den meisten Fällen sollten wenige Worte (also ein einzeiliger Kommentar) reichen, um einen Commit auf den Punkt zu
+bringen. Falls mehrzeilige Commit Messages zur Regel werden, dann ist das als Zeichen dafür zu deuten, dass man zu
+selten Commits macht. Man sollte sich in dem Fall überlegen, ob man nicht schon früher committen kann.</p>
+
+<p>Während die oben genannte Form hauptsächlich zum Ziel hat in bestimmten Tools <strong>überhaupt dargestellt werden zu
+können</strong>, so fällt auch bei Einhaltung der groben Form in vielen Projekten ohne Standards auf, dass die Commits
+verschiedener (und manchmal sogar derselben Entwickler) völlig unterschiedliche Formate aufweisen. In nachfolgendem
+Beispiel ist zu sehen, dass sich meist Groß- und Kleinschreibung, Punkte am Ende der Titelzeile, benutzte Zeitform und
+sogar die Sprache völlig unterscheiden können:</p>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>Projektdateien neu strukturiert.
+updated dependencies + integrate SwiftyJSON
+adding Swift linter for improved code conventions
+ignore jazzy docs directory in Git
+SwiftGen integriert für statische Ressourcen
+Adds screen flow buttons to home screen.
+Simplifies Coordinator delegation calls
+Korrektes Speichern der Textgröße-Einstellung!
+fixed wrong tracking key on home screen
+</code></pre>
+</div>
+
+<p>Um eine gewisse Einheitlichkeit zu schaffen definieren wir deshalb zusätzlich folgende Regeln für Commit Messages:</p>
+
+<ul>
+  <li>Der erste Buchstabe der ersten Zeile wird stets <strong>groß geschrieben</strong></li>
+  <li>Es darf <strong><em>kein</em></strong> <strong>Punkt</strong> oder ein anderes Satzzeichen am Ende der ersten Zeile folgen</li>
+  <li>Die erste Zeile wird stets <strong>im Imperativ formuliert</strong> (so als würde man Befehle an Git senden)</li>
+  <li>Wir schreiben ausschließlich in <strong>englischer Sprache</strong></li>
+</ul>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>Restructure project files
+Update dependencies + Integrate SwiftyJSON
+Add Swift linter for improved code conventions
+Ignore jazzy docs directory in Git
+Integrate SwiftGen for statically typed resources
+Add screen flow buttons to home screen
+Simplify Coordinator delegation calls
+Correctly save font size setting
+Fix wrong tracking key on home screen
+</code></pre>
+</div>
+
+<p>Diese Regeln orientieren sich an Community-Standards, die etwa in <a href="http://chris.beams.io/posts/git-commit/">diesem
+Blogpost</a> zusammenfassend erläutert werden – genaue Begründungen sind dort
+nachzulesen.</p>
+
+<h2 id="hufig-gemachte-fehler">Häufig gemachte Fehler</h2>
+
+<p>Nachfolgend werden an einigen Beispielen aus der Praxis typische Fehler besprochen und Verbesserungsvorschläge gegeben.</p>
+
+<h3 id="zu-generische-commit-messages">Zu generische Commit Messages</h3>
+
+<p>Auch wenn man sich in der ersten Zeile kurz fassen sollte, sollte dies nicht zu generischen Commits führen, die kaum
+Aussagekraft haben. Besonders Commits, mit nur ein oder zwei Wörtern Länge laufen Gefahr nichts auszusagen. Auch Wörter
+wie “some” sind Anzeichen von zu generischen Commit Messages.</p>
+
+<p>Schlecht:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- Changes
+- Some Changes in Settings
+- ScreenDrawerPrivate
+- Umbrella Header
+</code></pre>
+</div>
+
+<p>Besser:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- Fix BlankSecondScreen link &amp; update constraints
+- Change Info.plist path &amp; macro in build settings
+- Rename ScreenDrawer module to ScreenDrawerPrivate
+- Add umbrella header with public ObjC classes
+</code></pre>
+</div>
+
+<h3 id="falsche-groschreibung-im-englischen">Falsche Großschreibung im Englischen</h3>
+
+<p>Im Deutschen schreibt man alle Substantive groß. Während man im Englischen bei Titeln durchaus auch dazu neigt vieles
+groß zu schreiben, so sollten Commits dennoch wie normaler englischer Text behandelt werden. Das bedeutet: Die meisten
+Wörter (inkl. Substantive) werden <strong>klein</strong> geschrieben. Einzige Ausnahmen sind im Englischen Eigennamen wie von
+Personen, Marken oder Produkten. Hierzu zählen bei der Programmierung auch Datei- oder Klassennamen (z.B.
+<code class="highlighter-rouge">SettingsController</code>).</p>
+
+<p>Schlecht:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- Create Config for Mixed Language Framework
+- Remove Some Files for Testing
+</code></pre>
+</div>
+
+<p>Besser:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>– Create config for mixed language framework
+– Remove some files for testing
+</code></pre>
+</div>
+
+<h3 id="debugging-commits">Debugging-Commits</h3>
+
+<p>Manchmal kommt es vor, dass man ohne Commits eine bestimmte Änderung nicht testen kann, etwa wenn die Änderung an einem
+Framework stattfindet, welches mit einer Referenz zu einem Commit in einem anderen Projekt installiert wird. In solchen
+Fällen sollten die Commits dennoch einen sinnvollen Inhalt haben, die die Annahme zum Beheben eines Problems
+repräsentieren. So können die bereits ausprobierten Ansätze auch im Nachhinein noch eingesehen werden, wenn der
+Änderungsversuch falsch sein sollte.</p>
+
+<p>Schlecht:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- Test Commit
+- Tried to replace C-Code
+</code></pre>
+</div>
+
+<p>Besser:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>- [Attempt] Fix ObjC-Import by removing modulemap
+- [Attempt] Fix ObjC-Import by replacing C-Code
+</code></pre>
+</div>
+
+  </div>
+
+  <hr />
+  <div>
+    
+      <p style="float:left;">
+        <a href="/BestPractices/de/articles/GN010-0300.html">
+          <small>
+            << Zurück: GN010-0300
+          </small>
+        </a>
+      </p>
+    
+
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

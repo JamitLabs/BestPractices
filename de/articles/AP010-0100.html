@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Erstellen eines neuen Projekts &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Erstellen eines neuen Projekts
+  </h1>
+
+  <p class="post-date">
+    AP010-0100
+     •
+    <time datetime="2016-01-01T01:00:00+01:00" itemprop="datePublished">
+      01. Januar 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Simon Back
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <p>Dieser Artikel widmet sich dem Erstellen eines neuen Xcode Projekts. Dabei geht es vor allem um die richtige
+Konfiguration des Projekts und dem Verfügbar machen für andere Teammitglieder.</p>
+
+<h2 id="anlegen-eines-neuen-projekts">Anlegen eines neuen Projekts</h2>
+
+<p><img src="../../../BestPractices/public/images/AP010/0100/welcome-to-xcode.png" alt="Bild des Welcome Fensters" />
+<em>Unten links befindet sich die Option zum Anlegen eines neuen Projekts</em></p>
+
+<p>Nach dem Start von Xcode erwartet einen der Welcome Screen von Xcode. Zum Anlegen eines neuen Xcode Projekts wählt man
+einfach die Option “Create new Xcode Project”. Falls man keinen Welcome Screen angezeigt bekommt, kann man auch einfach
+den Umweg über <code class="highlighter-rouge">File -&gt; New -&gt; Project...</code> nehmen.</p>
+
+<p><img src="../../../BestPractices/public/images/AP010/0100/choose-template.png" alt="Bild des Schritts &quot;Choose Template&quot;" />
+<em>Die empfohlene Option ist “Single-View Application”</em></p>
+
+<p>Anschließend wird man von Xcode aufgefordert eine Vorlage für das neue Projekt zu wählen. Hier stehen viele verschiedene
+Optionen zur Verfügung, wie beispielsweise “Master-Detail Application”, “Page-Based Application” oder auch “Game”.
+Anhand der Wahl legt Xcode dann selbstständig erste Views und passende View Controller an. In den meisten Fällen bietet
+sich Single-View Application an, da man nur einen einzelnen leeren View erhält und der Aufbau eines Storyboards
+vollkommen dem Nutzer überlassen wird. Speziell wenn man eine spezifische File Structure oder andere Best Practices
+anwenden möchte ist die Wahl von Single-View Application empfehlenswert da Xcode nicht unbedingt die besten
+Voreinstellungen trifft.</p>
+
+<p><img src="../../../BestPractices/public/images/AP010/0100/choose-options.png" alt="Bild des Schritts &quot;Choose Options&quot;" />
+<em>Die Optionen die wir für unser Beispielprojekt gewählt haben.</em></p>
+
+<p>Anschließend muss man noch einige Optionen festlegen. <strong>Product Name</strong> bezieht sich auf den Namen den die App später
+einmal tragen soll. Dabei sollte man beachten, dass dieser Case Sensitive ist. In unserem Beispielprojekt wählen wir
+hier “Jamit Challenge”. <strong>Organization Name</strong> beschreibt den Namen des Unternehmens/Teams oder des Entwicklers (falls
+man alleine arbeitet). Im Feld <strong>Organization Identifier</strong> trägt man die eigene Website rückwärts ein. Ein Beispiel wäre
+“com.jamitlabs”. Der eingetragene Identifier wird damit mit keiner echten Domain verknüpft, es handelt sich lediglich um
+die <a href="https://www.quora.com/Xcode-What-is-the-significance-of-a-projects-organization-identifier">von Apple empfohlene
+Notation</a> um den
+Organization Identifier einzigartig zu machen. Man kann sich also auch ruhigen Gewissens für einen Domainnamen
+entscheiden der nicht im eigenen Besitz ist. Der <strong>Bundle Identifier</strong> wird anschließend automatisch angelegt und
+besteht aus dem Organization Identifier und dem Product Name. Bei <strong>Language</strong> handelt es sich um die Programmiersprache
+mit der man das Projekt anlegen möchte (Swift oder Objective-C). Nachträglich kann man das Projekt noch immer mit einer
+anderen Sprache erweitern, nur die ersten Dateien werden automatisch in der gewählten Sprache angelegt. Im Zweifelsfall
+sollte man alle Haken setzen, da die erstellten Dateien nicht stören. <strong>Devices</strong> legt fest für welche Geräte die App
+später einmal ausgelegt sein wird. Man kann sich zwischen den Optionen “iPhone”, “iPad” und “Universal” entscheiden.
+Universal bedeutet dass die App sowohl auf dem iPad als auch auf dem iPhone lauffähig ist.</p>
+
+<p>Anschließend folgen noch 3 weitere Optionen. <strong>Use Core Data</strong> legt den Grundstein für die Nutzung eines Core Data
+Models. Xcode legt dann für den Nutzer eine <code class="highlighter-rouge">.xcdatamodeld</code>-Datei an und legt weitere Voreinstellungen fest. Bei der
+Wahl von <strong>Include Unit Tests / Include UI Tests</strong> werden für den User bereits die entsprechenden Dateien für die
+unterschiedlichen Tests angelegt.</p>
+
+<p>Die Optionen können auch alle noch nachträglich geändert werden. Das ist aber Teils mit etwas Aufwand verbunden weshalb
+es ratsam ist, sich vorher Gedanken über den gewünschten Umfang und die Funktionsweise der App zu machen.</p>
+
+<p><img src="../../../BestPractices/public/images/AP010/0100/choose-storage-location.png" alt="Bild der Speicherortwahl" />
+<em>Letzendlich muss noch der gewünschte Speicherort gewählt werden.</em></p>
+
+<p>Anschließend muss der Nutzer nur noch den gewünschten Speicherort wählen. Außerdem kann man sich hier entscheiden ob man
+bereits beim Erstellen des Projekts ein Git-Repository anlegen möchte. Mit einem Klick auf “Create” ist
+Erstellungsprozess abgeschlossen.</p>
+
+<p><img src="../../../BestPractices/public/images/AP010/0100/project-editor.png" alt="Bild des Project Editors" />
+<em>Der Project Editor nach dem Anlegen eines neuen Projekts.</em></p>
+
+<p>Anschließend öffnet sich der Project Editor. Falls man die Option zum Erstellen eines Repositorys angehakt hat wurden
+die ersten Dateien bereits mit der Message “Initial Commit” gemerged.</p>
+
+<h2 id="voreinstellungen-die-gemacht-werden-sollten">Voreinstellungen die gemacht werden sollten</h2>
+
+<p>TODO: Auf Dateistruktur hinweisen</p>
+
+<p>TODO: Sonstige empfohlene Tools und Settings</p>
+
+  </div>
+
+  <hr />
+  <div>
+    
+
+    
+      <p style="float:right;">
+        <a href="/BestPractices/de/articles/AP010-0200.html">
+          <small>
+            Weiter: AP010-0200 >>
+          </small>
+        </a>
+      </p>
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

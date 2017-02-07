@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Android Studio Projektstruktur &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Android Studio Projektstruktur
+  </h1>
+
+  <p class="post-date">
+    AN010-0200
+     •
+    <time datetime="2016-01-01T01:00:00+01:00" itemprop="datePublished">
+      01. Januar 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Marina Meier
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <p>In diesem Artikel wird ein sinnvoller Aufbau für ein Android Studio Projekt dargestellt. Dabei geht es um den von
+Android vorgebenen Aufbau der <code class="highlighter-rouge">res</code> - Dateien und ein Beispiel für die frei wählbare Struktur der <code class="highlighter-rouge">java</code> - Dateien.</p>
+
+<h2 id="anlegen-der-java--dateien">Anlegen der <code class="highlighter-rouge">java</code>- Dateien</h2>
+
+<p>Beim Aufbau und Benennung der <code class="highlighter-rouge">java</code>- Dateien ist man prinzipiell frei. Es lohnt sich jedoch eine übersichtliche
+Struktur anzulegen und einzelne Belange zu trennen. Besonders hilfreich ist eine übersichtliche Struktur bei der
+Zusammenarbeit mit anderen, da sie jedem der projektfremd ist, vereinfacht einen schnellen Überblick zu bekommen. Auch
+bei Fehlerbehebungen und Modul Erweiterungen ist es wichtig, dass die Zusammenhänge gleich erkannt werden und so die
+Entwicklungszeit insgesamt gesenkt werden kann. Insbesondere steigert eine übersichtlichte Struktur besonders die
+Wartbarkeit und auf lange Sicht die Code Qualität.</p>
+
+<p>Strukturbeispiel:</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0200/java_structure_example.png" alt="java_structure_example" /></p>
+
+<ul>
+  <li><strong>api</strong>: In dem Api Package könnten alle Dateien abegelgt werden, die dazu  benötigt werden mit Hardware zu
+kommunzieren.</li>
+  <li><strong>utils</strong>: In dem Utils Package könnten alle Dateien abgelegt werden, die sich generell für die ganze App als nützlich
+erweisen, wie zum Beispiel Helper Klassen.</li>
+  <li><strong>views</strong>: In das Views Package kommen alle Dateien, die mit dem Aufbau des Layouts zu tun haben (Activities,
+Fragmente, Dialoge). Innerhalb dieses Packages kann weiter gegliedert werden zum Beispiel nach Teilbereichen der App,
+sodass zusammengehörige Klassen auch an einem Ort aufzufinden sind.</li>
+</ul>
+
+<h2 id="anlegen-der-resressourcen---ordner">Anlegen der <code class="highlighter-rouge">res</code>(Ressourcen) - Ordner</h2>
+
+<p>Im Ressourcen - Verzeichniss werden Inhalte wie zum Beispiel Texte, Bilder, Menüs, Layouts oder Animationen in XML
+Dateien angelegt ohne eine Zeile Java-Code zu schreiben. Man könnte dies alles auch programmatisch lösen, jedoch
+ermöglicht die Plazierung außerhalb des Codes ungeschultem Personal die Daten unabhängig davon bearbeiten zu können.
+Beispiel dafür wären Übersetzungen einzupflegen oder das Branding durch die styles.xml / colors.xml zu ändern. Außerdem
+dient der Aufbau der Resourcen der Übersichtlichkeit.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0200/start_structure.png" alt="start_structure" /></p>
+
+<p>In diesem Beispiel kann man die Unterverzeichnisse sehen, die für ein Projekt benötigt werden. Die Struktur der
+Verzeichnisse ist von Android vorgegeben. Innerhalb des <code class="highlighter-rouge">res</code> -Ordners dürfen sich nur Unterverzeichnisse befinden und
+keine Dateien. Auch die Benennung der Unterverzeichnisse ist fest vorgegeben, da Android sich zur Laufzeit genau die
+Dateien aus den Ordnern heraus greift, welche am Besten zu den Eigenschaften des jeweiligen Gerätes passen.</p>
+
+<p>Im Folgenden eine Auflistung der Default Ressourcen.</p>
+
+<ul>
+  <li>animator</li>
+  <li>anim</li>
+  <li>color</li>
+  <li>drawable</li>
+  <li>mipmap</li>
+  <li>layout</li>
+  <li>menu</li>
+  <li>raw</li>
+  <li>values</li>
+  <li>xml</li>
+</ul>
+
+<p><em>Auf den Inhalt der einzelnen Ordner wird später eingegangen.</em></p>
+
+<h3 id="spezialisierungen">Spezialisierungen</h3>
+
+<p>Zusätzlich zu den Default Ressourcen gibt es Spezialisierungen, welche auf genauere Geräteeigenschaften eingehen. Zum
+Beispiel könnte man veschiedene Layouts für verschiedene Screengrößen anlegen oder man möchte, dass ein anderes Layout
+verwendet wird, wenn der Benutzer der App in den Landscape Modus wechselt. Für diese Spezialisierungen müssen neue
+Verzeichnisse im <code class="highlighter-rouge">res</code> -Ordner angelegt werden.</p>
+
+<p><img src="" alt="Beispiel für ein res Verzeichnis mit Spezialisierungsordnern" /></p>
+
+<p>Folgende Regeln sind dabei zu Beachten:</p>
+
+<ul>
+  <li>
+    <p><strong>Die Verzeichnisse dürfen nicht geschachtelt werden</strong></p>
+
+    <p>Richtig:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code> res/
+    drawable/
+    drawable-hdpi/
+    layout/
+</code></pre>
+    </div>
+    <p>Falsch:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>res/
+   drawable/
+       drawable-hdpi/
+   layout/
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p><strong>Die Benennung folgt diesem Schema</strong></p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>&lt;resources_name&gt;-&lt;qualifier&gt;
+</code></pre>
+    </div>
+    <ul>
+      <li><strong>resources_name</strong> ist der Name der Default - Ressource auf die sich die Spezialisierungen bezieht.</li>
+      <li><strong>qualifier</strong> ist der Name der Spezialisierung für welche die Ressource benutzt werden soll.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Beim Anlegen der Verzeichnisse muss eine bestimmte Reihenfolge eingehalten werden</strong></p>
+
+    <p>Da Android sich die zu den Geräteeigenschaften passenden Dateien heraussucht, würden manche Dateien bei falscher
+Anordnung ignoriert werden.</p>
+
+    <p>Richtig:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>res/
+    layout/
+    layout-port/
+    layout-land/
+</code></pre>
+    </div>
+    <p>Falsch:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>res/
+    layout-port/
+    layout/
+    layout-land/
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p><strong>Beim Anhängen von mehreren Spezialisierungen muss eine bestimmte Reihenfolge eingehalten werden.</strong></p>
+  </li>
+</ul>
+
+<p>Auf <a href="http://developer.android.com/guide/topics/resources/providing-resources.html">dieser Seite</a>
+ in Tabelle 2 sind die Reihenfolge der Verzeichnisse und aller möglichen Spezialisierungen angegeben.</p>
+
+<ul>
+  <li>
+    <p><strong>Ein Verzeichnis kann nur eine Spezialisierung eines Typs bekommen</strong></p>
+
+    <p>Richtig:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>drawable-rES/
+drawable-rFR/
+</code></pre>
+    </div>
+
+    <p>Falsch:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>drawable-rES-rFR/
+</code></pre>
+    </div>
+
+    <p>Möchte man jedoch die gleiche Datei in beiden Ordnern ablegen, kann sie auch außerhalb definiert werden.</p>
+  </li>
+</ul>
+
+<p>Android sucht nach der am Besten zu den Geräteeigenschaften passenden Spezialisierung. Falls keine passende gefunden
+werden kann, wird auf die Default Werte zugegriffen, die sich in den Default Ordnern ohne Spezialisierung befinden
+(<code class="highlighter-rouge">layout/</code>, <code class="highlighter-rouge">values/</code>). Es ist wichtig Default Ressourcen anzubieten, sonst stürzt die App ab. Genauso ist es wichtig,
+dass die Dateien in allen Spezialisierungen, sowie dem Default Ordner, gleich benannt sind, da die Ressourcen im Code
+durch IDs angesprochen werden.</p>
+
+<h3 id="unterschied-von-animationen-im-animator---verzeichnis-und-im-anim---verzeichniss">Unterschied von Animationen im <code class="highlighter-rouge">animator</code> - Verzeichnis und im <code class="highlighter-rouge">anim </code>- Verzeichniss</h3>
+
+<p>In das Verzeichnis <code class="highlighter-rouge">anim</code> gehören <strong>tween animations</strong>.</p>
+
+<p>Bei diesen handelt es sich um die <strong>Standard Animationen</strong> und kann nur auf Views angewendet werden. Möglich ist dabei
+nur die Veränderung der Position (translation), die Veränderung der Größe (scale), der Rotation (rotation) und der
+Durchsichtigkeit (alpha) der View. Die Implementierung und der Aufbau ist relativ einfach. Bei der Animation wird jedoch
+nicht das tatsächliche Objekt angepasst, sondern nur der Aubau der View. Das kann zum Problem werden, wenn die View
+klickbar sein soll, da der klickbare Bereich während der Animation nicht aktualisiert wird.</p>
+
+<p>Diese Animation gibt es seit API Level 1.</p>
+
+<p>Weitere Informationen: <a href="http://developer.android.com/guide/topics/graphics/view-animation.html#tween-animation">Android View
+Animations</a></p>
+
+<p>In das Verzeichnis <code class="highlighter-rouge">animator</code> gehören <strong>property animations</strong>.</p>
+
+<p>Bei diesen Animationen werden die Eigenschaften eines Objects über einen bestimmten Zeitraum verändert. In diesem Fall
+werden die Objekte direkt modifiziert und auch der klickbare Bereich würde am Objekt haften, da die Eigenschaften des
+Zielobjects in Echtzeit aktualisiert werden. Diese Art von Animation kann für alle Arten von Objekten verwendet werden,
+nicht nur für Views, und sind insgesamt generischer und flexibler.</p>
+
+<p>Diese Animation wurde bei API Level 11 hinzugefügt.</p>
+
+<p>Weitere Informationen: <a href="http://developer.android.com/guide/topics/graphics/prop-animation.html">Android Property
+Animation</a></p>
+
+<h3 id="verzeichnis-color">Verzeichnis <code class="highlighter-rouge">color</code></h3>
+
+<p>Im Verzeichnis <strong><em>color</em></strong> werden xml-Dateien angelegt, die eine <strong>Color State List</strong> beinhalten. Diese ist ein Objekt,
+welches man wie eine <strong>color</strong> verwenden kann. Hier kann man eine Liste von verschiedenen Farben für verschiedene
+Zustände definieren, wie zum Beispiel <em>gedrückt</em>, <em>im Fokus</em>, <em>normal</em>. Wird diese Liste benutzt, werden diese Farben je
+nach Zustand eingesetzt.</p>
+
+<p>Weitere Informationen: <a href="http://developer.android.com/guide/topics/resources/color-list-resource.html">Color State List
+Resource</a></p>
+
+<h3 id="verzeichnis-drawable">Verzeichnis <code class="highlighter-rouge">drawable</code></h3>
+
+<p>Im Verzeichnis <strong><em>drawable</em></strong> werden verschiedene Arten von Graphiken abgelegt.</p>
+
+<p>Weitere Informationen im Artikel: <a href="">0250 Drawable Ressourcen</a></p>
+
+<h3 id="verzeichnis-mipmap">Verzeichnis <code class="highlighter-rouge">mipmap</code></h3>
+
+<p>Im Verzeichnis <em>mipmap</em> werden die Laucher Icons (App Icons) abgelegt, welche auf dem Homescreen angezeigt werden. Da es
+viele unterschiedliche Geräte mit unterschiedlichen Auflösungen gibt, sollten auch diese Icons in unterschiedlichen
+Pixeldichten abgelegt werden. Der Unterschied zu den Icons im Drawable Ordner ist, dass die Icons nicht nach der
+Auflösung des Gerätes ausgewählt werden, sondern auch Icons mit einer höheren Auflösungen benutzt werden, um sie größer
+darzustellen.</p>
+
+<h3 id="verzeichnis-layout">Verzeichnis <code class="highlighter-rouge">layout</code></h3>
+
+<p>Im Verzeichnis <em>layout</em> wird das Aussehen der Benutzeroberflächen festgelegt. Es gibt zwei Möglichkeiten ein Layout zu
+definieren:</p>
+
+<ul>
+  <li><strong>In XML Dateien</strong></li>
+  <li><strong>Zur Laufzeit</strong></li>
+</ul>
+
+<p>Man kann jede Variante für sich oder beide zusammen verwenden. Zu empfehlen ist, das Grundlayout in den XML Dateien zu
+definieren. Diese können von Android Studio visuell dargestellt werden und erleichtern das Erstellen und Bearbeiten.
+Auch ist der Aufbau der Oberfläche klar von der Funktionsweise getrennt. Späteres modifizieren ist somit einfacher und
+es besteht die Möglichkeit Layouts für unterschiedliche Screengrößen oder Ausrichtungen anzupassen. Zur Laufzeit sollten
+dann Veränderungen der, in den XML Dateien definerten, Layouts erfolgen und Custom Views erstellt werden.</p>
+
+<h3 id="verzeichnis-menu">Verzeichnis <code class="highlighter-rouge">menu</code></h3>
+
+<p>Im Verzeichnis <em>menu</em> werden die Optionsmenüs, Kontextmenüs und Untermenüs angelegt.</p>
+
+<h3 id="verzeichnis-raw">Verzeichnis <code class="highlighter-rouge">raw</code></h3>
+
+<p>Im Verzeichnis <em>raw</em> werden Dateien in ihrem <code class="highlighter-rouge">.raw</code> - Format abgelegt. Dies ist sinnvoll bei Videos oder Audios, da es
+hier auf eine gute Qualität der Wiedergabe ankommt. Die Inhalte dieses Ordners werden bei der APK Erstellung nicht
+komprimiert, da sie sonst nicht mehr abspielbar wären.</p>
+
+<h3 id="verzeichnis-values">Verzeichnis <code class="highlighter-rouge">values</code></h3>
+
+<p>Im Verzeichnis <em>values</em> werden Dateien angelegt, welche einen einfachen Wert besitzen, wie zum Beispiel Strings,
+Integers oder Farben. Diese Dateien enthalten nicht nur eine Ressouce, wie die anderen XML Dateien in den anderen
+Verzeichnissen, sondern können beliebig viele Ressourcen enthalten. Die Festlegung von Farben, Strings oder Dimensionen
+in diesen Dateien ist sinnvoll, da sie so unabhängig vom Code geändert werden können. Möchte man zum Beispiel eine
+Accent Farbe in einer App benutzen und diese wird fünfzig mal verwendet, so muss man sie, falls man sich für eine andere
+Farbe entscheidet, nicht fünzig mal ändern, sondern nur ein einziges Mal in der colors.xml.</p>
+
+<p>Des Weiteren ist wichtig, dass Texte, Audios, Graphiken, etc. auf die Regionen angepasst werden, in der die App benutzt
+wird. Dazu sind mehrere values Ordner anzulegen, die jeweils die regionsspezifischen Inhalte enthalten. Der <code class="highlighter-rouge">values</code>-
+Ordner ist dabei der Default Ordner und sollte die Region beinhalten, die die meisten Benutzer benutzen werden.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>values/
+  strings.xml
+values-en/
+  strings.xml
+values-fr/
+  strings.xml
+</code></pre>
+</div>
+
+<p>Die Bennenug der Dateien folgt diesen Namenskonventionen:</p>
+
+<h4 id="arraysxml">arrays.xml</h4>
+
+<p>Ein <strong>Array</strong> definiert ein Array aus Strings</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;string-array name="string_array_name"&gt;
+    &lt;item&gt;Erstes Wort&lt;/item&gt;
+    &lt;item&gt;Zweites Wort&lt;/item&gt;
+    &lt;item&gt;Drittes Wort&lt;/item&gt;
+&lt;/string-array&gt;
+</code></pre>
+</div>
+
+<h4 id="attrsxml">attrs.xml</h4>
+
+<p>In der attrs.xml können <strong>Attribute</strong> für eigene View Klassen erzeugt werden. Neben den Standardattributen wie zum
+Beispiel layout_height, background, etc. können so neue, individuelle Attribute angelegt werden.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;declare-styleable name="Beispiel"
+  &lt;attr name="showText" format="boolean" /&gt;
+  &lt;attr name="content" format="string" /&gt;
+  &lt;attr name="position" format="enum" &gt;
+    &lt;enum name="left" value="0" /&gt;
+    &lt;enum name="right" value="1" /&gt;
+  &lt;/attr&gt;
+&lt;/declare-styleable&gt;
+</code></pre>
+</div>
+<p>Der Name (hier <em>Beispiel</em>) sollte nach Convention gleich benannt werden wie die Klasse in der die View erzeugt wird.</p>
+
+<p>In der layout.xml können diese Attribute benutzt werden.</p>
+
+<h4 id="colorsxml">colors.xml</h4>
+
+<p>Ein <strong>Color</strong> Wert definiert eine Farbe und besteht aus einem RGB Wert und einem Alphakanal. Die Color-Ressource kann
+überall dort verwendet werden, wo ein hexadezimal Wert akzeptiert wird. Diese Format Möglichkeiten gibt es: #RGB, #ARGB,
+#RRGGBB, #AARRGGBB</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;color name="color_name"&gt;#000000&lt;/color&gt;
+</code></pre>
+</div>
+
+<h4 id="dimensxml">dimens.xml</h4>
+
+<p>Ein <strong>Dimen</strong> Wert definiert eine Dimension und besteht aus einer Nummer und einer Einheit. Benutz werden können
+Dimen-Werte zum Beispiel für verschiedene Abstände in Layouts oder Textgrößen.</p>
+
+<p>Die folgenden Einheiten werden akzeptiert:</p>
+
+<ul>
+  <li>
+    <p><strong>dp</strong> (Density-independent Pixels) sind eine abstrakte Einheit, die auf der Pixeldichte des Screens beruht. Auf einem
+160 dpi screen ist 1 dp ungefähr gleich 1px. Ist die Pixeldichte höher oder niedriger wird die Anzahl der Pixel, die
+einem dp entsprechen, im Verhältnis angepasst.</p>
+  </li>
+  <li>
+    <p><strong>sp</strong> (Scale-independent Pixel) funktionieren gleich wie <em>dp</em>, kann jedoch aber durch die Schriftgrößen Präferenzen
+des Benutzers angepasst werden. Daher ist es sinnvoll diese Einheit für Schriftgrößen einzusetzten.</p>
+  </li>
+  <li>
+    <p><strong>pt</strong> (Points) 1/72 of an inch, basierend auf der physikalischen Größe des Screens.</p>
+  </li>
+  <li>
+    <p><strong>px</strong> (Pixel) ist relativ zu den Pixeln eines Screen. Dies ist nicht zu empfehlen, da jedes Gerät eine andere
+Auflösung hat und die Darstellung somit sehr kompliziert wird.</p>
+  </li>
+  <li><strong>mm</strong> (Milimeter) ist relativ zur physikalischen Größe des Screens.</li>
+  <li><strong>in</strong> (Inches) ist relativ zru physikalischen Größe des Screens.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dimen name="dimen_name"&gt;12sp&lt;/dimen&gt;
+</code></pre>
+</div>
+
+<h4 id="stringsxml">strings.xml</h4>
+
+<p>Ein <strong>String</strong> Wert defininert ein Wort oder einen Text. Texte sollten, nicht direkt im Code gesetzt werden. Sie sollten
+einfach geändert und in andere Sprachen übersetzt werden können. Dazu werden sie in der strings.xml defniniert und diese
+Datei kann dann je nach Sprache ohne viel Aufwand ausgetauscht werden.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;string name="string_name"&gt;Hallo Welt!&lt;/string&gt;
+</code></pre>
+</div>
+
+<h4 id="stylesxml">styles.xml</h4>
+
+<p>Ein <strong>Style</strong> Wert definiert das Format und das Aussehen für eine View oder eine komplette Activity oder Applikation.
+Dort können mehrere Eigenschaften gesammelt werde, wie zum Beispiel height, padding, font color, font size, background,
+color, etc.</p>
+
+<p>So kann man zum Beispiel das Layout vom Inhalt trennen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;TextView
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:textColor="#00FF00"
+  android:typeface="monospace"
+  *android:text="@string/hello"* /&gt;
+
+
+&lt;TextView
+  style="@style/Text"
+  android:text="@string/hello" /&gt;
+
+</code></pre>
+</div>
+
+<p>Neben den Styles kann man auch <strong>Themes</strong> anlegen. Diese sind Styles, die auf komplette Activites oder Applikationen
+angewandt werden können.</p>
+
+<p>Weitere Informationen: <a href="http://developer.android.com/guide/topics/ui/themes.html">Styles and Themes</a></p>
+
+<h3 id="verzeichnis-xml">Verzeichnis <code class="highlighter-rouge">xml</code></h3>
+
+<p>Im Verzeichniss <em>xml</em> werden beliebige XML Dateien abgelegt.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;rootelement&gt;</span>
+  <span class="nt">&lt;subelemnt&gt;</span>Element 1<span class="nt">&lt;/subelement&gt;</span>
+  <span class="nt">&lt;subelement&gt;</span>Element 2
+    <span class="nt">&lt;subsubelement&gt;</span>Element 3<span class="nt">&lt;/subsubelement&gt;</span>
+  <span class="nt">&lt;/subelement&gt;</span>
+<span class="nt">&lt;/rootelement&gt;</span>
+</code></pre>
+</div>
+<p>Möchte man zum Beispiel Daten aus einem hier abgelegten xml Dokument auslesen, gibt es Schnittstellen wie den
+XmlResourceParser, die das ermöglichen.</p>
+
+  </div>
+
+  <hr />
+  <div>
+    
+      <p style="float:left;">
+        <a href="/BestPractices/de/articles/AN010-0100.html">
+          <small>
+            << Zurück: AN010-0100
+          </small>
+        </a>
+      </p>
+    
+
+    
+      <p style="float:right;">
+        <a href="/BestPractices/de/articles/AN010-0250.html">
+          <small>
+            Weiter: AN010-0250 >>
+          </small>
+        </a>
+      </p>
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

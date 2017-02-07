@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Versionsverwaltung: Eine Einführung &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Versionsverwaltung: Eine Einführung
+  </h1>
+
+  <p class="post-date">
+    GN010-0100
+     •
+    <time datetime="2016-01-01T01:00:00+01:00" itemprop="datePublished">
+      01. Januar 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Cihat Gündüz
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <p>In diesem Artikel wird beschrieben, was Versionsverwaltungssysteme sind, welche Probleme sie lösen und welchen Begriffe
+man bei der täglichen Arbeit mit ihnen begegnen wird mitsamt ihrer Bedeutung.</p>
+
+<h2 id="eine-welt-ohne-versionsverwaltung">Eine Welt ohne Versionsverwaltung</h2>
+
+<p>Angenommen ein Projekt wird ohne Versionsverwaltung umgesetzt und es gibt einen Fehler. Zur Behebung dieses Fehlers
+werden Änderungen am Code des Projekts durchgeführt und dabei wie so oft verschiedene Ansätze ausprobiert, bis der
+richtige Fix gefunden ist. Dabei kommt es vor, dass man nach mehreren Anläufen feststellt, dass irgendetwas anderes
+nicht mehr funktioniert als das, was man eigentlich beheben möchte, weil vor dem Beginn eines neuen Ansatzes ein
+vorheriger Ansatz nicht komplett rückgängig gemacht worden ist. Es wurde also irgendetwas vergessen, was jetzt
+Auswirkungen auf den neuen Ansatz hat.</p>
+
+<p>Und das Ganze wird nur schlimmer je mehr Änderungen gemacht werden, da auch mehr vergessen werden kann, bis das Projekt
+irgendwann <strong>gar nicht mehr funktioniert</strong> und man nicht mehr weiß, wie der <strong>letzte funktionierende Stand wieder
+herzustellen</strong> ist. Sollen zudem mehrere Personen an dem Projekt gleichzeitig entwickeln, vervielfacht sich dieses
+Problem noch weiter, bis man in dem Projekt mehr damit beschäftigt ist Absprachen zu machen und Probleme mit nicht
+rückgängig gemachten Änderungen zu beheben als die eigentliche Entwicklung voran zu treiben.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0100/99bugs-meme.jpg" alt="App had 99 bugs ... fixed one! 117 to go" /></p>
+
+<h2 id="lsungsansatz-und-grundbegriffe">Lösungsansatz und Grundbegriffe</h2>
+
+<p>Um diesem Problem zu entgehen kommen Tools zum Einsatz, deren Hauptaufgabe es ist <strong>Änderungen im Code automatisch
+nachzuverfolgen</strong> und durch entsprechend gesetzte Markierungen <strong>leicht auch wieder rückgängig zu machen</strong>. Den Prozess
+der Änderungsverfolgung mit markierten Ständen nennt man <strong>Versionsverwaltung</strong>, die markierten Stände heißen
+<strong>Commits</strong> und erhalten stets einen Kommentar, der die Änderungen seit dem letzten markierten Stand (seit dem letzten
+Commit) erklärt. Diesen Kommentar nennt man <strong>Commit Message</strong>. Die Menge aller markierten Stände (Commits) ist die
+sogenannte <strong>History</strong>. Ein Projekt, das von einem Versionsverwaltungssystem getracked wird nennt man ein
+<strong>Repository</strong>.</p>
+
+<p>Ein Repository hat eine oder mehrere Entwicklungszweige, die verschiedene Arbeitsstände in dem Projekt repräsentieren.
+Diese Entwicklungszweige nennt man <strong>Branches</strong>, man kann sie sich als unterschiedliche Mengen von Commits vorstellen,
+die eine gemeinsame Basis haben. Ein Branch trägt stets einen Namen, der Standardname des ersten Branches bei der
+Erstellung eines Repository ist <code class="highlighter-rouge">master</code>. Typischerweise gibt es <strong>ein oder zwei Haupt-Branches</strong>, die den aktuellen
+Stand des Gesamtfortschritts wiederspiegeln und dazu noch <strong>beliebig viele Arbeits-Branches</strong>, die jeweils einen noch
+unabgeschlossenen Bereich der Weiterarbeit wiederspiegeln.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0100/merge.png" alt="Merge" />
+<em>Ein Merge führt Änderungen in unterschiedlichen Branches zusammen.</em></p>
+
+<p>Wird die Arbeit an einem Arbeits-Branch abgeschlossen, so werden die Änderungen darin (die Commits) mit dem aktuellen
+Gesamtfortschritt (also einem der Haupt-Branches) zusammengeführt. Die Zusammenführung von Branches (also
+unterschiedlichen Mengen von Commits) nennt man einen <strong>Merge</strong>. Versionsverwaltungssysteme führen die Änderungen in den
+meisten Fällen <strong>voll automatisch</strong> zu einem gemeinsamen Stand zusammen. Nur wenn an denselben Stellen derselben Dateien
+unterschiedliche Änderungen durchgeführt wurden, kann kein auomatischer Merge stattfinden. Es liegt ein sogenannter
+<strong>Merge Conflict</strong> vor. In einem solchen Fall muss manuell eingegriffen werden, wobei das Versionsverwaltungssystem die
+zusammenzuführenden Stellen im Code auffällig kennzeichnet.</p>
+
+<h2 id="gemeinsames-arbeiten-und-weitere-begrifflichkeiten">Gemeinsames Arbeiten und weitere Begrifflichkeiten</h2>
+
+<p>Eine weitere Vereinfachung, die Versionskontrollsysteme bei der Softwareentwicklung bieten ist der <strong>einfache Austausch
+von Code in einem Team</strong>. Dies geschieht in der Regel über einen Server, der den geteilten Stand des Projekts enthält –
+der sogenannte <strong>Remote Server</strong>. Versionsverwaltungssysteme bieten eine Funktion, mithilfe der man einzelne Commits
+oder ganze Branches (Mengen von Commits) auf den Remote Server hoch laden kann. Den Prozess des Hochladens nennt man
+einen <strong>Push</strong>. Das Gegenstück dazu – das Herunterladen von Code <em>vom</em> Remote Server – nennt sich <strong>Pull</strong>.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0100/push-pull.png" alt="Push &amp; Pull" />
+<em>Um lokale und serverseitige Branches synchron zu halten, sollte man regelmäßig pushen und pullen.</em></p>
+
+<p>In der gemeinsamen Arbeit eines Teams sollte stets klar sein, welche Funktionen die Haupt-Branches haben und wie
+Arbeits-Branches zu benennen sind. Unser ganzheitlicher Vorschlag hierzu ist zu lesen in dem späteren Artikel
+<a href="GN010-0300.html">GN010-0300</a>. Für die Erklärungen im Folgenden sei <code class="highlighter-rouge">master</code> der einzige Haupt-Branch und jeder
+Branch, dessen Name mit <code class="highlighter-rouge">feature/</code> beginnt ein Arbeits-Branch:</p>
+
+<p>Der Remote Server läuft meist in einem Dienst mit Weboberfläche, wobei <a href="https://github.com">GitHub.com</a>,
+<a href="https://bitbucket.org">Bitbucket.org</a> und <a href="https://gitlab.com">GitLab.com</a> die aktuell meist verbreiteten Dienste sind.
+GitLab hat außerdem eine <a href="https://about.gitlab.com/features/#community">Community Edition</a>, die sich auf den eigenen
+Servern installieren lässt. In jedem dieser Dienste gibt es die Option Nutzer anzulegen und diesen einzeln Lese- und
+Schreib-Rechte in Projekten zu vergeben. Einzelne Branches lassen sich außerdem zusätzlich schützen, man nennt sie dann
+<strong>Protected Branch</strong>, wodurch man zusätzliche Rechte braucht, um dort Änderungen hinein zu pushen oder zu mergen.</p>
+
+<p>Typischerweise werden die Haupt-Branches (also z.B. der <code class="highlighter-rouge">master</code> Branch) geschützt. Möchte nun ein Entwickler, der einen
+Arbeits-Branch fertig stellt (z.B. <code class="highlighter-rouge">feature/integrate_analytics</code>) diesen mit dem Gesamtfortschritt zusammenführen
+(Merge), so muss er einen anderen Entwickler mit entsprechenden Rechten darum bitten, dies für ihn zu tun. Dies
+geschieht mithilfe eines <strong>Merge Requests</strong> über die Weboberfläche des Remote Server Dienstes. Ein anderer Entwickler
+mit den entsprechenden Rechten hat so die Möglichkeit <strong>die gemachten Änderung in dem Arbeits-Branch zu validieren</strong> und
+eventuell Korrekturen vorzuschlagen oder diese selbst vorzunehmen, bevor er den Merge durchführt. Für die Kommunikation
+lassen sich Merge Requests oder einzelne Code-Stellen in der Weboberfläche <strong>kommentieren</strong>.</p>
+
+<h2 id="welches-versionsverwaltungssystem">Welches Versionsverwaltungssystem?</h2>
+
+<p><img src="../../../BestPractices/public/images/GN010/0100/logos.png" alt="Logos" />
+<em>Die verbreitetsten Versionskontrollsysteme derzeit sind SVN, Git und Mercurial.</em></p>
+
+<p>Es gibt verschiedene Versionsverwaltungssysteme mit unterschiedlichen Zielen sowie Vor- und Nachteilen (siehe Vergleiche
+<a href="http://stackshare.io/stackups/svn-vs-git-vs-mercurial">hier</a> und
+<a href="https://en.wikipedia.org/wiki/Comparison_of_version_control_software">hier</a>). Die bei der Softwareentwicklung
+heutzutage am meisten verbreiteten sind Subversion (kurz SVN), Git und Mercurial. SVN gilt dabei als veraltet, vor allem
+da es auf eine zentrale Funktionsweise setzt, was das Offline-Arbeiten umständlicher macht. Git und Mercurial sind
+dagegen dezentrale Versionskontrollsysteme, die das getrennte Arbeiten und Verwalten von Projekten durch den Einsatz
+lokaler Arbeitskopien deutlich verbessern.</p>
+
+<p>Funktional sind Git und Mercurial miteinander <a href="http://stackoverflow.com/a/892688">durchaus vergleichbar</a>, jedoch stand
+hinter Git (vor allem aus <a href="https://de.wikipedia.org/wiki/Git">historischen Gründen</a>) stets eine deutlich größere
+Community, weshalb es mit der Zeit immer mehr zum <strong>dominierenden Versionskontrollsystem</strong> unserer Zeit aufgestiegen
+ist. Die <strong>starke Verbreitung</strong>, die <strong>vielen verfügbaren Werkzeuge</strong> und die <strong>Unterstützung auf vielen Diensten</strong> zur
+Projektverwaltung machen uns die Empfehlung leicht: An Git kommt man derzeit kaum vorbei.</p>
+
+<h2 id="wie-kann-ich-git-einfach-nutzen">Wie kann ich Git einfach nutzen?</h2>
+
+<p>Obwohl Git ein <a href="https://git-scm.com">Kommandozeilen-Tool</a> ist und sogar eine stabile Git-Version auf einigen Systemen
+(z.B. Macs) bereits vorinstalliert ist, <strong>raten wir</strong> App-Entwicklern, die sonst wenig mit der Kommandozeile zu tun
+haben <strong>von dessen Einsatz ab</strong>. Stattdessen empfehlen wir die Nutzung eines guten Git-Programms mit Nutzeroberfläche:</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0100/sourcetree.png" alt="SourceTree" />
+<em>SourceTree erlaubt die Nutzung von Git ohne Kommandozeile.</em></p>
+
+<p><strong><a href="https://www.sourcetreeapp.com">SourceTree</a></strong> ist sowohl für Mac als auch für Windows verfügbar und das Programm
+unserer Wahl. Es ist kostenlos, recht übersichtlich und unterstützt alle wichtigen Arbeitsschritte, die bei der
+täglichen Arbeit mit Git benötigt werden. Die Installation von Git macht SourceTree ebenfalls überflüssig, da eine
+<strong>aktuelle Git-Version bereits integriert</strong> ist. Im nächsten Artikel (<a href="GN010-0150.html">GN010-0150</a>) gehen wir im
+Detail auf die Arbeit mit Git in SourceTree ein.</p>
+
+<h2 id="weiterfhrende-links">Weiterführende Links</h2>
+
+<ul>
+  <li><a href="https://de.wikipedia.org/wiki/Versionsverwaltung">Wikipedia-Eintrag “Versionsverwaltung”</a></li>
+  <li><a href="https://git-scm.com/doc">Offizielle Git-Dokumentation</a></li>
+</ul>
+
+  </div>
+
+  <hr />
+  <div>
+    
+
+    
+      <p style="float:right;">
+        <a href="/BestPractices/de/articles/GN010-0150.html">
+          <small>
+            Weiter: GN010-0150 >>
+          </small>
+        </a>
+      </p>
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

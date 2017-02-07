@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Wichtige Basis-Typen für jedes Projekt &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Wichtige Basis-Typen für jedes Projekt
+  </h1>
+
+  <p class="post-date">
+    AP020-0200
+     •
+    <time datetime="2016-08-30T02:00:00+02:00" itemprop="datePublished">
+      30. August 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Florian Pfisterer
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <p>Dieser Artikel soll eine Reihe an wichtigen Basis-Typen vorstellen, die man in so gut wie jedem Swift-Projekt nutzen
+kann. Diese Typen, wenn man sie intelligent benutzt, machen den Code sauberer, aussagekräftiger und einfacher zu testen.</p>
+
+<h2 id="der-result-typ">1. Der Result Typ</h2>
+
+<p>In so gut wie jedem Projekt gibt es Aufrufe von Funktionen, die fehlschlagen können. In Swift ist es in so einem Fall
+üblich, dass die Funktion entweder einen Error wirft oder <code class="highlighter-rouge">nil</code> zurück gibt. Auch wenn das in einigen Fällen passend
+ist, möchte man in anderen Fällen weder Errors werfen und weitergeben (<code class="highlighter-rouge">rethrow</code>) noch möchte man die ganze Zeit
+Optionals unwrappen.</p>
+
+<p>Um dieses Problem zu lösen, betrachte man den folgenden generischen Result Typ:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nf">success</span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>
+    <span class="k">case</span> <span class="nf">failure</span><span class="p">(</span><span class="kt">ErrorType</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Dieser Typ, wenn man ihn als Ergebnis eines Funktionsaufrufs benutzt beispielsweise, repräsentiert einen der folgenden
+Fälle:</p>
+
+<ol>
+  <li>Der Aufruf war erfolgreich, und hier ist das Ergebnis: ein Objekt des Typs <code class="highlighter-rouge">T</code></li>
+  <li>Irgendwo ist ein Error passiert, und hier ist er: ein <code class="highlighter-rouge">ErrorType</code> <code class="highlighter-rouge">case</code> (man könnte auch <code class="highlighter-rouge">NSError</code> benutzen)</li>
+</ol>
+
+<p>Der Result Typ erweitert eigentlich nur den Swift Standard-Optional-Typ, indem bei Misserfolg auch gleich der Error
+mitgeliefert wird, warum kein Ergebnisobjekt (<code class="highlighter-rouge">T</code>) vorliegt.</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">Optional</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nf">some</span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>
+    <span class="k">case</span> <span class="k">none</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Ein Swift Optional ist wirklich nicht mehr als das, die “<strong>?</strong>”s und “<strong>!</strong>”s sind nur syntaktische Vereinfachungen.</p>
+
+<h3 id="beispiel-implementierung">Beispiel-Implementierung</h3>
+
+<p>Man betrachte die folgende Funktion, die asynchron <code class="highlighter-rouge">Users</code> aus einer Netzwerkdatenbank lädt (zum Beispiel innerhalb
+einer Klasse <code class="highlighter-rouge">DatabaseClient</code>).</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">loadUsers</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="p">(</span><span class="kt">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">User</span><span class="p">]</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">queue</span> <span class="o">=</span>
+        <span class="nf">dispatch_get_global_queue</span><span class="p">(</span><span class="kt">DISPATCH_QUEUE_PRIORITY_HIGH</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="nf">dispatch_async</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="p">{</span>
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="c1">// aufwändiger Netzwerkaufruf, der einen Error werfen könnte</span>
+            <span class="k">let</span> <span class="nv">users</span><span class="p">:</span> <span class="p">[</span><span class="kt">User</span><span class="p">]</span> <span class="o">=</span> <span class="k">try</span> <span class="nf">networkOperationThatMightThrow</span><span class="p">()</span>
+            <span class="nf">completion</span><span class="p">(</span><span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="n">users</span><span class="p">))</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="k">let</span> <span class="nv">error</span> <span class="p">{</span>
+            <span class="nf">completion</span><span class="p">(</span><span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Wenn wir diese Funktion dann zum Beispiel in unserem  <code class="highlighter-rouge">ViewController</code> benutzen, müssen wir den Aufruf weder in einem
+<code class="highlighter-rouge">do-try-catch</code> Block einbauen, noch müssen wir Optionals unwrappen. Unser Code bleibt sauber, wartbar und verständlich.</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kt">DatabaseClient</span><span class="o">.</span><span class="n">loadUsers</span> <span class="p">{</span> <span class="n">result</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+        <span class="c1">// einen Alert zeigen etc.</span>
+    <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">users</span><span class="p">):</span>
+        <span class="c1">// die UI updaten und die Users zeigen</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="erweiterung">Erweiterung</h3>
+
+<p>In manchen Fällen kann es günstig sein, wenn man einfach nur kurz prüfen kann, ob es ein Objekt gibt (<code class="highlighter-rouge">.success</code>) oder
+nicht (<code class="highlighter-rouge">.failure</code>). Dafür können wir den Result Typ folgendermaßen erweitern:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">Result</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">optional</span><span class="p">:</span> <span class="kt">T</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="k">self</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">success</span><span class="p">(</span><span class="k">let</span> <span class="nv">object</span><span class="p">):</span> <span class="k">return</span> <span class="n">object</span>
+        <span class="k">default</span><span class="p">:</span> <span class="k">return</span> <span class="kc">nil</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre>
+</div>
+
+<h2 id="ein-model-typ">2. Ein Model Typ</h2>
+
+<p>Die allermeisten iOS Apps speichern und laden Daten aus einer Datenbank.</p>
+
+<p>Wenn man Realm oder CoreData als lokale Datenbank benutzt, bekommt man ‘von Haus aus’ bereits eine Superklasse, von der
+die eigenen Model-Typen erben (<code class="highlighter-rouge">Object</code> bei Realm und <code class="highlighter-rouge">NSManagedObject</code> bei CoreData). Aber wenn man diese Bibliotheken
+nicht benutzt - beispielsweise wenn man mit einer selbst definierten REST API auf einem Server arbeitet - muss man einen
+solchen Basis-Typ für seine Model-Typen selbst erstellen.
+Warum? Weil dies der Wiederholung von Code vorbeugt und den Code so einfacher zu warten macht. Anstatt, dass man eine
+<code class="highlighter-rouge">save</code> Funktion für jeden einzelnen Model-Typ schreiben muss, können alle davon die dafür notwendigen Properties teilen
+und so alle <strong>eine</strong> Implementierung einer <code class="highlighter-rouge">save</code> Funktion nutzen.</p>
+
+<h3 id="wie-implementiere-ich-diesen-model-basis-typ">Wie implementiere ich diesen Model Basis-Typ?</h3>
+
+<p>Die erste Idee könnte sein, einfach eine Klasse namens Model zu erstellen, von der die anderen Model-Typen alle erben.
+Diese Klasse könnte dann bestimmte Instanzvariablen wie eine <code class="highlighter-rouge">id</code> sowie Funktionalität wie eine <code class="highlighter-rouge">save</code> Funktion
+beinhalten. Das Problem mit dieser Herangehensweise ist, dass es in den allermeisten Fällen besser ist ‘value-type’
+<code class="highlighter-rouge">structs</code> anstatt von ‘reference-type’ <code class="highlighter-rouge">classes</code> zu nutzen. Hier werde ich nicht näher auf diese Thematik eingehen, aber
+man kann in einem anderen Artikel mehr über den Unterschied zwischen ‘value-types’ und ‘reference-types’ erfahren
+<strong>TODO: Link einfügen</strong>.</p>
+
+<p>Wie also teilen wir Funktionalität zwischen <code class="highlighter-rouge">structs</code>? Vererbung ist hier keine Option.</p>
+
+<h3 id="wir-benutzen-protocol-extensions">Wir benutzen ‘Protocol Extensions’</h3>
+
+<p>In Swift kann man nun <code class="highlighter-rouge">protocol extensions</code> benutzen, um Funktionalität zu <code class="highlighter-rouge">protocols</code> hinzuzufügen. Man betrachte die
+folgende erste Implementierung unseres Model-Typs:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">protocol</span> <span class="kt">Model</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">createdAt</span><span class="p">:</span> <span class="kt">NSDate</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">updatedAt</span><span class="p">:</span> <span class="kt">NSDate</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Jeder Model-Typ (wie zum Beispiel Kunde, Produkt, Rechnung, etc.) muss jetzt diese Properties implementieren. Noch wird
+keine Funktionalität geteilt, diese fügen wir jetzt aber mit Hilfe von Swifts <code class="highlighter-rouge">protocol extensions</code> hinzu:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">Model</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">save</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="k">Self</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// das Objekt z.B. mithilfe der `id` speichern</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Man könnte weitere Funktionen wie <code class="highlighter-rouge">update</code>, <code class="highlighter-rouge">delete</code>, etc. implementieren, aber der Punkt ist, dass jeder Model-Typ, den
+wir für unsere Anwendung brauchen nun diese Funktionalität definiert in unserem Model <code class="highlighter-rouge">protocol</code> nutzen kann. Wenn sich
+etwas an der Datenbank etc. ändert, müssen wir somit den Code nur an <strong>einer</strong> Stelle verändern.</p>
+
+<h3 id="eine-kleine-zusatzinformation">Eine kleine Zusatzinformation</h3>
+
+<p>Wenn manche Model-Typen aufgrund der Business-Logik ihre eigene Implementierung der <code class="highlighter-rouge">save</code> Funktion benötigen, muss man
+die Deklaration dieser Funktion neben der <code class="highlighter-rouge">extension</code> auch in der <code class="highlighter-rouge">protocol</code> Deklaration direkt einbauen. So wird dann,
+wenn man <code class="highlighter-rouge">save</code> auf einem Objekt jener Klassen aufruft, die richtige Implementierung verwendet.</p>
+
+  </div>
+
+  <hr />
+  <div>
+    
+      <p style="float:left;">
+        <a href="/BestPractices/de/articles/AP020-0100.html">
+          <small>
+            << Zurück: AP020-0100
+          </small>
+        </a>
+      </p>
+    
+
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

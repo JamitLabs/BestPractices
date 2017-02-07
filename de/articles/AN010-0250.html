@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Drawable Ressourcen &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Drawable Ressourcen
+  </h1>
+
+  <p class="post-date">
+    AN010-0250
+     •
+    <time datetime="2016-01-01T01:00:00+01:00" itemprop="datePublished">
+      01. Januar 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Marina Meier
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <p>Im Verzeichnis <strong><em>drawable</em></strong> werden verschiedene Arten von Graphiken abgelegt.</p>
+
+<ul>
+  <li><strong>Bitmap File:</strong> Graphik Datei (.png, .jpg, .gif)</li>
+  <li><strong>Nine-Patch File:</strong> .png Datei, die strechbare Regionen besitzt, welche es möglich
+machen, dass das Bild je nach Inhalt an die Größe angepasst werden kann.</li>
+  <li><strong>Layer List:</strong> Array aus anderen Drawables.</li>
+  <li><strong>State List:</strong> XML Datei, welche verschiedene Graphiken für verschiedene Zustände defininert.</li>
+  <li><strong>Level List:</strong> XML Datei, welche ein Drawable definiert, welches eine Anzahl von Ersatz Drawables managed.</li>
+  <li><strong>Transition Drawable:</strong> XML Datei, welche ein Drawable, das zwischen zwei Drawables faden kann, defininert.</li>
+  <li><strong>Inset Drawable:</strong> XML Datei, welche ein Drawable, das ein anderes Drawable mit einem bestimmten Abstand einsetzt,
+definiert.</li>
+  <li><strong>Clip Drawable:</strong> XML Datei, welche ein Drawable, das die ein anderes Drawables abschneidet, definiert.</li>
+  <li><strong>Scale Drawable:</strong> XML Datei, welche ein Drawable, das die Größe eines anderen Drawables verändert, definiert.</li>
+  <li><strong>Shape Drawable:</strong> XML Datei, welche eine geometrische Figur mit Farben und Verläufen definiert.</li>
+</ul>
+
+<blockquote>
+  <p>Wichtig! Direkt im Drawables Verzeichniss sind nur XML files abzulegen. Bilder und Icons sollten sich in
+auflösungsspezifischen Ordnern befinden. So ist es übersichtlicher und einfacher zu warten.</p>
+</blockquote>
+
+<h3 id="bilder-fr-unterschiedliche-pixeldichten-anlegen">Bilder für unterschiedliche Pixeldichten anlegen</h3>
+
+<p>Android läuft auf den unterschiedlichsten Geräten, deren Screengrößen und Pixeldichten stark variieren. Daher ist es
+wichtig, dass die Auflösungen von Bildern oder Icons auf diese Geräte abgestimmt sind. Nur so kann man eine positive
+Nutzererfahrung garantieren.</p>
+
+<p>Android skaliert UI Layouts und Ressourcen zur Laufzeit. Um Bilder oder Icons in der richtigen Auflösung anzuzeigen,
+sollten diese in verschiedenen Auflösungen im Projekt angelegt sein. So entscheidet sich Android, je nach Eigenschaften
+des Gerätes, welches Bild oder Icon mit welcher Dichte angezeigt werden soll.</p>
+
+<p>Diese sechs Pixeldichten können von Android unterstützt werden.</p>
+
+<ul>
+  <li>ldpi (low) ~120dpi</li>
+  <li>mdpi (medium) ~160dpi</li>
+  <li>hdpi (high) ~240dpi</li>
+  <li>xhdpi (extra-high) ~320dpi</li>
+  <li>xxhdpi (extra-extra-high) ~480dpi</li>
+  <li>xxxhdpi (extra-extra-extra-high) ~640dpi</li>
+</ul>
+
+<p><img src="../../../BestPractices/public/images/AN010/0250/icon_density_example.png" alt="icon_density_example" />
+<em>Beispiel für ein Icon in verschiedenen Auflösungen</em></p>
+
+<p>Beim Anlegen der Bilder in diesen Dichten muss die vorgegebene Ordnerstruktur eingehalten werden, damit das passende
+Bild zur Laufzeit ausgewählt werden kann. Die Bennenung der Ordner, in denen die Bilder abgelegt werden müssen, ist wie
+folgt: <code class="highlighter-rouge">drawable-hdpi, drawable-mdpi, drawable-xhdpi, ... </code>.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0250/density_example.png" alt="density_exaxmple" />
+<em>Beispiel für die Ordnerstruktur</em></p>
+
+<p>Möchte man Bilder oder Icons bewusst nur in einer Auflösung anlegen, werden diese im Ordner <code class="highlighter-rouge">drawable-nodpi</code>abgelegt.</p>
+
+<p>Stellt man ein Bild nicht in verschiedenen Auflösungen zur Verfügung, wird es von Android skaliert. Jedoch sollte man
+sich nicht auf das Skalieren von Android verlassen, da die Bilder oft verzerrt, grisselig oder ausgefranst werden.</p>
+
+<p>Um Icons in verschiedenen Auflösungen anzulegen ist <a href="https://romannurik.github.io/AndroidAssetStudio/icons-generic.html#source.space.trim=1&amp;source.space.pad=0&amp;size=99&amp;padding=0&amp;color=33b5e5%2C0&amp;name=ic_dsc_6895">diese
+Seite</a>
+zu empfehlen. Hier kann man das gewünschte Icon auswählen und die verschiedenen Auflösungen downloaden. Es können auch
+weitere Einstellungen vorgenommen werden, wie zum Beispiel die Größe des Icons zu verändern.</p>
+
+<p>Weitere Informationen: <a href="http://developer.android.com/guide/practices/screens_support.html#xxxhdpi-note">Supporting Multiple
+Screens</a></p>
+
+<h3 id="vectorgrafiken">Vectorgrafiken</h3>
+
+<p>Es gibt auch die Möglichkeit Vectorgrafiken als Ressourcen in Android Studio anzulegen. Diese machen vor allem bei
+einfachen Icons Sinn. Auch können sie die Größe der App reduzieren, da nicht Bilder in mehreren Auflösungen angelegt
+werden müssen, sondern nur eine Datei, die sich der Auflösung entsprechend berechnet.</p>
+
+<p>Um Vektorgrafiken zu erzeugen gibt es ein Tool in Android Studio, das <a href="http://developer.android.com/tools/help/vector-asset-studio.html">Vector Asset
+Studio</a>.</p>
+
+<p>Vectorgrafiken werden erst ab API Level 21 unterstützt. Alternativen für niedrigere Level sind einmal die Support
+Library zu benutzten oder die Icons als Rastergrafiken von Vector Asset Studio generieren zu lassen.</p>
+
+<h3 id="nine-patch-files">Nine-Patch Files</h3>
+
+<p>Ein Nine-Patch ist eine PNG Bild, welches sich je nach Größe des zur Verfügung stehenden Platzes anpasst. Ein Beispiel
+wäre eine Box mit Schatten. Dabei soll sich die Größe der Box verändern können, der Schatten jedoch sollte nicht
+verzogen werden. Bilder die sich sich für Nine Patch Dateien eignen, sollten aus streckbaren Flächen bestehen.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0250/nine_patch_example.png" alt="nine_patch_example" /></p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0250/nine_patch_example_two.png" alt="nine_patch_example_two" /></p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0250/nine_patch_example_three.png" alt="nine_patch_example_three" />
+<em>Beispiel für eine Nine-Patch Datei</em></p>
+
+<p>Ändert sich nun der Platz, der dem Bild zur Verfügung steht, so wird die Datei diesem angepasst. Der grüne Inhalt wird
+vergrößert oder verkleinert, der Schatten verändert sich jedoch nicht.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0250/nine_patch_bad_example.png" alt="nine_patch_bad_example" />
+<em>Schlechtes Beispiel Nine Patch Datei</em></p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0250/nine_patch_bad_example_two.png" alt="nine_patch_bad_example_two" />
+<em>Schlechtes Beispiel Nine Patch Datei</em></p>
+
+<p>Nicht geeignet für Nine-Patch Dateien sind Photos oder Bilder mit Texten, da diese nicht streckbar sind und verzogen
+werden.</p>
+
+<p>Um Nine-Patch PNGs zu erzeugen ist <a href="https://romannurik.github.io/AndroidAssetStudio/nine-patches.html">diese Seite</a> zu
+empfehlen. Hier kann man in der <em>Interactive Preview</em> testen wie sich die Datei bei Veränderung der Größe verhält.
+Außerdem bietet sie die Möglichkeit, die Dateien direkt herunterzuladen. Auch diese Dateien sollten in verschiedenen
+Auflösungen integriert werden.</p>
+
+<p>Zu erkennen sind Nine-Patch Dateien an der Endung: <code class="highlighter-rouge">.9.png</code>.</p>
+
+<p>Weitere Informationen:
+<a href="http://developer.android.com/guide/topics/resources/drawable-resource.html#NinePatch">Nine-Patch</a></p>
+
+  </div>
+
+  <hr />
+  <div>
+    
+      <p style="float:left;">
+        <a href="/BestPractices/de/articles/AN010-0200.html">
+          <small>
+            << Zurück: AN010-0200
+          </small>
+        </a>
+      </p>
+    
+
+    
+      <p style="float:right;">
+        <a href="/BestPractices/de/articles/AN010-0300.html">
+          <small>
+            Weiter: AN010-0300 >>
+          </small>
+        </a>
+      </p>
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

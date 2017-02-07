@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Tipps zum Erstellen von Layouts &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Tipps zum Erstellen von Layouts
+  </h1>
+
+  <p class="post-date">
+    AN010-0300
+     •
+    <time datetime="2016-01-01T01:00:00+01:00" itemprop="datePublished">
+      01. Januar 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Marina Meier
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <h2 id="android-layout">Android Layout</h2>
+
+<h3 id="unterschied-layoutgravity-und-gravity">Unterschied layout_gravity und gravity</h3>
+
+<ul>
+  <li>
+    <p><strong>gravity</strong> (<em>inside gravity</em>) beschreibt die Position des Inhalts innerhalb eines View Elements. Zum Beispiel die
+Anordnung eines Textes in einer View (left, right, center). Dieses Attribut kommt nicht zum Tragen wenn für layout_width
+oder layout_height <em>wrap_content</em> verwendet wurde, da so kein Raum entsteht in welchem das Element positioniert werden
+könnte.</p>
+  </li>
+  <li>
+    <p><strong>layout_gravity</strong> (<em>outside gravity</em>) beschreibt die Position eines ‘child’-View in seiner ‘parent’-View. Wie ist das
+Element relativ zu dem Element angeordnet in dem es definiert ist.</p>
+  </li>
+</ul>
+
+<p><img src="../../../BestPractices/public/images/AN010/0300/layout_gravity-gravity-example.png" alt="Bild zur
+Verdeutlichung(layout_gravity-gravity-example)" />
+<em>Veranschaulichung von gravity und layout_gravity</em></p>
+
+<h3 id="unterschied-include-und-merge">Unterschied include und merge</h3>
+
+<p><code class="highlighter-rouge">&lt;include/&gt;</code> - Tags werden dazu verwendet um einmal defnierte Layout Teile in andere Layouts einzufügen. Vorteile sind
+zum Einen, dass die XML Dateien übersichtlicher werden und zum Anderen, dass bei mehrfachem verwenden des gleichen
+Layouts (zum Beispiel einer Toolbar) Änderungen nur an einer Stelle gemacht werden müssen.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0300/include_layout_xml.png" alt="include_layout.xml" />
+<em>Layout, das in ein anderes eingefügt werden soll.</em></p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0300/main_layout_with_include.png" alt="main_layout_with_include" />
+<em>Das Layout wird durch das <code class="highlighter-rouge">&lt;include/&gt;</code> - Tag eingefügt und enthält somit das neue Layout.</em></p>
+
+<p>Möchte man mehrere Elemente außerhalb des main_layouts definieren, müssen diese in ein Root-Element gepackt werden. In
+diesem Beispiel ist das in der include_layout.xml Datei das vertical LinearLayout. Möchte man diese Elemente in einer
+Datei in ein vertical LinearLayout einfügen kommt es zu Redundanzen. Das <code class="highlighter-rouge">&lt;merge/&gt;</code> - Tag hilft dabei redundante View
+Groups in der View - Hierachie zu entfernen.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0300/main_layout_include_bad_example.png" alt="main_layout_include_bad_example" />
+<em>In diesem Beispiel ist das Root-Element in beiden Layouts ein <strong>vertical LinearLayout</strong>.</em></p>
+
+<p>Durch diese Schachtelung wird die Performance der UI verlangsamt. Um dies zu vermeiden kann man statt einer View Group
+als Root-Element, ein <code class="highlighter-rouge">&lt;merge/&gt;</code>- Element verwenden.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0300/merge_example.png" alt="merge_example" />
+<em>In diesem Beispiel wurde anstatt einem vertical LinearLayout als Root-Element das <code class="highlighter-rouge">&lt;merge/&gt;</code>- Element verwendet. Das
+System ignoriert die <code class="highlighter-rouge">&lt;merge/&gt;</code>- Root und plaziert beide Elemente direkt im Layout.</em></p>
+
+<p>Weitere Informationen: <a href="http://developer.android.com/training/improving-layouts/reusing-layouts.html">Re-using Layouts with
+include</a></p>
+
+<h3 id="coordinatorlayout">CoordinatorLayout</h3>
+
+<p>Google hat im Jahr 2015 eine neue <strong>Android Design Support Library</strong> vorgestellt, welche es Entwicklern einfach machen
+soll, das Material Design von Google umzusetzen. Dabei geht es darum Abhängigkeiten zwischen <em>child-views</em> zu
+koordinieren.
+Mit wenigen Zeilen Code kann man ein Layout mit <strong>Floating Action Buttons</strong>, <strong>Snackbars</strong> oder <strong>Collapsing Toolbars</strong>
+erstellen. In diesem Abschnitt möchte ich kurz auf die Möglichkeiten eingehen, die diese Library bietet und eine Seite
+verlinken, die ausführlich beschreibt wie das Ganze zu implementieren ist.</p>
+
+<h4 id="floating-action-button-und-snackbar">Floating Action Button und Snackbar</h4>
+
+<p><img src="" alt="video fab" /></p>
+
+<p>Bei einem Klick auf den FAB, wird dieser nach oben geschoben und die Snackbar wird sichtbar.
+Die Snackbar kann man mit einem Toast vergleichen. Sie ist aber ein Teil des Layouts und liegt nicht darüber.</p>
+
+<p>Zwei Interessante Attribute von <strong>FAB</strong> dabei sind layout_anchor und layout_anchorGravity.</p>
+
+<ul>
+  <li><strong>layout_anchor</strong> beschreibt die View, an welchem der Button ausgerichtet wird. Ist der Button an einem Element einer
+Liste festgemacht, und dieses Element verschwindet beim Scollen nach unten  aus dem Screen, positioniert sich der Button
+am unteren Rand des Screens und schwebt mit.
+<code class="highlighter-rouge">layout_anchor="@id/example"</code></li>
+  <li><strong>layout_anchorGravity</strong> beschreibt an welchem Rand der View der Button positioniert sein soll.
+<code class="highlighter-rouge">layout_anchorGravity="right|bottom" </code></li>
+</ul>
+
+<h4 id="collapsingtoolbar">CollapsingToolbar</h4>
+
+<p><img src="" alt="video toolbar" /></p>
+
+<p>Die Library unterstützt auch verschiedene Scroll - Techniken. Dabei geht es um das Verhalten der Toolbar, wenn bestimmte
+Inhalte gescrollt werden. Mithilfe von Scrollflags kann festgelegt werden, wie Elemente beim Scrollen den Screen
+verlassen oder betreten.</p>
+
+<h4 id="implementierungsbeispiel">Implementierungsbeispiel</h4>
+
+<p><a href="https://inthecheesefactory.com/blog/android-design-support-library-codelab/en">Tutorial zum Benutzen der Android Design Support
+Library</a></p>
+
+  </div>
+
+  <hr />
+  <div>
+    
+      <p style="float:left;">
+        <a href="/BestPractices/de/articles/AN010-0250.html">
+          <small>
+            << Zurück: AN010-0250
+          </small>
+        </a>
+      </p>
+    
+
+    
+      <p style="float:right;">
+        <a href="/BestPractices/de/articles/AN010-0400.html">
+          <small>
+            Weiter: AN010-0400 >>
+          </small>
+        </a>
+      </p>
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

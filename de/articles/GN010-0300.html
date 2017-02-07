@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Abgewandeltes Git-Flow &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Abgewandeltes Git-Flow
+  </h1>
+
+  <p class="post-date">
+    GN010-0300
+     •
+    <time datetime="2016-01-01T01:00:00+01:00" itemprop="datePublished">
+      01. Januar 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Cihat Gündüz
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <h2 id="was-ist-git-flow">Was ist Git-Flow?</h2>
+
+<p>Git-Flow ist in erster Linie eine Konvention zur Benennung und Benutzung von Branches in Git, das Vincent Driessen 2010
+in <a href="http://nvie.com/posts/a-successful-git-branching-model/">diesem Blogpost</a> vorgestellt hat und das seitdem immer
+größere Verbreitung findet. Das Ziel ist dabei eine einheitliche Arbeitsweise mit Branches in Git einzuführen, die alle
+üblichen Aufgaben bei der alltäglichen Programmierung und beim Deployment eines Projekts abdeckt. Zudem kommt Git-Flow
+auch mit einer Sammlung von Skripten, die bei diesen Aufgaben hilfreich zur Seite stehen.</p>
+
+<p>Die Basis jeden Projekts bilden bei der Anwendung von Git-Flow zwei Branches, die auf Vorschlag des ursprünglichen
+Autoren <strong><code class="highlighter-rouge">master</code></strong> und <strong><code class="highlighter-rouge">develop</code></strong> genannt werden. Auf den <code class="highlighter-rouge">master</code> Branch wird grundsätzlich nie direkt commitet,
+stattdessen werden lediglich fertige Versionen, die außerdem bereits so veröffentlicht wurden von anderen Branches rein
+gemerged. Im Grunde ist der <code class="highlighter-rouge">master</code> Branch also eine Historie des bereits veröffentlichten Codes. Der <code class="highlighter-rouge">develop</code> Branch
+repräsentiert im Gegensatz zum <code class="highlighter-rouge">master</code> Branch den aktuellen Stand der Entwicklung. Obwohl das so klingen mag, als könne
+man Veränderungen direkt auf den <code class="highlighter-rouge">develop</code> Branch commiten und dies sogar trotz Anwendung von Git-Flow durchaus immer
+wieder passiert, sollte bis auf wenige Ausnahmefälle nie direkt im <code class="highlighter-rouge">develop</code> Branch commitet werden. <code class="highlighter-rouge">master</code> und
+<code class="highlighter-rouge">develop</code> sind also <strong>Historien-Branches</strong>, deren letzter Commit entweder den aktuellen Stand der Veröffentlichung
+(master) oder den aktuellsten stabilen Stand der Entwicklung (develop) repräsentieren.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0300/develop.png" alt="Bilderklärung des develop Branches" />
+<em>Der develop-Branch entspringt dem master Branch.</em></p>
+
+<p>Die eigentliche Arbeit findet bei konsequenter Anwendung von Git-Flow ausschließlich in Arbeits-Branches statt. Diese
+lassen sich ganz einfach daran erkennen, dass sie alle einen Ordnernamen tragen.</p>
+
+<p>Die reguläre Arbeit mit neuen Funktionen, Änderungen und Bug Fixes findet im Ordner <strong><code class="highlighter-rouge">feature/</code></strong> statt. <code class="highlighter-rouge">feature/</code>
+Branches haben dabei als Quelle stets den <code class="highlighter-rouge">develop</code> Branch, da sie eine Weiterarbeit am aktuellen Stand der Entwicklung
+sind. Beispielsweise erstellt man für eine neue Funktion, bei der es darum geht Push Notifications in eine App zu
+integrieren den Branch <code class="highlighter-rouge">feature/push_notifications</code> und commitet alles dort hinein. Erst bei Abschluss der Funktion als
+Ganzes wird der Branch dann in den <code class="highlighter-rouge">develop</code> Branch gemerged, wodurch der <code class="highlighter-rouge">develop</code> Branch erneut den aktuellsten
+stabilen Stand der Entwicklung wiedergibt. Diese Vorgehensweise hat den Vorteil, dass beliebig viele Funktionen (von
+einer Person oder mehreren) gleichzeitig entwickelt werden können, ohne dass ein kurzzeitig instabiler Zustand die
+Arbeit anderer beeinträchtigt.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0300/feature.png" alt="Bilderklärung des feature Branches" />
+<em>Hier sieht man ein Projekt in dem parallel an 2 feature Branches gearbeitet wurde. Der eine wurde bereits in den
+develop Branch gemerged während sich der andere noch in Entwicklung befindet.</em></p>
+
+<p>Weitere Arbeits-Branches sind in den Ordnern <code class="highlighter-rouge">release/</code>, <code class="highlighter-rouge">hotfix/</code> und <code class="highlighter-rouge">support/</code> zu finden.</p>
+
+<p>Der <strong><code class="highlighter-rouge">release/</code></strong> Ordner wird beim Deployment einer fertigen Version verwendet. Ein Beispiel wäre der Branch
+<code class="highlighter-rouge">release/3.1.0</code>, den man vor dem Release der Version 3.1.0 erstellt. In dem Branch können Deployment-spezifische Commits
+(typischerweise die Änderung von Zertifikaten oder anderen Projekteinstellungen) gemacht werden. Nach abgeschlossener
+Veröffentlichung der Version wird dann der <code class="highlighter-rouge">release/3.1.0</code> Branch in den <code class="highlighter-rouge">master</code> Branch <strong>und</strong> in den <code class="highlighter-rouge">develop</code> Branch
+gemerged. Außerdem findet eine Markierung mittels eines Git Tags statt, mithilfe dessen ein Commit mit der Version 3.1.0
+markiert werden kann. Bei Nutzung der Git-Flow Skripte findet der Merge in beide Historien-Branches sowie die Markierung
+mit der Versionsnummer automatisch statt.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0300/release.png" alt="Bilderklärung des release Branches" />
+<em>Da man Änderungen im develop Branch nie direkt in den master Branch merged erstellt man zum überbrücken einen release
+Branch. Änderungen an diesem werden automatisch in master und develop gemerged.</em></p>
+
+<p>Der <strong><code class="highlighter-rouge">hotfix/</code></strong> Ordner ist für das Beheben von zeitkritischen Fehlern bei bereits veröffentlichter Software gedacht.
+Betreibt man zum Beispiel aktuell Version 1.5 im Store und hat Version 2.0 derzeit in Entwicklung und stellt einen
+schwerwiegenden Fehler fest, den man schnell in der veröffentlichten Version (1.5) beheben aber auch in künftigen
+Versionen (2.x) ausschließen möchte, so führt man die Commits für den Fix etwa im Beispiel von abgelaufenen Zertifikaten
+im Branch <code class="highlighter-rouge">hotfix/expired-certificates</code> durch. Der Branch hat als Ursprung nicht (wie bei <code class="highlighter-rouge">release/</code> Branches) den
+<code class="highlighter-rouge">develop</code> Branch sondern den <code class="highlighter-rouge">master</code> Branch und wird nach Fertigstellung des Fixes (genauso wie bei <code class="highlighter-rouge">release/</code>
+Branches) sowohl in den <code class="highlighter-rouge">master</code> als auch in den <code class="highlighter-rouge">develop</code> Branch gemerged. Auch um diesen doppelten Merge kümmern sich
+die Git-Flow Skripte automatisch.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0300/hotfix.png" alt="Bilderklärung des hotfix Branch" />
+<em>Hotfix Branches entspringen dem master Branch und werden bei Abschluss automatisch in den master sowie in den develop
+Branch gemerged.</em></p>
+
+<p>Der <strong><code class="highlighter-rouge">support/</code></strong> Ordner ist eine schon seit Jahren als Beta markierte Funktion von Git-Flow, deren Ziel es ist mehrere
+veröffentlichte Versionen einer Software mit Updates zu versorgen. Ohne die Nutzung von <code class="highlighter-rouge">support/</code> Branches kann immer
+nur eine aktuelle Version in einem Git-Projekt verwaltet werden (was im Falle von Apps für den Apple App Store und den
+Google Play Store auch ausreichend ist). Dennoch können <code class="highlighter-rouge">support/</code> Branches auch bei der Verwaltung von Apps nützlich
+sein, wenn ein Git-Projekt für mehrere Apps im Store benutzt wird, etwa um die gleiche App mehrmals für unterschiedliche
+Firmen gebrandet zu veröffentlichen. In diesem Fall wird das Branding z.B. für die Firmen Jamit Labs und Apple in den
+Branches <code class="highlighter-rouge">support/jamit_labs</code> und <code class="highlighter-rouge">support/apple</code> durchgeführt. Wird die App-Logik verändert können die Änderungen im
+<code class="highlighter-rouge">develop</code> Branch leicht in die verschiedenen <code class="highlighter-rouge">support/</code> Branches gemerged werden, wodurch man die Arbeit nicht doppelt
+(oder n-fach) durchführen muss, sondern nur einmal.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0300/support.png" alt="Bilderklärung des support Branch" />
+<em>TODO!</em></p>
+
+<h2 id="wie-kann-ich-git-flow-einfach-nutzen">Wie kann ich Git-Flow einfach nutzen?</h2>
+
+<p>Sowohl für die Erstellung als auch für das Fertigstellen von verschiedenen Arbeits-Branches in die Historien-Branches
+gibt es Skripte, die sich im <a href="https://github.com/nvie/gitflow">offiziellen GitHub Projekt</a> finden und auch über andere
+Quellen nutzen lassen. Das Programm SourceTree (deren Einsatz wir bereits <a href="#">hier</a> empfahlen) hat diese Skripte bereits
+standardmäßig mit an Board, sie sind am einfachsten mit der Tastenkombination Alt+Cmd+F oder über den <a href="http://i.stack.imgur.com/KEQhG.gif">konfigurierbaren
+Git-Flow-Button</a> oben in der Menüleiste zugänglich.</p>
+
+<p>Die Nutzung von Git-Flow in SourceTree sei nachfolgend anhand eines <code class="highlighter-rouge">feature/</code> Branches erläutert:</p>
+
+<p>TODO: Screenshots mit Erklärungen zum Erstellen und Mergen eines feature Branches hinzufügen</p>
+
+<h2 id="was-ist-jamit-labs-flavored-git-flow">Was ist Jamit Labs Flavored Git-Flow?</h2>
+
+<p><img src="../../../BestPractices/public/images/GN010/0300/jamit-flavored.png" alt="Bild das alten und neuen Flavor zeigt" />
+<em>Zum besseren Verständnis empfehlen wir eine Neubenennung der Git Flow Branches</em></p>
+
+<p>Die Benennung der verschiedenen Branches als <code class="highlighter-rouge">master</code>, <code class="highlighter-rouge">develop</code>, <code class="highlighter-rouge">feature/</code>, <code class="highlighter-rouge">hotfix/</code>, <code class="highlighter-rouge">release/</code> und <code class="highlighter-rouge">support/</code> läuft
+Gefahr zu Missverständnissen und Verwechslungen zu führen. Beispielsweise wird der <code class="highlighter-rouge">master</code> Branch traditionell für den
+stabilen aktuellen Arbeits-Branch verwendet, sodass einige Programmierer mit Vorerfahrungen gewillt sind, direkt auf den
+<code class="highlighter-rouge">master</code> Branch zu commiten. Andere wiederum verwenden <code class="highlighter-rouge">release/</code> Branches, um verschiedene veröffentlichte Versionen
+der Software zu verwalten (wozu es in Git-Flow <code class="highlighter-rouge">support/</code> gibt), anstatt ihn ausschließlich für das Deployment zu
+verwenden.</p>
+
+<p>Aus diesem Grund erscheint es sinnvoll die Namen der Branches möglichst selbsterklärend und unmissverständlich zu
+ändern, wozu wir bei Jamit Labs folgende Umbenennungen vorgenommen haben. Es sei angemerkt, dass eine andere Benennung
+der Branches in Git-Flow explizit vorgesehen ist, was auch von SourceTree beim ersten Ausführen von Git-Flow pro
+Git-Projekt abgefragt wird, sodass die Umbenennung keinen großen Aufwand darstellt.
+Es sei angemerkt, dass eine andere Benennung der Branches vom Nutzer selbst vorgenommen werden muss. Da man von
+SourceTree beim ersten Ausführen von Git-Flow innerhalb eines Projektes nach der gewünschten Benennung gefragt wird,
+stellt eine Umbenennung aber keinen großen Aufwand dar.</p>
+
+<h3 id="master----productive">master –&gt; productive</h3>
+
+<p>Der <code class="highlighter-rouge">master</code> Branch hat zu viel Historie und ist damit für viele erfahrene Git-Anwender bereits mit bestimmten Aufgaben
+verbunden. Um mit diesen nicht vorbelastet zu sein und auch um die Tatsache heraus zu stellen, dass Code der in diesem
+Branch ist bereits veröffentlichter Code ist wäre eine Umbenennung in released nahelegend. Doch dies hätte den Nachteil,
+dass es mit dem Git-Flow <code class="highlighter-rouge">release/</code> Branch verwechselt wird, weshalb wir die Alternative aber weiterhin sprechende
+Benennung productive gewählt haben.</p>
+
+<p>Es sei darauf verwiesen, dass der productive Branch als Historien-Branch ein Adjektiv als Namen hat und explizit kein
+Verb. Dies soll ein Hinweis darauf sein, dass hierin nicht direkt gearbeitet werden darf.</p>
+
+<h3 id="develop----stable">develop –&gt; stable</h3>
+
+<p>Der <code class="highlighter-rouge">develop</code> Branch klingt zu sehr nach Entwicklung und obwohl das auch durchaus passend ist ergibt sich aus den
+Erfahrungen in der Praxis die Notwendigkeit besser heraus zu stellen, dass der <code class="highlighter-rouge">develop</code> Branch den aktuellsten
+<strong>stabilen</strong> Entwicklungszustand repräsentiert. Deshalb heißt der <code class="highlighter-rouge">develop</code> Branch im Jamit Labs Flavor <code class="highlighter-rouge">stable</code>.</p>
+
+<p>Es sei außerdem darauf verwiesen, dass der <code class="highlighter-rouge">stable Branch als Historien-Branch (wie der productiv</code>e branch) ein Adjektiv
+als Namen hat und explizit kein Verb. Dies soll ein Hinweis darauf sein, dass auch hierin nicht direkt gearbeitet werden
+darf.</p>
+
+<h3 id="feature----work">feature/ –&gt; work/</h3>
+
+<p>Während der Name <code class="highlighter-rouge">feature/</code> in der Praxis keine echten Nachteile ergeben hat ist es doch in vielen Situationen etwas
+seltsam, Branch-Namen wie <code class="highlighter-rouge">feature/fix-memory-usage</code> zu lesen, da der Begriff “feature” durchaus bereits mit einer
+anderen Bedeutung besetzt ist. Da jedoch neben “features” auch Bug Fixes, Tests und alle möglichen anderen Arten von
+Änderungen in <code class="highlighter-rouge">feature/</code> Branches entwickelt werden ist eine Umbenennung durchaus sinnvoll. Wir verwenden daher den
+Ordnernamen <code class="highlighter-rouge">work/</code>. Dies soll zum einen alle verschiedenen Arten von Arbeiten sinnvoll ermöglichen, aber auch die
+Tatsache verdeutlichen, dass die meiste getane Arbeit typischerweise in <code class="highlighter-rouge">work/</code> Branches erledigt wird.</p>
+
+<p>Es sei angemerkt, dass explizit ein Verb als Ordnernamen ausgewählt wurde, da es sich hierbei um Branches handelt, in
+denen Arbeit verrichtet werden darf und soll.</p>
+
+<h3 id="release----deploy">release/ –&gt; deploy/</h3>
+
+<p>Der <code class="highlighter-rouge">release</code> Branch ist ähnlich wie der <code class="highlighter-rouge">master</code> Branch für einige erfahrene Git-Anwender aus anderen Projekten bereits
+mit einer anderen Bedeutung besetzt (nämlich der Bedeutung der <code class="highlighter-rouge">support/</code> Branches nach Git-Flow). Um Verwechslungen zu
+vermeiden nehmen wir den klarer auf den Sinn anspielenden Namen <code class="highlighter-rouge">deploy/</code>. Unter Deployment versteht man schließlich den
+Release von fertiger Software – genau das, wofür der <code class="highlighter-rouge">deploy/</code> Branch verwendet wird.</p>
+
+<p>Da auch hier wieder Arbeit in den Branches verrichtet werden soll, wurde wieder ein Verb als Ordnername gewählt.</p>
+
+<h3 id="hotfix--hotfix">hotfix/ == hotfix/</h3>
+
+<p><code class="highlighter-rouge">hotfix/</code> ist nicht nur ein Name, der bislang keine Verwechslungen hervorrief, sondern trifft auch genau den Sinn dieser
+Branches. Daher findet hier keine Umbenennung statt.</p>
+
+<p>Wie bei <code class="highlighter-rouge">work/</code>und <code class="highlighter-rouge">deploy/</code> wurde wieder ein Verb als Ordnername gewählt.</p>
+
+<h3 id="support----support-branding-">support/ –&gt; support/, branding/, …</h3>
+
+<p><code class="highlighter-rouge">support/</code> trifft ähnlich wie bei <code class="highlighter-rouge">hotfix/</code> den Sinn der Branches bei Verwaltung mehrere veröffentlichter
+Software-Versionen sehr gut, weshalb wir auch hier keine Umbenennung empfehlen. Allerdings ist die Unterstützung von
+mehreren Software-Versionen nicht immer auf die Versionsnummer bezogen (also den Support von Altversionen) sondern dabei
+kann es sich zum Beispiel auch um verschiedene Brandings einer App handeln. Da <code class="highlighter-rouge">support/</code> in solchen Fällen keinen Sinn
+macht, schlagen wir vor für jede Art von verwalteten Software-Versionen einen eigenen Namen zu verwenden, den man vorher
+intern mit seinem Team abklären sollte. Für unterschiedliche Brandings könnte etwa <code class="highlighter-rouge">branding/</code> gewählt werden.</p>
+
+<p><img src="../../../BestPractices/public/images/GN010/0300/overview.png" alt="Gesamtansicht mit allen Branches" />
+<em>Abschließend noch einmal eine Gesamtansicht aller Branches im Zusammenhang (bereits mit neuer Benennung).</em></p>
+
+<h3 id="weiterfhrende-links-und-quellen">Weiterführende Links und Quellen</h3>
+
+<p><a href="https://www.atlassian.com/pt/git/workflows#!workflow-gitflow">Weitere anschauliche Erklärung zur Funktionsweise von Git Flow (leider wird hier die Konsole anstelle von SourceTree
+eingesetzt)</a></p>
+
+  </div>
+
+  <hr />
+  <div>
+    
+      <p style="float:left;">
+        <a href="/BestPractices/de/articles/GN010-0200.html">
+          <small>
+            << Zurück: GN010-0200
+          </small>
+        </a>
+      </p>
+    
+
+    
+      <p style="float:right;">
+        <a href="/BestPractices/de/articles/GN010-0400.html">
+          <small>
+            Weiter: GN010-0400 >>
+          </small>
+        </a>
+      </p>
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

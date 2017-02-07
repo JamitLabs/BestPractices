@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Erstellen eines neuen Projekts &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Erstellen eines neuen Projekts
+  </h1>
+
+  <p class="post-date">
+    AN010-0100
+     •
+    <time datetime="2016-01-01T01:00:00+01:00" itemprop="datePublished">
+      01. Januar 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Marina Meier
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <p>In diesem Artikel wird die Erstellung eines neuen Android Studio Projekts
+behandelt. Dabei geht es darum welche Einstellungen zu Beginn vorgenommen werden
+sollten und wie man Emulatoren zum Testen der App einrichtet.</p>
+
+<h2 id="erstellen-eines-neuen-projekts">Erstellen eines neuen Projekts</h2>
+
+<p><img src="../../../BestPractices/public/images/AN010/0100/start_new_android_studio_project.jpg" alt="Start a new Android Studio
+Project" /></p>
+
+<p>Nachdem sich das erste Fenster geöffnet hat, muss man den Punkt “Start a new Android Studio project” auswählen, um ein
+komplett neues Projekt zu erstellen.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0100/new_android_studio_project_second_screen.png" alt="New Android Studio Project Second
+Screen" /></p>
+
+<p>Im nächsten Schritt müssen die Rahmenbedingungen für das Projekt festgelegt werden.</p>
+
+<ul>
+  <li><strong>Application name:</strong> Hier muss der Name, den das Projekt / die Applikation haben soll, eingetragen werden.</li>
+  <li><strong>Company Domain:</strong> Es gibt keine festen Vorgaben wie die Company Domain auszusehen hat.
+Sinnvoll wäre zum Beispiel: jamitlabs.com, jamitlabs, de.jamitlabs, de.ka.jamitlabs.
+Sie dient dazu die App eindeutig zu identifizieren, kann jedoch auch im nachhinein
+noch in der gradle file geändert werden.</li>
+  <li><strong>Package name:</strong> Dieser wird aus dem Applikationsname und der Company Domain zusammen
+gesetzt und dient als vollständiger Name für das Projekt. Man kann ihn jedoch auch
+unabhängig von dem Applikationsname und Company Domain bearbeiten (Edit).</li>
+  <li><strong>Project location:</strong> Hier wird das Verzeichnis angeben, in welchem das Projekt angelegt werden soll.</li>
+</ul>
+
+<p><img src="../../../BestPractices/public/images/AN010/0100/target_android_devices.png" alt="Target Android Devices" /></p>
+
+<p>Nun muss man auswählen für welche Geräte die App programmiert werden soll.
+In den meisten Fällen wird dies <strong>Phone and Tablet</strong> sein. Das <strong>Minimum SDK</strong> gibt
+die niedrigste Android Version an, auf welcher die App lauffähig sein wird.
+Damit möglichst viele Geräte unterstützt werden, ist es sinnvoll eine der niedrigeren Versionen zu wählen.
+Es gibt Funktionen, die erst auf neueren Versionen unterstützt werden.
+Diese können dann für diese neueren Versionen frei gegeben werden.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0100/add_an_activity_to_mobile.jpg" alt="Add an activity to Mobile" /></p>
+
+<p>Auf diesem Screen kann man einstellen, welche Elemente beim Erstellen des
+Projektes generiert werden sollen. Zu empfehlen ist die <strong>Blank Activity</strong>,
+da hier schon die ersten notwendigen Ordner und die MainActivity angelegt werden.
+Die MainActivity ist zuständig für das Starten des Systems, da es bei der App
+Programmierung keine main() Methode gibt, die diese Aufgabe übernimmt.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0100/customize_the_activity.png" alt="Customize the Activity" /></p>
+
+<p>Hier können der Activity Name, der Layout Name, der Titel und der Menu Ressourcen Name eingegeben werden. Die
+eingetragenen Werte können erst einmal übernommen werden und später auf das Projekt angepasst werden.</p>
+
+<p>Jetzt sind alle Voreinstellungen vorgenommen und mit einem Klick auf <strong>Finish</strong> wird das Projekt erstellt.</p>
+
+<h2 id="einrichten-der-emulatoren">Einrichten der Emulatoren</h2>
+
+<p>Um die Anwendung zu testen, kann man entweder ein Smartphone im <strong>Debuggable Mode</strong>
+anschließen oder sich <strong>Emulatoren</strong> einrichten, welche ein Smartphone simulieren und auf dem PC angezeigt werden.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0100/set_up_emulators.jpg" alt="set up emulators" /></p>
+
+<p>Um die Emulatoren einzurichten, klicke in der Schaltfläche am oberen Rand des Fensters auf das hier gezeigte Icon.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0100/your_virtual_devices.jpg" alt="Your Virtual Devices" />
+<em>Übersicht über die Eingerichteten Emulatoren</em></p>
+
+<p>In dieser Ansicht werden die schon eingestellten Emulatoren angezeigt. Man kann
+beliebig viele Geräte erstellen und diese später beim Starten der App auswählen.
+Ist beim ersten Öffnen noch kein Emulator eingestellt oder möchte man einen Neuen
+hinzufügen, muss man auf <strong>+ Create Virtual Device…</strong> klicken.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0100/select_hardware.png" alt="Select Hardware" />
+<em>Übersicht über zur Verfügung stehenden Emulatoren</em></p>
+
+<p>Hier kann man zuerst eine Kategorie auswählen, was für ein Gerätetyp man simulieren möchte.
+In diesem Beispiel erstellen wir einen Smartphone Emulator (Phone). In der Tabelle werden nun
+verschiedene Geräte mit näheren Informationen angezeigt (Displaygröße, Auflösung, Pixeldichte).
+Um alle Screengrößen abzudecken und das Layout optimal zu gestalten, empfehlen wir die App
+auf Emulatoren der Größe 3,2” bis 5,96” zu testen. Hat man sich für ein Gerät entschieden, dieses auswählen und auf Next
+klicken.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0100/system_image.png" alt="System Image" /></p>
+
+<p>Auf diesem Screen ist eine Android System Version zu wählen. Auch hier ist es sinnvoll
+unterschiedlichste Versionen zu testen. Vor allem bei niedrigen Versionen, die noch nicht alle
+Funktionen unterstützen, ist es wichtig die lauffähigkeit zu überprüfen. Dabei sollte man jedoch
+das Minimum SDK, für welche die App ausgelegt ist, im Hinterkopf behalten.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0100/android_virtual_device.png" alt="Android Virtual Device" /></p>
+
+<p>Auf dem letzten Screen kann man seine Angaben überprüfen und weitere Einstellungen treffen,
+wie zum Beispiel die Größe des RAMs, heaps, Internen Speichers und der SD Karte.
+Für die meisten Applikationen sollten aber die voreingestellten Werte genügen.
+Mit einem Klick auf <strong>Finish</strong> wird der Emulator erstellt und der Liste hinzugefügt.</p>
+
+<p>Um die Applikation nun in diesem Emulator zu testen, zunächst einmal das Fenster schließen.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0100/start_application.jpg" alt="start application" /></p>
+
+<p>Mit einem Klick auf den <strong>grünen Pfeil</strong> in der oberen Schaltfläche, startet man die App.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0100/choose_device.jpg" alt="Choose Device" /></p>
+
+<p>Beim ersten Starten ist noch kein <strong>running device</strong> angelegt. Um das zu tun <strong>Launch emulator</strong> auswählen.
+In der Combo Box werden alle Emulatoren angezeigt, welche, wie oben beschrieben, eingerichtet wurden.
+Hier nun das gewünschte Gerät auswählen. Möchte man dieses Gerät auch für die zukünftigen Launches
+nutzen bei <strong>Use same device for future launches</strong> einen Haken setzen. Mit einem Klick auf <strong>OK</strong> wird der Emulator
+gestartet.
+Dies kann unter Umständen eine Weile dauern. Wenn man eine Weile an einem Projekt arbeitet möchte,
+ist es sinnvoll den Emulator nicht zu schließen, da es sonst bei jedem Start viel Zeit kosten würde.
+Wurde er gestartet und nicht wieder geschlossen, wird er nun unter <strong>running devices</strong> angezeigt.</p>
+
+<h2 id="weitere-informationen">Weitere Informationen</h2>
+
+<ul>
+  <li><a href="http://developer.android.com/training/basics/firstapp/creating-project.html">Erstellen eines neuen Projekts</a></li>
+  <li><a href="http://developer.android.com/tools/devices/emulator.html">Android Emulator</a></li>
+  <li><a href="http://developer.android.com/tools/devices/managing-avds.html">AVD (Android Virtual Device) Manager</a></li>
+</ul>
+
+  </div>
+
+  <hr />
+  <div>
+    
+
+    
+      <p style="float:right;">
+        <a href="/BestPractices/de/articles/AN010-0200.html">
+          <small>
+            Weiter: AN010-0200 >>
+          </small>
+        </a>
+      </p>
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

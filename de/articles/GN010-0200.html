@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Nutzung von Gitignore-Dateien &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Nutzung von Gitignore-Dateien
+  </h1>
+
+  <p class="post-date">
+    GN010-0200
+     •
+    <time datetime="2016-01-01T01:00:00+01:00" itemprop="datePublished">
+      01. Januar 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Cihat Gündüz
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <h2 id="was-ist-eine-gitignore-datei">Was ist eine Gitignore-Datei?</h2>
+
+<p>Einer der Hauptgründe für die Verwendung von Versionskontrollsystemen ist die starke Vereinfachung der Zusammenarbeit
+mehrerer Entwickler in einem Projekt. Eine Hürde stellen dabei jedoch Dateien dar, die lediglich zur Konfiguration der
+Projektumgebung eines einzelnen Entwicklers vorhanden sind. Diese werden typischerweise von Entwicklungsumgebungen wie
+Xcode oder Android Studio erstellt und darin sind Dinge gespeichert wie die zuletzt geöffnete Datei oder die
+Konfiguration der einzelnen Panes (Teilfenster) in der Entwicklungsumgebung. Damit diese Einstellungen nicht von anderen
+Entwicklern übernommen werden sondern jeder seine eigenen Einstellungen behalten kann, gibt es bei Git die Möglichkeit,
+bestimmte Dateien von Commits generell auszuschließen.</p>
+
+<p>Das Ignorieren bestimmter Dateien ist auch dann nützlich, wenn man vermeiden möchte, dass durch regelmäßig neu
+generierte Dateien (wie Build-Artefakte) die Größe des Git-Repos immer weiter wächst. Außerdem können so
+sicherheitsrelevante Informationen wie Datenbank-Passwörter in Dateien ausgelagert werden, die ebenfalls ignoriert
+werden, um die Informationen vor eher außenstehenden Entwickler/Partnern zu schützen, denen man kurzfristig Zugriff zum
+Repo gewährt. Das Ignorieren von Dateien findet in Git durch eine simple Auflistung in einer Textdatei namens
+<code class="highlighter-rouge">.gitignore</code> statt. Darin werden alle zu ignorierenden Dateien oder Ordner per Pfad relativ zum Git-Repo in einer
+eigenen Zeile genannt und Git wird diese Dateien fortan nicht weiter verfolgen.</p>
+
+<p>Eine einfache <code class="highlighter-rouge">.gitignore</code> kann etwa so aussehen (Zeilen, die mit einem <code class="highlighter-rouge">#</code> beginnen sind Kommentare):</p>
+
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="c1"># Ignore Finder artifacts on OSX</span>
+<span class="o">.</span><span class="no">DS_Store</span>
+
+<span class="c1"># Ignore Build artifacts (`/` is optional and indicates that this is a folder)</span>
+<span class="n">build</span><span class="o">/</span>
+</code></pre>
+</div>
+
+<h2 id="einmalige-einrichtung-einer-globalen-gitignore-datei">Einmalige Einrichtung einer globalen Gitignore-Datei</h2>
+
+<p>Manche Artefakte und Konfigurationsdateien sind abhängig davon, welches Betriebssystem oder welche
+Entwicklungsumgebungen man einsetzt. So sollten diese im besten Falle für alle Projekte ignoriert werden, die man auf
+dem entsprechenden Mac oder PC bearbeitet. Dies ist in Git durch die sogenannte “globale” Gitignore-Datei möglich, wobei
+mit global hier “projektübergreifend” gemeint ist und sich auf die Git-Installation auf einem Computer bezieht. In
+SourceTree kann die globale Gitignore-Datei über SourceTree-&gt;Einstellungen im Reiter Git ganz oben schnell gefunden und
+mit einem Klick auf “Datei bearbeiten” editiert werden.</p>
+
+<p>Falls Du kein SourceTree verwendest, findest du sie bei Mac/Linux in deinem Home-Verzeichnis unter
+<code class="highlighter-rouge">~/.gitignore_global</code>. Falls Dein Home-Verzeichnis noch keine <code class="highlighter-rouge">.gitignore_global</code> enthält kannst Du sie dort einfach
+selbst erstellen.</p>
+
+<h2 id="projektspezifische-gitignore-datei">Projektspezifische Gitignore-Datei</h2>
+
+<p>Viele zu ignorierende Dateien sind projektspezifisch, weshalb man in Git pro Repo eine eigene <code class="highlighter-rouge">.gitignore</code> Datei
+definieren kann. Diese wird als Textdatei im Hauptverzeichnis des Repos angelegt und kann durch Einsatz von SourceTree
+sogar noch einfacher erstellt oder editiert werden. Hierzu öffnet man das Git-Repo in SourceTree, klickt rechts oben auf
+“Einstellungen” und gelangt so in die projektspezifischen Einstellungen. Nun findet man im Reiter “Erweitert” sowohl den
+Pfad zur Gitignore-Datei als auch einen Knopf namens “Bearbeiten”, der die Datei im Texteditor öffnet, in dem man sie
+ändern und via <code class="highlighter-rouge">Cmd-S</code> Tastenkombination speichern kann.</p>
+
+<p>TODO: Besser erklären
+Es ist wichtig, dass man die projektspezifische <code class="highlighter-rouge">.gitignore</code>-Datei selbst committet und nicht (etwa durch Ignorieren
+durch sich selbst) aus den künftigen Commits ausschließt. Dies stellt sicher, dass jeder, der an dem Projekt mit
+arbeitet ebenfalls dieselben Dateien nicht committet.</p>
+
+<h2 id="was-sollte-in-eine-gitignore-datei">Was sollte in eine Gitignore-Datei?</h2>
+
+<p>Grundsätzlich gehört alles hinein, was sich als Hürde für die gemeinsame Zusammenarbeit herausstellt oder aus anderen
+Gründen nicht geteilt werden sollte (Speicherplatz, Sicherheit). Die entsprechenden Dateien ergeben sich aus der Praxis
+und es lohnt sich meist, eine eigene Sammlung an zu ignorierenden Dateien zu führen und den Projektmitarbeitern zukommen
+zu lassen. Dabei kommt in die globale Gitignore-Datei alles, was sich nur auf den Produktivrechner bezieht, etwa
+bestimmte Artefakte, die das Betriebssystem im Projekteverzeichnis automatisch erzeugt. Artefakte, die projektspezifisch
+sind und ignoriert werden sollen, wie etwa der Build-Ordner (spart Speicherplatz, da er sonst nach jedem Build commitet
+werden muss) gehören hingegen in die projektspezifische Gitignore-Datei.</p>
+
+<p>Für den Anfang sei das <a href="https://github.com/github/gitignore#a-collection-of-gitignore-templates">Gitignore-Repo auf
+GitHub</a> empfohlen, welches von vielen
+Entwicklern regelmäßig gepflegt und mit sinnvollen zu ignorierenden Dateien ausgestattet ist. Anfangs sucht man sich für
+die globale Gitignore-Datei aus der <a href="https://github.com/github/gitignore/tree/master/Global">globalen Datei-Liste</a> all
+diejenigen aus, welche für die eigene Arbeit relevant sind und kopiert sie alle in die globale Gitignore-Datei rein. Für
+die App-Entwicklung unter iOS wären dies typischerweise “OS X” und “Xcode”, bei der Android-Entwicklung würde man den
+Inhalt von “Xcode” mit dem von “JetBrains” ersetzen (Android Studio ist von JetBrains). Dieser Schritt muss nur einmal
+pro Entwicklungsrechner erledigt werden. Fortan kopiert man als zweiten Schritt nach Erstellen eines neuen Git-Repos
+stets die passenden Gitignore-Empfehlungen aus der <a href="https://github.com/github/gitignore">Projekt-Dateiliste</a>. Bei der
+iOS-Entwicklung wäre dies etwa typischerweise die Datei mit dem Namen “Swift”, bei der Android-Entwicklung “Android”.</p>
+
+<h2 id="wie-kann-ich-bereits-commitete-dateien-ignorieren">Wie kann ich bereits commitete Dateien ignorieren?</h2>
+
+<p>Manchmal kommt es vor, dass man versehentlich eine Datei committet, die sich dann als eher störend für die
+Zusammenarbeit herausstellt, oder man bekommt ein Projekt übergeben, in dem noch keine (sinnvolle) Gitignore-Datei
+angelegt wurde. In diesen Fällen reicht es nicht einfach aus, eine neue Gitignore-Datei für das Projekt anzulegen und
+die anderen Mitarbeiter darum zu bitten, ihre globale Gitignore-Datei zu aktualisieren, denn Git berücksichtigt den
+Inhalt der Gitignore-Datei lediglich für neue, noch nicht commitete Dateien. Ist eine Datei jedoch bereits Teil eines
+Repositorys, so muss sie zunächst aus dem Repo entfernt werden. Dies erzielt man dadurch, dass man die entsprechende
+Datei löscht und diese Änderung (das Löschen der Datei) committet.</p>
+
+<p>Es ist zu empfehlen diesen Schritt direkt mit der Änderung in der <code class="highlighter-rouge">.gitignore</code>-Datei gemeinsam zu commiten, dies ist
+aber nicht zwingend erforderlich. Bevor man die Datei löscht sollte man sie sicherheitshalber in ein Verzeichnis
+außerhalb des Repos (etwa auf den Desktop) kopieren, um die Datei nach dem erfolgreichen Entfernen &amp; Ignorieren falls
+nötig wieder hinzufügen zu können. Hat man alles korrekt gemacht so sollte die Datei auch nicht mehr in SourceTree
+auftauchen.</p>
+
+  </div>
+
+  <hr />
+  <div>
+    
+      <p style="float:left;">
+        <a href="/BestPractices/de/articles/GN010-0150.html">
+          <small>
+            << Zurück: GN010-0150
+          </small>
+        </a>
+      </p>
+    
+
+    
+      <p style="float:right;">
+        <a href="/BestPractices/de/articles/GN010-0300.html">
+          <small>
+            Weiter: GN010-0300 >>
+          </small>
+        </a>
+      </p>
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

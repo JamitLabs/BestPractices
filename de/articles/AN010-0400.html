@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Gute Navigationsstruktur &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    Gute Navigationsstruktur
+  </h1>
+
+  <p class="post-date">
+    AN010-0400
+     •
+    <time datetime="2016-01-01T01:00:00+01:00" itemprop="datePublished">
+      01. Januar 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Marina Meier
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <p>In diesem Artikel geht es um eine konsistente Navigationsstruktur. Für die Benutzer einer App ist es wichtig, dass sie
+schnell und ohne Überraschungen durch die App navigieren können. Um dieses zu gewährleisten, werden im Folgenden die
+Best Practises bei der Erstellung einer Navigationsstruktur betrachtet.</p>
+
+<h2 id="back-navigation">BACK Navigation</h2>
+
+<p><img src="../../../BestPractices/public/images/AN010/0400/back_navigation.png" alt="back_navigation" /></p>
+
+<p>Der Back-Button ist bei allen Android Geräten integriert und sollte nicht der UI hinzugefügt werden. Er wird benutzt um
+in umgekehrter chronologischer Reihenfolge durch die zuletzt besuchten Screens einer App zu navigieren. Des Weiteren
+kann das Klicken des Buttons dazu führen, dass man die App verlässt oder einen Dialog oder die Screen Tastatur schließt.
+In den meisten Situationen pflegt das Android System selbst den Back Stack auf dem die einzelnen Screens abgelegt
+werden. In manchen Fällen muss das Back Verhalten jedoch manuell spezifiziert werden um die beste User Experience zu
+bieten.</p>
+
+<p>Diese Situationen sind:</p>
+
+<ul>
+  <li>Betreten einer Deep-Level Activity von einer Notification, eines App Widgets oder eines Navigation Drawers</li>
+  <li>Navigation zwischen Fragmenten</li>
+  <li>Navigation zwischen Webpages einer Webview</li>
+</ul>
+
+<h3 id="betreten-einer-deep-level-activity">Betreten einer Deep Level Activity</h3>
+
+<p>Eine Deep Level Activity bezeichnet eine Activity, die sich in der Screen Hierarchie an einer der unteren Stellen
+befindet, d.h. sie ist innerhalb der App nur über andere Aktivities zugänglich. Gelangt man nun über eine Notifikation
+oder ein App Widget zu so einem Screen, fehlt der vom System erzeugte Back Stack. Hier ist es sinnvoll den Benutzer über
+die komplette App Hierarchie bis hin zum ersten (“home”) Screen der App zu leiten, anstatt die App wieder zu schließen.
+Dazu muss man mit Hilfe des <code class="highlighter-rouge">TaskStackBuilders</code> und dem <code class="highlighter-rouge">PendingIntent</code> alle Aktivities, die oberhalb dieser Activity in
+der Hierarchie liegen, dem Stack hinzugfügen.</p>
+
+<p><img src="../../../BestPractices/public/images/AN010/0400/deep_level_back_navigation.png" alt="deep_level_back_navigation" /></p>
+
+<h3 id="navigation-zwischen-fragmenten">Navigation zwischen Fragmenten</h3>
+
+<p>Fragmente müssen dem Back Stack manuell hinzugefügt werden. Wenn man die FragmentTransaktion zum Öffnen des Fragmentes
+aufruft, sollte man es daher mit <code class="highlighter-rouge">addToBackStack()</code> zum Stack hinzufügen. Wird nun der Back Button gedrückt, wird das
+zuletzt abgelegte Fragment oder die zuletzt abgelegte Activity aufgerufen.
+Werden Fragmente innerhalb einer Hierarchie Ebene ausgetauscht, zum Beispiel bei horizontalen Transaktionen wie Tabs,
+müssen die Fragmente nicht zum Stack hinzufügt werden.</p>
+
+<p>Weitere Informationen: <a href="https://developer.android.com/training/implementing-navigation/temporal.html">BACK Navigation</a></p>
+
+<h2 id="up-navigation">UP Navigation</h2>
+
+<p><img src="../../../BestPractices/public/images/AN010/0400/up_navigation.png" alt="up_navigation" /></p>
+
+<p>Der Up Button befindet sich links oben in der Toolbar. Er sollte dazu benutzt werden um in einer App basierend auf
+hierarchischen Beziehungen zwischen Screens zu navigieren. Erreicht man den obersten Screen in der App Hierarchie, meist
+der Screen der gelaunched wird, gibt es keine Up Navigation mehr. Wichtig ist hierbei, dass der Benutzer auf jeden Fall
+in der eigenen App bleibt.</p>
+
+<p>Jeder Screen, der nicht der “home” screen ist, sollte die Möglichkeit bieten zum übergeordneten (parent) Screen zu
+gelangen. Um diese Funktionalität zu erreichen muss man zuerst die Parent Activity im AndroidManifest spezifizieren.
+Dazu einfach ein <code class="highlighter-rouge">meta-data</code> oder <code class="highlighter-rouge">parentActivityName</code> Element mit der Parent Activity festlegen. Durch
+<code class="highlighter-rouge">setDisplayHomeAsUpEnabled(true)</code> wird in der <code class="highlighter-rouge">onCreate()</code> das Up Verhalten aktiviert.</p>
+
+<p>Wenn eine Activity aus der eigenen App von anderen Apps aufgerufen werden kann, sollte ein neuer Task mit dem passenden
+Back Stack zu dieser Activity gestartet werden, um dem User die Up Navigation zu ermöglichen.</p>
+
+<p>Auf einem Screen mit verschiedenen Einstiegspunkten, aus welchen die Parent Activity nicht ersichtlich ist, sollte sich
+die Up Navigation wie die Back Navigation verhalten. Ändern sich die Inhalte einer Activity, zum Beispiel durch swipen
+von Tabs, ändert das nichts an der Hierarchie und keine neue Navigation muss erstellt werden. Auch das Navigieren
+zwischen Screens in der gleichen Hierarchie Ebene (zum Beispiel zwischen Detailseiten)  ändert nichts an der Up
+Navigation.</p>
+
+<p>Weitere Informationen: <a href="https://developer.android.com/training/implementing-navigation/ancestral.html">UP Navigation</a></p>
+
+<h2 id="navigation-drawer">Navigation Drawer</h2>
+
+<p><img src="../../../BestPractices/public/images/AN010/0400/navigation_drawer.png" alt="navigation_drawer" /></p>
+
+<p>Der Navigation Drawer beinhaltet die Haupt - Navigationspunkte und wird durch ein Panel am linken Rand des Screens
+dargestellt. Meistens ist es versteckt und kann durch swipen oder durch klicken auf das Icon in der Toolbar sichtbar
+gemacht werden. Das Icon, meist ein Hamburger Icon, zeigt an, dass eine Navigation existiert.</p>
+
+<p>Um einen Navigation Drawer in die App zu integrieren, muss das Wurzelelement des Layouts der Main Activity das
+DrawerLayout sein. Darin befinden sich eine View, die den Inhalt des Screen darstellt, und eine andere View, die den
+Inhalt des Drawers beinhaltet. Das erste Element ist immer das FrameLayout, das den Hauptinhalt des Screens beinhaltet
+und sollte daher die Breite und Höhe als match-parent definiert haben um den kompletten Screen abzudecken. Die Breite
+des Drawers sollte 320 dp nicht überschreiten, damit der Nutzer immer einen Teil des Hauptinhalts sieht. Er besteht
+häufig aus einer ListView oder RecyclerView und einem Adapter. Was beim Klicken auf die einzelnen Listenelemente
+passiert hängt von der gewählten App Struktur ab. Es wird zum Beispiel ein neues Fragment in den Screen geladen.</p>
+
+<p>Weitere Informationen: <a href="https://developer.android.com/training/implementing-navigation/nav-drawer.html">Navigation
+Drawer</a></p>
+
+  </div>
+
+  <hr />
+  <div>
+    
+      <p style="float:left;">
+        <a href="/BestPractices/de/articles/AN010-0300.html">
+          <small>
+            << Zurück: AN010-0300
+          </small>
+        </a>
+      </p>
+    
+
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

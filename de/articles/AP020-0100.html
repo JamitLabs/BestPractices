@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="de">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      StackViews mit Enums &middot; Best Practices
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/BestPractices/css/poole.css">
+  <link rel="stylesheet" href="/BestPractices/css/syntax.css">
+  <link rel="stylesheet" href="/BestPractices/css/lanyon.css">
+  <link rel="stylesheet" href="/BestPractices/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/BestPractices/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/BestPractices/public/favicon.ico">
+
+  <!-- Icon Name -->
+  <meta name="apple-mobile-web-app-title" content="JL Best Practices">
+  <meta name="application-name" content="JL Best Practices">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#0e3e64">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    
+      <a class="sidebar-nav-item" href="/BestPractices/en/">
+        
+        Englisch
+      </a>
+    
+      <a class="sidebar-nav-item" href="/BestPractices/de/">
+        
+        Deutsch
+      </a>
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+          
+          <a class="sidebar-nav-item" href="/BestPractices/de/about.html">Über dieses Projekt</a>
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; Jamit Labs 2017.
+      <br>
+      Alle Rechte vorbehalten.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <img src="/BestPractices/jl-logo.png" alt="JamitLabs Mini Logo" align="left" width="100px" height="30px">
+            &nbsp;
+            <a href="/BestPractices/de" title="Startseite">Best Practices</a>
+            <small>App-Entwicklung, verbessert.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <article class="post">
+
+  <h1 class="post-title">
+    StackViews mit Enums
+  </h1>
+
+  <p class="post-date">
+    AP020-0100
+     •
+    <time datetime="2016-08-23T02:00:00+02:00" itemprop="datePublished">
+      23. August 2016
+    </time>
+     •
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        Florian Pfisterer
+      </span>
+    </span>
+  </p>
+
+  <div class="post-content">
+    <p>Dieser Artikel befasst sich mit der seit iOS 9 verfügbaren Klasse <code class="highlighter-rouge">UIStackView</code>,
+mit Hilfe der man auch komplexe UIs ohne unübersichtlich viele Constraints im Storyboard simpel umsetzen kann. Wenn man
+StackViews jedoch im ViewController erstellt - zum Beispiel weil man dynamisch Daten vom Server bekommt - wird das
+schnell übersichtlich. In diesem Artikel wird eine Architektur vorgestellt, mit der man auch im Code erstellte
+StackViews sehr übersichtlich und wartbar gestalten kann.</p>
+
+<h2 id="kurze-einfhrung-warum-stackviews">Kurze Einführung: Warum StackViews?</h2>
+<p>Oft baut man UIs, die eine bestimmte lineare Struktur von Views enthalten. Als Beispiel dient ein Artikel wie dieser,
+der aus verschiedenen Typen von Views besteht, die in einer vertikalen Struktur angeordnet sind. Es gibt Überschriften,
+Code-Blöcke, Bilder, Tabellen und mehr.</p>
+
+<p>Würde man einen Artikel wie diesen hier in einem Storyboard umsetzen, müsste man die verschiedenen <code class="highlighter-rouge">UILabels</code>,
+<code class="highlighter-rouge">UITextViews</code>, <code class="highlighter-rouge">UIImageViews</code> und eventuelle individuelle <code class="highlighter-rouge">UIViews</code> einzeln im Interface Builder hinzufügen, dann die
+richtigen Constraints innerhalb des ViewControllers und untereinander erstellen und hoffen, dass keine ‘Ambiguity
+Issues’ oder ‘Conflicting Constraints’ auftreten.</p>
+
+<p>Die Lösung ist die Klasse <code class="highlighter-rouge">UIStackView</code>. Man fügt die verschiedenen UI-Elemente als ‘Arranged Subview’ dem StackView
+hinzu und wählt dann aus einigen Konfigurationsmöglichkeiten, wie das StackView seine Subviews darstellen soll. Im
+Interface Builder sieht das so aus:</p>
+
+<p><img src="../../../BestPractices/public/images/AP020/0100/stackview-configuration-options-in-interface-builder.png" alt="StackView
+Konfigurationsmöglichkeiten" /></p>
+
+<p>Man kann also folgende Konfigurationen vornehmen:</p>
+
+<ul>
+  <li><strong>Axis</strong>: die Achse, an der die Subviews ausgerichtet werden sollen - entweder vertikal oder horizontal</li>
+  <li><strong>Alignment</strong>: die vertikale (horizontale) Anordnung der Subviews wenn als Achse horizontal (vertikal) gewählt ist -
+Fill, Leading, Trailing oder Center (siehe Bild unten)</li>
+  <li><strong>Distribution</strong>: die Verteilung der Subviews entlang der Achse - Fill, Fill Equally, Fill Proportionally, Equal
+Spacing oder Equal Centering (siehe Bild unten)</li>
+  <li><strong>Spacing</strong>: der Abstand zwischen den Subviews auf der Achse - wird ignoriert, wenn als Distribution <em>nicht</em> Equal
+Spacing gewählt ist  (siehe Bild unten)</li>
+</ul>
+
+<p><img src="../../../BestPractices/public/images/AP020/0100/stackview-configurations-scheme.png" alt="StackView Konfigurationen als
+Grafik" /></p>
+
+<p>Bildquelle: <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/">Apple Developer Class
+Reference</a></p>
+
+<p>Arbeitet man mit dem Interface Builder, ist das sehr viel übersichtlicher als einzelne Constraints für jedes View, und
+durch ‘Nested StackViews’ - also StackViews als ‘Arranged Subviews’ von StackViews - kann man auch so gut wie jede UI
+damit darstellen.</p>
+
+<h3 id="tldr">TL;DR</h3>
+<p>StackViews sind UI-Elemente, die Subviews entlang einer Achse durch Konfigurationen automatisch positionieren.</p>
+
+<h2 id="das-problem">Das Problem</h2>
+<p>Das Problem ist, dass man nicht immer alles im Interface Builder machen kann und je nach Anwendungsfall UIs auch
+dynamisch erstellen muss - zum Beispiel basiert auf Daten aus dem Backend oder auf Einstellungen des Benutzers. Und dann
+wird es leicht unübersichtlich im ViewController - was man auf jeden Fall vermeiden sollte.</p>
+
+<p>Folgendermaßen würde man beispielsweise ein Label im Code erstellen und einem StackView hinzufügen:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">label</span> <span class="o">=</span> <span class="kt">UILabel</span><span class="p">()</span>
+<span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="kt">Daten</span><span class="o">.</span><span class="nf">aus</span><span class="p">(</span><span class="nv">dem</span><span class="p">:</span> <span class="n">backend</span><span class="p">)</span>
+<span class="n">label</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="kt">UIFont</span><span class="o">.</span><span class="nf">systemFontOfSize</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="c1">// ...</span>
+<span class="n">stackview</span><span class="o">.</span><span class="nf">addArrangedSubview</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+</code></pre>
+</div>
+<p>Das sieht zwar alleine noch ganz in Ordnung aus, baut man sich jedoch aus verschiedenen Elementen eines Katalogs
+beispielsweise - Bilder, Überschriften, Texte, Tabellen, etc. ein StackView zusammen, wird es zu unübersichtlich.</p>
+
+<h2 id="der-ansatz">Der Ansatz</h2>
+<p>Wir definieren uns einen Datentyp, der verschiedene Arten von StackView-Elementen darstellen und in <code class="highlighter-rouge">UIViews</code> umwandeln
+kann. Damit isolieren wir das einfache “Übersetzen” vom Inhalt der UI in StackView-Subviews aus dem ViewController. In
+Swift bieten sich dafür <strong>Enums</strong> an, da Enums eine Sammlung von vordefinierten Typen sind, die in Swift ‘associated
+values’ - also zugeordnete Werte - enthalten können. Mehr dazu unten.</p>
+
+<h2 id="die-lsung">Die Lösung</h2>
+<p>Wir bekommen verschiedene Inhalte vom Server, wobei auch der Typ mitgeteilt wird - also ob es sich um eine URL zu einem
+Bild, um Überschrifts-Text oder normalen Text handelt beispielsweise. Um den Inhalt dann letzendlich darzustellen,
+entwerfen wir folgenden Enum-Typ:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">enum</span> <span class="kt">StackViewElement</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nf">text</span><span class="p">(</span><span class="kt">String</span><span class="p">)</span>
+    <span class="k">case</span> <span class="nf">image</span><span class="p">(</span><span class="kt">UIImage</span><span class="p">)</span>
+    <span class="c1">// ... weitere Typen wenn gebraucht</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Dieser kann die für unser Beispiel relevanten 2 Typen von Informationen - Text und Bilder - speichern. Möchte man jetzt
+also einen Textblock in dieser Struktur darstellen, kann man ganz einfach schreiben <code class="highlighter-rouge">let title: StackViewElement =
+.text("StackViews mit Enums")</code>. So kann man ein Array von Strings, das man aus der <code class="highlighter-rouge">.plist</code>-Datei liest, ganz einfach in
+ein Array von <code class="highlighter-rouge">StackViewElement</code> umwandeln.</p>
+
+<h3 id="und-wie-bekommt-man-das-jetzt-auf-den-screen">Und wie bekommt man das jetzt auf den Screen?</h3>
+<p>Ganz einfach: man baut sich eine ‘computed property’ auf <code class="highlighter-rouge">StackViewElement</code>, die basiert auf dem jeweiligen ‘Enum Case’
+ein <code class="highlighter-rouge">UIView</code> zurückgibt:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">StackViewElement</span>
+<span class="p">{</span>
+    <span class="k">var</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="k">self</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">text</span><span class="p">(</span><span class="k">let</span> <span class="nv">content</span><span class="p">):</span>
+            <span class="k">let</span> <span class="nv">label</span> <span class="o">=</span> <span class="kt">UILabel</span><span class="p">()</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">content</span>
+            <span class="c1">// weitere Konfigurationen ...</span>
+            <span class="k">return</span> <span class="n">label</span>
+
+        <span class="k">case</span> <span class="o">.</span><span class="nf">image</span><span class="p">(</span><span class="k">let</span> <span class="nv">image</span><span class="p">):</span>
+            <span class="k">let</span> <span class="nv">imageView</span> <span class="o">=</span> <span class="kt">UIImageView</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="n">image</span><span class="p">)</span>
+            <span class="n">imageView</span><span class="o">.</span><span class="n">contentMode</span> <span class="o">=</span> <span class="o">.</span><span class="kt">ScaleAspectFill</span>
+            <span class="k">return</span> <span class="n">imageView</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Um unser Array von <code class="highlighter-rouge">StackViewElement</code> nun in ein fertiges <code class="highlighter-rouge">UIStackView</code> umzuwandeln schreiben wir uns einen eigenen
+‘convenience Initializer’ für <code class="highlighter-rouge">UIStackViews</code>:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">UIStackView</span> <span class="p">{</span>
+    <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">elements</span><span class="p">:</span> <span class="p">[</span><span class="kt">StackViewElement</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="nf">init</span><span class="p">()</span>
+        <span class="c1">// bei Bedarf können wir hier schon Konfigurationen vornehmen:</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="o">=</span> <span class="kc">false</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="o">.</span><span class="kt">Vertical</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">spacing</span> <span class="o">=</span> <span class="mi">10</span>
+
+        <span class="c1">// berechnet von jedem Element das View und fügt es hinzu</span>
+        <span class="n">elements</span><span class="o">.</span><span class="n">forEach</span> <span class="p">{</span> <span class="k">self</span><span class="o">.</span><span class="nf">addArrangedSubview</span><span class="p">(</span><span class="nv">$0</span><span class="o">.</span><span class="n">view</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="weiterfhrende-gedanken">Weiterführende Gedanken</h2>
+
+<h3 id="stackviewcontroller">StackViewController</h3>
+<p>Um unseren ViewController noch sauberer zu gestalten, können wir die StackView-Logik noch einen  Schritt weiter bringen
+und direkt in eine <code class="highlighter-rouge">StackViewController</code> Klasse einbauen. In einer  Übersicht über verschiedene Artikel beispielsweise
+muss man dann nur noch ein Array von   <code class="highlighter-rouge">StackViewElement</code> aus den Serverdaten erstellen und damit
+einen<code class="highlighter-rouge">StackViewController</code>  initialisieren.</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">StackViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">let</span> <span class="nv">elements</span><span class="p">:</span> <span class="p">[</span><span class="kt">StackViewElement</span><span class="p">]</span>
+
+    <span class="nf">init</span><span class="p">(</span><span class="nv">elements</span><span class="p">:</span> <span class="p">[</span><span class="kt">StackViewElement</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="n">elements</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">nibName</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+<p>Und in <code class="highlighter-rouge">viewDidLoad</code> erstellen wir dann aus der <code class="highlighter-rouge">elements</code>-Property ein <code class="highlighter-rouge">UIStackView</code>:</p>
+
+<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">StackViewController</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+
+        <span class="k">let</span> <span class="nv">stackView</span> <span class="o">=</span> <span class="kt">UIStackView</span><span class="p">(</span><span class="nv">elements</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">elements</span><span class="p">)</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">stackView</span><span class="p">)</span>
+        <span class="c1">// ... Constraints hinzufügen</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="enums-allgemein">Enums Allgemein</h3>
+<p>Dadurch, dass man in Swift zu Enum-Typen sogenannte <code class="highlighter-rouge">associated types</code> hinzufügen kann, also in diesem Beispiel der
+<code class="highlighter-rouge">String</code> als Inhalt eines Labels (<code class="highlighter-rouge">StackViewElement.text("String")</code>), bieten Enums in Swift viele Möglichkeiten. Es
+lohnt sich also auf jeden Fall, bevor man eine neue Klasse erstellt oder alles im ViewController schreibt, darüber
+nachzudenken, ob man das Problem nicht auch mit einem Enum lösen könnte. Mehr dazu in anderen Artikeln.</p>
+
+<p><em>Dieser Artikel ist durch eine Swift Talk Episode von objc.io inspiriert:</em>
+<a href="https://talk.objc.io/episodes/S01E07-stack-views-with-enums">Swift Talk by objc.io</a></p>
+
+  </div>
+
+  <hr />
+  <div>
+    
+      <p style="float:left;">
+        <a href="/BestPractices/de/articles/AP010-0300.html">
+          <small>
+            << Zurück: AP010-0300
+          </small>
+        </a>
+      </p>
+    
+
+    
+      <p style="float:right;">
+        <a href="/BestPractices/de/articles/AP020-0200.html">
+          <small>
+            Weiter: AP020-0200 >>
+          </small>
+        </a>
+      </p>
+    
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>
