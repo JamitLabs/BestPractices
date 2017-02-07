@@ -122,7 +122,7 @@ Es sei angemerkt, dass eine andere Benennung der Branches vom Nutzer selbst vorg
 SourceTree beim ersten Ausführen von Git-Flow innerhalb eines Projektes nach der gewünschten Benennung gefragt wird,
 stellt eine Umbenennung aber keinen großen Aufwand dar.
 
-### master >> productive
+### master --> productive
 
 Der `master` Branch hat zu viel Historie und ist damit für viele erfahrene Git-Anwender bereits mit bestimmten Aufgaben
 verbunden. Um mit diesen nicht vorbelastet zu sein und auch um die Tatsache heraus zu stellen, dass Code der in diesem
@@ -133,7 +133,7 @@ Benennung productive gewählt haben.
 Es sei darauf verwiesen, dass der productive Branch als Historien-Branch ein Adjektiv als Namen hat und explizit kein
 Verb. Dies soll ein Hinweis darauf sein, dass hierin nicht direkt gearbeitet werden darf.
 
-### develop >> stable
+### develop --> stable
 
 Der `develop` Branch klingt zu sehr nach Entwicklung und obwohl das auch durchaus passend ist ergibt sich aus den
 Erfahrungen in der Praxis die Notwendigkeit besser heraus zu stellen, dass der `develop` Branch den aktuellsten
@@ -144,7 +144,7 @@ als Namen hat und explizit kein Verb. Dies soll ein Hinweis darauf sein, dass au
 darf.
 
 
-### feature/ >> work/
+### feature/ --> work/
 
 Während der Name `feature/` in der Praxis keine echten Nachteile ergeben hat ist es doch in vielen Situationen etwas
 seltsam, Branch-Namen wie `feature/fix-memory-usage` zu lesen, da der Begriff "feature" durchaus bereits mit einer
@@ -157,7 +157,7 @@ Es sei angemerkt, dass explizit ein Verb als Ordnernamen ausgewählt wurde, da e
 denen Arbeit verrichtet werden darf und soll.
 
 
-### release/ >> deploy/
+### release/ --> deploy/
 
 Der `release` Branch ist ähnlich wie der `master` Branch für einige erfahrene Git-Anwender aus anderen Projekten bereits
 mit einer anderen Bedeutung besetzt (nämlich der Bedeutung der `support/` Branches nach Git-Flow). Um Verwechslungen zu
@@ -175,7 +175,7 @@ Branches. Daher findet hier keine Umbenennung statt.
 Wie bei `work/`und `deploy/` wurde wieder ein Verb als Ordnername gewählt.
 
 
-### support/ >> support/, branding/, ...
+### support/ --> support/, branding/, ...
 
 `support/` trifft ähnlich wie bei `hotfix/` den Sinn der Branches bei Verwaltung mehrere veröffentlichter
 Software-Versionen sehr gut, weshalb wir auch hier keine Umbenennung empfehlen. Allerdings ist die Unterstützung von
